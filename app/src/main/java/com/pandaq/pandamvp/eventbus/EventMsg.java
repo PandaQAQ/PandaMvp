@@ -1,4 +1,4 @@
-package com.pandaq.pandamvp.utils.eventbus;
+package com.pandaq.pandamvp.eventbus;
 
 import android.os.Bundle;
 

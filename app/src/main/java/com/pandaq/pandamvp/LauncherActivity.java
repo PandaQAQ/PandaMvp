@@ -16,4 +16,24 @@ public class LauncherActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
     }
+
+    @Override
+    protected void initVariable() {
+
+    }
+
+    @Override
+    protected int bindContentRes() {
+        return 0;
+    }
+
+    @Override
+    protected void initViews() {
+
+    }
+
+    @Override
+    protected void loadData() {
+
+    }
 }

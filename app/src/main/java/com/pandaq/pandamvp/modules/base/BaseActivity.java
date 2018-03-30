@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.pandaq.pandamvp.R;
+import com.pandaq.pandamvp.caches.DiskCache;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -59,6 +60,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        // 在页面失去焦点时同步缓存
+        DiskCache.getDiskCache().flush();
     }
 
     @Override

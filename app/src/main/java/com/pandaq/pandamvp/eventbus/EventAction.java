@@ -1,4 +1,4 @@
-package com.pandaq.pandamvp.utils.eventbus;
+package com.pandaq.pandamvp.eventbus;
 
 /**
  * Created by huxinyu on 2018/2/22.

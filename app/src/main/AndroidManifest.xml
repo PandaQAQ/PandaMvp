@@ -4,7 +4,7 @@
 
     <!--默认使用侧滑返回的透明风格，不需要侧滑返回的则使用自己的 Theme 即可-->
     <application
-        android:name=".app.CustomApp"
+        android:name=".app.App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
