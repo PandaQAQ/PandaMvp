@@ -6,5 +6,5 @@ package com.pandaq.pandamvp.utils;
  * Description :
  */
 
-public class Test {
+public class Util {
 }
