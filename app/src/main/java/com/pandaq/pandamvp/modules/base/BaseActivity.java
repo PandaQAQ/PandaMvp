@@ -3,11 +3,11 @@ package com.pandaq.pandamvp.modules.base;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.pandaq.pandamvp.R;
 import com.pandaq.pandamvp.caches.DiskCache;
+import com.pandaq.pandamvp.swipeback.SwipeBackActivity;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -18,7 +18,7 @@ import butterknife.Unbinder;
  * Description :所有 Activity 类的最基础类
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends SwipeBackActivity {
 
     protected Unbinder mUnbinder;
     protected Toolbar mToolbar;
@@ -72,6 +72,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        mUnbinder.unbind();
     }
 
     @Override
