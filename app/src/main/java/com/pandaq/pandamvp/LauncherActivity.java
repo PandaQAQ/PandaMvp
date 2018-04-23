@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import com.pandaq.pandamvp.modules.base.BaseActivity;
 
+import butterknife.ButterKnife;
+
 /**
  * Created by huxinyu on 2018/1/26.
  * Email : panda.h@foxmail.com
@@ -15,6 +17,7 @@ public class LauncherActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_launcher);
+        ButterKnife.bind(this);
     }
 
     @Override

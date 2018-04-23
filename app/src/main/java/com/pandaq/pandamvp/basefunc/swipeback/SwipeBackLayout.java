@@ -1,4 +1,4 @@
-package com.pandaq.pandamvp.swipeback;
+package com.pandaq.pandamvp.basefunc.swipeback;
 
 import android.app.Activity;
 import android.content.Context;
