@@ -3,9 +3,6 @@ package com.pandaq.pandamvp.app;
 import android.app.Application;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
-import android.os.Handler;
-import android.os.Looper;
-import android.util.Log;
 
 /**
  * Created by huxinyu on 2018/3/30.
@@ -20,15 +17,6 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         sApp = this;
-        new Handler().post(() -> {
-            while (true) {
-                try {
-                    Looper.getMainLooper().loop();
-                } catch (Exception e) {
-                    Log.d("Exception", e.getMessage());
-                }
-            }
-        });
     }
 
     public static App getGlobalApp() {
