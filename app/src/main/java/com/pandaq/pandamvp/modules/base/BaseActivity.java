@@ -8,8 +8,8 @@ import android.widget.FrameLayout;
 
 import com.pandaq.pandamvp.R;
 import com.pandaq.pandamvp.app.ActivityTask;
-import com.pandaq.pandamvp.basefunc.GuideCoverView;
-import com.pandaq.pandamvp.basefunc.swipeback.SwipeBackActivity;
+import com.pandaq.pandamvp.helpers.GuideCoverView;
+import com.pandaq.pandamvp.helpers.swipeback.SwipeBackActivity;
 import com.pandaq.pandamvp.caches.DiskCache;
 
 import butterknife.ButterKnife;

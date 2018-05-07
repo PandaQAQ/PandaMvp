@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'org.greenrobot.greendao'
 
 android {
     compileSdkVersion 27
@@ -8,6 +9,7 @@ android {
         targetSdkVersion 27
         versionCode 1
         versionName "1.0"
+        buildConfigField("String", "BASE_URL", "\"https://test.api.pandaq\"")
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -15,6 +17,16 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    //GreenDao 配置
+    greendao {
+        //数据库的schema版本，也可以理解为数据库版本号
+        schemaVersion 1
+        //设置DaoMaster、DaoSession、Dao包名，也就是要放置这些类的包的全路径。
+        daoPackage 'com.pandaq.pandamvp.db'
+        //设置DaoMaster、DaoSession、Dao 目录
+        targetGenDir 'src/main/java'
     }
 
     // 引用 java8 支持 lambda 表达式
@@ -26,11 +38,12 @@ android {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:27.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    //noinspection GradleCompatible
+    implementation 'com.android.support:appcompat-v7:27.1.1'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
     implementation 'com.android.support:design:27.1.1'
@@ -46,4 +59,8 @@ dependencies {
     implementation 'org.greenrobot:eventbus:3.1.1'
     //
     implementation 'com.jakewharton:disklrucache:2.0.2'
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    //GreenDao 3.0
+    implementation 'org.greenrobot:greendao:3.2.2'
 }

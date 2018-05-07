@@ -1,4 +1,4 @@
-package com.pandaq.pandamvp.network;
+package com.pandaq.pandamvp.net;
 
 /**
  * Created by huxinyu on 2018/4/2.
