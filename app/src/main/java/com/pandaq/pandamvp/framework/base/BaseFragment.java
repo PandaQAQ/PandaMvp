@@ -1,4 +1,4 @@
-package com.pandaq.pandamvp.modules.base;
+package com.pandaq.pandamvp.framework.base;
 
 import android.content.Context;
 import android.os.Bundle;

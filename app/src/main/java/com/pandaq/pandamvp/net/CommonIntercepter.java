@@ -17,7 +17,6 @@ import okhttp3.Response;
  */
 public class CommonIntercepter implements Interceptor {
 
-    private static final String POST = "POST";
     private Map<String, String> headers;
 
     private CommonIntercepter(Map<String, String> headers) {

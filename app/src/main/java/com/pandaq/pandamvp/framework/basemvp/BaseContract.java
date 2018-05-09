@@ -1,4 +1,4 @@
-package com.pandaq.pandamvp.modules.basemvp;
+package com.pandaq.pandamvp.framework.basemvp;
 
 /**
  * Created by huxinyu on 2018/4/2.

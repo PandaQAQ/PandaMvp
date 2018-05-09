@@ -1,10 +1,11 @@
 package com.pandaq.pandamvp.app;
 
-import com.pandaq.pandamvp.modules.base.BaseActivity;
+import com.pandaq.pandamvp.framework.base.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
+import java.util.logging.Logger;
 
 /**
  * Created by huxinyu on 2018/4/24.
@@ -140,7 +141,7 @@ public class ActivityTask {
             killAllActivity();
             System.exit(0);
         } catch (Exception e) {
-            e.printStackTrace();
+
         }
     }
 }

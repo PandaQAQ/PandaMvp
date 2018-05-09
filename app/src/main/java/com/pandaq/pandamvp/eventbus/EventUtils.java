@@ -1,7 +1,5 @@
 package com.pandaq.pandamvp.eventbus;
 
-import com.pandaq.pandamvp.utils.Util;
-
 import org.greenrobot.eventbus.EventBus;
 
 /**
@@ -27,7 +25,6 @@ public class EventUtils {
 
     public static void postTestAction() {
         EventMsg eventMsg = new EventMsg();
-        eventMsg.setTargetName(Util.class.getName());
         eventMsg.setAction(EventAction.TEST_ACTION);
         EventBus.getDefault().post(eventMsg);
     }

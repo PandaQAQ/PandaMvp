@@ -1,10 +1,10 @@
-package com.pandaq.pandamvp.modules.basemvp;
+package com.pandaq.pandamvp.framework.basemvp;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.pandaq.pandamvp.modules.base.BaseActivity;
+import com.pandaq.pandamvp.framework.base.BaseActivity;
 
 /**
  * Created by huxinyu on 2018/4/2.

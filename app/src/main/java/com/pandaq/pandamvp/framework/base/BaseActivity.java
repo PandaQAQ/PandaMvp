@@ -1,16 +1,16 @@
-package com.pandaq.pandamvp.modules.base;
+package com.pandaq.pandamvp.framework.base;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 
 import com.pandaq.pandamvp.R;
 import com.pandaq.pandamvp.app.ActivityTask;
-import com.pandaq.pandamvp.helpers.GuideCoverView;
-import com.pandaq.pandamvp.helpers.swipeback.SwipeBackActivity;
 import com.pandaq.pandamvp.caches.DiskCache;
+import com.pandaq.pandamvp.interaction.GuideCoverView;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -21,7 +21,7 @@ import butterknife.Unbinder;
  * Description :所有 Activity 类的最基础类
  */
 
-public abstract class BaseActivity extends SwipeBackActivity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     protected Unbinder mUnbinder;
     protected Toolbar mToolbar;

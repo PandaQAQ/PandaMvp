@@ -2,7 +2,7 @@ package com.pandaq.pandamvp;
 
 import android.os.Bundle;
 
-import com.pandaq.pandamvp.modules.base.BaseActivity;
+import com.pandaq.pandamvp.framework.base.BaseActivity;
 
 import butterknife.ButterKnife;
 

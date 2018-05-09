@@ -1,4 +1,4 @@
-package com.pandaq.pandamvp.utils.image;
+package com.pandaq.pandamvp.image;
 
 /**
  * Created by huxinyu on 2018/2/22.

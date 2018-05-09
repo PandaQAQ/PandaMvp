@@ -75,13 +75,9 @@ public class DiskCache {
      *
      * @return 管理类单例
      */
-    public static DiskCache getDiskCache() {
+    public static synchronized DiskCache getDiskCache() {
         if (sDiskCache == null) {
-            synchronized (DiskCache.class) {
-                if (sDiskCache == null) {
-                    sDiskCache = new DiskCache();
-                }
-            }
+            sDiskCache = new DiskCache();
         }
         return sDiskCache;
     }
@@ -166,12 +162,13 @@ public class DiskCache {
     public void put(String key, String value) {
         DiskLruCache.Editor editor = null;
         BufferedWriter writer = null;
+        OutputStream os = null;
         try {
             editor = edit(key);
             if (editor == null) {
                 return;
             }
-            OutputStream os = editor.newOutputStream(0);
+            os = editor.newOutputStream(0);
             writer = new BufferedWriter(new OutputStreamWriter(os));
             writer.write(value);
             editor.commit();
@@ -187,6 +184,9 @@ public class DiskCache {
             try {
                 if (writer != null) {
                     writer.close();
+                }
+                if (os != null) {
+                    os.close();
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -262,7 +262,7 @@ public class DiskCache {
 
     public void put(String key, InputStream inputStream) {
         OutputStream outputStream = null;
-        DiskLruCache.Editor editor = null;
+        DiskLruCache.Editor editor;
         try {
             editor = edit(key);
             if (editor == null) {
@@ -270,12 +270,20 @@ public class DiskCache {
             }
             outputStream = editor.newOutputStream(0);
             byte[] buffer = new byte[1024];
-            int len = 0;
+            int len;
             while ((len = inputStream.read(buffer)) != -1) {
                 outputStream.write(buffer, 0, len);
             }
         } catch (IOException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (outputStream != null) {
+                    outputStream.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
