@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/PandaMVP.iml" filepath="$PROJECT_DIR$/PandaMVP.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PandaMvp.iml" filepath="$PROJECT_DIR$/PandaMvp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/artqrcode/artqrcode.iml" filepath="$PROJECT_DIR$/artqrcode/artqrcode.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pandasdk/pandasdk.iml" filepath="$PROJECT_DIR$/pandasdk/pandasdk.iml" />
     </modules>
   </component>
 </project>
