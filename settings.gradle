@@ -1,1 +1,1 @@
-include ':app', ':artqrcode', ':appcore'
+include ':app',':appcore', ':commonui', ':thridmodules'

@@ -9,8 +9,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/artqrcode" />
-            <option value="$PROJECT_DIR$/pandasdk" />
+            <option value="$PROJECT_DIR$/appcore" />
+            <option value="$PROJECT_DIR$/commonui" />
+            <option value="$PROJECT_DIR$/thridmodules" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

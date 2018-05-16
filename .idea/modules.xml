@@ -4,8 +4,9 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PandaMvp.iml" filepath="$PROJECT_DIR$/PandaMvp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/artqrcode/artqrcode.iml" filepath="$PROJECT_DIR$/artqrcode/artqrcode.iml" />
-      <module fileurl="file://$PROJECT_DIR$/pandasdk/pandasdk.iml" filepath="$PROJECT_DIR$/pandasdk/pandasdk.iml" />
+      <module fileurl="file://$PROJECT_DIR$/appcore/appcore.iml" filepath="$PROJECT_DIR$/appcore/appcore.iml" />
+      <module fileurl="file://$PROJECT_DIR$/commonui/commonui.iml" filepath="$PROJECT_DIR$/commonui/commonui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thridmodules/thridmodules.iml" filepath="$PROJECT_DIR$/thridmodules/thridmodules.iml" />
     </modules>
   </component>
 </project>
