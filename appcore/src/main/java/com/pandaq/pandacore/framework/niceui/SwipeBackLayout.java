@@ -1,4 +1,4 @@
-package com.pandaq.pandamvp.helpers.swipeback;
+package com.pandaq.pandacore.framework.niceui;
 
 import android.app.Activity;
 import android.content.Context;
@@ -16,7 +16,7 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.Scroller;
 
-import com.pandaq.pandamvp.R;
+import com.pandaq.pandacore.R;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -24,6 +24,7 @@ import java.util.List;
 /**
  * Created by huxinyu on 2018/1/26.
  * Email : panda.h@foxmail.com
+ * <p>
  * Description :侧滑返回嵌入载体 layout
  */
 

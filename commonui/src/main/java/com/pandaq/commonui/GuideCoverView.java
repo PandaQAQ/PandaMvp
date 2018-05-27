@@ -1,4 +1,4 @@
-package com.pandaq.pandamvp.helpers;
+package com.pandaq.commonui;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -7,11 +7,10 @@ import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 
-import com.pandaq.pandamvp.R;
-
 /**
  * Created by huxinyu on 2018/4/23.
  * Email : panda.h@foxmail.com
+ * <p>
  * Description : 半透明遮罩新手引导 View
  */
 public class GuideCoverView extends RelativeLayout {

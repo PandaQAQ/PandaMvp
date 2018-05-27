@@ -3,14 +3,14 @@ package com.pandaq.pandamvp.framework.base;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 
+import com.pandaq.commonui.GuideCoverView;
+import com.pandaq.pandacore.framework.base.TemplateBaseActivity;
 import com.pandaq.pandamvp.R;
 import com.pandaq.pandamvp.app.ActivityTask;
 import com.pandaq.pandamvp.caches.DiskCache;
-import com.pandaq.pandamvp.interaction.GuideCoverView;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -21,7 +21,7 @@ import butterknife.Unbinder;
  * Description :所有 Activity 类的最基础类
  */
 
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends TemplateBaseActivity {
 
     protected Unbinder mUnbinder;
     protected Toolbar mToolbar;
@@ -38,19 +38,12 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initVariable();
-        if (bindContentRes() != 0) {
-            setContentView(bindContentRes());
-        }
-        mUnbinder = ButterKnife.bind(this);
         // 如果是新手向导页则初始化向导载体图层
         if (guideActivity) {
             initGuide();
         }
         initToolBar();
         ActivityTask.getInstance().addActivity(this);
-        initViews();
-        loadData();
     }
 
     /**
@@ -62,35 +55,6 @@ public abstract class BaseActivity extends AppCompatActivity {
             setSupportActionBar(mToolbar);
             mToolbar.setNavigationOnClickListener(v -> onBackPressed());
         }
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        // 在页面失去焦点时同步缓存
-        DiskCache.getDiskCache().flush();
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        mUnbinder.unbind();
-        ActivityTask.getInstance().remove(this);
     }
 
     @Override
@@ -118,25 +82,22 @@ public abstract class BaseActivity extends AppCompatActivity {
         }
     }
 
-    /**
-     * 初始化参数
-     */
-    protected abstract void initVariable();
+    @Override
+    public void bindButterKnife() {
+        mUnbinder = ButterKnife.bind(this);
+    }
 
-    /**
-     * 获取布局 layout id
-     *
-     * @return 布局 id
-     */
-    protected abstract int bindContentRes();
+    @Override
+    protected void onPause() {
+        super.onPause();
+        // 在页面失去焦点时同步缓存
+        DiskCache.getDiskCache().flush();
+    }
 
-    /**
-     * 初始化 View 函数
-     */
-    protected abstract void initViews();
-
-    /**
-     * 加载数据函数
-     */
-    protected abstract void loadData();
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        mUnbinder.unbind();
+        ActivityTask.getInstance().remove(this);
+    }
 }

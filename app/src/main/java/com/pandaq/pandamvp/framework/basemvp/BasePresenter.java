@@ -1,15 +1,18 @@
 package com.pandaq.pandamvp.framework.basemvp;
 
+import com.pandaq.pandacore.framework.mvpbase.IBaseMvpView;
+import com.pandaq.pandacore.framework.mvpbase.IBasePresenter;
+
 /**
  * Created by huxinyu on 2018/4/2.
  * Email : panda.h@foxmail.com
- * Description :Presenter 实现类基类
+ * Description :Presenter 实现类基类模板,可直接 module 中继承使用模板也可完全自己自定义
  */
-public abstract class BasePresenterImp<V extends BaseContract.IBaseView> implements BaseContract.IBasePresenter {
+public abstract class BasePresenter<V> implements IBasePresenter {
 
     protected V mMvpView;
 
-    public BasePresenterImp(V mvpView) {
+    public BasePresenter(V mvpView) {
         if (mvpView != null) {
             mMvpView = mvpView;
             mvpViewBand();

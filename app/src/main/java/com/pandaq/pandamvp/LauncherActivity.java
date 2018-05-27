@@ -1,23 +1,17 @@
 package com.pandaq.pandamvp;
 
-import android.os.Bundle;
-
-import com.pandaq.pandamvp.framework.base.BaseActivity;
-
-import butterknife.ButterKnife;
+import com.pandaq.pandamvp.framework.basemvp.BaseMvpActivity;
 
 /**
  * Created by huxinyu on 2018/1/26.
  * Email : panda.h@foxmail.com
  * Description : 启动页面 Activity
  */
-public class LauncherActivity extends BaseActivity {
+public class LauncherActivity extends BaseMvpActivity<LauncherPresenter> implements LauncherContract.View {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_launcher);
-        ButterKnife.bind(this);
+    public LauncherPresenter injectPresenter() {
+        return new LauncherPresenter(this);
     }
 
     @Override
@@ -26,13 +20,13 @@ public class LauncherActivity extends BaseActivity {
     }
 
     @Override
-    protected int bindContentRes() {
-        return 0;
+    protected void initView() {
+
     }
 
     @Override
-    protected void initViews() {
-
+    protected int bindContentRes() {
+        return R.layout.activity_launcher;
     }
 
     @Override
