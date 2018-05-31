@@ -10,5 +10,39 @@ public class ApiException extends RuntimeException {
 
     private int errorCode;
     private String message;
+    private String data;
 
+    private ApiException() {
+    }
+
+    public ApiException(int errorCode, String message, String data) {
+        this.errorCode = errorCode;
+        this.message = message;
+        this.data = data;
+    }
+
+    public int getErrorCode() {
+        return errorCode;
+    }
+
+    public void setErrorCode(int errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    @Override
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getData() {
+        return data;
+    }
+
+    public void setData(String data) {
+        this.data = data;
+    }
 }
