@@ -146,6 +146,9 @@ public class ApiManager<T> {
     }
 
     public Builder<T> newBuilder() {
+        if (clientBuilder == null) {
+            clientBuilder = new OkHttpClient.Builder();
+        }
         return new Builder<T>()
                 .client(clientBuilder.build())
                 .debug(debug)
@@ -201,6 +204,9 @@ public class ApiManager<T> {
         }
 
         public Builder<T> addHeaders(Map<String, String> addHeaderMap) {
+            if (this.addHeaderMap == null) {
+                this.addHeaderMap = new HashMap<>();
+            }
             this.addHeaderMap.putAll(addHeaderMap);
             return this;
         }
