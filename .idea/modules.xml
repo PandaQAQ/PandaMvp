@@ -6,7 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/appcore/appcore.iml" filepath="$PROJECT_DIR$/appcore/appcore.iml" />
       <module fileurl="file://$PROJECT_DIR$/commonui/commonui.iml" filepath="$PROJECT_DIR$/commonui/commonui.iml" />
-      <module fileurl="file://$PROJECT_DIR$/thridmodules/thridmodules.iml" filepath="$PROJECT_DIR$/thridmodules/thridmodules.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thirdsdk/thirdsdk.iml" filepath="$PROJECT_DIR$/thirdsdk/thirdsdk.iml" />
     </modules>
   </component>
 </project>

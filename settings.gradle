@@ -1,1 +1,1 @@
-include ':app',':appcore', ':commonui', ':thridmodules'
+include ':app',':appcore', ':commonui', ':thirdsdk'

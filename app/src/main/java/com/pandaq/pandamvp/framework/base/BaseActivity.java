@@ -6,11 +6,10 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 
+import com.pandaq.appcore.framework.base.TemplateBaseActivity;
 import com.pandaq.commonui.GuideCoverView;
-import com.pandaq.pandacore.framework.base.TemplateBaseActivity;
 import com.pandaq.pandamvp.R;
 import com.pandaq.pandamvp.app.ActivityTask;
-import com.pandaq.pandamvp.caches.DiskCache;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -90,8 +89,6 @@ public abstract class BaseActivity extends TemplateBaseActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        // 在页面失去焦点时同步缓存
-        DiskCache.getDiskCache().flush();
     }
 
     @Override

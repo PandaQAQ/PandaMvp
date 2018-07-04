@@ -3,7 +3,7 @@ package com.pandaq.pandamvp.framework.basemvp;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.pandaq.pandacore.framework.mvpbase.IBaseMvpView;
+import com.pandaq.appcore.framework.mvpbase.IBaseMvpView;
 import com.pandaq.pandamvp.framework.base.BaseFragment;
 
 /**

@@ -48,4 +48,9 @@ public class LauncherActivity extends BaseMvpActivity<LauncherPresenter> impleme
     public void onError(int errCode, String errMsg) {
 
     }
+
+    @Override
+    public void onLoadFinish() {
+
+    }
 }

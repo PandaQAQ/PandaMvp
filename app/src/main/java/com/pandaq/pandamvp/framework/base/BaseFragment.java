@@ -2,8 +2,7 @@ package com.pandaq.pandamvp.framework.base;
 
 import android.view.View;
 
-import com.pandaq.pandacore.framework.base.TemplateBaseFragment;
-import com.pandaq.pandamvp.caches.DiskCache;
+import com.pandaq.appcore.framework.base.TemplateBaseFragment;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -14,15 +13,13 @@ import butterknife.Unbinder;
  * Description :Fragment 基类
  */
 
-public  abstract class BaseFragment extends TemplateBaseFragment {
+public abstract class BaseFragment extends TemplateBaseFragment {
 
     private Unbinder mUnbinder;
 
     @Override
     public void onPause() {
         super.onPause();
-        // 在页面失去焦点时同步缓存
-        DiskCache.getDiskCache().flush();
     }
 
     @Override
@@ -38,6 +35,6 @@ public  abstract class BaseFragment extends TemplateBaseFragment {
 
     @Override
     public void bindButterKnife(Object target, View view) {
-        mUnbinder = ButterKnife.bind(target,view);
+        mUnbinder = ButterKnife.bind(target, view);
     }
 }

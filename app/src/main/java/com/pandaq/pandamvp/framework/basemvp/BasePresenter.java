@@ -1,7 +1,7 @@
 package com.pandaq.pandamvp.framework.basemvp;
 
-import com.pandaq.pandacore.framework.mvpbase.IBaseMvpView;
-import com.pandaq.pandacore.framework.mvpbase.IBasePresenter;
+import com.pandaq.appcore.framework.mvpbase.IBaseMvpView;
+import com.pandaq.appcore.framework.mvpbase.IBasePresenter;
 
 /**
  * Created by huxinyu on 2018/4/2.
