@@ -13,7 +13,7 @@ import android.graphics.drawable.Drawable;
  * <p>
  * Description :图片相关的工具类
  */
-public class Util {
+public class ImageUtils {
 
     /**
      * 将 drawable 转换为 bitmap

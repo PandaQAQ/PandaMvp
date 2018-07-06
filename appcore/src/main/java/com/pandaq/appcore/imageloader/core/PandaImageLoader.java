@@ -12,30 +12,31 @@ import java.io.File;
  * Created by huxinyu on 2018/6/27.
  * Email : panda.h@foxmail.com
  * <p>
- * Description :图片下载类
+ * Description :图片下载器，封装与第三方图片加载框架剥离。
+ * 切换图片加载框架时只需要新的框架加载器实现 IExecutor 接口并设置进来即可
  */
-public class GoImageLoader {
+public class PandaImageLoader {
 
-    public static Requestor with(@NonNull Context context) {
-        return new Requestor(context);
+    public static Requester with(@NonNull Context context) {
+        return new Requester(context);
     }
 
-    public static Requestor with(@NonNull Activity activity) {
-        return new Requestor(activity);
+    public static Requester with(@NonNull Activity activity) {
+        return new Requester(activity);
     }
 
-    public static Requestor with(Fragment fragment) {
-        return new Requestor(fragment.getContext());
+    public static Requester with(Fragment fragment) {
+        return new Requester(fragment.getContext());
     }
 
     /**
      * 约束下载 url 必须先配置
      */
-    public static class Requestor {
+    public static class Requester {
 
         private Context context;
 
-        public Requestor(Context context) {
+        public Requester(Context context) {
             this.context = context;
         }
 

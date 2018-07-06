@@ -38,7 +38,7 @@ public class Request {
     //回调接口
     private ILoadCallBack mCallBack;
 
-    protected Request(Context context) {
+    Request(Context context) {
         this.context = context;
     }
 

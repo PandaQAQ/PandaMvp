@@ -58,7 +58,7 @@ public class GlideLoader implements IExecutor {
                 }
             });
         } else {
-            Log.e("GoImageLoader", "target is illegal !!!");
+            Log.e("PandaImageLoader", "target is illegal !!!");
         }
     }
 }
