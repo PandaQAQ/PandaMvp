@@ -5,7 +5,6 @@ import com.pandaq.pandamvp.framework.base.BaseActivity;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
-import java.util.logging.Logger;
 
 /**
  * Created by huxinyu on 2018/4/24.
