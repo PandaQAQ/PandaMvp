@@ -53,4 +53,8 @@ dependencies {
     //图片框架，如果需要使用，编译依赖即可
     api 'com.github.bumptech.glide:glide:4.7.1'
     annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
+    //微信支付
+    api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.1.4'
+    //支付宝接入方式为 jar 包接入
+    api files('libs/alipaySdk-20180601.jar')
 }

@@ -8,15 +8,15 @@ import org.greenrobot.eventbus.EventBus;
  * <p>
  * Description :EventBus 的注册发送工具类，做了重复注册及取消注册的判断
  */
-public class EventUtil {
+public class EventUtils {
 
-    private static EventUtil sEventUtil;
+    private static EventUtils sEventUtils;
 
-    public synchronized static EventUtil getDefault() {
-        if (sEventUtil == null) {
-            sEventUtil = new EventUtil();
+    public synchronized static EventUtils getDefault() {
+        if (sEventUtils == null) {
+            sEventUtils = new EventUtils();
         }
-        return sEventUtil;
+        return sEventUtils;
     }
 
     /**

@@ -4,4 +4,5 @@
     <color name="colorPrimaryCenter">#57717e</color>
     <color name="colorPrimaryDark">#455a64</color>
     <color name="colorAccent">#263238</color>
+    <color name="trans">#00ffffff</color>
 </resources>
