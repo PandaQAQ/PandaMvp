@@ -144,9 +144,13 @@ public class ApiManager<T> {
     public Builder newBuilder() {
         Builder builder = new Builder()
                 .debug(debug)
-                .addHeaders(addHeaderMap)
-                .setHeaders(setHeaderMap)
                 .baseUrl(baseUrl);
+        if (addHeaderMap != null) {
+            builder.addHeaders(addHeaderMap);
+        }
+        if (setHeaderMap != null) {
+            builder.setHeaders(setHeaderMap);
+        }
         if (clientBuilder != null) {
             builder.client(clientBuilder.build());
         }
@@ -215,7 +219,7 @@ public class ApiManager<T> {
             return this;
         }
 
-        public ApiManager build() {
+        public <T> ApiManager<T> build() {
             reset();
             ApiManager apiManager = ApiManager.getDefault();
             apiManager.setBaseUrl(baseUrl);
@@ -229,7 +233,12 @@ public class ApiManager<T> {
             if (okHttpClient != null) {
                 apiManager.setClientBuilder(okHttpClient.newBuilder());
             }
-            return apiManager;
+            return cast(apiManager);
         }
+    }
+
+    @SuppressWarnings("unchecked")
+    static <T> ApiManager<T> cast(Object obj) {
+        return (ApiManager<T>) obj;
     }
 }
