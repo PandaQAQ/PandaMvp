@@ -1,52 +1,25 @@
 package com.pandaq.pandamvp.framework.basemvp;
 
-import com.pandaq.appcore.framework.mvpbase.IBaseMvpView;
-import com.pandaq.appcore.framework.mvpbase.IBasePresenter;
+import com.pandaq.appcore.framework.mvpbase.TemplatePresenter;
 
 /**
  * Created by huxinyu on 2018/4/2.
  * Email : panda.h@foxmail.com
- * Description :Presenter 实现类基类模板,可直接 module 中继承使用模板也可完全自己自定义
+ * Description :继承模板 Presenter 可重写实现自己的逻辑
  */
-public abstract class BasePresenter<V> implements IBasePresenter {
-
-    protected V mMvpView;
+public abstract class BasePresenter<V> extends TemplatePresenter<V> {
 
     public BasePresenter(V mvpView) {
-        if (mvpView != null) {
-            mMvpView = mvpView;
-            mvpViewBand();
-        } else {
-            throw new NullPointerException("mvpView here must not be null !!!");
-        }
+        super(mvpView);
     }
 
-    /**
-     * mvpView 绑定时触发
-     */
-    private void mvpViewBand() {
-
+    @Override
+    public void onMvpViewAttach() {
+        super.onMvpViewAttach();
     }
 
-    /**
-     * mvpView 解除绑定时触发
-     */
-    private void mvpViewUnBand() {
-
+    @Override
+    public void onMvpViewDetach() {
+        super.onMvpViewDetach();
     }
-
-    /**
-     * 添加监听
-     */
-    public void addSubscriber() {
-
-    }
-
-    /**
-     * 解除监听
-     */
-    public void unSubscribe() {
-
-    }
-
 }

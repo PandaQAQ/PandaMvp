@@ -25,4 +25,11 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends BaseFragm
             throw new NullPointerException("presenter here must not be null ！！！");
         }
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        // 销毁 View 接触绑定
+        mPresenter.onMvpViewDetach();
+    }
 }

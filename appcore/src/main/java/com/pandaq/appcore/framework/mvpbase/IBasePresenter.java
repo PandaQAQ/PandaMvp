@@ -21,4 +21,14 @@ public interface IBasePresenter {
      * 统一解除绑定
      */
     void dispose();
+
+    /**
+     * presenter 与 view 层关联时调用
+     */
+    void onMvpViewAttach();
+
+    /**
+     * presenter 与 view 层解除关联时调用（view 的 onDestroyView / onDestroy 中调用）
+     */
+    void onMvpViewDetach();
 }

@@ -25,4 +25,11 @@ public abstract class BaseMvpActivity<P extends BasePresenter> extends BaseActiv
             throw new NullPointerException("presenter here must not be null ！！！");
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // 销毁 View 接触绑定
+        mPresenter.onMvpViewDetach();
+    }
 }
