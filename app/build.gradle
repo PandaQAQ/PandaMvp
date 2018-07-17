@@ -66,8 +66,4 @@ dependencies {
     implementation project(':appcore')
     implementation project(':commonui')
     implementation project(':thirdsdk')
-    implementation project(':agent')
-    if (compileModule1.toBoolean()) {
-        implementation project(':function_module1')
-    }
 }

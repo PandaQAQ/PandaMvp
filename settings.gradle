@@ -1,1 +1,1 @@
-include ':app', ':agent', ':appcore', ':commonui', ':thirdsdk', ':function_module1', ':function_module2'
+include ':app', ':appcore', ':commonui', ':thirdsdk'
