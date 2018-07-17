@@ -3,9 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PandaMvp.iml" filepath="$PROJECT_DIR$/PandaMvp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/agent/agent.iml" filepath="$PROJECT_DIR$/agent/agent.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/appcore/appcore.iml" filepath="$PROJECT_DIR$/appcore/appcore.iml" />
       <module fileurl="file://$PROJECT_DIR$/commonui/commonui.iml" filepath="$PROJECT_DIR$/commonui/commonui.iml" />
+      <module fileurl="file://$PROJECT_DIR$/function_module1/function_module1.iml" filepath="$PROJECT_DIR$/function_module1/function_module1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/function_module2/function_module2.iml" filepath="$PROJECT_DIR$/function_module2/function_module2.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdsdk/thirdsdk.iml" filepath="$PROJECT_DIR$/thirdsdk/thirdsdk.iml" />
     </modules>
   </component>

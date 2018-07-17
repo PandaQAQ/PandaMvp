@@ -6,4 +6,6 @@ package com.pandaq.pandamvp.net;
  * Description : retrofit api 接口
  */
 public interface ApiService {
+    String BASE_URL = "http://www.baidu.com";
+    String TOKEN_HEADER = "token";
 }

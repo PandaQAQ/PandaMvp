@@ -7,5 +7,8 @@ package com.pandaq.pandamvp.app;
  */
 
 public class Constant {
-
+    static class Cache {
+        public static String CACHE_FILE_NAME = "cache";
+        public static String CACHE_USEINFO_KEY = "userInfo";
+    }
 }

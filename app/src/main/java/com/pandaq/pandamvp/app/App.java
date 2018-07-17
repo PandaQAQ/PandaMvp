@@ -4,6 +4,12 @@ import android.app.Application;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 
+import com.pandaq.appcore.cache.CacheTool;
+import com.pandaq.appcore.http.ApiManager;
+import com.pandaq.pandamvp.BuildConfig;
+import com.pandaq.pandamvp.entites.UserInfo;
+import com.pandaq.pandamvp.net.ApiService;
+
 /**
  * Created by huxinyu on 2018/3/30.
  * Email : panda.h@foxmail.com
@@ -11,12 +17,28 @@ import android.content.pm.PackageManager;
  */
 public class App extends Application {
 
+    public static ApiManager<ApiService> sApiManager;
     private static App sApp;
 
     @Override
     public void onCreate() {
         super.onCreate();
         sApp = this;
+        initNet();
+    }
+
+    // 初始化网络请求
+    public static void initNet() {
+        UserInfo userInfo = CacheTool.with(sApp)
+                .open(Constant.Cache.CACHE_FILE_NAME)
+                .getSerializable(Constant.Cache.CACHE_USEINFO_KEY);
+        ApiManager.Builder builder = new ApiManager.Builder()
+                .baseUrl(ApiService.BASE_URL)
+                .debug(BuildConfig.DEBUG);
+        if (userInfo != null) {
+            builder.setHeader(ApiService.TOKEN_HEADER, userInfo.getToken());
+        }
+        sApiManager = builder.build();
     }
 
     public static App getGlobalApp() {

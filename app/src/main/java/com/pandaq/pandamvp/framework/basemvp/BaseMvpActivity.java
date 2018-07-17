@@ -26,6 +26,7 @@ public abstract class BaseMvpActivity<P extends BasePresenter> extends BaseActiv
         }
     }
 
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
