@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 
 import com.pandaq.appcore.framework.base.TemplateBaseActivity;
-import com.pandaq.commonui.GuideCoverView;
+import com.pandaq.commonui.guide.GuideCoverView;
 import com.pandaq.pandamvp.R;
 import com.pandaq.pandamvp.app.ActivityTask;
 

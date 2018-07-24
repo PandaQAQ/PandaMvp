@@ -1,4 +1,4 @@
-package com.pandaq.commonui;
+package com.pandaq.commonui.guide;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
+
+import com.pandaq.commonui.R;
 
 /**
  * Created by huxinyu on 2018/4/23.

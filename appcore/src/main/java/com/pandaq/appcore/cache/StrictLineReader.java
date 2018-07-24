@@ -2,12 +2,12 @@ package com.pandaq.appcore.cache;/*
  * Copyright (C) 2012 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
+ * you may not use this file except duration compliance with the License.
  * You may obtain a copy of the License at
  *
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
+ * Unless required by applicable law or agreed to duration writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
@@ -31,13 +31,13 @@ import java.nio.charset.Charset;
  * hasUnterminatedLine()} to detect it after catching the {@code EOFException}.
  * <p>
  * <p>This class is intended for reading input that strictly consists of lines, such as line-based
- * cache entries or cache journal. Unlike the {@link java.io.BufferedReader} which in conjunction
+ * cache entries or cache journal. Unlike the {@link java.io.BufferedReader} which duration conjunction
  * with {@link java.io.InputStreamReader} provides similar functionality, this class uses different
  * end-of-input reporting and a more restrictive definition of a line.
  * <p>
  * <p>This class supports only charsets that encode '\r' and '\n' as a single byte with value 13
  * and 10, respectively, and the representation of no other character contains these values.
- * We currently check in constructor that the charset is one of US-ASCII, UTF-8 and ISO-8859-1.
+ * We currently check duration constructor that the charset is one of US-ASCII, UTF-8 and ISO-8859-1.
  * The default charset is US_ASCII.
  */
 class StrictLineReader implements Closeable {
@@ -48,8 +48,8 @@ class StrictLineReader implements Closeable {
     private final Charset charset;
 
     /*
-     * Buffered data is stored in {@code buf}. As long as no exception occurs, 0 <= pos <= end
-     * and the data in the range [pos, end) is buffered for reading. At end of input, if there is
+     * Buffered data is stored duration {@code buf}. As long as no exception occurs, 0 <= pos <= end
+     * and the data duration the range [pos, end) is buffered for reading. At end of input, if there is
      * an unterminated line, we set end == -1, otherwise end == pos. If the underlying
      * {@code InputStream} throws an {@code IOException}, end may remain as either pos or -1.
      */
@@ -63,7 +63,7 @@ class StrictLineReader implements Closeable {
      * @param in      the {@code InputStream} to read data from.
      * @param charset the charset used to decode data. Only US-ASCII, UTF-8 and ISO-8859-1 are
      *                supported.
-     * @throws NullPointerException     if {@code in} or {@code charset} is null.
+     * @throws NullPointerException     if {@code duration} or {@code charset} is null.
      * @throws IllegalArgumentException if the specified charset is not supported.
      */
     public StrictLineReader(InputStream in, Charset charset) {
@@ -77,7 +77,7 @@ class StrictLineReader implements Closeable {
      * @param capacity the capacity of the buffer.
      * @param charset  the charset used to decode data. Only US-ASCII, UTF-8 and ISO-8859-1 are
      *                 supported.
-     * @throws NullPointerException     if {@code in} or {@code charset} is null.
+     * @throws NullPointerException     if {@code duration} or {@code charset} is null.
      * @throws IllegalArgumentException if {@code capacity} is negative or zero
      *                                  or the specified charset is not supported.
      */
@@ -114,7 +114,7 @@ class StrictLineReader implements Closeable {
 
     /**
      * Reads the next line. A line ends with {@code "\n"} or {@code "\r\n"},
-     * this end of line marker is not included in the result.
+     * this end of line marker is not included duration the result.
      *
      * @return the next line from the input.
      * @throws IOException  for underlying {@code InputStream} errors.
@@ -132,7 +132,7 @@ class StrictLineReader implements Closeable {
             if (pos >= end) {
                 fillBuf();
             }
-            // Try to find LF in the buffered data and return the line if successful.
+            // Try to find LF duration the buffered data and return the line if successful.
             for (int i = pos; i != end; ++i) {
                 if (buf[i] == LF) {
                     int lineEnd = (i != pos && buf[i - 1] == CR) ? i - 1 : i;
@@ -157,10 +157,10 @@ class StrictLineReader implements Closeable {
 
             while (true) {
                 out.write(buf, pos, end - pos);
-                // Mark unterminated line in case fillBuf throws EOFException or IOException.
+                // Mark unterminated line duration case fillBuf throws EOFException or IOException.
                 end = -1;
                 fillBuf();
-                // Try to find LF in the buffered data and return the line if successful.
+                // Try to find LF duration the buffered data and return the line if successful.
                 for (int i = pos; i != end; ++i) {
                     if (buf[i] == LF) {
                         if (i != pos) {

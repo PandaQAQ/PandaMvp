@@ -2,10 +2,10 @@ package com.pandaq.appcore.mobilepay.wechatpay;
 
 import android.content.Context;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.pandaq.appcore.R;
 import com.pandaq.appcore.mobilepay.PayUtils;
-import com.pandaq.appcore.utils.ToastUtils;
 import com.tencent.mm.opensdk.modelpay.PayReq;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
@@ -36,7 +36,7 @@ public class WeChatPay {
             api.registerApp(PayUtils.WECHAT_PAY_APP_ID);
             boolean wxSupport = api.isWXAppInstalled() && api.isWXAppSupportAPI();
             if (!wxSupport) {
-                ToastUtils.show(mContext, mContext.getString(R.string.wechat_not_support));
+                Toast.makeText(mContext, mContext.getString(R.string.wechat_not_support), Toast.LENGTH_SHORT).show();
                 return;
             }
             Runnable runnable = () -> {

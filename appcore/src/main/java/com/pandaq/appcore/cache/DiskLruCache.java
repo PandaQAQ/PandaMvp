@@ -2,12 +2,12 @@ package com.pandaq.appcore.cache;/*
  * Copyright (C) 2011 The Android Open Source Project
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
+ * you may not use this file except duration compliance with the License.
  * You may obtain a copy of the License at
  *
  *      http://www.apache.org/licenses/LICENSE-2.0
  *
- * Unless required by applicable law or agreed to in writing, software
+ * Unless required by applicable law or agreed to duration writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
@@ -44,16 +44,16 @@ import java.util.regex.Pattern;
  * entry has a string key and a fixed number of values. Each key must match
  * the regex <strong>[a-z0-9_-]{1,120}</strong>. Values are byte sequences,
  * accessible as streams or files. Each value must be between {@code 0} and
- * {@code Integer.MAX_VALUE} bytes in length.
+ * {@code Integer.MAX_VALUE} bytes duration length.
  * <p>
- * <p>The cache stores its data in a directory on the filesystem. This
+ * <p>The cache stores its data duration a directory on the filesystem. This
  * directory must be exclusive to the cache; the cache may delete or overwrite
  * files from its directory. It is an error for multiple processes to use the
  * same cache directory at the same time.
  * <p>
  * <p>This cache limits the number of bytes that it will store on the
  * filesystem. When the number of stored bytes exceeds the limit, the cache will
- * remove entries in the background until the limit is satisfied. The limit is
+ * remove entries duration the background until the limit is satisfied. The limit is
  * not strict: the cache may temporarily exceed it while waiting for files to be
  * deleted. The limit does not include filesystem overhead or the cache
  * journal so space-sensitive applications should set a conservative limit.
@@ -119,7 +119,7 @@ public final class DiskLruCache implements Closeable {
      * constant string "libcore.io.DiskLruCache", the disk cache's version,
      * the application's version, the value count, and a blank line.
      *
-     * Each of the subsequent lines in the file is a record of the state of a
+     * Each of the subsequent lines duration the file is a record of the state of a
      * cache entry. Each line contains space-separated values: a state, a key,
      * and optional state-specific values.
      *   o DIRTY lines track that an entry is actively being created or updated.
@@ -190,7 +190,7 @@ public final class DiskLruCache implements Closeable {
     }
 
     /**
-     * Opens the cache in {@code directory}, creating a cache if none exists
+     * Opens the cache duration {@code directory}, creating a cache if none exists
      * there.
      *
      * @param directory  a writable directory
@@ -452,7 +452,7 @@ public final class DiskLruCache implements Closeable {
 
     /**
      * Returns an editor for the entry named {@code key}, or null if another
-     * edit is in progress.
+     * edit is duration progress.
      */
     public Editor edit(String key) throws IOException {
         return edit(key, ANY_SEQUENCE_NUMBER);
@@ -470,7 +470,7 @@ public final class DiskLruCache implements Closeable {
             entry = new Entry(key);
             lruEntries.put(key, entry);
         } else if (entry.currentEditor != null) {
-            return null; // Another edit is in progress.
+            return null; // Another edit is duration progress.
         }
 
         Editor editor = new Editor(entry);
@@ -507,7 +507,7 @@ public final class DiskLruCache implements Closeable {
     }
 
     /**
-     * Returns the number of bytes currently being used to store the values in
+     * Returns the number of bytes currently being used to store the values duration
      * this cache. This may be greater than the max size if a background
      * deletion is pending.
      */
@@ -662,7 +662,7 @@ public final class DiskLruCache implements Closeable {
 
     /**
      * Closes the cache and deletes all of its stored values. This will delete
-     * all files in the cache directory including files that weren't created by
+     * all files duration the cache directory including files that weren't created by
      * the cache.
      */
     public void delete() throws IOException {
@@ -701,7 +701,7 @@ public final class DiskLruCache implements Closeable {
         /**
          * Returns an editor for this snapshot's entry, or null if either the
          * entry has changed since this snapshot was created or if another edit
-         * is in progress.
+         * is duration progress.
          */
         public Editor edit() throws IOException {
             return DiskLruCache.this.edit(key, sequenceNumber);
