@@ -12,21 +12,17 @@ import com.pandaq.appcore.utils.crypto.cryptors.SHA1Cryptor;
  * Description :加密/解密、编码/解码入口工厂类
  */
 public class CryptoFactory {
-
-    public static Md5Cryptor getMd5() {
-        return Md5Cryptor.getDefault();
+    private CryptoFactory() {
+        // private constructor
     }
 
-    public static Base64Cryptor getBase64() {
-        return Base64Cryptor.getDefault();
-    }
 
-    public static SHA1Cryptor getSha1() {
-        return SHA1Cryptor.getDefault();
-    }
+    public static Md5Cryptor MD5 = Md5Cryptor.getDefault();
 
-    public static DesCryptor getDes() {
-        return DesCryptor.getDefault();
-    }
+    public static Base64Cryptor BASE64 = Base64Cryptor.getDefault();
+
+    public static SHA1Cryptor SHA1 = SHA1Cryptor.getDefault();
+
+    public static DesCryptor DES = DesCryptor.getDefault();
 
 }

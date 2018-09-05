@@ -144,7 +144,7 @@ public class CacheTool {
      * @throws IOException exception
      */
     private DiskLruCache.Editor edit(String key) throws IOException {
-        key = CryptoFactory.getMd5().getMd5Code(key); //存取的 key
+        key = CryptoFactory.MD5.getMd5Code(key); //存取的 key
         if (mDiskLruCache != null) {
             mEditor = mDiskLruCache.edit(key);
         }
@@ -476,7 +476,7 @@ public class CacheTool {
     public boolean clear(String key) {
         if (mDiskLruCache != null) {
             try {
-                mDiskLruCache.remove(CryptoFactory.getMd5().getMd5Code(key));
+                mDiskLruCache.remove(CryptoFactory.MD5.getMd5Code(key));
                 flush();
                 return true;
             } catch (IOException e) {
@@ -533,7 +533,7 @@ public class CacheTool {
      * @return InputStream
      */
     private InputStream getCacheInputStream(String key) {
-        key = CryptoFactory.getMd5().getMd5Code(key);
+        key = CryptoFactory.MD5.getMd5Code(key);
         InputStream in;
         DiskLruCache.Snapshot snapshot = snapshot(key);
         if (snapshot == null) {
@@ -576,7 +576,7 @@ public class CacheTool {
             Toast.makeText(context, "Get Cache Size Fail", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
-        return FormatFactory.sizeFormatter().getFormatSize(cacheSize);
+        return FormatFactory.DATA_SIZE.getFormatSize(cacheSize);
     }
 
     /**

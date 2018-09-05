@@ -1,4 +1,4 @@
-package com.pandaq.pandamvp;
+package com.pandaq.pandamvp.ui.launch;
 
 import android.graphics.Color;
 import android.os.Bundle;
@@ -7,10 +7,12 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.pandaq.appcore.utils.logutils.DebugLogger;
 import com.pandaq.appcore.utils.msgwindow.SnackBarTool;
 import com.pandaq.appcore.utils.msgwindow.ToastIconGravity;
 import com.pandaq.appcore.utils.msgwindow.ToastTool;
-import com.pandaq.mobilepay.PayUtils;
+import com.pandaq.appcore.utils.system.ContactUtil;
+import com.pandaq.pandamvp.R;
 import com.pandaq.pandamvp.framework.basemvp.BaseMvpActivity;
 
 import butterknife.BindView;
@@ -105,12 +107,16 @@ public class LauncherActivity extends BaseMvpActivity<LauncherPresenter> impleme
                         .show();
                 break;
             case R.id.btn2:
+                DebugLogger.d("我是打印内容啊");
                 break;
             case R.id.btn3:
+                DebugLogger.i("我是打印内容啊");
                 break;
             case R.id.btn4:
+                DebugLogger.e("我是打印内容啊");
                 break;
             case R.id.btn5:
+                DebugLogger.w("我是打印内容啊");
                 break;
         }
     }

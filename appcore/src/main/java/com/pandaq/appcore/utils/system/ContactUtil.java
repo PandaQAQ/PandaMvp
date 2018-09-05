@@ -3,6 +3,9 @@ package com.pandaq.appcore.utils.system;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.NonNull;
+
+import com.pandaq.appcore.utils.logutils.DebugLogger;
 
 
 /**
@@ -13,16 +16,17 @@ import android.net.Uri;
  */
 public class ContactUtil {
 
+    private ContactUtil() {
+        // private constructor
+    }
+
     /**
      * 拨打电话
      *
      * @param context     上下文
      * @param phoneNumber 电话号码
      */
-    public static void makeCall(Context context, String phoneNumber) {
-        if (phoneNumber == null) {
-            return;
-        }
+    public static void makeCall(Context context, @NonNull String phoneNumber) {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_DIAL);
         intent.setData(Uri.parse("tel:" + phoneNumber));
@@ -30,4 +34,14 @@ public class ContactUtil {
         context.startActivity(intent);
     }
 
+    /**
+     * 发送短消息
+     *
+     * @param context     上下文
+     * @param phoneNumber 电话号码
+     * @param message     短信内容
+     */
+    public static void sendMessage(Context context, @NonNull String phoneNumber, String message) {
+
+    }
 }

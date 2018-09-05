@@ -11,7 +11,7 @@ import java.util.Map;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 
 /**
  * Created by huxinyu on 2018/5/22.
@@ -91,7 +91,7 @@ public class ApiManager<T> {
             }
             builder.baseUrl(baseUrl)
                     .client(clientBuilder.build())
-                    .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                     .addConverterFactory(PandaConvertFactory.create())
                     .build();
             apiService = builder

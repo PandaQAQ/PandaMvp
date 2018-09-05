@@ -14,23 +14,17 @@ import com.pandaq.appcore.utils.format.formaters.SizeFormatter;
  */
 public class FormatFactory {
 
-    public static BankCardFormatter bankCardFormatter() {
-        return BankCardFormatter.getDefault();
+    private FormatFactory() {
+        // private constructor
     }
 
-    public static PriceFormatter priceFormatter() {
-        return PriceFormatter.getDefault();
-    }
+    public static BankCardFormatter BANK_CARD = BankCardFormatter.getDefault();
 
-    public static DateFormatter dateFormatter() {
-        return DateFormatter.getDefault();
-    }
+    public static PriceFormatter PRICE = PriceFormatter.getDefault();
 
-    public static PhoneNumberFormatter phoneNumberFormatter() {
-        return PhoneNumberFormatter.getDefault();
-    }
+    public static DateFormatter DATE = DateFormatter.getDefault();
 
-    public static SizeFormatter sizeFormatter() {
-        return SizeFormatter.getDefault();
-    }
+    public static PhoneNumberFormatter PHONE_NUM = PhoneNumberFormatter.getDefault();
+
+    public static SizeFormatter DATA_SIZE = SizeFormatter.getDefault();
 }

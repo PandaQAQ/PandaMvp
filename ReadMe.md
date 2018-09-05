@@ -9,3 +9,9 @@
 - browser x5浏览服务相关封装,包含 JS 交互等
 - mobilepay 移动支付相关集成 `因微信支付 SDK 路径及类名限制使用微信支付必须在主 App java源码根目录新
 建包 wxapi 再创建 WXPayEntryActivity.java 类继承 WeChatPayActivity manifest 中`
+## common_sdk_build.gradle
+框架基础 module 的公共 gradle 信息配置文件
+## config.gradle
+使用到的各种版本信息及依赖库信息统一管理配置文件
+## gradle.properties
+自定义 gradle 参数

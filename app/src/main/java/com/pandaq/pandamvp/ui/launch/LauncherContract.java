@@ -1,4 +1,4 @@
-package com.pandaq.pandamvp;
+package com.pandaq.pandamvp.ui.launch;
 
 /**
  * Created by huxinyu on 2018/5/23.

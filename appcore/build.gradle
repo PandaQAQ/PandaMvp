@@ -1,32 +1,6 @@
-apply plugin: 'com.android.library'
+apply from:"../common_sdk_build.gradle"
 
 android {
-    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
-
-
-
-    defaultConfig {
-        minSdkVersion rootProject.ext.android["minSdkVersion"]
-        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
-        versionCode rootProject.ext.android["versionCode"]
-        versionName rootProject.ext.android["versionName"]
-
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-            consumerProguardFiles 'proguard-rules.pro'
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-        }
-    }
-
-    compileOptions {
-        targetCompatibility 1.8
-        sourceCompatibility 1.8
-    }
 
 }
 
@@ -53,7 +27,7 @@ dependencies {
     //事件总线
     api rootProject.ext.dependencies["eventbus"]
     // WebView
-    api 'com.tencent.sonic:sdk:3.0.0'
+    api rootProject.ext.dependencies["sonic"]
     //磁盘缓存
     api rootProject.ext.dependencies["disklrucache"]
     //图片框架，如果需要使用，编译依赖即可

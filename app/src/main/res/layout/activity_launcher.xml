@@ -8,7 +8,7 @@
     android:layout_marginTop="40dp"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="com.pandaq.pandamvp.LauncherActivity">
+    tools:context="com.pandaq.pandamvp.ui.launch.LauncherActivity">
 
     <Button
         android:id="@+id/btn1"

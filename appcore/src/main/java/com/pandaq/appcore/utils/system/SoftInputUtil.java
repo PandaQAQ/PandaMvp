@@ -14,6 +14,10 @@ import android.view.inputmethod.InputMethodManager;
  */
 public class SoftInputUtil {
 
+    private SoftInputUtil() {
+
+    }
+
     /**
      * 显示软键盘
      *

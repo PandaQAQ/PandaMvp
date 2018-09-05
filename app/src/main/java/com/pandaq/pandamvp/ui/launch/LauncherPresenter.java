@@ -1,4 +1,4 @@
-package com.pandaq.pandamvp;
+package com.pandaq.pandamvp.ui.launch;
 
 import com.pandaq.pandamvp.framework.basemvp.BasePresenter;
 
