@@ -11,7 +11,9 @@
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/appcore" />
             <option value="$PROJECT_DIR$/commonui" />
-            <option value="$PROJECT_DIR$/thirdsdk" />
+            <option value="$PROJECT_DIR$/thirdlibs" />
+            <option value="$PROJECT_DIR$/thirdlibs/browser" />
+            <option value="$PROJECT_DIR$/thirdlibs/mobilepay" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

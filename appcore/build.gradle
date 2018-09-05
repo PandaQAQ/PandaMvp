@@ -1,15 +1,15 @@
 apply plugin: 'com.android.library'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
 
 
 
     defaultConfig {
-        minSdkVersion 19
-        targetSdkVersion 27
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
@@ -18,7 +18,8 @@ android {
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            consumerProguardFiles 'proguard-rules.pro'
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -35,27 +36,27 @@ android {
  */
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    compileOnly 'com.android.support:design:27.1.1'
-    compileOnly 'com.android.support:appcompat-v7:27.1.1'
-    testCompileOnly 'junit:junit:4.12'
-    androidTestCompileOnly 'com.android.support.test:runner:1.0.2'
-    androidTestCompileOnly 'com.android.support.test.espresso:espresso-core:3.0.2'
-    //网络请求
-    api 'io.reactivex.rxjava2:rxandroid:2.0.2'
-    api 'com.squareup.retrofit2:retrofit:2.4.0'
-    api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
-    api 'com.squareup.retrofit2:converter-gson:2.4.0'
-    api 'com.squareup.okhttp3:logging-interceptor:3.10.0'
-    api 'com.google.code.gson:gson:2.8.4'
+    compileOnly rootProject.ext.dependencies["design"]
+    compileOnly rootProject.ext.dependencies["appcompat-v7"]
+    testCompileOnly rootProject.ext.dependencies["junit"]
+    androidTestCompileOnly rootProject.ext.dependencies["test-runner"]
+    androidTestCompileOnly rootProject.ext.dependencies["espresso-core"]
+    // rxJava 2
+    api rootProject.ext.dependencies["rxandroid"]
+    api rootProject.ext.dependencies["rxjava"]
+    // retrofit 2
+    api rootProject.ext.dependencies["retrofit"]
+    api rootProject.ext.dependencies["retrofit-converter"]
+    api rootProject.ext.dependencies["retrofit-adapter"]
+    api rootProject.ext.dependencies["logging-interceptor"]
+    api rootProject.ext.dependencies["gson"]
     //事件总线
-    api 'org.greenrobot:eventbus:3.1.1'
+    api rootProject.ext.dependencies["eventbus"]
     // WebView
     api 'com.tencent.sonic:sdk:3.0.0'
+    //磁盘缓存
+    api rootProject.ext.dependencies["disklrucache"]
     //图片框架，如果需要使用，编译依赖即可
-    compileOnly 'com.github.bumptech.glide:glide:4.7.1'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.7.1'
-    //微信支付
-    api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.1.4'
-    //支付宝接入方式为 jar 包接入
-    api files('libs/alipaySdk-20180601.jar')
+    compileOnly rootProject.ext.dependencies["glide"]
+    annotationProcessor rootProject.ext.dependencies["glide-annotation"]
 }

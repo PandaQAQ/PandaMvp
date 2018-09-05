@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.pandaq.appcore.utils.msgwindow.SnackBarTool;
 import com.pandaq.appcore.utils.msgwindow.ToastIconGravity;
 import com.pandaq.appcore.utils.msgwindow.ToastTool;
+import com.pandaq.mobilepay.PayUtils;
 import com.pandaq.pandamvp.framework.basemvp.BaseMvpActivity;
 
 import butterknife.BindView;
