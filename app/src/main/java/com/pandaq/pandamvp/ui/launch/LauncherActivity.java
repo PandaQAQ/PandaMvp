@@ -79,7 +79,6 @@ public class LauncherActivity extends BaseMvpActivity<LauncherPresenter> impleme
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // TODO: add setContentView(...) invocation
         ButterKnife.bind(this);
     }
 
@@ -95,11 +94,6 @@ public class LauncherActivity extends BaseMvpActivity<LauncherPresenter> impleme
                         .action("Action")
                         .actionListener(v -> ToastTool.with(LauncherActivity.this)
                                 .msg("点击了 Action")
-                                .msgColor(Color.YELLOW)
-                                .duration(Toast.LENGTH_LONG)
-                                .backgroundDrawable(getResources().getDrawable(R.drawable.ic_launcher_background))
-                                .icon(getResources().getDrawable(R.mipmap.ic_launcher_round), ToastIconGravity.LEFT)
-                                .backgroundColor(Color.CYAN)
                                 .show()
                         )
                         .actionColor(Color.YELLOW)

@@ -4,6 +4,8 @@
 框架核心部分
 ## commonui
 公共 ui 部分如全局的 titlebar 全局的弹窗风格等
+## rxpermission
+6.0+ 运行时权限库，fork from [RxPermission](https://github.com/tbruyelle/RxPermissions)
 ## thirdlibs
 常用功能的第三方集成
 - browser x5浏览服务相关封装,包含 JS 交互等

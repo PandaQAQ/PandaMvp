@@ -32,7 +32,7 @@ public class ToastTool {
     /**
      * 取消Toast显示
      */
-    public static void cancelToast() {
+    private static void cancelToast() {
         if (mToast != null) {
             mToast.cancel();
         }
@@ -57,7 +57,7 @@ public class ToastTool {
         private ToastIconGravity mIconGravity;
         private int duration = Toast.LENGTH_SHORT;
 
-        public ToastBuilder(@NonNull Context context) {
+        ToastBuilder(@NonNull Context context) {
             mContext = context;
         }
 
