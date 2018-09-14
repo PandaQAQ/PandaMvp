@@ -10,7 +10,7 @@ import android.support.v7.app.AppCompatActivity;
  * <p>
  * Description :web 浏览页面
  */
-public class BrowserActivity extends AppCompatActivity {
+public class BrowserWithTitleActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
