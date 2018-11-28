@@ -36,7 +36,7 @@ public class WeChatPay {
             api.registerApp(PayUtils.WECHAT_PAY_APP_ID);
             boolean wxSupport = api.isWXAppInstalled() && api.isWXAppSupportAPI();
             if (!wxSupport) {
-                Toast.makeText(mContext, mContext.getString(R.string.wechat_not_support), Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, mContext.getString(R.string.pay_wechat_not_support), Toast.LENGTH_SHORT).show();
                 return;
             }
             Runnable runnable = () -> {

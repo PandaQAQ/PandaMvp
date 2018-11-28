@@ -54,7 +54,7 @@ public class AliPay {
                             Log.d("WxPayResult", "payCallback must not be null !");
                         } else {
                             PayUtils.sPayCallBack.paySuccess(PayType.ALIPAY,
-                                    activity.getString(R.string.text_pay_success));
+                                    activity.getString(R.string.pay_text_success));
                         }
                     } else if (TextUtils.equals(resultStatus, "6001")) {
                         //返回取消支付
@@ -62,14 +62,14 @@ public class AliPay {
                             Log.d("WxPayResult", "payCallback must not be null !");
                         } else {
                             PayUtils.sPayCallBack.payFail(PayType.ALIPAY,Integer.parseInt(resultStatus),
-                                    activity.getString(R.string.text_pay_cancel));
+                                    activity.getString(R.string.pay_text_cancel));
                         }
                     } else {
                         if (PayUtils.sPayCallBack == null) {
                             Log.d("WxPayResult", "payCallback must not be null !");
                         } else {
                             PayUtils.sPayCallBack.payFail(PayType.ALIPAY,Integer.parseInt(resultStatus),
-                                    activity.getString(R.string.text_pay_error));
+                                    activity.getString(R.string.pay_text_error));
                         }
                     }
                     break;

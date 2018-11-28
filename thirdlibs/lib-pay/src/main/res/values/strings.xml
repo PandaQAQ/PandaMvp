@@ -1,7 +1,6 @@
 <resources>
-    <string name="app_name">ThridModules</string>
-    <string name="text_pay_success">支付成功</string>
-    <string name="text_pay_error">支付失败</string>
-    <string name="text_pay_cancel">支付取消</string>
-    <string name="wechat_not_support">未安装微信或微信版本过低</string>
+    <string name="pay_text_success">支付成功</string>
+    <string name="pay_text_error">支付失败</string>
+    <string name="pay_text_cancel">支付取消</string>
+    <string name="pay_wechat_not_support">未安装微信或微信版本过低</string>
 </resources>

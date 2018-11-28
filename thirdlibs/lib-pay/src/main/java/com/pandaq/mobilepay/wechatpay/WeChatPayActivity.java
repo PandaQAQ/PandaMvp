@@ -64,7 +64,7 @@ public class WeChatPayActivity extends Activity implements IWXAPIEventHandler {
                     Log.d("WxPayResult", "payCallback must not be null !");
                 } else {
                     PayUtils.sPayCallBack.paySuccess(PayType.WXPAY,
-                            getString(R.string.text_pay_success));
+                            getString(R.string.pay_text_success));
                 }
                 this.finish();
             } else if (baseResp.errCode == -1) {
@@ -72,7 +72,7 @@ public class WeChatPayActivity extends Activity implements IWXAPIEventHandler {
                     Log.d("WxPayResult", "payCallback must not be null !");
                 } else {
                     PayUtils.sPayCallBack.payFail(PayType.WXPAY, baseResp.errCode,
-                            getString(R.string.text_pay_error));
+                            getString(R.string.pay_text_error));
                 }
                 this.finish();
             } else {
@@ -80,7 +80,7 @@ public class WeChatPayActivity extends Activity implements IWXAPIEventHandler {
                     Log.d("WxPayResult", "payCallback must not be null !");
                 } else {
                     PayUtils.sPayCallBack.payFail(PayType.WXPAY, baseResp.errCode,
-                            getString(R.string.text_pay_cancel));
+                            getString(R.string.pay_text_cancel));
                 }
                 this.finish();
             }

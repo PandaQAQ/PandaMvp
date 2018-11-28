@@ -48,7 +48,7 @@ public abstract class BaseActivity extends TemplateBaseActivity {
         super.onCreate(savedInstanceState);
         if (swipeEnable) {
             layout = (SwipeBackLayout) LayoutInflater.from(this).inflate(
-                    R.layout.swipeback_base, null);
+                    R.layout.core_swipeback_base, null);
             layout.attachToActivity(this);
         }
         // 如果是新手向导页则初始化向导载体图层

@@ -49,7 +49,7 @@ public class GuideCoverView extends RelativeLayout {
         ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT);
         setLayoutParams(params);
-        setBackgroundColor(context.getResources().getColor(R.color.color_guide_cover));
+        setBackgroundColor(context.getResources().getColor(R.color.public_color_guide_cover));
         this.setOnClickListener(v -> resetCoverView());
     }
 

@@ -9,22 +9,22 @@
     </style>
 
     <!--全屏加透明-->
-    <style name="TranslucentFullScreenTheme" parent="AppTheme">
+    <style name="AppTranslucentFullScreenTheme" parent="AppTheme">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowDisablePreview">true</item>
-        <item name="android:windowAnimationStyle">@style/SwipeBackActivityAnim</item>
+        <item name="android:windowAnimationStyle">@style/AppSwipeBackActivityAnim</item>
     </style>
     <!--动画设置-->
-    <style name="SwipeBackActivityAnim" mce_bogus="1" parent="@android:style/Animation.Activity">
-        <item name="android:activityOpenEnterAnimation">@anim/swipe_back_slide_right_in</item>
-        <item name="android:activityOpenExitAnimation">@anim/swipe_back_slide_right_out</item>
-        <item name="android:activityCloseEnterAnimation">@anim/swipe_back_slide_right_in</item>
-        <item name="android:activityCloseExitAnimation">@anim/swipe_back_slide_right_out</item>
+    <style name="AppSwipeBackActivityAnim" mce_bogus="1" parent="@android:style/Animation.Activity">
+        <item name="android:activityOpenEnterAnimation">@anim/public_swipe_back_slide_right_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/public_swipe_back_slide_right_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/public_swipe_back_slide_right_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/public_swipe_back_slide_right_out</item>
     </style>
 
     <!-- ToolBar菜单样式.-->
-    <style name="popup_theme" parent="@style/Widget.AppCompat.PopupMenu.Overflow">
+    <style name="app_popup_theme" parent="@style/Widget.AppCompat.PopupMenu.Overflow">
         <!--设置不覆盖锚点-->
         <item name="overlapAnchor">false</item>
         <!-- 弹出层垂直方向上的偏移，即在竖直方向上距离Toolbar的距离，值为负则会盖住Toolbar -->

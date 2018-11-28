@@ -14,7 +14,7 @@
             android:configChanges="orientation|keyboardHidden|navigation|screenSize"
             android:exported="false"
             android:screenOrientation="behind"
-            android:theme="@style/FitSystemWindow"
+            android:theme="@style/PayFitSystemWindow"
             android:windowSoftInputMode="adjustResize|stateHidden">
         </activity>
         <activity
@@ -22,7 +22,7 @@
             android:configChanges="orientation|keyboardHidden|navigation"
             android:exported="false"
             android:screenOrientation="behind"
-            android:theme="@style/FitSystemWindow"
+            android:theme="@style/PayFitSystemWindow"
             android:windowSoftInputMode="adjustResize|stateHidden">
         </activity>
     </application>
