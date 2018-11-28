@@ -4,11 +4,11 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PandaMvp.iml" filepath="$PROJECT_DIR$/PandaMvp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/appcore/appcore.iml" filepath="$PROJECT_DIR$/appcore/appcore.iml" />
-      <module fileurl="file://$PROJECT_DIR$/thirdlibs/browser/browser.iml" filepath="$PROJECT_DIR$/thirdlibs/browser/browser.iml" />
-      <module fileurl="file://$PROJECT_DIR$/commonui/commonui.iml" filepath="$PROJECT_DIR$/commonui/commonui.iml" />
-      <module fileurl="file://$PROJECT_DIR$/thirdlibs/mobilepay/mobilepay.iml" filepath="$PROJECT_DIR$/thirdlibs/mobilepay/mobilepay.iml" />
-      <module fileurl="file://$PROJECT_DIR$/rxpermission/rxpermission.iml" filepath="$PROJECT_DIR$/rxpermission/rxpermission.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app-core/app-core.iml" filepath="$PROJECT_DIR$/app-core/app-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app-permission/app-permission.iml" filepath="$PROJECT_DIR$/app-permission/app-permission.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app-uires/app-uires.iml" filepath="$PROJECT_DIR$/app-uires/app-uires.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thirdlibs/lib-browser/lib-browser.iml" filepath="$PROJECT_DIR$/thirdlibs/lib-browser/lib-browser.iml" />
+      <module fileurl="file://$PROJECT_DIR$/thirdlibs/lib-pay/lib-pay.iml" filepath="$PROJECT_DIR$/thirdlibs/lib-pay/lib-pay.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdlibs/thirdlibs.iml" filepath="$PROJECT_DIR$/thirdlibs/thirdlibs.iml" />
     </modules>
   </component>

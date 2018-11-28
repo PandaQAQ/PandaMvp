@@ -1,5 +1,7 @@
 package com.pandaq.pandamvp.ui.launch;
 
+import com.pandaq.appcore.framework.mvpbase.IBaseContract;
+
 /**
  * Created by huxinyu on 2018/5/23.
  * Email : panda.h@foxmail.com
@@ -8,11 +10,11 @@ package com.pandaq.pandamvp.ui.launch;
  */
 public interface LauncherContract {
 
-    interface View {
+    interface View extends IBaseContract.IBaseMvpView {
 
     }
 
-    interface Presenter {
+    interface Presenter extends IBaseContract.IBasePresenter {
 
     }
 }

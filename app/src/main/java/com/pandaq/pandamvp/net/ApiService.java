@@ -8,4 +8,6 @@ package com.pandaq.pandamvp.net;
 public interface ApiService {
     String BASE_URL = "http://www.baidu.com";
     String TOKEN_HEADER = "token";
+
+
 }

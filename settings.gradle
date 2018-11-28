@@ -1,6 +1,6 @@
 include ':app',
-        ':appcore',
-        ':commonui',
-        ':rxpermission',
-        ':thirdlibs:mobilepay',
-        ':thirdlibs:browser'
+        ':app-core',
+        ':app-uires',
+        ':app-permission',
+        ':thirdlibs:lib-pay',
+        ':thirdlibs:lib-browser'

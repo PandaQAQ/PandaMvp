@@ -15,8 +15,6 @@ import butterknife.Unbinder;
 
 public abstract class BaseFragment extends TemplateBaseFragment {
 
-    private Unbinder mUnbinder;
-
     @Override
     public void onPause() {
         super.onPause();
@@ -30,11 +28,5 @@ public abstract class BaseFragment extends TemplateBaseFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mUnbinder.unbind();
-    }
-
-    @Override
-    public void bindButterKnife(Object target, View view) {
-        mUnbinder = ButterKnife.bind(target, view);
     }
 }

@@ -9,12 +9,12 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/appcore" />
-            <option value="$PROJECT_DIR$/commonui" />
-            <option value="$PROJECT_DIR$/rxpermission" />
+            <option value="$PROJECT_DIR$/app-core" />
+            <option value="$PROJECT_DIR$/app-permission" />
+            <option value="$PROJECT_DIR$/app-uires" />
             <option value="$PROJECT_DIR$/thirdlibs" />
-            <option value="$PROJECT_DIR$/thirdlibs/browser" />
-            <option value="$PROJECT_DIR$/thirdlibs/mobilepay" />
+            <option value="$PROJECT_DIR$/thirdlibs/lib-browser" />
+            <option value="$PROJECT_DIR$/thirdlibs/lib-pay" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

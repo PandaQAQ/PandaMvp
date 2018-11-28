@@ -3,18 +3,21 @@ package com.pandaq.pandamvp.framework.basemvp;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.pandaq.appcore.framework.mvpbase.IBaseMvpView;
+import com.pandaq.appcore.framework.mvpbase.IBaseContract;
+import com.pandaq.appcore.framework.mvpbase.BasePresenter;
 import com.pandaq.pandamvp.framework.base.BaseActivity;
 
 /**
  * Created by huxinyu on 2018/5/27.
  * Email : panda.h@foxmail.com
  * <p>
- * Description :无自定义需求时 MVP 界面 Activity 直接继承使用此 Activity
+ * Description :MVPActivity 基类
  */
-public abstract class BaseMvpActivity<P extends BasePresenter> extends BaseActivity implements IBaseMvpView<P> {
+public abstract class BaseMvpActivity<P extends BasePresenter> extends BaseActivity implements IBaseContract.IBaseMvpView {
 
     protected P mPresenter;
+
+    protected abstract P injectPresenter();
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,6 +29,25 @@ public abstract class BaseMvpActivity<P extends BasePresenter> extends BaseActiv
         }
     }
 
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void onError(int errCode, String errMsg) {
+
+    }
+
+    @Override
+    public void onLoadFinish() {
+
+    }
 
     @Override
     protected void onDestroy() {

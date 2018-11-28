@@ -3,10 +3,13 @@ package com.pandaq.pandamvp.framework.base;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
 import com.pandaq.appcore.framework.base.TemplateBaseActivity;
+import com.pandaq.appcore.framework.swipe.SwipeBackLayout;
 import com.pandaq.commonui.guide.GuideCoverView;
 import com.pandaq.pandamvp.R;
 import com.pandaq.pandamvp.app.ActivityTask;
@@ -22,7 +25,6 @@ import butterknife.Unbinder;
 
 public abstract class BaseActivity extends TemplateBaseActivity {
 
-    protected Unbinder mUnbinder;
     protected Toolbar mToolbar;
     private FrameLayout mParentView;
     /**
@@ -33,16 +35,33 @@ public abstract class BaseActivity extends TemplateBaseActivity {
      * 标识 activity 是否是向导 Activity
      */
     protected boolean guideActivity;
+    /**
+     * if you do not want swipeBack ,make swipeEnable = false this class for App
+     * <p>
+     * or in Activity Override initVariable() make swipeEnable = false after super
+     */
+    protected boolean swipeEnable;
+    private SwipeBackLayout layout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (swipeEnable) {
+            layout = (SwipeBackLayout) LayoutInflater.from(this).inflate(
+                    R.layout.swipeback_base, null);
+            layout.attachToActivity(this);
+        }
         // 如果是新手向导页则初始化向导载体图层
         if (guideActivity) {
             initGuide();
         }
         initToolBar();
         ActivityTask.getInstance().addActivity(this);
+    }
+
+    @Override
+    protected void initVariable() {
+        swipeEnable = true;
     }
 
     /**
@@ -81,9 +100,11 @@ public abstract class BaseActivity extends TemplateBaseActivity {
         }
     }
 
-    @Override
-    public void bindButterKnife() {
-        mUnbinder = ButterKnife.bind(this);
+    // 提供给子类设置 ViewPager 的接口，用于 SwipeLayout 中处理滑动冲突
+    public void addViewPager(ViewPager pager) {
+        if (swipeEnable) {
+            layout.addViewPager(pager);
+        }
     }
 
     @Override
@@ -94,7 +115,11 @@ public abstract class BaseActivity extends TemplateBaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        mUnbinder.unbind();
         ActivityTask.getInstance().remove(this);
+    }
+
+    @Override
+    protected int bindContentRes() {
+        return 0;
     }
 }

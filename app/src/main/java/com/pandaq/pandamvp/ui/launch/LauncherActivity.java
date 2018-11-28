@@ -1,22 +1,25 @@
 package com.pandaq.pandamvp.ui.launch;
 
+import android.content.Intent;
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
+import com.pandaq.appcore.eventbus.EventUtils;
 import com.pandaq.appcore.utils.logutils.DebugLogger;
-import com.pandaq.appcore.utils.msgwindow.SnackBarTool;
-import com.pandaq.appcore.utils.msgwindow.ToastIconGravity;
-import com.pandaq.appcore.utils.msgwindow.ToastTool;
-import com.pandaq.appcore.utils.system.ContactUtil;
+import com.pandaq.commonui.msgwindow.Snacker;
+import com.pandaq.commonui.msgwindow.ToastIconGravity;
+import com.pandaq.commonui.msgwindow.Toaster;
 import com.pandaq.pandamvp.R;
+import com.pandaq.pandamvp.events.HomeEvent;
+import com.pandaq.pandamvp.events.LaunchEvent;
 import com.pandaq.pandamvp.framework.basemvp.BaseMvpActivity;
+import com.pandaq.pandamvp.ui.home.HomeActivity;
+
+import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -26,19 +29,19 @@ import butterknife.OnClick;
  */
 public class LauncherActivity extends BaseMvpActivity<LauncherPresenter> implements LauncherContract.View {
 
-
-
     @BindView(R.id.ll_parent)
     LinearLayout mLlParent;
 
     @Override
-    public LauncherPresenter injectPresenter() {
+    protected LauncherPresenter injectPresenter() {
         return new LauncherPresenter(this);
     }
 
     @Override
     protected void initVariable() {
-
+        super.initVariable();
+        swipeEnable = false;
+        EventUtils.getDefault().register(this);
     }
 
     @Override
@@ -58,41 +61,35 @@ public class LauncherActivity extends BaseMvpActivity<LauncherPresenter> impleme
 
     @Override
     public void showLoading() {
-
+        super.showLoading();
     }
 
     @Override
     public void hideLoading() {
-
+        super.hideLoading();
     }
 
     @Override
     public void onError(int errCode, String errMsg) {
-
+        super.onError(errCode, errMsg);
     }
 
     @Override
     public void onLoadFinish() {
-
-    }
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        ButterKnife.bind(this);
+        super.onLoadFinish();
     }
 
     @OnClick({R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn1:
-                SnackBarTool.with(mLlParent)
+                Snacker.with(mLlParent)
                         .duration(Snackbar.LENGTH_INDEFINITE)
                         .msg("SnackMsg")
                         .msgColor(Color.RED)
 //                        .msgFont(DisplayUtils.sp2px(this, 20))
                         .action("Action")
-                        .actionListener(v -> ToastTool.with(LauncherActivity.this)
+                        .actionListener(v -> Toaster.with(LauncherActivity.this)
                                 .msg("点击了 Action")
                                 .show()
                         )
@@ -101,7 +98,8 @@ public class LauncherActivity extends BaseMvpActivity<LauncherPresenter> impleme
                         .show();
                 break;
             case R.id.btn2:
-                DebugLogger.d("我是打印内容啊");
+                Intent intent = new Intent(this, HomeActivity.class);
+                this.startActivity(intent);
                 break;
             case R.id.btn3:
                 DebugLogger.i("我是打印内容啊");
@@ -113,5 +111,19 @@ public class LauncherActivity extends BaseMvpActivity<LauncherPresenter> impleme
                 DebugLogger.w("我是打印内容啊");
                 break;
         }
+    }
+
+    @Subscribe
+    public void handleEvent(LaunchEvent event) {
+        Toaster.with(this)
+                .icon(R.drawable.ic_launcher_background, ToastIconGravity.END)
+                .msg("LaunchEvent")
+                .show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventUtils.getDefault().unregister(this);
     }
 }

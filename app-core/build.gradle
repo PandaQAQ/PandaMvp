@@ -1,0 +1,36 @@
+apply from: "../common_sdk_build.gradle"
+
+android {
+    buildToolsVersion = '28.0.3'
+}
+
+/**
+ * 依赖规则，module 组件化开发。网路库、事件总线库等以 api 方式提供。
+ * 上层 module 不在单独依赖对应的库，统一使用基础 module 中的依赖库，以保证版本一致
+ */
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    compileOnly rootProject.ext.dependencies["design"]
+    compileOnly rootProject.ext.dependencies["appcompat-v7"]
+    testCompileOnly rootProject.ext.dependencies["junit"]
+    androidTestCompileOnly rootProject.ext.dependencies["test-runner"]
+    androidTestCompileOnly rootProject.ext.dependencies["espresso-core"]
+    // rxJava 2
+    api rootProject.ext.dependencies["rxandroid"]
+    api rootProject.ext.dependencies["rxjava"]
+    // retrofit 2
+    api rootProject.ext.dependencies["retrofit"]
+    api rootProject.ext.dependencies["retrofit-converter"]
+    api rootProject.ext.dependencies["retrofit-adapter"]
+    api rootProject.ext.dependencies["logging-interceptor"]
+    api rootProject.ext.dependencies["gson"]
+    //事件总线
+    api rootProject.ext.dependencies["eventbus"]
+    //磁盘缓存
+    api rootProject.ext.dependencies["disklrucache"]
+    //ButterKnife
+    api rootProject.ext.dependencies["butterknife"]
+    //图片框架，如果需要使用，编译依赖即可
+    compileOnly rootProject.ext.dependencies["glide"]
+    annotationProcessor rootProject.ext.dependencies["glide-annotation"]
+}

@@ -1,6 +1,8 @@
 package com.pandaq.pandamvp.ui.launch;
 
-import com.pandaq.pandamvp.framework.basemvp.BasePresenter;
+import com.pandaq.appcore.framework.mvpbase.BasePresenter;
+import com.pandaq.pandamvp.app.App;
+import com.pandaq.pandamvp.net.ApiService;
 
 /**
  * Created by huxinyu on 2018/5/23.
@@ -10,11 +12,10 @@ import com.pandaq.pandamvp.framework.basemvp.BasePresenter;
  */
 public class LauncherPresenter extends BasePresenter<LauncherContract.View> implements LauncherContract.Presenter {
 
+    private ApiService mApiService = App.sApiManager.getApiService(ApiService.class);
+
     public LauncherPresenter(LauncherContract.View mvpView) {
         super(mvpView);
     }
 
-    public void doRequest() {
-//        getApiService().
-    }
 }

@@ -3,18 +3,21 @@ package com.pandaq.pandamvp.framework.basemvp;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
-import com.pandaq.appcore.framework.mvpbase.IBaseMvpView;
+import com.pandaq.appcore.framework.mvpbase.IBaseContract;
+import com.pandaq.appcore.framework.mvpbase.BasePresenter;
 import com.pandaq.pandamvp.framework.base.BaseFragment;
 
 /**
  * Created by huxinyu on 2018/5/27.
  * Email : panda.h@foxmail.com
  * <p>
- * Description :无自定义需求时 MVP 界面 Fragment 直接继承使用此 fragment
+ * Description :MVPFragment基类
  */
-public abstract class BaseMvpFragment<P extends BasePresenter> extends BaseFragment implements IBaseMvpView<P> {
+public abstract class BaseMvpFragment<P extends BasePresenter> extends BaseFragment implements IBaseContract.IBaseMvpView {
 
     protected P mPresenter;
+
+    protected abstract P injectPresenter();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -31,5 +34,25 @@ public abstract class BaseMvpFragment<P extends BasePresenter> extends BaseFragm
         super.onDestroyView();
         // 销毁 View 接触绑定
         mPresenter.onMvpViewDetach();
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void onError(int errCode, String errMsg) {
+
+    }
+
+    @Override
+    public void onLoadFinish() {
+
     }
 }

@@ -2,7 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.pandaq.pandamvp">
 
-    <!--默认使用侧滑返回的透明风格，不需要侧滑返回的则使用自己的 Theme 即可-->
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.READ_PROFILE"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+
+    <!-- 默认使用侧滑返回的透明风格，不需要侧滑返回的则使用自己的 Theme 即可 -->
     <application
         android:name=".app.App"
         android:icon="@mipmap/ic_launcher"
@@ -10,14 +15,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/TranslucentFullScreenTheme">
-        <activity android:name=".ui.launch.LauncherActivity"
+        <activity
+            android:name=".ui.launch.LauncherActivity"
             android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.VIEW"/>
+
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
         <activity android:name=".wxapi.WXPayEntryActivity"/>
+        <activity
+            android:name=".ui.home.HomeActivity"
+            android:label="@string/title_"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
+            android:name=".ui.home.bmodule.PlanBActivity"
+            android:label="@string/title_activity_plan_b">
+        </activity>
     </application>
 
 </manifest>
