@@ -11,6 +11,7 @@ android {
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
         buildConfigField("String", "BASE_URL", "\"https://test.api.pandaq\"")
+        resourcePrefix "app"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true

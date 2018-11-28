@@ -1,5 +1,11 @@
 apply from:"../../common_sdk_build.gradle"
 
+android{
+    defaultConfig{
+        resourcePrefix "browser"
+    }
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     compileOnly rootProject.ext.dependencies["design"]

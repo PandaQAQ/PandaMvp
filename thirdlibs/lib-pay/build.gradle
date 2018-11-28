@@ -1,5 +1,10 @@
 apply from:"../../common_sdk_build.gradle"
 
+android{
+    defaultConfig{
+        resourcePrefix "pay"
+    }
+}
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')

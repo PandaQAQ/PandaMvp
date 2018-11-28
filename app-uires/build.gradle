@@ -2,6 +2,10 @@ apply from:"../common_sdk_build.gradle"
 
 android {
     buildToolsVersion = '28.0.3'
+
+    defaultConfig{
+        resourcePrefix "public"
+    }
 }
 
 dependencies {
