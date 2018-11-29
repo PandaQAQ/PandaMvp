@@ -84,7 +84,7 @@ public class LauncherActivity extends BaseMvpActivity<LauncherPresenter> impleme
         switch (view.getId()) {
             case R.id.btn1:
                 Snacker.with(mLlParent)
-                        .duration(Snackbar.LENGTH_INDEFINITE)
+                        .duration(Snackbar.LENGTH_LONG)
                         .msg("SnackMsg")
                         .msgColor(Color.RED)
 //                        .msgFont(DisplayUtils.sp2px(this, 20))
