@@ -1,7 +1,5 @@
 package com.pandaq.appcore.http.converter;
 
-import android.support.annotation.NonNull;
-
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;
@@ -9,6 +7,7 @@ import com.pandaq.appcore.http.entity.ApiData;
 
 import java.io.IOException;
 
+import androidx.annotation.NonNull;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 

@@ -1,11 +1,10 @@
 package com.pandaq.appcore.transmitter.upload;
 
-import android.support.annotation.NonNull;
-
 import com.pandaq.appcore.transmitter.TransmitCallback;
 
 import java.io.IOException;
 
+import androidx.annotation.NonNull;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 import okio.Buffer;

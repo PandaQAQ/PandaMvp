@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/tv_item"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/public_dp_48"
+    android:gravity="center_vertical"
+    android:paddingEnd="0dp"
+    android:paddingStart="@dimen/public_dp_16"
+    android:textColor="@color/public_colorTextBlack"
+    android:textSize="@dimen/public_sp_14"/>

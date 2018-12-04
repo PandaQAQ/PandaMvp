@@ -41,7 +41,7 @@ public class HomeActivity extends BaseMvpActivity<HomePresenter> implements Home
 
     @Override
     protected int bindContentRes() {
-        return R.layout.activity_home;
+        return R.layout.app_activity_home;
     }
 
     @Override

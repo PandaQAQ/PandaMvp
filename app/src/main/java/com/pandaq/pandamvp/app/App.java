@@ -3,9 +3,11 @@ package com.pandaq.pandamvp.app;
 import android.app.Application;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Color;
 
 import com.pandaq.appcore.cache.CacheTool;
 import com.pandaq.appcore.http.ApiManager;
+import com.pandaq.commonui.msgwindow.SnackerConfig;
 import com.pandaq.pandamvp.BuildConfig;
 import com.pandaq.pandamvp.entites.UserInfo;
 import com.pandaq.pandamvp.net.ApiService;
@@ -25,6 +27,10 @@ public class App extends Application {
         super.onCreate();
         sApp = this;
         initNet();
+        SnackerConfig.getDefault()
+                .setActionColor(Color.WHITE)
+                .setActionColor(Color.RED)
+                .setBackgroundColor(Color.GREEN);
     }
 
     // 初始化网络请求

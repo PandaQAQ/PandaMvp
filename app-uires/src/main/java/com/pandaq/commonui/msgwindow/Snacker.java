@@ -2,16 +2,18 @@ package com.pandaq.commonui.msgwindow;
 
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.ColorInt;
-import android.support.annotation.Dimension;
-import android.support.annotation.NonNull;
-import android.support.design.internal.SnackbarContentLayout;
-import android.support.design.widget.Snackbar;
-import android.support.v7.widget.AppCompatButton;
-import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
+
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.snackbar.SnackbarContentLayout;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.Dimension;
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatTextView;
 
 /**
  * Created by huxinyu on 2018/7/18.
@@ -150,13 +152,22 @@ public class Snacker {
 
             if (msgColor != 0) {
                 snackText.setTextColor(msgColor);
+            } else {
+                if (SnackerConfig.getDefault().getMsgColor() != SnackerConfig.COLOR_NULL) {
+                    snackText.setTextColor(SnackerConfig.getDefault().getMsgColor());
+                }
             }
+
             if (msgFontSize != 0) {
                 snackText.setTextSize(msgFontSize);
             }
 
             if (actionColor != 0) {
                 snackbar.setActionTextColor(actionColor);
+            } else {
+                if (SnackerConfig.getDefault().getActionColor() != SnackerConfig.COLOR_NULL) {
+                    snackbar.setActionTextColor(SnackerConfig.getDefault().getActionColor());
+                }
             }
             if (actionFontSize != 0) {
                 snackAction.setTextSize(actionFontSize);
@@ -164,6 +175,10 @@ public class Snacker {
 
             if (backgroundColor != 0) {
                 snackRoot.setBackgroundColor(backgroundColor);
+            } else {
+                if (SnackerConfig.getDefault().getBackgroundColor() != SnackerConfig.COLOR_NULL) {
+                    snackRoot.setBackgroundColor(SnackerConfig.getDefault().getBackgroundColor());
+                }
             }
             if (backgroundDrawable != null) {
                 snackRoot.setBackground(backgroundDrawable);

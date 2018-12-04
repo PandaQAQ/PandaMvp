@@ -2,9 +2,6 @@ package com.pandaq.pandamvp.framework.base;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
@@ -14,8 +11,9 @@ import com.pandaq.commonui.guide.GuideCoverView;
 import com.pandaq.pandamvp.R;
 import com.pandaq.pandamvp.app.ActivityTask;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by huxinyu on 2018/1/26.

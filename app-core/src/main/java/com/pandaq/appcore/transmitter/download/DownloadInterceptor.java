@@ -1,11 +1,10 @@
 package com.pandaq.appcore.transmitter.download;
 
-import android.support.annotation.NonNull;
-
 import com.pandaq.appcore.transmitter.TransmitCallback;
 
 import java.io.IOException;
 
+import androidx.annotation.NonNull;
 import okhttp3.Interceptor;
 import okhttp3.Response;
 

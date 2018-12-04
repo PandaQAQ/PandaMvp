@@ -2,17 +2,16 @@ package com.pandaq.pandamvp.ui.launch;
 
 import android.content.Intent;
 import android.graphics.Color;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.google.android.material.snackbar.Snackbar;
 import com.pandaq.appcore.eventbus.EventUtils;
 import com.pandaq.appcore.utils.logutils.DebugLogger;
 import com.pandaq.commonui.msgwindow.Snacker;
 import com.pandaq.commonui.msgwindow.ToastIconGravity;
 import com.pandaq.commonui.msgwindow.Toaster;
 import com.pandaq.pandamvp.R;
-import com.pandaq.pandamvp.events.HomeEvent;
 import com.pandaq.pandamvp.events.LaunchEvent;
 import com.pandaq.pandamvp.framework.basemvp.BaseMvpActivity;
 import com.pandaq.pandamvp.ui.home.HomeActivity;
@@ -51,7 +50,7 @@ public class LauncherActivity extends BaseMvpActivity<LauncherPresenter> impleme
 
     @Override
     protected int bindContentRes() {
-        return R.layout.activity_launcher;
+        return R.layout.app_activity_launcher;
     }
 
     @Override
@@ -102,7 +101,14 @@ public class LauncherActivity extends BaseMvpActivity<LauncherPresenter> impleme
                 this.startActivity(intent);
                 break;
             case R.id.btn3:
-                DebugLogger.i("我是打印内容啊");
+                Snacker.with(mLlParent)
+                        .msg("Default")
+                        .action("Action")
+                        .actionListener(v -> Toaster.with(LauncherActivity.this)
+                                .msg("点击了 Action")
+                                .show()
+                        )
+                        .show();
                 break;
             case R.id.btn4:
                 DebugLogger.e("我是打印内容啊");

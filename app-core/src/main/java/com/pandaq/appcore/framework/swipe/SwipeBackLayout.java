@@ -6,7 +6,6 @@ import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
-import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -21,6 +20,8 @@ import com.pandaq.appcore.framework.annotation.ProguardKeep;
 
 import java.util.LinkedList;
 import java.util.List;
+
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by huxinyu on 2018/1/26.

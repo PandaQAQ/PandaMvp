@@ -36,4 +36,7 @@ dependencies {
     //图片框架，如果需要使用，编译依赖即可
     compileOnly rootProject.ext.dependencies["glide"]
     annotationProcessor rootProject.ext.dependencies["glide-annotation"]
+
+    implementation "com.android.support:support-annotations:28.0.0"
+    annotationProcessor 'com.android.support:support-annotations:28.0.0'
 }

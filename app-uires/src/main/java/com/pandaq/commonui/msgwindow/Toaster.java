@@ -2,19 +2,19 @@ package com.pandaq.commonui.msgwindow;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.ColorInt;
-import android.support.annotation.Dimension;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.pandaq.commonui.R;
+import com.pandaq.commonui.utils.DisplayUtils;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.Dimension;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
 
 
 /**
@@ -58,6 +58,7 @@ public class Toaster {
         private int backgroundColor;
         private Drawable backgroundDrawable;
         private Drawable icon;
+        private int iconSize = DisplayUtils.dp2px(16);
         private ToastIconGravity mIconGravity;
         private int duration = Toast.LENGTH_SHORT;
 
@@ -102,6 +103,11 @@ public class Toaster {
             return this;
         }
 
+        public ToastBuilder iconSize(int sizePx) {
+            this.iconSize = sizePx;
+            return this;
+        }
+
         /**
          * 可使用 Toast.LENGTH_LONG Toast.LENGTH_SHORT.其他值时显示时长为对应毫秒数
          *
@@ -123,7 +129,6 @@ public class Toaster {
             }
             TextView textView = mToast.getView().findViewWithTag(TEXT_TAG);
             if (textView != null) {
-                textView.setBackgroundColor(Color.RED);
                 if (msgColor != 0) {
                     textView.setTextColor(msgColor);
                 }
@@ -148,20 +153,26 @@ public class Toaster {
                 if (iconView != null) { //先将之前的 icon 移除
                     toastView.removeView(iconView);
                 }
+                LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams(iconSize, iconSize);
                 iconView = new ImageView(mContext);
+                iconView.setLayoutParams(iconParams);
                 iconView.setImageDrawable(icon);
                 if (mIconGravity == ToastIconGravity.START) {
+                    iconParams.rightMargin = DisplayUtils.dp2px(8);
                     toastView.setOrientation(LinearLayout.HORIZONTAL);
                     toastView.addView(iconView, 0);
                 } else if (mIconGravity == ToastIconGravity.END) {
+                    iconParams.leftMargin = DisplayUtils.dp2px(8);
                     toastView.setOrientation(LinearLayout.HORIZONTAL);
                     toastView.addView(iconView, toastView.getChildCount());
                 } else if (mIconGravity == ToastIconGravity.TOP) {
-                    iconView.setPadding(0, 4, 0, 4);
+                    iconParams.bottomMargin = DisplayUtils.dp2px(8);
+                    iconParams.topMargin = DisplayUtils.dp2px(8);
                     toastView.setOrientation(LinearLayout.VERTICAL);
                     toastView.addView(iconView, 0);
                 } else if (mIconGravity == ToastIconGravity.BOTTOM) {
-                    iconView.setPadding(0, 4, 0, 4);
+                    iconParams.bottomMargin = DisplayUtils.dp2px(8);
+                    iconParams.topMargin = DisplayUtils.dp2px(8);
                     toastView.setOrientation(LinearLayout.VERTICAL);
                     toastView.addView(iconView, toastView.getChildCount());
                 }
@@ -169,5 +180,25 @@ public class Toaster {
             mToast.show();
             return mToast;
         }
+    }
+
+    public static class GlobalConfig {
+
+        public static GlobalConfig sConfig;
+
+        public GlobalConfig instance() {
+            if (sConfig == null) {
+                synchronized (GlobalConfig.class) {
+                    if (sConfig == null) {
+                        sConfig = new GlobalConfig();
+                    }
+                }
+            }
+            return sConfig;
+        }
+
+        private GlobalConfig() {
+        }
+
     }
 }

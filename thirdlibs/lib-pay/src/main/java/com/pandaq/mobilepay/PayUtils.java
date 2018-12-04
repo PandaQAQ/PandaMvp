@@ -2,12 +2,13 @@ package com.pandaq.mobilepay;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.annotation.NonNull;
 
 import com.pandaq.mobilepay.alipay.AliPay;
 import com.pandaq.mobilepay.alipay.AliPayData;
 import com.pandaq.mobilepay.wechatpay.WeChatPay;
 import com.pandaq.mobilepay.wechatpay.WeChatPayData;
+
+import androidx.annotation.NonNull;
 
 /**
  * Created by huxinyu on 2018/7/16.

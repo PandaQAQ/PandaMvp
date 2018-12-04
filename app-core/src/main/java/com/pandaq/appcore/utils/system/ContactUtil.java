@@ -3,9 +3,8 @@ package com.pandaq.appcore.utils.system;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
-import android.support.annotation.NonNull;
 
-import com.pandaq.appcore.utils.logutils.DebugLogger;
+import androidx.annotation.NonNull;
 
 
 /**

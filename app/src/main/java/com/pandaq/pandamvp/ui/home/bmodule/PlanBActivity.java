@@ -32,7 +32,7 @@ public class PlanBActivity extends BaseMvpActivity<PlanBPresenter> implements Pl
 
     @Override
     protected int bindContentRes() {
-        return R.layout.activity_plan_b;
+        return R.layout.app_activity_plan_b;
     }
 
     @Override

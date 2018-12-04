@@ -3,10 +3,11 @@ package com.pandaq.appcore.imageloader.core;
 import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 
 import java.io.File;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by huxinyu on 2018/6/27.

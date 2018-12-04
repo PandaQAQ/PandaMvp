@@ -17,9 +17,6 @@
     <!-- Base application theme. -->
     <style name="PublicAppTheme" parent="PublicBaseTheme">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/public_colorPrimary</item>
-        <item name="colorPrimaryDark">@color/public_colorPrimaryDark</item>
-        <item name="colorAccent">@color/public_colorAccent</item>
         <item name="android:windowDisablePreview">true</item>
     </style>
 
@@ -42,15 +39,19 @@
     </style>
     <!--动画设置-->
     <style name="PublicSwipeBackActivityAnim" mce_bogus="1" parent="@android:style/Animation.Activity">
-        <item name="android:activityOpenEnterAnimation">@anim/public_swipe_back_slide_right_in</item>
-        <item name="android:activityOpenExitAnimation">@anim/public_swipe_back_slide_right_out</item>
-        <item name="android:activityCloseEnterAnimation">@anim/public_swipe_back_slide_right_in</item>
-        <item name="android:activityCloseExitAnimation">@anim/public_swipe_back_slide_right_out</item>
+        <item name="android:activityOpenEnterAnimation">@anim/public_swipe_back_slide_right_in
+        </item>
+        <item name="android:activityOpenExitAnimation">@anim/public_swipe_back_slide_right_out
+        </item>
+        <item name="android:activityCloseEnterAnimation">@anim/public_swipe_back_slide_right_in
+        </item>
+        <item name="android:activityCloseExitAnimation">@anim/public_swipe_back_slide_right_out
+        </item>
     </style>
 
     <style name="PublicLoadingDialog" parent="android:Theme.Dialog">
         <item name="android:windowFrame">@null</item>
-        <item name="android:windowBackground">@color/public_trans</item>
+        <item name="android:windowBackground">@color/public_colorTrans</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowIsFloating">true</item>

@@ -2,7 +2,6 @@ package com.pandaq.appcore.utils.crypto.cryptors;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.support.annotation.NonNull;
 import android.util.Base64;
 
 import java.io.ByteArrayOutputStream;
@@ -10,6 +9,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
+import androidx.annotation.NonNull;
 
 /**
  * Created by huxinyu on 2018/7/6.

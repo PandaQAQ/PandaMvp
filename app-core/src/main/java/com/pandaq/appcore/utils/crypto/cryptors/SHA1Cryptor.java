@@ -1,11 +1,11 @@
 package com.pandaq.appcore.utils.crypto.cryptors;
 
-import android.support.annotation.NonNull;
-
 import com.pandaq.appcore.utils.crypto.CryptType;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+
+import androidx.annotation.NonNull;
 
 /**
  * Created by huxinyu on 2018/7/6.

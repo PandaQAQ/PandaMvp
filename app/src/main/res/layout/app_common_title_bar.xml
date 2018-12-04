@@ -7,7 +7,7 @@
     android:id="@+id/abl_toolbar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:elevation="@dimen/appbar_elevation"
+    android:elevation="@dimen/app_bar_elevation"
     android:orientation="vertical"
     android:stateListAnimator="@null"
     tools:targetApi="lollipop">
@@ -27,6 +27,6 @@
         app:popupTheme="@style/app_popup_theme"
         app:titleTextColor="@color/colorWhite"/>
 
-    <include layout="@layout/common_shade_v19"/>
+    <include layout="@layout/public_common_shade_v19"/>
 
 </android.support.design.widget.AppBarLayout>

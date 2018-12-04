@@ -1,13 +1,12 @@
 package com.pandaq.appcore.transmitter.upload;
 
-import android.support.annotation.NonNull;
-
 import com.google.gson.Gson;
 import com.pandaq.appcore.transmitter.TransmitCallback;
 import com.pandaq.appcore.transmitter.UploadResponse;
 
 import java.io.IOException;
 
+import androidx.annotation.NonNull;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;

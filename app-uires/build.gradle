@@ -15,4 +15,6 @@ dependencies {
     testCompileOnly rootProject.ext.dependencies["junit"]
     androidTestCompileOnly rootProject.ext.dependencies["test-runner"]
     androidTestCompileOnly rootProject.ext.dependencies["espresso-core"]
+    api rootProject.ext.dependencies["bravh"]
+    api rootProject.ext.dependencies["constraint-layout"]
 }

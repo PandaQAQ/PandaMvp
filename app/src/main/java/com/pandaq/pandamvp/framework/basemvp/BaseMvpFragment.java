@@ -1,11 +1,12 @@
 package com.pandaq.pandamvp.framework.basemvp;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 
-import com.pandaq.appcore.framework.mvpbase.IBaseContract;
 import com.pandaq.appcore.framework.mvpbase.BasePresenter;
+import com.pandaq.appcore.framework.mvpbase.IBaseContract;
 import com.pandaq.pandamvp.framework.base.BaseFragment;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by huxinyu on 2018/5/27.
