@@ -55,13 +55,13 @@ public class ListSelectPopupWindow extends PopupWindow implements BaseQuickAdapt
         }
         dataList.setLayoutManager(new LinearLayoutManager(this.mContext));
         DividerItemDecoration divider = new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL);
-        divider.setDrawable(mContext.getResources().getDrawable(R.drawable.public_dividing_drawable));
+        divider.setDrawable(mContext.getResources().getDrawable(R.drawable.res_dividing_drawable));
         dataList.addItemDecoration(divider);
         dataList.setAdapter(mAdapter);
     }
 
     private void init() {
-        View contentView = LayoutInflater.from(mContext).inflate(R.layout.public_popup_list_select, null);
+        View contentView = LayoutInflater.from(mContext).inflate(R.layout.res_popup_list_select, null);
         setContentView(contentView);
         dataList = contentView.findViewById(R.id.lv_item);
     }

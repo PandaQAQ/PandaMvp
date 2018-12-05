@@ -2,5 +2,5 @@
 <View xmlns:android="http://schemas.android.com/apk/res/android"
       android:id="@+id/view_toolbar_shader"
       android:layout_width="match_parent"
-      android:layout_height="@dimen/public_shader_height"
+      android:layout_height="@dimen/res_shader_height"
       android:background="@drawable/shadow"/>

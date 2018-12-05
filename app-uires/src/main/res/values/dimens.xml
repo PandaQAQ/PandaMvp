@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="public_sp_14">14sp</dimen>
-    <dimen name="public_sp_16">16sp</dimen>
+    <dimen name="res_sp_14">14sp</dimen>
+    <dimen name="res_sp_16">16sp</dimen>
 
-    <dimen name="public_shader_height">3dp</dimen>
-    <dimen name="public_dp_10">10dp</dimen>
-    <dimen name="public_dp_16">16dp</dimen>
-    <dimen name="public_dp_39">39dp</dimen>
-    <dimen name="public_dp_48">48dp</dimen>
-    <dimen name="public_dp_half">0.5dp</dimen>
+    <dimen name="res_shader_height">3dp</dimen>
+    <dimen name="res_dp_10">10dp</dimen>
+    <dimen name="res_dp_16">16dp</dimen>
+    <dimen name="res_dp_39">39dp</dimen>
+    <dimen name="res_dp_48">48dp</dimen>
+    <dimen name="res_dp_half">0.5dp</dimen>
 </resources>

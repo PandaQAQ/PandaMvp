@@ -27,6 +27,6 @@
         app:popupTheme="@style/app_popup_theme"
         app:titleTextColor="@color/colorWhite"/>
 
-    <include layout="@layout/public_common_shade_v19"/>
+    <include layout="@layout/res_common_shade_v19"/>
 
 </android.support.design.widget.AppBarLayout>

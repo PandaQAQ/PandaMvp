@@ -17,10 +17,10 @@
     </style>
     <!--动画设置-->
     <style name="AppSwipeBackActivityAnim" mce_bogus="1" parent="@android:style/Animation.Activity">
-        <item name="android:activityOpenEnterAnimation">@anim/public_swipe_back_slide_right_in</item>
-        <item name="android:activityOpenExitAnimation">@anim/public_swipe_back_slide_right_out</item>
-        <item name="android:activityCloseEnterAnimation">@anim/public_swipe_back_slide_right_in</item>
-        <item name="android:activityCloseExitAnimation">@anim/public_swipe_back_slide_right_out</item>
+        <item name="android:activityOpenEnterAnimation">@anim/res_swipe_back_slide_right_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/res_swipe_back_slide_right_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/res_swipe_back_slide_right_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/res_swipe_back_slide_right_out</item>
     </style>
 
     <!-- ToolBar菜单样式.-->

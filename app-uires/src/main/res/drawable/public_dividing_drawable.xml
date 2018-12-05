@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android"
-       android:shape="rectangle">
-    <solid android:color="@color/public_dividing"/>
-    <size android:height="@dimen/public_dp_half"/>
-    <padding android:top="@dimen/public_dp_half"/>
-    <padding android:bottom="@dimen/public_dp_half"/>
-</shape>

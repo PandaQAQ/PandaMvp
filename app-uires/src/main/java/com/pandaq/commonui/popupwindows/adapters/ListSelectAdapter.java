@@ -22,7 +22,7 @@ public class ListSelectAdapter extends BaseQuickAdapter<String, BaseViewHolder> 
     private String selected;
 
     public ListSelectAdapter(@Nullable List<String> data) {
-        super(R.layout.public_item_list_select_popup, data);
+        super(R.layout.res_item_list_select_popup, data);
     }
 
     @Override
@@ -30,9 +30,9 @@ public class ListSelectAdapter extends BaseQuickAdapter<String, BaseViewHolder> 
         TextView textView = helper.getView(R.id.tv_item);
         textView.setText(item);
         if (selected.equals(item)) {
-            textView.setTextColor(mContext.getResources().getColor(R.color.public_colorPrimary));
+            textView.setTextColor(mContext.getResources().getColor(R.color.res_colorPrimary));
         } else {
-            textView.setTextColor(mContext.getResources().getColor(R.color.public_colorTextGray));
+            textView.setTextColor(mContext.getResources().getColor(R.color.res_colorTextGray));
         }
         helper.addOnClickListener(R.id.tv_item);
     }

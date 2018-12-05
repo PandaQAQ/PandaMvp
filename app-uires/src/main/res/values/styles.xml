@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="PublicFitSystemWindow" parent="PublicBaseTheme">
+    <style name="FitSystemWindow" parent="BaseTheme" tools:ignore="ResourceName">
         <item name="android:fitsSystemWindows">true</item>
     </style>
 
-    <style name="PublicBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <item name="colorPrimary">@color/public_colorPrimary</item>
-        <item name="colorPrimaryDark">@color/public_colorPrimaryDark</item>
-        <item name="colorAccent">@color/public_colorAccent</item>
+    <style name="BaseTheme" parent="Theme.AppCompat.Light.NoActionBar" tools:ignore="ResourceName">
+        <item name="colorPrimary">@color/res_colorPrimary</item>
+        <item name="colorPrimaryDark">@color/res_colorPrimaryDark</item>
+        <item name="colorAccent">@color/res_colorAccent</item>
         <item name="android:windowEnableSplitTouch">false</item>
         <item name="android:splitMotionEvents">false</item>
-        <item name="actionOverflowMenuStyle">@style/PublicPopupTheme</item>
+        <item name="actionOverflowMenuStyle">@style/PopupTheme</item>
     </style>
 
     <!-- Base application theme. -->
-    <style name="PublicAppTheme" parent="PublicBaseTheme">
+    <style name="AppTheme" parent="BaseTheme" tools:ignore="ResourceName">
         <!-- Customize your theme here. -->
         <item name="android:windowDisablePreview">true</item>
     </style>
 
     <!-- ToolBar菜单样式.-->
-    <style name="PublicPopupTheme" parent="@style/Widget.AppCompat.PopupMenu.Overflow">
+    <style name="PopupTheme" parent="@style/Widget.AppCompat.PopupMenu.Overflow" tools:ignore="ResourceName">
         <!--设置不覆盖锚点-->
         <item name="overlapAnchor">false</item>
         <!-- 弹出层垂直方向上的偏移，即在竖直方向上距离Toolbar的距离，值为负则会盖住Toolbar -->
@@ -31,27 +31,23 @@
     </style>
 
     <!--全屏加透明-->
-    <style name="PublicTranslucentFullScreenTheme" parent="PublicAppTheme">
+    <style name="TranslucentFullScreenTheme" parent="AppTheme" tools:ignore="ResourceName">
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:colorBackgroundCacheHint">@null</item>
         <item name="android:windowIsTranslucent">true</item>
         <!--<item name="android:windowAnimationStyle">@style/SwipeBackActivityAnim</item>-->
     </style>
     <!--动画设置-->
-    <style name="PublicSwipeBackActivityAnim" mce_bogus="1" parent="@android:style/Animation.Activity">
-        <item name="android:activityOpenEnterAnimation">@anim/public_swipe_back_slide_right_in
-        </item>
-        <item name="android:activityOpenExitAnimation">@anim/public_swipe_back_slide_right_out
-        </item>
-        <item name="android:activityCloseEnterAnimation">@anim/public_swipe_back_slide_right_in
-        </item>
-        <item name="android:activityCloseExitAnimation">@anim/public_swipe_back_slide_right_out
-        </item>
+    <style name="SwipeBackActivityAnim" mce_bogus="1" parent="@android:style/Animation.Activity" tools:ignore="ResourceName">
+        <item name="android:activityOpenEnterAnimation">@anim/res_swipe_back_slide_right_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/res_swipe_back_slide_right_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/res_swipe_back_slide_right_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/res_swipe_back_slide_right_out</item>
     </style>
 
-    <style name="PublicLoadingDialog" parent="android:Theme.Dialog">
+    <style name="LoadingDialog" parent="android:Theme.Dialog" tools:ignore="ResourceName">
         <item name="android:windowFrame">@null</item>
-        <item name="android:windowBackground">@color/public_colorTrans</item>
+        <item name="android:windowBackground">@color/res_colorTrans</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowIsTranslucent">true</item>
         <item name="android:windowIsFloating">true</item>
@@ -59,13 +55,13 @@
         <item name="android:backgroundDimEnabled">false</item>
     </style>
 
-    <style name="PublicCommonTipsTextView">
-        <item name="android:textSize">@dimen/public_sp_14</item>
-        <item name="android:textColor">@color/public_colorPrimary</item>
+    <style name="CommonTipsTextView" tools:ignore="ResourceName">
+        <item name="android:textSize">@dimen/res_sp_14</item>
+        <item name="android:textColor">@color/res_colorPrimary</item>
     </style>
 
-    <style name="PublicDialogAnim" parent="@android:style/Animation">
-        <item name="android:windowEnterAnimation">@anim/public_dialog_appear</item>
-        <item name="android:windowExitAnimation">@anim/public_dialog_disappear</item>
+    <style name="DialogAnim" parent="@android:style/Animation" tools:ignore="ResourceName">
+        <item name="android:windowEnterAnimation">@anim/res_dialog_appear</item>
+        <item name="android:windowExitAnimation">@anim/res_dialog_disappear</item>
     </style>
 </resources>

@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="public_colorCover">#a6000000</color>
-    <color name="public_colorTextBlack">#232222</color>
-    <color name="public_colorTextGray">#706f6f</color>
-    <color name="public_colorTrans">#00ffffff</color>
-    <color name="public_colorPrimary">#3F51B5</color>
-    <color name="public_colorPrimaryDark">#303F9F</color>
-    <color name="public_colorAccent">#FF4081</color>
-    <color name="public_colorWhite">#FFFFFF</color>
-    <color name="public_dividing">#f0f0f0</color>
+    <color name="res_colorCover">#a6000000</color>
+    <color name="res_colorTextBlack">#232222</color>
+    <color name="res_colorTextGray">#706f6f</color>
+    <color name="res_colorTrans">#00ffffff</color>
+    <color name="res_colorPrimary">#3F51B5</color>
+    <color name="res_colorPrimaryDark">#303F9F</color>
+    <color name="res_colorAccent">#FF4081</color>
+    <color name="res_colorWhite">#FFFFFF</color>
+    <color name="res_dividing">#f0f0f0</color>
 </resources>

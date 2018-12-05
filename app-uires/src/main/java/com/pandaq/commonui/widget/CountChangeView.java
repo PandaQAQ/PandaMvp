@@ -45,7 +45,7 @@ public class CountChangeView extends RelativeLayout implements View.OnClickListe
         int textColor = ta.getColor(R.styleable.CountChangeView_countColor, 0);
         float textSize = ta.getDimension(R.styleable.CountChangeView_countTextSize, 0);
         ta.recycle();
-        inflate(getContext(), R.layout.public_count_view, this);
+        inflate(getContext(), R.layout.res_count_view, this);
         ImageView ivReduce = findViewById(R.id.iv_tab_reduce);
         ImageView ivAdd = findViewById(R.id.iv_tab_add);
         etCount = findViewById(R.id.et_count);
