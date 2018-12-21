@@ -1,6 +1,13 @@
 package com.pandaq.pandamvp.ui.home;
 
+import android.Manifest;
+import android.content.Context;
+
 import com.pandaq.appcore.eventbus.EventUtils;
+import com.pandaq.appcore.permission.Action;
+import com.pandaq.appcore.permission.Executor;
+import com.pandaq.appcore.permission.Rationale;
+import com.pandaq.appcore.permission.RtPermission;
 import com.pandaq.commonui.msgwindow.ToastIconGravity;
 import com.pandaq.commonui.msgwindow.Toaster;
 import com.pandaq.pandamvp.R;
@@ -10,6 +17,9 @@ import com.pandaq.pandamvp.framework.basemvp.BaseMvpActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+
+import java.io.File;
+import java.util.List;
 
 import butterknife.OnClick;
 
@@ -36,7 +46,33 @@ public class HomeActivity extends BaseMvpActivity<HomePresenter> implements Home
 
     @Override
     protected void initView() {
+        RtPermission.with(this)
+                .runtime(Manifest.permission.READ_PHONE_STATE)
+                .onDenied(permissions -> {
 
+                })
+                .onGranted(permissions -> {
+
+                })
+                .rationale((context, permissions, executor) -> {
+
+                });
+
+        RtPermission.with(this)
+                .install()
+                .file("")
+                .onDenied(new Action<File>() {
+                    @Override
+                    public void onAction(File permissions) {
+
+                    }
+                })
+                .onGranted(new Action<File>() {
+                    @Override
+                    public void onAction(File permissions) {
+
+                    }
+                }).start();
     }
 
     @Override

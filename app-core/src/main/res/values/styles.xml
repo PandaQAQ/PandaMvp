@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+
+    <style name="ThemePermissionActivity" parent="@android:style/Theme.Translucent.NoTitleBar"
+           tools:ignore="ResourceName">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+
+    <style name="AnimationSettingDialog" parent="@android:style/Animation"
+           tools:ignore="ResourceName">
+        <item name="android:windowEnterAnimation">@anim/core_setting_dialog_appear</item>
+        <item name="android:windowExitAnimation">@anim/core_setting_dialog_disappear</item>
+    </style>
+</resources>

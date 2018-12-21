@@ -1,6 +1,5 @@
 include ':app',
         ':app-core',
         ':app-uires',
-        ':app-permission',
         ':thirdlibs:lib-pay',
         ':thirdlibs:lib-browser'

@@ -120,4 +120,6 @@ public abstract class BaseActivity extends TemplateBaseActivity {
     protected int bindContentRes() {
         return 0;
     }
+
+
 }

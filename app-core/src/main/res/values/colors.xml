@@ -4,4 +4,5 @@
     <color name="core_colorPrimaryDark">#303F9F</color>
     <color name="core_colorAccent">#FF4081</color>
     <color name="core_colorWhite">#FFFFFF</color>
+    <color name="core_colorNegative">#b9b9b9</color>
 </resources>

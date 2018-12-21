@@ -5,7 +5,6 @@
       <module fileurl="file://$PROJECT_DIR$/PandaMvp.iml" filepath="$PROJECT_DIR$/PandaMvp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app-core/app-core.iml" filepath="$PROJECT_DIR$/app-core/app-core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/app-permission/app-permission.iml" filepath="$PROJECT_DIR$/app-permission/app-permission.iml" />
       <module fileurl="file://$PROJECT_DIR$/app-uires/app-uires.iml" filepath="$PROJECT_DIR$/app-uires/app-uires.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdlibs/lib-browser/lib-browser.iml" filepath="$PROJECT_DIR$/thirdlibs/lib-browser/lib-browser.iml" />
       <module fileurl="file://$PROJECT_DIR$/thirdlibs/lib-pay/lib-pay.iml" filepath="$PROJECT_DIR$/thirdlibs/lib-pay/lib-pay.iml" />
