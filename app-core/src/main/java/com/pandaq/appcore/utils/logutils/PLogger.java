@@ -10,11 +10,11 @@ import com.pandaq.appcore.BuildConfig;
  * <p>
  * Description :日志打印封装
  */
-public class DebugLogger {
+public class PLogger {
     private static String className;//类名
     private static int lineNumber;//行数
 
-    private DebugLogger() {
+    private PLogger() {
         /* Protect from instantiations */
     }
 
@@ -33,7 +33,6 @@ public class DebugLogger {
             return;
         // Throwable instance must be created before any methods
         getMethodNames(new Throwable().getStackTrace());
-        Log.e("DebugLogger", createLog(message));
     }
 
 
@@ -41,34 +40,29 @@ public class DebugLogger {
         if (!BuildConfig.DEBUG)
             return;
         getMethodNames(new Throwable().getStackTrace());
-        Log.i("DebugLogger", createLog(message));
     }
 
     public static void d(String message) {
         if (!BuildConfig.DEBUG)
             return;
         getMethodNames(new Throwable().getStackTrace());
-        Log.d("DebugLogger", createLog(message));
     }
 
     public static void v(String message) {
         if (!BuildConfig.DEBUG)
             return;
         getMethodNames(new Throwable().getStackTrace());
-        Log.v("DebugLogger", createLog(message));
     }
 
     public static void w(String message) {
         if (!BuildConfig.DEBUG)
             return;
         getMethodNames(new Throwable().getStackTrace());
-        Log.w("DebugLogger", createLog(message));
     }
 
     public static void wtf(String message) {
         if (!BuildConfig.DEBUG)
             return;
         getMethodNames(new Throwable().getStackTrace());
-        Log.wtf("DebugLogger", createLog(message));
     }
 }

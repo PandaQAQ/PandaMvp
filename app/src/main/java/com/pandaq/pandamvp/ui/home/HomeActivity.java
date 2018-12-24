@@ -46,33 +46,7 @@ public class HomeActivity extends BaseMvpActivity<HomePresenter> implements Home
 
     @Override
     protected void initView() {
-        RtPermission.with(this)
-                .runtime(Manifest.permission.READ_PHONE_STATE)
-                .onDenied(permissions -> {
 
-                })
-                .onGranted(permissions -> {
-
-                })
-                .rationale((context, permissions, executor) -> {
-
-                });
-
-        RtPermission.with(this)
-                .install()
-                .file("")
-                .onDenied(new Action<File>() {
-                    @Override
-                    public void onAction(File permissions) {
-
-                    }
-                })
-                .onGranted(new Action<File>() {
-                    @Override
-                    public void onAction(File permissions) {
-
-                    }
-                }).start();
     }
 
     @Override

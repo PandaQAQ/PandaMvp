@@ -17,29 +17,6 @@ import androidx.annotation.NonNull;
 public interface InstallRequest {
 
     /**
-     * set apk to install
-     *
-     * @param apk the apk to install
-     */
-    @NonNull
-    InstallRequest file(File apk);
-
-    /**
-     * set apk to install
-     *
-     * @param path the apk path to install
-     */
-    @NonNull
-    InstallRequest file(String path);
-
-
-    /**
-     * Action to be taken when all permissions are granted.
-     */
-    @NonNull
-    InstallRequest onGranted(Action<File> granted);
-
-    /**
      * Action to be taken when all permissions are denied.
      */
     @NonNull

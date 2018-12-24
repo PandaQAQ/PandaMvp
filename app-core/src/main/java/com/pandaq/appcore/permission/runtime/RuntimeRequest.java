@@ -18,18 +18,6 @@ import androidx.annotation.NonNull;
 public interface RuntimeRequest {
 
     /**
-     * One or more permissions.
-     */
-    @NonNull
-    RuntimeRequest permission(String... permissions);
-
-    /**
-     * One or more permission groups.
-     */
-    @NonNull
-    RuntimeRequest permission(String[]... groups);
-
-    /**
      * Set request rationale.
      */
     @NonNull

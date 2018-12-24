@@ -2,12 +2,14 @@ package com.pandaq.pandamvp.ui.launch;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Environment;
 import android.view.View;
 import android.widget.LinearLayout;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.pandaq.appcore.eventbus.EventUtils;
-import com.pandaq.appcore.utils.logutils.DebugLogger;
+import com.pandaq.appcore.permission.RtPermission;
+import com.pandaq.appcore.utils.logutils.PLogger;
 import com.pandaq.commonui.msgwindow.Snacker;
 import com.pandaq.commonui.msgwindow.ToastIconGravity;
 import com.pandaq.commonui.msgwindow.Toaster;
@@ -20,6 +22,8 @@ import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.BindView;
 import butterknife.OnClick;
+
+import static android.os.Environment.DIRECTORY_DOWNLOADS;
 
 /**
  * Created by huxinyu on 2018/1/26.
@@ -111,10 +115,17 @@ public class LauncherActivity extends BaseMvpActivity<LauncherPresenter> impleme
                         .show();
                 break;
             case R.id.btn4:
-                DebugLogger.e("我是打印内容啊");
+                RtPermission.with(this)
+                        .install()
+                        .file(Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS) + "/app-common-release.apk")
+                        .onDenied(permissions ->
+                                Toaster.with(LauncherActivity.this)
+                                        .msg("无安装应用权限")
+                                        .show())
+                        .start();
                 break;
             case R.id.btn5:
-                DebugLogger.w("我是打印内容啊");
+                PLogger.w("我是打印内容啊");
                 break;
         }
     }

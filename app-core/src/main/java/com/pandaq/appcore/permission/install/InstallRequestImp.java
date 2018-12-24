@@ -23,34 +23,12 @@ import androidx.core.content.FileProvider;
 public abstract class InstallRequestImp implements InstallRequest {
 
     Source mSource;
-    private File mFile;
-    private Action<File> mGranted;
+    File mFile;
     private Action<File> mDenied;
 
     @NonNull
     final public InstallRequest source(Source source) {
         mSource = source;
-        return this;
-    }
-
-    @NonNull
-    @Override
-    final public InstallRequest file(File apk) {
-        mFile = apk;
-        return this;
-    }
-
-    @NonNull
-    @Override
-    final public InstallRequest file(String path) {
-        mFile = new File(path);
-        return this;
-    }
-
-    @NonNull
-    @Override
-    final public InstallRequest onGranted(Action<File> granted) {
-        this.mGranted = granted;
         return this;
     }
 
@@ -92,15 +70,6 @@ public abstract class InstallRequestImp implements InstallRequest {
     }
 
     /**
-     * Callback acceptance status.
-     */
-    final void callbackSucceed() {
-        if (mGranted != null) {
-            mGranted.onAction(mFile);
-        }
-    }
-
-    /**
      * Callback rejected state.
      */
     final void callbackFailed() {
@@ -108,4 +77,20 @@ public abstract class InstallRequestImp implements InstallRequest {
             mDenied.onAction(mFile);
         }
     }
+
+    /**
+     * set apk to install
+     *
+     * @param apk the apk to install
+     */
+    @NonNull
+    abstract InstallRequest file(File apk);
+
+    /**
+     * set apk to install
+     *
+     * @param path the apk path to install
+     */
+    @NonNull
+    abstract InstallRequest file(String path);
 }

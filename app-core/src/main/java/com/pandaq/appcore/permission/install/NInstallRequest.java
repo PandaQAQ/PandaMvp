@@ -2,6 +2,10 @@ package com.pandaq.appcore.permission.install;
 
 import com.pandaq.appcore.permission.source.Source;
 
+import java.io.File;
+
+import androidx.annotation.NonNull;
+
 /**
  * Created by huxinyu on 2018/12/20.
  * Email : panda.h@foxmail.com
@@ -17,7 +21,21 @@ public class NInstallRequest extends InstallRequestImp {
 
     @Override
     public void start() {
-        callbackSucceed();
         installExecute();
     }
+
+    @NonNull
+    @Override
+    final public InstallRequest file(File apk) {
+        mFile = apk;
+        return this;
+    }
+
+    @NonNull
+    @Override
+    final public InstallRequest file(String path) {
+        mFile = new File(path);
+        return this;
+    }
+
 }

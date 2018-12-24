@@ -8,6 +8,10 @@ import com.pandaq.appcore.permission.Executor;
 import com.pandaq.appcore.permission.PermissionActivity;
 import com.pandaq.appcore.permission.source.Source;
 
+import java.io.File;
+
+import androidx.annotation.NonNull;
+
 /**
  * Created by huxinyu on 2018/12/20.
  * Email : panda.h@foxmail.com
@@ -22,7 +26,7 @@ public class OInstallRequest extends InstallRequestImp implements Executor, Perm
 
 
     @Override
-    final  public void execute() {
+    final public void execute() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             PermissionActivity.requestInstall(mSource.getContext(), this);
         }
@@ -30,13 +34,12 @@ public class OInstallRequest extends InstallRequestImp implements Executor, Perm
 
 
     @Override
-    final  public void onRequestCallback() {
+    final public void onRequestCallback() {
         new Handler(Looper.getMainLooper()).postDelayed(this::dispatchCallback, 100);
     }
 
     private void dispatchCallback() {
         if (mSource.canRequestPackageInstalls()) {
-            callbackSucceed();
             installExecute();
         } else {
             callbackFailed();
@@ -44,12 +47,26 @@ public class OInstallRequest extends InstallRequestImp implements Executor, Perm
     }
 
     @Override
-    final  public void start() {
+    final public void start() {
         if (mSource.canRequestPackageInstalls()) {
-            callbackSucceed();
             installExecute();
         } else {
             showRationale(this);
         }
     }
+
+    @NonNull
+    @Override
+    final public InstallRequest file(File apk) {
+        mFile = apk;
+        return this;
+    }
+
+    @NonNull
+    @Override
+    final public InstallRequest file(String path) {
+        mFile = new File(path);
+        return this;
+    }
+
 }

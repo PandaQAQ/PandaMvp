@@ -20,20 +20,11 @@ public abstract class Source {
     private static final String NAME = "checkOpNoThrow";
     private static final int OP_REQUEST_INSTALL_PACKAGES = 66;
 
-    private PackageManager mPackageManager;
-
     private AppOpsManager mAppOpsManager;
 
     public abstract Context getContext();
 
     public abstract void startActivity(Intent intent);
-
-    private PackageManager getPackageManager() {
-        if (mPackageManager == null) {
-            mPackageManager = getContext().getPackageManager();
-        }
-        return mPackageManager;
-    }
 
     private AppOpsManager getAppOpsManager() {
         if (mAppOpsManager == null) {

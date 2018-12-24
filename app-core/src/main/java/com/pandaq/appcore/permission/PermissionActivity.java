@@ -51,7 +51,6 @@ public final class PermissionActivity extends Activity {
      */
     public static void requestInstall(Context context, RequestListener requestListener) {
         PermissionActivity.sRequestListener = requestListener;
-
         Intent intent = new Intent(context, PermissionActivity.class);
         intent.putExtra(KEY_INPUT_OPERATION, VALUE_INPUT_INSTALL);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -69,7 +68,7 @@ public final class PermissionActivity extends Activity {
         switch (operation) {
             case VALUE_INPUT_PERMISSIONS:
                 String[] permissions = intent.getStringArrayExtra(KEY_INPUT_PERMISSIONS);
-                if (permissions != null && sRequestListener != null) {
+                if (permissions != null && sPermissionListener != null) {
                     requestPermissions(permissions, VALUE_INPUT_PERMISSIONS);
                 } else {
                     finish();
