@@ -116,8 +116,7 @@ public class LauncherActivity extends BaseMvpActivity<LauncherPresenter> impleme
                 break;
             case R.id.btn4:
                 RtPermission.with(this)
-                        .install()
-                        .file(Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS) + "/app-common-release.apk")
+                        .install(Environment.getExternalStoragePublicDirectory(DIRECTORY_DOWNLOADS) + "/app-common-release.apk")
                         .onDenied(permissions ->
                                 Toaster.with(LauncherActivity.this)
                                         .msg("无安装应用权限")

@@ -20,7 +20,7 @@ import androidx.core.content.FileProvider;
  * <p>
  * Description :
  */
-public abstract class InstallRequestImp implements InstallRequest {
+public abstract class BaseInstallRequest implements InstallRequest {
 
     Source mSource;
     File mFile;

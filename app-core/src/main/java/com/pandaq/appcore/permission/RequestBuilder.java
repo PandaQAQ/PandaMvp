@@ -10,6 +10,7 @@ import com.pandaq.appcore.permission.runtime.MRuntimeRequest;
 import com.pandaq.appcore.permission.runtime.RuntimeRequest;
 import com.pandaq.appcore.permission.source.Source;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -62,11 +63,19 @@ public class RequestBuilder {
         }
     }
 
-    public InstallRequest install() {
+    public InstallRequest install(File apk) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            return new OInstallRequest(mSource);
+            return new OInstallRequest(mSource).file(apk);
         } else {
-            return new NInstallRequest(mSource);
+            return new NInstallRequest(mSource).file(apk);
+        }
+    }
+
+    public InstallRequest install(String apkPath) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            return new OInstallRequest(mSource).file(apkPath);
+        } else {
+            return new NInstallRequest(mSource).file(apkPath);
         }
     }
 }

@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
  * <p>
  * Description :request install permission for Android O-
  */
-public class NInstallRequest extends InstallRequestImp {
+public class NInstallRequest extends BaseInstallRequest {
 
     public NInstallRequest(Source source) {
         super.source(source);

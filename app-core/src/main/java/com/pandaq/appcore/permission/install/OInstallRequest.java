@@ -18,7 +18,7 @@ import androidx.annotation.NonNull;
  * <p>
  * Description :request install permission for Android O+
  */
-public class OInstallRequest extends InstallRequestImp implements Executor, PermissionActivity.RequestListener {
+public class OInstallRequest extends BaseInstallRequest implements Executor, PermissionActivity.RequestListener {
 
     public OInstallRequest(Source source) {
         super.source(source);

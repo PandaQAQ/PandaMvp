@@ -7,10 +7,10 @@ import com.pandaq.appcore.permission.Action;
 import com.pandaq.appcore.permission.Executor;
 import com.pandaq.appcore.permission.PermissionActivity;
 import com.pandaq.appcore.permission.Rationale;
+import com.pandaq.appcore.permission.source.Source;
 import com.pandaq.appcore.permission.test.checker.DoubleChecker;
 import com.pandaq.appcore.permission.test.checker.PermissionChecker;
 import com.pandaq.appcore.permission.test.checker.SystemChecker;
-import com.pandaq.appcore.permission.source.Source;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -29,7 +29,7 @@ import static java.util.Arrays.asList;
  */
 
 @RequiresApi(api = Build.VERSION_CODES.M)
-public class MRuntimeRequest implements RuntimeRequest, Executor, PermissionActivity.PermissionListener {
+public class MRuntimeRequest extends BaseRuntimeRequest implements RuntimeRequest, Executor, PermissionActivity.PermissionListener {
 
     private static final PermissionChecker CHECKER = new SystemChecker();
     private static final PermissionChecker DOUBLE_CHECKER = new DoubleChecker();

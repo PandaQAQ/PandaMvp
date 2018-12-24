@@ -22,7 +22,7 @@ import static java.util.Arrays.asList;
  * Description :request for Android5.0+
  */
 
-public class LRuntimeRequest implements RuntimeRequest {
+public class LRuntimeRequest extends BaseRuntimeRequest implements RuntimeRequest {
 
     private static final PermissionChecker CHECKER = new RealChecker();
 
@@ -36,16 +36,13 @@ public class LRuntimeRequest implements RuntimeRequest {
         this.mSource = source;
     }
 
-    @NonNull
-    @Override
-    final public RuntimeRequest permission(String... permissions) {
+    public RuntimeRequest permission(String... permissions) {
         this.mPermissions = permissions;
         return this;
     }
 
     @NonNull
-    @Override
-    final public RuntimeRequest permission(String[]... groups) {
+    public RuntimeRequest permission(String[]... groups) {
         List<String> permissionList = new ArrayList<>();
         for (String[] group : groups) {
             permissionList.addAll(Arrays.asList(group));
