@@ -1,6 +1,6 @@
 package com.pandaq.pandamvp.entites;
 
-import com.pandaq.appcore.framework.annotation.ProguardKeep;
+import com.pandaq.appcore.framework.annotation.WarnKeep;
 
 /**
  * Created by huxinyu on 2018/7/17.
@@ -8,14 +8,14 @@ import com.pandaq.appcore.framework.annotation.ProguardKeep;
  * <p>
  * Description :用户信息对象
  */
-@ProguardKeep
+@WarnKeep
 public class UserInfo {
-    @ProguardKeep
+    @WarnKeep
     private String account;
     private String userName;
     private String token;
 
-    @ProguardKeep
+    @WarnKeep
     public String getAccount() {
         return account;
     }

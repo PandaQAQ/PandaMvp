@@ -16,7 +16,7 @@ import android.widget.FrameLayout;
 import android.widget.Scroller;
 
 import com.pandaq.appcore.R;
-import com.pandaq.appcore.framework.annotation.ProguardKeep;
+import com.pandaq.appcore.framework.annotation.WarnKeep;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -30,7 +30,7 @@ import androidx.viewpager.widget.ViewPager;
  * Description :侧滑返回嵌入载体 layout
  */
 
-@ProguardKeep
+@WarnKeep
 public class SwipeBackLayout extends FrameLayout {
     private static final String TAG = SwipeBackLayout.class.getSimpleName();
     private View mContentView;

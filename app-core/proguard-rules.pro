@@ -21,13 +21,16 @@
 #-renamesourcefileattribute SourceFile
 
 # custom keep annotated resource
--keep @com.pandaq.appcore.framework.annotation.ProguardKeep class * {*;}
+-keep @com.pandaq.appcore.framework.annotation.WarnKeep class * {*;}
 -keep class * {
-    @com.pandaq.appcore.framework.annotation.ProguardKeep <fields>;
+    @com.pandaq.appcore.framework.annotation.WarnKeep <fields>;
 }
 -keepclassmembers class * {
-    @com.pandaq.appcore.framework.annotation.ProguardKeep <methods>;
+    @com.pandaq.appcore.framework.annotation.WarnKeep <methods>;
 }
+
+# permission lib
+-dontwarn com.pandaq.appcore.permission.**
 
 # eventbus
 -keepattributes *Annotation*

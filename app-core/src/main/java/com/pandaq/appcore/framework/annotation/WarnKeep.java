@@ -14,6 +14,6 @@ import java.lang.annotation.Target;
 
 @Retention(RetentionPolicy.CLASS)
 @Target({ElementType.TYPE, ElementType.METHOD, ElementType.CONSTRUCTOR, ElementType.FIELD})
-public @interface ProguardKeep {
+public @interface WarnKeep {
 
 }
