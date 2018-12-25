@@ -1,4 +1,4 @@
-package com.pandaq.appcore.framework.mvpbase;
+package com.pandaq.appcore.framework.base;
 
 import io.reactivex.disposables.Disposable;
 

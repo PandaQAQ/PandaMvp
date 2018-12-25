@@ -1,7 +1,7 @@
 package com.pandaq.appcore.http.observer;
 
 
-import com.pandaq.appcore.framework.mvpbase.IBaseContract;
+import com.pandaq.appcore.framework.base.IBaseContract;
 import com.pandaq.appcore.http.converter.ApiException;
 
 import java.net.SocketTimeoutException;

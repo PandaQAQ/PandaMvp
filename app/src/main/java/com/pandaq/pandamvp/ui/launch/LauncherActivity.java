@@ -1,24 +1,23 @@
 package com.pandaq.pandamvp.ui.launch;
 
+import android.Manifest;
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.google.android.material.snackbar.Snackbar;
 import com.pandaq.appcore.eventbus.EventUtils;
 import com.pandaq.appcore.permission.RtPermission;
-import com.pandaq.appcore.utils.format.FormatFactory;
 import com.pandaq.appcore.utils.logutils.PLogger;
 import com.pandaq.commonui.msgwindow.Snacker;
 import com.pandaq.commonui.msgwindow.ToastIconGravity;
 import com.pandaq.commonui.msgwindow.Toaster;
 import com.pandaq.pandamvp.R;
 import com.pandaq.pandamvp.events.LaunchEvent;
-import com.pandaq.pandamvp.framework.basemvp.BaseMvpActivity;
+import com.pandaq.pandamvp.framework.AppBaseActivity;
 import com.pandaq.pandamvp.ui.home.HomeActivity;
+import com.pandaq.pandamvp.ui.home.bmodule.PlanBActivity;
 
 import org.greenrobot.eventbus.Subscribe;
 
@@ -33,7 +32,7 @@ import static android.os.Environment.DIRECTORY_DOWNLOADS;
  * Email : panda.h@foxmail.com
  * Description : 启动页面 Activity
  */
-public class LauncherActivity extends BaseMvpActivity<LauncherPresenter> implements LauncherContract.View {
+public class LauncherActivity extends AppBaseActivity<LauncherPresenter> implements LauncherContract.View {
 
     @BindView(R.id.ll_parent)
     LinearLayout mLlParent;
@@ -45,8 +44,6 @@ public class LauncherActivity extends BaseMvpActivity<LauncherPresenter> impleme
 
     @Override
     protected void initVariable() {
-        super.initVariable();
-        swipeEnable = false;
         EventUtils.getDefault().register(this);
     }
 
@@ -62,46 +59,16 @@ public class LauncherActivity extends BaseMvpActivity<LauncherPresenter> impleme
 
     @Override
     protected void loadData() {
-
-    }
-
-    @Override
-    public void showLoading() {
-        super.showLoading();
-    }
-
-    @Override
-    public void hideLoading() {
-        super.hideLoading();
-    }
-
-    @Override
-    public void onError(int errCode, String errMsg) {
-        super.onError(errCode, errMsg);
-    }
-
-    @Override
-    public void onLoadFinish() {
-        super.onLoadFinish();
+        mPresenter.showErrorMsg();
     }
 
     @OnClick({R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.btn1:
-                Snacker.with(mLlParent)
-                        .duration(Snackbar.LENGTH_LONG)
-                        .msg("SnackMsg")
-                        .msgColor(Color.RED)
-//                        .msgFont(DisplayUtils.sp2px(this, 20))
-                        .action("Action")
-                        .actionListener(v -> Toaster.with(LauncherActivity.this)
-                                .msg("点击了 Action")
-                                .show()
-                        )
-                        .actionColor(Color.YELLOW)
-                        .backgroundColor(Color.GREEN)
-                        .show();
+                RtPermission.with(this)
+                        .runtime(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        .start();
                 break;
             case R.id.btn2:
                 Intent intent = new Intent(this, HomeActivity.class);
@@ -127,7 +94,8 @@ public class LauncherActivity extends BaseMvpActivity<LauncherPresenter> impleme
                         .start();
                 break;
             case R.id.btn5:
-                FormatFactory.DATE.formatTime(System.currentTimeMillis(),getString(R.string.res_app_name));
+                Intent intent1 = new Intent(this, PlanBActivity.class);
+                this.startActivity(intent1);
                 PLogger.w("我是打印内容啊");
                 break;
         }

@@ -1,11 +1,13 @@
-package com.pandaq.pandamvp.framework.base;
+package com.pandaq.pandamvp.framework;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
-import com.pandaq.appcore.framework.base.TemplateBaseActivity;
+import com.pandaq.appcore.framework.base.BaseActivity;
+import com.pandaq.appcore.framework.base.BasePresenter;
 import com.pandaq.commonui.guide.GuideCoverView;
+import com.pandaq.commonui.msgwindow.Toaster;
 import com.pandaq.pandamvp.R;
 
 import androidx.annotation.Nullable;
@@ -17,7 +19,7 @@ import androidx.appcompat.widget.Toolbar;
  * Description :所有 Activity 类的最基础类
  */
 
-public abstract class BaseActivity extends TemplateBaseActivity {
+public abstract class AppBaseActivity<P extends BasePresenter> extends BaseActivity<P> {
 
     protected Toolbar mToolbar;
     private FrameLayout mParentView;
@@ -29,12 +31,6 @@ public abstract class BaseActivity extends TemplateBaseActivity {
      * 标识 activity 是否是向导 Activity
      */
     protected boolean guideActivity;
-    /**
-     * if you do not want swipeBack ,make swipeEnable = false this class for App
-     * <p>
-     * or in Activity Override initVariable() make swipeEnable = false after super
-     */
-    protected boolean swipeEnable = true;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -44,11 +40,6 @@ public abstract class BaseActivity extends TemplateBaseActivity {
             initGuide();
         }
         initToolBar();
-    }
-
-    @Override
-    protected void initVariable() {
-        swipeEnable = true;
     }
 
     /**
@@ -85,6 +76,30 @@ public abstract class BaseActivity extends TemplateBaseActivity {
         if (mGuideCoverView != null) {
             mParentView.addView(mGuideCoverView);
         }
+    }
+
+    public void showLoading() {
+        Toaster.with(this)
+                .msg("showLoading")
+                .show();
+    }
+
+    public void hideLoading() {
+        Toaster.with(this)
+                .msg("hideLoading")
+                .show();
+    }
+
+    public void onError(int errCode, String errMsg) {
+        Toaster.with(this)
+                .msg(errMsg)
+                .show();
+    }
+
+    public void onLoadFinish() {
+        Toaster.with(this)
+                .msg("finishLoading")
+                .show();
     }
 
 }

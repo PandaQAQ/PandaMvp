@@ -9,7 +9,7 @@ import com.pandaq.commonui.msgwindow.ToastIconGravity;
 import com.pandaq.commonui.msgwindow.Toaster;
 import com.pandaq.pandamvp.R;
 import com.pandaq.pandamvp.events.HomeEvent;
-import com.pandaq.pandamvp.framework.basemvp.BaseMvpActivity;
+import com.pandaq.pandamvp.framework.AppBaseActivity;
 import com.pandaq.pandamvp.ui.launch.LauncherActivity;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -23,9 +23,7 @@ import butterknife.OnClick;
  * Description :
  */
 
-// BaseMvpActivity 目录不确定，生成模板手动导包
-
-public class HomeActivity extends BaseMvpActivity<HomePresenter> implements HomeContract.View {
+public class HomeActivity extends AppBaseActivity<HomePresenter> implements HomeContract.View {
 
     @Override
     public HomePresenter injectPresenter() {
@@ -34,7 +32,6 @@ public class HomeActivity extends BaseMvpActivity<HomePresenter> implements Home
 
     @Override
     protected void initVariable() {
-        super.initVariable();
         EventUtils.getDefault().register(this);
     }
 

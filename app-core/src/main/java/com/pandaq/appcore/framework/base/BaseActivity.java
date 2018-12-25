@@ -1,12 +1,11 @@
 package com.pandaq.appcore.framework.base;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -17,37 +16,43 @@ import butterknife.Unbinder;
  * Created by huxinyu on 2018/5/19.
  * Email : panda.h@foxmail.com
  * <p>
- * Description : 给出的模板基类,可选择继承此类实现 bindButterKnife（）方法使用 ButterKnife 绑定 UI
+ * Description :给出的模板基类,可选择继承此类实现 bindButterKnife（）方法使用 ButterKnife 绑定 UI
  * 也可完全自己写基类绑定 UI
  */
-public abstract class TemplateBaseFragment extends Fragment {
+public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity {
 
     private Unbinder mUnbinder;
+    protected P mPresenter;
+
+    protected abstract P injectPresenter();
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        mPresenter = injectPresenter();
         initVariable();
-    }
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        View view;
-        if (bindContentRes() == 0) {
-            throw new RuntimeException("must binContentRes first !!!");
+        if (bindContentRes() != 0) {
+            setContentView(bindContentRes());
+        } else {
+            throw new RuntimeException("must bindContentRes first!!!");
         }
-        view = inflater.inflate(bindContentRes(), container, false);
-        mUnbinder = ButterKnife.bind(this, view);
+        mUnbinder = ButterKnife.bind(this);
         initView();
-        return view;
+        loadData();
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        loadData();
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mUnbinder != null) {
+            mUnbinder.unbind();
+        }
     }
 
     /**
@@ -72,16 +77,8 @@ public abstract class TemplateBaseFragment extends Fragment {
      */
     protected abstract void loadData();
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mUnbinder != null) {
-            mUnbinder.unbind();
-        }
-    }
-
     /**
-     * 封装的 fragment 切换工具方法 fragment 中嵌套子 fragment
+     * 封装的 fragment 切换工具方法（如 Home Activity 导航栏切换不同功能模块 fragment）
      *
      * @param containerId 显示 fragment 的 layout 资源 ID
      * @param from        当前显示的 fragment
@@ -89,7 +86,7 @@ public abstract class TemplateBaseFragment extends Fragment {
      * @return 切换后的 currentFragment
      */
     protected Fragment switchFragment(int containerId, @Nullable Fragment from, @NonNull Fragment to) {
-        FragmentManager manager = getChildFragmentManager();
+        FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         if (to.isAdded()) {
             if (from != null) {

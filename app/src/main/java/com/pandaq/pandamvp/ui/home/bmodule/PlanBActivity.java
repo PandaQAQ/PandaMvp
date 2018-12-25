@@ -1,8 +1,9 @@
 package com.pandaq.pandamvp.ui.home.bmodule;
 
 
+import com.pandaq.appcore.framework.base.BasePresenter;
 import com.pandaq.pandamvp.R;
-import com.pandaq.pandamvp.framework.basemvp.BaseMvpActivity;
+import com.pandaq.pandamvp.framework.AppBaseActivity;
 
 
 /**
@@ -11,18 +12,18 @@ import com.pandaq.pandamvp.framework.basemvp.BaseMvpActivity;
  * Description :
  */
 
-// BaseMvpActivity 目录不确定，生成模板手动导包
+// AppBaseMvpActivity 目录不确定，生成模板手动导包
 
-public class PlanBActivity extends BaseMvpActivity<PlanBPresenter> implements PlanBContract.View {
+public class PlanBActivity extends AppBaseActivity<BasePresenter>{
 
     @Override
-    public PlanBPresenter injectPresenter() {
-        return new PlanBPresenter(this);
+    public BasePresenter injectPresenter() {
+        return null;
     }
 
     @Override
     protected void initVariable() {
-        super.initVariable();
+
     }
 
     @Override
@@ -38,26 +39,6 @@ public class PlanBActivity extends BaseMvpActivity<PlanBPresenter> implements Pl
     @Override
     protected void loadData() {
 
-    }
-
-    @Override
-    public void showLoading() {
-        super.showLoading();
-    }
-
-    @Override
-    public void hideLoading() {
-        super.hideLoading();
-    }
-
-    @Override
-    public void onError(int errCode, String errMsg) {
-        super.onError(errCode, errMsg);
-    }
-
-    @Override
-    public void onLoadFinish() {
-        super.onLoadFinish();
     }
 }
 

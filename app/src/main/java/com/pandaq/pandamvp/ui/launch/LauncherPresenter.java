@@ -1,6 +1,6 @@
 package com.pandaq.pandamvp.ui.launch;
 
-import com.pandaq.appcore.framework.mvpbase.BasePresenter;
+import com.pandaq.appcore.framework.base.BasePresenter;
 import com.pandaq.pandamvp.app.lifecycle.AppLifeCycle;
 import com.pandaq.pandamvp.net.ApiService;
 
@@ -18,4 +18,7 @@ public class LauncherPresenter extends BasePresenter<LauncherContract.View> impl
         super(mvpView);
     }
 
+    public void showErrorMsg() {
+        mMvpView.onError(-100, "msg????");
+    }
 }
