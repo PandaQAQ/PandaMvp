@@ -2,6 +2,7 @@ package com.pandaq.pandamvp.ui.launch;
 
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -9,6 +10,7 @@ import android.widget.LinearLayout;
 import com.google.android.material.snackbar.Snackbar;
 import com.pandaq.appcore.eventbus.EventUtils;
 import com.pandaq.appcore.permission.RtPermission;
+import com.pandaq.appcore.utils.format.FormatFactory;
 import com.pandaq.appcore.utils.logutils.PLogger;
 import com.pandaq.commonui.msgwindow.Snacker;
 import com.pandaq.commonui.msgwindow.ToastIconGravity;
@@ -20,6 +22,7 @@ import com.pandaq.pandamvp.ui.home.HomeActivity;
 
 import org.greenrobot.eventbus.Subscribe;
 
+import androidx.annotation.Nullable;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -124,6 +127,7 @@ public class LauncherActivity extends BaseMvpActivity<LauncherPresenter> impleme
                         .start();
                 break;
             case R.id.btn5:
+                FormatFactory.DATE.formatTime(System.currentTimeMillis(),getString(R.string.res_app_name));
                 PLogger.w("我是打印内容啊");
                 break;
         }
@@ -138,8 +142,44 @@ public class LauncherActivity extends BaseMvpActivity<LauncherPresenter> impleme
     }
 
     @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        PLogger.d("onCreate--->Launch");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        PLogger.d("onStart-->Launch");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        PLogger.d("onResume--->Launch");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        PLogger.d("onPause--->Launch");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        PLogger.d("onStop--->Launch");
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventUtils.getDefault().unregister(this);
+        PLogger.d("onDestroy-->Launch");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        PLogger.d("onReStart-->Launch");
     }
 }

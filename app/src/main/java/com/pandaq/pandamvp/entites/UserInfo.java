@@ -1,6 +1,6 @@
 package com.pandaq.pandamvp.entites;
 
-import com.pandaq.appcore.framework.annotation.WarnKeep;
+import androidx.annotation.Keep;
 
 /**
  * Created by huxinyu on 2018/7/17.
@@ -8,14 +8,14 @@ import com.pandaq.appcore.framework.annotation.WarnKeep;
  * <p>
  * Description :用户信息对象
  */
-@WarnKeep
+@Keep
 public class UserInfo {
-    @WarnKeep
+    @Keep
     private String account;
     private String userName;
     private String token;
 
-    @WarnKeep
+    @Keep
     public String getAccount() {
         return account;
     }

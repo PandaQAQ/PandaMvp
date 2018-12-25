@@ -13,6 +13,7 @@ import com.pandaq.appcore.BuildConfig;
 public class PLogger {
     private static String className;//类名
     private static int lineNumber;//行数
+    private static String TAG = "PLogger";
 
     private PLogger() {
         /* Protect from instantiations */
@@ -33,6 +34,7 @@ public class PLogger {
             return;
         // Throwable instance must be created before any methods
         getMethodNames(new Throwable().getStackTrace());
+        Log.e(TAG, createLog(message));
     }
 
 
@@ -40,29 +42,34 @@ public class PLogger {
         if (!BuildConfig.DEBUG)
             return;
         getMethodNames(new Throwable().getStackTrace());
+        Log.i(TAG, createLog(message));
     }
 
     public static void d(String message) {
         if (!BuildConfig.DEBUG)
             return;
         getMethodNames(new Throwable().getStackTrace());
+        Log.d(TAG, createLog(message));
     }
 
     public static void v(String message) {
         if (!BuildConfig.DEBUG)
             return;
         getMethodNames(new Throwable().getStackTrace());
+        Log.v(TAG, createLog(message));
     }
 
     public static void w(String message) {
         if (!BuildConfig.DEBUG)
             return;
         getMethodNames(new Throwable().getStackTrace());
+        Log.w(TAG, createLog(message));
     }
 
     public static void wtf(String message) {
         if (!BuildConfig.DEBUG)
             return;
         getMethodNames(new Throwable().getStackTrace());
+        Log.wtf(TAG, createLog(message));
     }
 }

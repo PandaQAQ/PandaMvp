@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 
 
+import com.pandaq.appcore.framework.swipe.SwipeBackLayout;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,7 +22,7 @@ import butterknife.Unbinder;
  * Description :给出的模板基类,可选择继承此类实现 bindButterKnife（）方法使用 ButterKnife 绑定 UI
  * 也可完全自己写基类绑定 UI
  */
-public abstract class TemplateBaseActivity extends AppCompatActivity {
+public abstract class TemplateBaseActivity extends AppCompatActivity implements SwipeBackLayout.SwipeListener {
 
     private Unbinder mUnbinder;
 
@@ -86,7 +88,9 @@ public abstract class TemplateBaseActivity extends AppCompatActivity {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         if (to.isAdded()) {
-            transaction.hide(from).show(to).commit();
+            if (from != null) {
+                transaction.hide(from).show(to).commit();
+            }
         } else {
             if (from == null) {
                 transaction.add(containerId, to).commit();

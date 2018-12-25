@@ -1,5 +1,7 @@
 package com.pandaq.appcore.utils.format.formaters;
 
+import androidx.annotation.Keep;
+
 /**
  * Created by huxinyu on 2018/7/5.
  * Email : panda.h@foxmail.com
@@ -17,4 +19,13 @@ public class PriceFormatter {
         return sPriceFormatter;
     }
 
+    /**
+     * 精确到分
+     *
+     * @param money 钱
+     * @return 钱大写
+     */
+    public String formatRmb(double money) {
+        return money + "";
+    }
 }

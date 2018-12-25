@@ -1,8 +1,7 @@
 package com.pandaq.appcore.utils.format;
 
-import com.pandaq.appcore.utils.format.formaters.BankCardFormatter;
 import com.pandaq.appcore.utils.format.formaters.DateFormatter;
-import com.pandaq.appcore.utils.format.formaters.PhoneNumberFormatter;
+import com.pandaq.appcore.utils.format.formaters.NumInputFormatter;
 import com.pandaq.appcore.utils.format.formaters.PriceFormatter;
 import com.pandaq.appcore.utils.format.formaters.SizeFormatter;
 
@@ -18,13 +17,11 @@ public class FormatFactory {
         // private constructor
     }
 
-    public static BankCardFormatter BANK_CARD = BankCardFormatter.getDefault();
-
     public static PriceFormatter PRICE = PriceFormatter.getDefault();
 
     public static DateFormatter DATE = DateFormatter.getDefault();
 
-    public static PhoneNumberFormatter PHONE_NUM = PhoneNumberFormatter.getDefault();
+    public static NumInputFormatter NUMBER = NumInputFormatter.getDefault();
 
-    public static SizeFormatter DATA_SIZE = SizeFormatter.getDefault();
+    public static SizeFormatter SIZE = SizeFormatter.getDefault();
 }

@@ -1,41 +1,51 @@
-package com.pandaq.pandamvp.app;
+package com.pandaq.pandamvp.app.lifecycle;
 
 import android.app.Application;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
+import android.content.Context;
 import android.graphics.Color;
 
 import com.pandaq.appcore.cache.CacheTool;
+import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
 import com.pandaq.appcore.http.ApiManager;
 import com.pandaq.commonui.msgwindow.SnackerConfig;
 import com.pandaq.pandamvp.BuildConfig;
+import com.pandaq.pandamvp.app.Constant;
 import com.pandaq.pandamvp.entites.UserInfo;
 import com.pandaq.pandamvp.net.ApiService;
 
+import androidx.annotation.NonNull;
+
 /**
- * Created by huxinyu on 2018/3/30.
+ * Created by huxinyu on 2018/12/25.
  * Email : panda.h@foxmail.com
- * Description :
+ * <p>
+ * Description :this module' appLifeCycle impl.the methods will called in global application
  */
-public class App extends Application {
+public class AppLifeCycle implements IAppLifeCycle {
 
     public static ApiManager<ApiService> sApiManager;
-    private static App sApp;
 
     @Override
-    public void onCreate() {
-        super.onCreate();
-        sApp = this;
-        initNet();
+    public void attachBaseContext(@NonNull Context base) {
+
+    }
+
+    @Override
+    public void onCreate(@NonNull Application application) {
+        initNet(application);
         SnackerConfig.getDefault()
-                .setActionColor(Color.WHITE)
                 .setActionColor(Color.RED)
                 .setBackgroundColor(Color.GREEN);
     }
 
+    @Override
+    public void onTerminate(@NonNull Application application) {
+
+    }
+
     // 初始化网络请求
-    public static void initNet() {
-        UserInfo userInfo = CacheTool.with(sApp)
+    private void initNet(Application application) {
+        UserInfo userInfo = CacheTool.with(application)
                 .open(Constant.Cache.CACHE_FILE_NAME)
                 .getSerializable(Constant.Cache.CACHE_USEINFO_KEY);
         ApiManager.Builder builder = new ApiManager.Builder()
@@ -45,24 +55,5 @@ public class App extends Application {
             builder.setHeader(ApiService.TOKEN_HEADER, userInfo.getToken());
         }
         sApiManager = builder.build();
-    }
-
-    public static App getGlobalApp() {
-        return sApp;
-    }
-
-    /**
-     * 获取应用的版本号
-     *
-     * @return 应用版本号
-     */
-    public int getAppVersion() {
-        try {
-            PackageInfo info = sApp.getPackageManager().getPackageInfo(sApp.getApplicationContext().getPackageName(), 0);
-            return info.versionCode;
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        return 1;
     }
 }

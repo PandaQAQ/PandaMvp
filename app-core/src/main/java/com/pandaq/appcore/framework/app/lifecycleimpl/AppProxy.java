@@ -1,0 +1,80 @@
+package com.pandaq.appcore.framework.app.lifecycleimpl;
+
+import android.app.Application;
+import android.content.Context;
+
+import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
+import com.pandaq.appcore.framework.app.lifecycle.ILifecycleInjector;
+import com.pandaq.appcore.framework.app.lifecycle.ManifestParser;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
+
+/**
+ * Created by huxinyu on 2018/12/25.
+ * Email : panda.h@foxmail.com
+ * <p>
+ * Description :基础 module 中的 Application 生命周期实现类除了实现 module 自身生命参数初始化还需要扫描
+ * Manifest 文件，注入其他 module 的生命周期方法
+ */
+public class AppProxy implements IAppLifeCycle {
+
+    private List<ILifecycleInjector> mInjectors;
+    private List<IAppLifeCycle> mAppLifeCycles = new ArrayList<>();
+    private List<Application.ActivityLifecycleCallbacks> mActivityLifeCycles = new ArrayList<>();
+    private List<FragmentManager.FragmentLifecycleCallbacks> mFragmentLifecycleCallbacks = new ArrayList<>();
+
+    public AppProxy(Application application) {
+        mInjectors = new ManifestParser(application).parse();
+        for (ILifecycleInjector injector : mInjectors) {
+            // add other module's callback to callback list
+            injector.injectAppLifeCycle(application, mAppLifeCycles);
+            // add other module's callback to callback list
+            injector.injectActivityLifeCycle(application, mActivityLifeCycles);
+            // add other module's callback to callback list
+            injector.injectFragmentLifeCycle(application, mFragmentLifecycleCallbacks);
+        }
+        mActivityLifeCycles.add(new DefaultActivityLifecycle(mFragmentLifecycleCallbacks));
+    }
+
+    @Override
+    public void attachBaseContext(@NonNull Context base) {
+        for (IAppLifeCycle appLifeCycle : mAppLifeCycles) {
+            appLifeCycle.attachBaseContext(base);
+        }
+    }
+
+    @Override
+    public void onCreate(@NonNull Application application) {
+        for (IAppLifeCycle appLifeCycle : mAppLifeCycles) {
+            appLifeCycle.onCreate(application);
+        }
+
+        for (Application.ActivityLifecycleCallbacks callbacks : mActivityLifeCycles) {
+            application.registerActivityLifecycleCallbacks(callbacks);
+        }
+        // it will never use in the future
+        mInjectors = null;
+    }
+
+    @Override
+    public void onTerminate(@NonNull Application application) {
+        if (mAppLifeCycles != null) {
+            for (IAppLifeCycle appLifeCycle : mAppLifeCycles) {
+                appLifeCycle.onTerminate(application);
+            }
+        }
+
+        if (mActivityLifeCycles != null) {
+            for (Application.ActivityLifecycleCallbacks callbacks : mActivityLifeCycles) {
+                application.unregisterActivityLifecycleCallbacks(callbacks);
+            }
+        }
+        mAppLifeCycles = null;
+        mActivityLifeCycles = null;
+        mFragmentLifecycleCallbacks = null;
+    }
+}

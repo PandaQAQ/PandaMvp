@@ -1,7 +1,7 @@
 package com.pandaq.pandamvp.ui.home;
 
 import com.pandaq.appcore.framework.mvpbase.BasePresenter;
-import com.pandaq.pandamvp.app.App;
+import com.pandaq.pandamvp.app.lifecycle.AppLifeCycle;
 import com.pandaq.pandamvp.net.ApiService;
 
 /**
@@ -14,7 +14,7 @@ import com.pandaq.pandamvp.net.ApiService;
 
 public class HomePresenter extends BasePresenter<HomeContract.View> implements HomeContract.Presenter {
 
-    private ApiService mApiService = App.sApiManager.getApiService(ApiService.class);
+    private ApiService mApiService = AppLifeCycle.sApiManager.getApiService(ApiService.class);
 
     public HomePresenter(HomeContract.View mvpView) {
         super(mvpView);

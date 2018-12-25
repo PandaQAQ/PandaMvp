@@ -576,7 +576,7 @@ public class CacheTool {
             Toast.makeText(context, "Get Cache Size Fail", Toast.LENGTH_LONG).show();
             e.printStackTrace();
         }
-        return FormatFactory.DATA_SIZE.getFormatSize(cacheSize);
+        return FormatFactory.SIZE.formatSize(cacheSize);
     }
 
     /**

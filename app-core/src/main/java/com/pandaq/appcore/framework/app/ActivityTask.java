@@ -1,6 +1,6 @@
-package com.pandaq.pandamvp.app;
+package com.pandaq.appcore.framework.app;
 
-import com.pandaq.pandamvp.framework.base.BaseActivity;
+import android.app.Activity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ public class ActivityTask {
     /**
      * Actvity 存储栈
      */
-    private static Stack<BaseActivity> mActivityStack;
+    private static Stack<Activity> mActivityStack;
 
     /**
      * ActivityTask 单例对象
@@ -41,7 +41,7 @@ public class ActivityTask {
      *
      * @param activity 入栈的 activity
      */
-    public void addActivity(BaseActivity activity) {
+    public void addActivity(Activity activity) {
         mActivityStack.add(activity);
     }
 
@@ -50,7 +50,7 @@ public class ActivityTask {
      *
      * @param activity 被删除的 activity
      */
-    public void remove(BaseActivity activity) {
+    public void remove(Activity activity) {
         if (activity != null && mActivityStack != null) {
             mActivityStack.remove(activity);
         }
@@ -59,7 +59,7 @@ public class ActivityTask {
     /**
      * 获取栈顶Activity（堆栈中最后一个压入的）
      */
-    public BaseActivity getTopActivity() {
+    public Activity getTopActivity() {
         return mActivityStack.lastElement();
     }
 
@@ -74,7 +74,7 @@ public class ActivityTask {
     /**
      * 结束指定 Activity
      */
-    public void killActivity(BaseActivity activity) {
+    public void killActivity(Activity activity) {
         mActivityStack.remove(activity);
         activity.finish();
     }
@@ -85,15 +85,15 @@ public class ActivityTask {
     public synchronized void killActivity(Class<?>... calsses) {
         if (mActivityStack == null || mActivityStack.isEmpty())
             return;
-        List<BaseActivity> activities = new ArrayList<>();
+        List<Activity> activities = new ArrayList<>();
         for (Class cls : calsses) {
-            for (BaseActivity activity : mActivityStack) {
+            for (Activity activity : mActivityStack) {
                 if (activity.getClass().equals(cls)) {
                     activities.add(activity);
                 }
             }
         }
-        for (BaseActivity activity : activities) {
+        for (Activity activity : activities) {
             killActivity(activity);
         }
 
@@ -119,7 +119,7 @@ public class ActivityTask {
      *
      * @param activity 保留的 Activity
      */
-    public void killOthersActivity(BaseActivity activity) {
+    public void killOthersActivity(Activity activity) {
         if (activity == null) {
             return;
         }
@@ -140,7 +140,7 @@ public class ActivityTask {
             killAllActivity();
             System.exit(0);
         } catch (Exception e) {
-
+            e.printStackTrace();
         }
     }
 }

@@ -9,7 +9,7 @@ import com.pandaq.appcore.framework.base.TemplateBaseActivity;
 import com.pandaq.appcore.framework.swipe.SwipeBackLayout;
 import com.pandaq.commonui.guide.GuideCoverView;
 import com.pandaq.pandamvp.R;
-import com.pandaq.pandamvp.app.ActivityTask;
+import com.pandaq.appcore.framework.app.ActivityTask;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
@@ -38,17 +38,17 @@ public abstract class BaseActivity extends TemplateBaseActivity {
      * <p>
      * or in Activity Override initVariable() make swipeEnable = false after super
      */
-    protected boolean swipeEnable;
+    protected boolean swipeEnable = true;
     private SwipeBackLayout layout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         if (swipeEnable) {
             layout = (SwipeBackLayout) LayoutInflater.from(this).inflate(
                     R.layout.core_swipeback_base, null);
             layout.attachToActivity(this);
         }
+        super.onCreate(savedInstanceState);
         // 如果是新手向导页则初始化向导载体图层
         if (guideActivity) {
             initGuide();
@@ -117,9 +117,7 @@ public abstract class BaseActivity extends TemplateBaseActivity {
     }
 
     @Override
-    protected int bindContentRes() {
-        return 0;
+    public void swipeValue(double value) {
+
     }
-
-
 }

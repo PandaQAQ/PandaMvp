@@ -20,15 +20,15 @@ public class SizeFormatter {
     }
 
     /**
-     * 格式化单位
+     * format byte size to KB、MB、GB、TB
      *
      * @param size 传入的 byte大小
      * @return 常规 kb mb gb tb 单位的大小
      */
-    public String getFormatSize(double size) {
+    public String formatSize(double size) {
         double kiloByte = size / 1024;
         if (kiloByte < 1) {
-            return "0K";
+            return size + "byte";
         }
 
         double megaByte = kiloByte / 1024;
@@ -54,5 +54,45 @@ public class SizeFormatter {
         BigDecimal result4 = new BigDecimal(teraBytes);
         return result4.setScale(2, BigDecimal.ROUND_HALF_UP).toPlainString()
                 + "TB";
+    }
+
+    /**
+     * format m to km
+     *
+     * @param distance meters
+     * @return kilometers
+     */
+    public String formatDistance(double distance) {
+        double kilometer = distance / 1000;
+        if (kilometer < 1) {
+            return distance + "m";
+        } else {
+            BigDecimal result1 = new BigDecimal(Double.toString(kilometer));
+            return result1.setScale(2, BigDecimal.ROUND_HALF_UP)
+                    .toPlainString() + "km";
+        }
+    }
+
+    /**
+     * format g to kg、t
+     *
+     * @param g weight
+     * @return weight
+     */
+    public String formatWeight(double g) {
+        double kg = g / 1000;
+        if (kg < 1) {
+            return g + "g";
+        }
+        double t = kg / 1000;
+        if (t < 1) {
+            BigDecimal kgBd = new BigDecimal(Double.toString(kg));
+            return kgBd.setScale(2, BigDecimal.ROUND_HALF_UP)
+                    .toPlainString() + "kg";
+        } else {
+            BigDecimal tBd = new BigDecimal(Double.toString(t));
+            return tBd.setScale(4, BigDecimal.ROUND_HALF_UP)
+                    .toPlainString() + "t";
+        }
     }
 }

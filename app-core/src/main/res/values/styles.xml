@@ -1,17 +1,67 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar" tools:ignore="ResourceName">
+        <item name="android:windowEnableSplitTouch">false</item>
+        <item name="android:splitMotionEvents">false</item>
+        <item name="android:windowAnimationStyle">@style/SwipeBackActivityAnim</item>
+        <item name="android:screenOrientation">portrait</item>
+        <item name="actionOverflowMenuStyle">@style/PopupTheme</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="actionMenuTextColor">@color/core_colorWhite</item>
+    </style>
+
+    <style name="NoTitleAppTheme" parent="AppTheme" tools:ignore="ResourceName">
+        <!-- Customize your theme here. -->
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <!--全屏无标题-->
+    <style name="FullScreenNoTitleTheme" parent="NoTitleAppTheme" tools:ignore="ResourceName">
+        <item name="android:windowFullscreen">true</item>
+        <!--<item name="android:windowAnimationStyle">@style/SwipeBackActivityAnim</item>-->
+    </style>
+
+    <!--全屏加透明-->
+    <style name="SwipeBackTheme" parent="AppTheme" tools:ignore="ResourceName">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+    </style>
+
     <style name="ThemePermissionActivity" parent="@android:style/Theme.Translucent.NoTitleBar"
            tools:ignore="ResourceName">
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
+        <item name="android:windowFullscreen">true</item>
         <item name="android:windowBackground">@android:color/transparent</item>
         <item name="android:windowDisablePreview">true</item>
+    </style>
+
+    <style name="FitSystemWindow" parent="AppTheme" tools:ignore="ResourceName">
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+
+    <!--动画设置-->
+    <style name="SwipeBackActivityAnim" mce_bogus="1" parent="@android:style/Animation.Activity" tools:ignore="ResourceName">
+        <item name="android:activityOpenEnterAnimation">@anim/swipe_back_slide_right_in</item>
+        <item name="android:activityOpenExitAnimation">@anim/swipe_back_slide_right_out</item>
+        <item name="android:activityCloseEnterAnimation">@anim/swipe_back_slide_right_in</item>
+        <item name="android:activityCloseExitAnimation">@anim/swipe_back_slide_right_out</item>
     </style>
 
     <style name="AnimationSettingDialog" parent="@android:style/Animation"
            tools:ignore="ResourceName">
         <item name="android:windowEnterAnimation">@anim/core_setting_dialog_appear</item>
         <item name="android:windowExitAnimation">@anim/core_setting_dialog_disappear</item>
+    </style>
+
+    <!-- ToolBar菜单样式.-->
+    <style name="PopupTheme" parent="@style/Widget.AppCompat.PopupMenu.Overflow" tools:ignore="ResourceName">
+        <!--设置不覆盖锚点-->
+        <item name="overlapAnchor">false</item>
+        <!-- 弹出层垂直方向上的偏移，即在竖直方向上距离Toolbar的距离，值为负则会盖住Toolbar -->
+        <item name="android:dropDownVerticalOffset">2dp</item>
+        <!-- 弹出层水平方向上的偏移，即距离屏幕左边的距离，负值会导致右边出现空隙 -->
+        <!--<item name="android:dropDownHorizontalOffset">10dp</item>-->
     </style>
 </resources>

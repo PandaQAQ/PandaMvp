@@ -1,7 +1,9 @@
 package com.pandaq.commonui.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
+import android.graphics.Rect;
 import android.util.DisplayMetrics;
 
 /**
@@ -24,6 +26,17 @@ public class DisplayUtils {
         return (int) (dipValue * metrics.density);
     }
 
+    /**
+     * px转dp
+     *
+     * @param pxValue px值
+     * @return dp值
+     */
+    public static int px2dp(float pxValue) {
+        final float scale = Resources.getSystem().getDisplayMetrics().density;
+        return (int) (pxValue / scale + HALF);
+    }
+
 
     /**
      * 将sp值转换为px值，保证文字大小不变
@@ -36,6 +49,19 @@ public class DisplayUtils {
         final float fontScale = context.getResources().getDisplayMetrics().scaledDensity;
         return (int) (spValue * fontScale + HALF);
     }
+
+
+    /**
+     * px转sp
+     *
+     * @param pxValue px值
+     * @return sp值
+     */
+    public static int px2sp(float pxValue) {
+        final float fontScale = Resources.getSystem().getDisplayMetrics().scaledDensity;
+        return (int) (pxValue / fontScale + HALF);
+    }
+
 
     /**
      * 获取屏幕宽度
@@ -59,4 +85,15 @@ public class DisplayUtils {
         return dm.heightPixels;
     }
 
+    /**
+     * 获取状态栏高度
+     *
+     * @param activity the activity
+     * @return 状态栏高度
+     */
+    public static int getStatusBarHeight(Activity activity) {
+        Rect rect = new Rect();
+        activity.getWindow().getDecorView().getWindowVisibleDisplayFrame(rect);
+        return rect.top == 0 ? 60 : rect.top;
+    }
 }

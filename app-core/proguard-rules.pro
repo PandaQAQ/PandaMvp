@@ -21,12 +21,20 @@
 #-renamesourcefileattribute SourceFile
 
 # custom keep annotated resource
--keep @com.pandaq.appcore.framework.annotation.WarnKeep class * {*;}
--keep class * {
-    @com.pandaq.appcore.framework.annotation.WarnKeep <fields>;
+-keep @androidx.annotation.Keep class * {*;}
+
+-keep class androidx.annotation.Keep
+
+-keepclasseswithmembers class * {
+    @androidx.annotation.Keep <methods>;
 }
--keepclassmembers class * {
-    @com.pandaq.appcore.framework.annotation.WarnKeep <methods>;
+
+-keepclasseswithmembers class * {
+    @androidx.annotation.Keep <fields>;
+}
+
+-keepclasseswithmembers class * {
+    @androidx.annotation.Keep <init>(...);
 }
 
 # permission lib
