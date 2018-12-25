@@ -60,7 +60,20 @@ public class ActivityTask {
      * 获取栈顶Activity（堆栈中最后一个压入的）
      */
     public Activity getTopActivity() {
+        if (mActivityStack == null || mActivityStack.empty()) {
+            return null;
+        }
         return mActivityStack.lastElement();
+    }
+
+    /**
+     * 获取前一个Activity（堆栈中最后一个压入的）
+     */
+    public Activity getLastActivity() {
+        if (mActivityStack == null || mActivityStack.size() < 2) {
+            return null;
+        }
+        return mActivityStack.get(mActivityStack.size() - 2);
     }
 
     /**

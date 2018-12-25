@@ -2,18 +2,14 @@ package com.pandaq.pandamvp.framework.base;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 
 import com.pandaq.appcore.framework.base.TemplateBaseActivity;
-import com.pandaq.appcore.framework.swipe.SwipeBackLayout;
 import com.pandaq.commonui.guide.GuideCoverView;
 import com.pandaq.pandamvp.R;
-import com.pandaq.appcore.framework.app.ActivityTask;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
-import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by huxinyu on 2018/1/26.
@@ -39,22 +35,15 @@ public abstract class BaseActivity extends TemplateBaseActivity {
      * or in Activity Override initVariable() make swipeEnable = false after super
      */
     protected boolean swipeEnable = true;
-    private SwipeBackLayout layout;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
-        if (swipeEnable) {
-            layout = (SwipeBackLayout) LayoutInflater.from(this).inflate(
-                    R.layout.core_swipeback_base, null);
-            layout.attachToActivity(this);
-        }
         super.onCreate(savedInstanceState);
         // 如果是新手向导页则初始化向导载体图层
         if (guideActivity) {
             initGuide();
         }
         initToolBar();
-        ActivityTask.getInstance().addActivity(this);
     }
 
     @Override
@@ -98,26 +87,4 @@ public abstract class BaseActivity extends TemplateBaseActivity {
         }
     }
 
-    // 提供给子类设置 ViewPager 的接口，用于 SwipeLayout 中处理滑动冲突
-    public void addViewPager(ViewPager pager) {
-        if (swipeEnable) {
-            layout.addViewPager(pager);
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ActivityTask.getInstance().remove(this);
-    }
-
-    @Override
-    public void swipeValue(double value) {
-
-    }
 }

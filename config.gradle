@@ -68,7 +68,7 @@ ext {
             //sonic
             "sonic"               : "com.tencent.sonic:sdk:3.0.0",
 
-            // recyclerView & cardView
-            "bravh"               : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.43-alpha1",
+            //BaseRecyclerViewAdapterHelper
+            "brvah"               : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.43-alpha1",
     ]
 }

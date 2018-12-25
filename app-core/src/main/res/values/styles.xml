@@ -7,7 +7,6 @@
         <item name="android:windowAnimationStyle">@style/SwipeBackActivityAnim</item>
         <item name="android:screenOrientation">portrait</item>
         <item name="actionOverflowMenuStyle">@style/PopupTheme</item>
-        <item name="android:windowIsTranslucent">true</item>
         <item name="actionMenuTextColor">@color/core_colorWhite</item>
     </style>
 
@@ -19,13 +18,6 @@
     <!--全屏无标题-->
     <style name="FullScreenNoTitleTheme" parent="NoTitleAppTheme" tools:ignore="ResourceName">
         <item name="android:windowFullscreen">true</item>
-        <!--<item name="android:windowAnimationStyle">@style/SwipeBackActivityAnim</item>-->
-    </style>
-
-    <!--全屏加透明-->
-    <style name="SwipeBackTheme" parent="AppTheme" tools:ignore="ResourceName">
-        <item name="android:windowBackground">@android:color/transparent</item>
-        <item name="android:colorBackgroundCacheHint">@null</item>
     </style>
 
     <style name="ThemePermissionActivity" parent="@android:style/Theme.Translucent.NoTitleBar"
