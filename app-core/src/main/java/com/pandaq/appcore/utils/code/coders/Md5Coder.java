@@ -1,6 +1,6 @@
-package com.pandaq.appcore.utils.crypto.cryptors;
+package com.pandaq.appcore.utils.code.coders;
 
-import com.pandaq.appcore.utils.crypto.CryptType;
+import com.pandaq.appcore.utils.code.CodeType;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -14,15 +14,15 @@ import java.security.MessageDigest;
  * <p>
  * Description :md5 加密方法工具类
  */
-public class Md5Cryptor {
+public class Md5Coder {
 
-    private static Md5Cryptor sMd5Cryptor;
+    private static Md5Coder sMd5Coder;
 
-    public static synchronized Md5Cryptor getDefault() {
-        if (sMd5Cryptor == null) {
-            sMd5Cryptor = new Md5Cryptor();
+    public static synchronized Md5Coder getDefault() {
+        if (sMd5Coder == null) {
+            sMd5Coder = new Md5Coder();
         }
-        return sMd5Cryptor;
+        return sMd5Coder;
     }
 
     /**
@@ -98,7 +98,7 @@ public class Md5Cryptor {
             return null;
         }
         try {
-            MessageDigest md = MessageDigest.getInstance(CryptType.MD5.getType());
+            MessageDigest md = MessageDigest.getInstance(CodeType.MD5.getType());
             StringBuilder md5Str = new StringBuilder(32);
 
             byte[] buf = new byte[bufLen];

@@ -6,6 +6,7 @@ import android.content.Context;
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
 import com.pandaq.appcore.framework.app.lifecycle.ILifecycleInjector;
 import com.pandaq.appcore.framework.app.lifecycle.ManifestParser;
+import com.pandaq.appcore.utils.system.AppUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,6 +29,7 @@ public class AppProxy implements IAppLifeCycle {
     private List<FragmentManager.FragmentLifecycleCallbacks> mFragmentLifecycleCallbacks = new ArrayList<>();
 
     public AppProxy(Application application) {
+        AppUtils.init(application);
         mInjectors = new ManifestParser(application).parse();
         for (ILifecycleInjector injector : mInjectors) {
             // add other module's callback to callback list
@@ -37,6 +39,7 @@ public class AppProxy implements IAppLifeCycle {
             // add other module's callback to callback list
             injector.injectFragmentLifeCycle(application, mFragmentLifecycleCallbacks);
         }
+        // register fragment lifecycle callbacks
         mActivityLifeCycles.add(new DefaultActivityLifecycle(mFragmentLifecycleCallbacks));
     }
 
@@ -76,5 +79,6 @@ public class AppProxy implements IAppLifeCycle {
         mAppLifeCycles = null;
         mActivityLifeCycles = null;
         mFragmentLifecycleCallbacks = null;
+        AppUtils.release();
     }
 }

@@ -14,7 +14,7 @@ import com.pandaq.pandamvp.net.ApiService;
 
 public class HomePresenter extends BasePresenter<HomeContract.View> implements HomeContract.Presenter {
 
-    private ApiService mApiService = AppLifeCycle.sApiManager.getApiService(ApiService.class);
+    private ApiService mApiService = AppLifeCycle.sPandaNet.getApiService(ApiService.class);
 
     public HomePresenter(HomeContract.View mvpView) {
         super(mvpView);

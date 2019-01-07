@@ -6,7 +6,7 @@ import android.graphics.Color;
 
 import com.pandaq.appcore.cache.CacheTool;
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
-import com.pandaq.appcore.http.ApiManager;
+import com.pandaq.appcore.http.PandaNet;
 import com.pandaq.commonui.msgwindow.SnackerConfig;
 import com.pandaq.pandamvp.BuildConfig;
 import com.pandaq.pandamvp.app.Constant;
@@ -23,7 +23,7 @@ import androidx.annotation.NonNull;
  */
 public class AppLifeCycle implements IAppLifeCycle {
 
-    public static ApiManager<ApiService> sApiManager;
+    public static PandaNet<ApiService> sPandaNet;
 
     @Override
     public void attachBaseContext(@NonNull Context base) {
@@ -48,12 +48,12 @@ public class AppLifeCycle implements IAppLifeCycle {
         UserInfo userInfo = CacheTool.with(application)
                 .open(Constant.Cache.CACHE_FILE_NAME)
                 .getSerializable(Constant.Cache.CACHE_USEINFO_KEY);
-        ApiManager.Builder builder = new ApiManager.Builder()
+        PandaNet.Builder builder = new PandaNet.Builder()
                 .baseUrl(ApiService.BASE_URL)
                 .debug(BuildConfig.DEBUG);
         if (userInfo != null) {
             builder.setHeader(ApiService.TOKEN_HEADER, userInfo.getToken());
         }
-        sApiManager = builder.build();
+        sPandaNet = builder.build();
     }
 }

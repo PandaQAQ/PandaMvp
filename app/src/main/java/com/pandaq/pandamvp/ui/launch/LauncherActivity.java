@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 
 import com.pandaq.appcore.eventbus.EventUtils;
 import com.pandaq.appcore.permission.RtPermission;
-import com.pandaq.appcore.utils.logutils.PLogger;
+import com.pandaq.appcore.utils.log.PLogger;
 import com.pandaq.commonui.msgwindow.Snacker;
 import com.pandaq.commonui.msgwindow.ToastIconGravity;
 import com.pandaq.commonui.msgwindow.Toaster;

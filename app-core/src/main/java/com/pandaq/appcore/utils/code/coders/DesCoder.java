@@ -1,8 +1,8 @@
-package com.pandaq.appcore.utils.crypto.cryptors;
+package com.pandaq.appcore.utils.code.coders;
 
 import android.util.Base64;
 
-import com.pandaq.appcore.utils.crypto.CryptType;
+import com.pandaq.appcore.utils.code.CodeType;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -16,21 +16,21 @@ import javax.crypto.spec.IvParameterSpec;
  * <p>
  * Description :Des 加密解密器
  */
-public class DesCryptor {
+public class DesCoder {
 
-    private static DesCryptor sDesCryptor;
+    private static DesCoder sDesCoder;
 
-    public static synchronized DesCryptor getDefault() {
-        if (sDesCryptor == null) {
-            sDesCryptor = new DesCryptor();
+    public static synchronized DesCoder getDefault() {
+        if (sDesCoder == null) {
+            sDesCoder = new DesCoder();
         }
-        return sDesCryptor;
+        return sDesCoder;
     }
 
     // 对密钥进行处理,获得秘钥对象
     private static SecretKey getRawKey(String key) throws Exception {
         DESKeySpec dks = new DESKeySpec(key.getBytes());
-        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(CryptType.DES.getType());
+        SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(CodeType.DES.getType());
         return keyFactory.generateSecret(dks);
     }
 
@@ -55,8 +55,8 @@ public class DesCryptor {
      */
     public static String encode(String key, byte[] data) {
         try {
-            Cipher cipher = Cipher.getInstance(CryptType.DES.getType());
-            IvParameterSpec iv = new IvParameterSpec(CryptType.DES.getType().getBytes());
+            Cipher cipher = Cipher.getInstance(CodeType.DES.getType());
+            IvParameterSpec iv = new IvParameterSpec(CodeType.DES.getType().getBytes());
             cipher.init(Cipher.ENCRYPT_MODE, getRawKey(key), iv);
             byte[] bytes = cipher.doFinal(data);
             return Base64.encodeToString(bytes, Base64.DEFAULT);
@@ -86,8 +86,8 @@ public class DesCryptor {
      */
     public static String decode(String key, byte[] data) {
         try {
-            Cipher cipher = Cipher.getInstance(CryptType.DES.getType());
-            IvParameterSpec iv = new IvParameterSpec(CryptType.DES.getType().getBytes());
+            Cipher cipher = Cipher.getInstance(CodeType.DES.getType());
+            IvParameterSpec iv = new IvParameterSpec(CodeType.DES.getType().getBytes());
             cipher.init(Cipher.DECRYPT_MODE, getRawKey(key), iv);
             byte[] original = cipher.doFinal(data);
             return new String(original);

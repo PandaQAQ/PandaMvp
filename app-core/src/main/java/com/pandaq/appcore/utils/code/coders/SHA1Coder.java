@@ -1,6 +1,6 @@
-package com.pandaq.appcore.utils.crypto.cryptors;
+package com.pandaq.appcore.utils.code.coders;
 
-import com.pandaq.appcore.utils.crypto.CryptType;
+import com.pandaq.appcore.utils.code.CodeType;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -13,20 +13,20 @@ import androidx.annotation.NonNull;
  * <p>
  * Description :SHA1 字符串加密
  */
-public class SHA1Cryptor {
+public class SHA1Coder {
 
-    private static SHA1Cryptor sSHA1Cryptor;
+    private static SHA1Coder sSHA1Coder;
 
-    public static synchronized SHA1Cryptor getDefault() {
-        if (sSHA1Cryptor == null) {
-            sSHA1Cryptor = new SHA1Cryptor();
+    public static synchronized SHA1Coder getDefault() {
+        if (sSHA1Coder == null) {
+            sSHA1Coder = new SHA1Coder();
         }
-        return sSHA1Cryptor;
+        return sSHA1Coder;
     }
 
     public String encodeSha1(@NonNull String source) {
         try {
-            MessageDigest alga = MessageDigest.getInstance(CryptType.SHA.getType());
+            MessageDigest alga = MessageDigest.getInstance(CodeType.SHA.getType());
             alga.update(source.getBytes());
             StringBuilder hexValue = new StringBuilder();
             for (byte md5Byte : alga.digest()) {

@@ -1,5 +1,6 @@
-package com.pandaq.appcore.utils.logutils;
+package com.pandaq.appcore.utils.log;
 
+import android.annotation.SuppressLint;
 import android.util.Log;
 
 import com.pandaq.appcore.BuildConfig;
@@ -10,6 +11,8 @@ import com.pandaq.appcore.BuildConfig;
  * <p>
  * Description :日志打印封装
  */
+
+@SuppressLint("LogNotTimber")
 public class PLogger {
     private static String className;//类名
     private static int lineNumber;//行数
@@ -20,7 +23,7 @@ public class PLogger {
     }
 
     private static String createLog(String log) {
-        return "(" + className + ":" + lineNumber + ")" + "  Log : " + log;
+        return "(" + className + ":" + lineNumber + ")" + "  Message : " + log;
     }
 
     private static void getMethodNames(StackTraceElement[] sElements) {

@@ -12,10 +12,10 @@ import android.view.inputmethod.InputMethodManager;
  * <p>
  * Description : 软键盘弹出关闭工具
  */
-public class SoftInputUtil {
+public class SoftInputUtils {
 
-    private SoftInputUtil() {
-
+    private SoftInputUtils() {
+        // private constructor
     }
 
     /**

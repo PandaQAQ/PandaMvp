@@ -1,4 +1,4 @@
-package com.pandaq.appcore.utils.crypto.cryptors;
+package com.pandaq.appcore.utils.code.coders;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -18,15 +18,15 @@ import androidx.annotation.NonNull;
  * <p>
  * Description :base64 编码与逆编码提供者
  */
-public class Base64Cryptor {
+public class Base64Coder {
 
-    private static Base64Cryptor sBase64Cryptor;
+    private static Base64Coder sBase64Coder;
 
-    public static synchronized Base64Cryptor getDefault() {
-        if (sBase64Cryptor == null) {
-            sBase64Cryptor = new Base64Cryptor();
+    public static synchronized Base64Coder getDefault() {
+        if (sBase64Coder == null) {
+            sBase64Coder = new Base64Coder();
         }
-        return sBase64Cryptor;
+        return sBase64Coder;
     }
     // 字符串
 

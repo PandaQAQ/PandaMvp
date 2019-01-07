@@ -12,6 +12,9 @@ public class SizeFormatter {
 
     private static SizeFormatter sSizeFormatter;
 
+    private SizeFormatter() {
+    }
+
     public static synchronized SizeFormatter getDefault() {
         if (sSizeFormatter == null) {
             sSizeFormatter = new SizeFormatter();

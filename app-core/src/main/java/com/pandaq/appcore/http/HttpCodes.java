@@ -95,6 +95,16 @@ public class HttpCodes {
          * http 协议版本不支持
          */
         public static final int HTTP_VERSION_UNSUPPORT = 505;
+
+        /**
+         * http 请求超时
+         */
+        public static final int TIME_OUT = -100;
+
+        /**
+         * 位置错误
+         */
+        public static final int UNKNOWN = -200;
     }
 
     /**

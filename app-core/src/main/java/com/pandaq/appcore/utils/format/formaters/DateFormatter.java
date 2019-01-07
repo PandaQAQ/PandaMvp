@@ -16,6 +16,10 @@ import java.util.Calendar;
  */
 public class DateFormatter {
 
+    private DateFormatter() {
+        // private constructor
+    }
+
     private static DateFormatter sDateFormatter;
 
     public final static String FORMAT_DAY = "yyyy-MM-dd"; // 2018、

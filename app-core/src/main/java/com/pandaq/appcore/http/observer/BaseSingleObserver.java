@@ -1,6 +1,8 @@
 package com.pandaq.appcore.http.observer;
 
 import com.pandaq.appcore.framework.base.IBaseContract;
+import com.pandaq.appcore.http.ExceptionMsg;
+import com.pandaq.appcore.http.HttpCodes;
 import com.pandaq.appcore.http.converter.ApiException;
 
 import java.net.SocketTimeoutException;
@@ -18,9 +20,6 @@ import retrofit2.HttpException;
  */
 public abstract class BaseSingleObserver<T> implements SingleObserver<T> {
 
-    private static final String HTTP_ERROR = "网络请求错误 ！";
-    private static final String UNKNOWN_ERROR = "未知错误！";
-    private static final String TIMEOUT_ERROR = "网络超时！";
     private IBaseContract.IBasePresenter mBasePresenter;
 
     public BaseSingleObserver(IBaseContract.IBasePresenter basePresenter) {
@@ -52,16 +51,16 @@ public abstract class BaseSingleObserver<T> implements SingleObserver<T> {
             if (e instanceof HttpException) {
                 HttpException httpException = (HttpException) e;
                 int code = httpException.code();
-                onFail(code, HTTP_ERROR);
+                onFail(code, ExceptionMsg.HTTP_ERROR);
             } else if (e instanceof ApiException) {
                 ApiException exception = (ApiException) e;
                 //处理token失效对应的逻辑
                 onFail(exception.getErrorCode(), exception.getMessage());
             } else if (e instanceof UnknownHostException || e instanceof SocketTimeoutException) {
                 // 主机地址不能解析或超时
-                onFail(-200, TIMEOUT_ERROR);
+                onFail(HttpCodes.HTTP.TIME_OUT, ExceptionMsg.TIMEOUT_ERROR);
             } else {
-                onFail(-100, UNKNOWN_ERROR);
+                onFail(HttpCodes.HTTP.UNKNOWN, ExceptionMsg.UNKNOWN_ERROR);
             }
         } catch (Exception ex) {
             ex.printStackTrace();

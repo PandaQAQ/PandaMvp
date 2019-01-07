@@ -13,9 +13,9 @@ import androidx.annotation.NonNull;
  * <p>
  * Description :联系人公共方法，如打电话，发短信
  */
-public class ContactUtil {
+public class ContactUtils {
 
-    private ContactUtil() {
+    private ContactUtils() {
         // private constructor
     }
 

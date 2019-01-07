@@ -12,13 +12,13 @@ import com.pandaq.pandamvp.net.ApiService;
  */
 public class LauncherPresenter extends BasePresenter<LauncherContract.View> implements LauncherContract.Presenter {
 
-    private ApiService mApiService = AppLifeCycle.sApiManager.getApiService(ApiService.class);
+    private ApiService mApiService = AppLifeCycle.sPandaNet.getApiService(ApiService.class);
 
     public LauncherPresenter(LauncherContract.View mvpView) {
         super(mvpView);
     }
 
     public void showErrorMsg() {
-        mMvpView.onError(-100, "msg????");
+//        mMvpView.onError(-100, "msg????");
     }
 }

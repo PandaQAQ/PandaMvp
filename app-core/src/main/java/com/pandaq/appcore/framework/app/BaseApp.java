@@ -16,7 +16,6 @@ import com.pandaq.appcore.framework.app.lifecycleimpl.AppProxy;
  */
 public class BaseApp extends Application {
 
-    private static BaseApp globalApp;
     private IAppLifeCycle appProxy;
 
     @Override
@@ -31,7 +30,6 @@ public class BaseApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        globalApp = this;
         appProxy.onCreate(this);
     }
 
@@ -39,24 +37,5 @@ public class BaseApp extends Application {
     public void onTerminate() {
         super.onTerminate();
         appProxy.onTerminate(this);
-    }
-
-    public static BaseApp getGlobalApp() {
-        return globalApp;
-    }
-
-    /**
-     * 获取应用的版本号
-     *
-     * @return 应用版本号
-     */
-    public int getAppVersion() {
-        try {
-            PackageInfo info = globalApp.getPackageManager().getPackageInfo(globalApp.getApplicationContext().getPackageName(), 0);
-            return info.versionCode;
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-        }
-        return 1;
     }
 }

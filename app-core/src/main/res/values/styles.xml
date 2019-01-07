@@ -34,14 +34,6 @@
         <item name="android:fitsSystemWindows">true</item>
     </style>
 
-    <!--动画设置-->
-    <style name="SwipeBackActivityAnim" mce_bogus="1" parent="@android:style/Animation.Activity" tools:ignore="ResourceName">
-        <item name="android:activityOpenEnterAnimation">@anim/swipe_back_slide_right_in</item>
-        <item name="android:activityOpenExitAnimation">@anim/swipe_back_slide_right_out</item>
-        <item name="android:activityCloseEnterAnimation">@anim/swipe_back_slide_right_in</item>
-        <item name="android:activityCloseExitAnimation">@anim/swipe_back_slide_right_out</item>
-    </style>
-
     <style name="AnimationSettingDialog" parent="@android:style/Animation"
            tools:ignore="ResourceName">
         <item name="android:windowEnterAnimation">@anim/core_setting_dialog_appear</item>

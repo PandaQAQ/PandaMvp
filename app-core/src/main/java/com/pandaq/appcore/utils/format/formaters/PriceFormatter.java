@@ -1,7 +1,5 @@
 package com.pandaq.appcore.utils.format.formaters;
 
-import androidx.annotation.Keep;
-
 /**
  * Created by huxinyu on 2018/7/5.
  * Email : panda.h@foxmail.com
@@ -11,6 +9,9 @@ import androidx.annotation.Keep;
 public class PriceFormatter {
 
     private static PriceFormatter sPriceFormatter;
+
+    private PriceFormatter() {
+    }
 
     public static synchronized PriceFormatter getDefault() {
         if (sPriceFormatter == null) {

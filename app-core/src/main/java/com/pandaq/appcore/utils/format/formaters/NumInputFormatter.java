@@ -15,6 +15,9 @@ public class NumInputFormatter {
 
     private static NumInputFormatter sPhoneNumberFormatter;
 
+    private NumInputFormatter() {
+    }
+
     public static synchronized NumInputFormatter getDefault() {
         if (sPhoneNumberFormatter == null) {
             sPhoneNumberFormatter = new NumInputFormatter();

@@ -21,7 +21,7 @@ import androidx.appcompat.widget.Toolbar;
 
 public abstract class AppBaseActivity<P extends BasePresenter> extends BaseActivity<P> {
 
-    protected Toolbar mToolbar;
+    protected @Nullable Toolbar mToolbar;
     private FrameLayout mParentView;
     /**
      * 遮罩引导载体图层
@@ -30,13 +30,13 @@ public abstract class AppBaseActivity<P extends BasePresenter> extends BaseActiv
     /**
      * 标识 activity 是否是向导 Activity
      */
-    protected boolean guideActivity;
+    protected boolean isGuide;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         // 如果是新手向导页则初始化向导载体图层
-        if (guideActivity) {
+        if (isGuide) {
             initGuide();
         }
         initToolBar();

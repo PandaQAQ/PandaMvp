@@ -12,8 +12,6 @@ import com.pandaq.pandamvp.framework.AppBaseActivity;
  * Description :
  */
 
-// AppBaseMvpActivity 目录不确定，生成模板手动导包
-
 public class PlanBActivity extends AppBaseActivity<BasePresenter>{
 
     @Override
