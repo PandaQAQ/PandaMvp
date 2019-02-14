@@ -35,8 +35,8 @@ ext {
             "design"              : "com.google.android.material:material:${version["androidSupportVersion"]}",
 
             //butterknife
-            "butterknife"         : "com.jakewharton:butterknife:9.0.0-rc2",
-            "butterknife-compiler": "com.jakewharton:butterknife-compiler:9.0.0-rc2",
+            "butterknife"         : "com.jakewharton:butterknife:10.0.0",
+            "butterknife-compiler": "com.jakewharton:butterknife-compiler:10.0.0",
             // DiskLruCache
             "disklrucache"        : "com.jakewharton:disklrucache:2.0.2",
 

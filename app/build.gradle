@@ -72,6 +72,10 @@ dependencies {
     implementation rootProject.ext.dependencies["picasso"]
     //GreenDao 3.0
     implementation rootProject.ext.dependencies["greendao"]
+    // ButterKnife
+    implementation (rootProject.ext.dependencies["butterknife"]) {
+        exclude module: 'support-annotations'
+    }
     annotationProcessor(rootProject.ext.dependencies["butterknife-compiler"]) {
         exclude module: 'support-annotations'
     }
