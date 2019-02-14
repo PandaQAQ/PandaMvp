@@ -1,6 +1,6 @@
-package com.pandaq.appcore.utils.code.coders;
+package com.pandaq.appcore.utils.crypto.coders;
 
-import com.pandaq.appcore.utils.code.CodeType;
+import com.pandaq.appcore.utils.crypto.CodeType;
 
 import java.io.File;
 import java.io.FileInputStream;

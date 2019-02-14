@@ -1,4 +1,4 @@
-package com.pandaq.appcore.utils.code.coders;
+package com.pandaq.appcore.utils.crypto.coders;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

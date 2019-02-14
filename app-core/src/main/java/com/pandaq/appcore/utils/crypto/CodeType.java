@@ -1,4 +1,4 @@
-package com.pandaq.appcore.utils.code;
+package com.pandaq.appcore.utils.crypto;
 
 /**
  * Created by huxinyu on 2018/7/6.

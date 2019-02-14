@@ -1,9 +1,9 @@
-package com.pandaq.appcore.utils.code;
+package com.pandaq.appcore.utils.crypto;
 
-import com.pandaq.appcore.utils.code.coders.Base64Coder;
-import com.pandaq.appcore.utils.code.coders.DesCoder;
-import com.pandaq.appcore.utils.code.coders.Md5Coder;
-import com.pandaq.appcore.utils.code.coders.SHA1Coder;
+import com.pandaq.appcore.utils.crypto.coders.Base64Coder;
+import com.pandaq.appcore.utils.crypto.coders.DesCoder;
+import com.pandaq.appcore.utils.crypto.coders.Md5Coder;
+import com.pandaq.appcore.utils.crypto.coders.SHA1Coder;
 
 /**
  * Created by huxinyu on 2018/7/5.

@@ -70,5 +70,8 @@ ext {
 
             //BaseRecyclerViewAdapterHelper
             "brvah"               : "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.43-alpha1",
+            //SmartRefreshLayout
+            "refresh-layout"           : "com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-andx-1",
+            "refresh-header"           : "com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-andx-1",
     ]
 }

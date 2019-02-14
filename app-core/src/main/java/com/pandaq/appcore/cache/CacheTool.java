@@ -5,8 +5,9 @@ import android.os.Environment;
 import android.os.Parcelable;
 import android.widget.Toast;
 
-import com.pandaq.appcore.utils.code.CodeFactory;
+import com.pandaq.appcore.utils.crypto.CodeFactory;
 import com.pandaq.appcore.utils.format.FormatFactory;
+import com.pandaq.appcore.utils.system.AppUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -107,7 +108,7 @@ public class CacheTool {
                 mDiskLruCache = null;
             }
             File cacheFile = getCacheFile(context, uniqueName);
-            mDiskLruCache = DiskLruCache.open(cacheFile, AppUtil.getVersionCode(context),
+            mDiskLruCache = DiskLruCache.open(cacheFile, AppUtils.instance.getVersionCode(),
                     1, maxCacheSize);
         } catch (IOException e) {
             e.printStackTrace();

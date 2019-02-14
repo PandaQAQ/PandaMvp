@@ -20,7 +20,7 @@ public interface IBaseContract {
         /**
          * 显示加载 Loading
          */
-        void showLoading();
+        void showLoading(String msg);
 
         /**
          * 隐藏加载 Loading

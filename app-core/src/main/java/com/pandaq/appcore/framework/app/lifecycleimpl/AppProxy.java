@@ -6,6 +6,8 @@ import android.content.Context;
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
 import com.pandaq.appcore.framework.app.lifecycle.ILifecycleInjector;
 import com.pandaq.appcore.framework.app.lifecycle.ManifestParser;
+import com.pandaq.appcore.http.PandaHttp;
+import com.pandaq.appcore.http.converter.PandaConvertFactory;
 import com.pandaq.appcore.utils.system.AppUtils;
 
 import java.util.ArrayList;
@@ -13,6 +15,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 
 /**
  * Created by huxinyu on 2018/12/25.
@@ -23,15 +26,14 @@ import androidx.fragment.app.FragmentManager;
  */
 public class AppProxy implements IAppLifeCycle {
 
-    private List<ILifecycleInjector> mInjectors;
     private List<IAppLifeCycle> mAppLifeCycles = new ArrayList<>();
     private List<Application.ActivityLifecycleCallbacks> mActivityLifeCycles = new ArrayList<>();
     private List<FragmentManager.FragmentLifecycleCallbacks> mFragmentLifecycleCallbacks = new ArrayList<>();
 
     public AppProxy(Application application) {
         AppUtils.init(application);
-        mInjectors = new ManifestParser(application).parse();
-        for (ILifecycleInjector injector : mInjectors) {
+        List<ILifecycleInjector> injectors = new ManifestParser(application).parse();
+        for (ILifecycleInjector injector : injectors) {
             // add other module's callback to callback list
             injector.injectAppLifeCycle(application, mAppLifeCycles);
             // add other module's callback to callback list
@@ -41,6 +43,7 @@ public class AppProxy implements IAppLifeCycle {
         }
         // register fragment lifecycle callbacks
         mActivityLifeCycles.add(new DefaultActivityLifecycle(mFragmentLifecycleCallbacks));
+        // it will never use in the future
     }
 
     @Override
@@ -59,8 +62,14 @@ public class AppProxy implements IAppLifeCycle {
         for (Application.ActivityLifecycleCallbacks callbacks : mActivityLifeCycles) {
             application.registerActivityLifecycleCallbacks(callbacks);
         }
-        // it will never use in the future
-        mInjectors = null;
+
+        PandaHttp.globalConfig()
+                .baseUrl("")
+                .callAdapterFactory(RxJavaCallAdapterFactory.create())
+                .converterFactory(PandaConvertFactory.create())
+                .readTimeout(10000)
+                .writeTimeout(10000)
+                .connectTimeout(10000);
     }
 
     @Override

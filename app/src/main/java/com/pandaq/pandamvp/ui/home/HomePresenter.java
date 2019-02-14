@@ -1,6 +1,7 @@
 package com.pandaq.pandamvp.ui.home;
 
 import com.pandaq.appcore.framework.base.BasePresenter;
+import com.pandaq.appcore.http.PandaNet;
 import com.pandaq.pandamvp.app.lifecycle.AppLifeCycle;
 import com.pandaq.pandamvp.net.ApiService;
 

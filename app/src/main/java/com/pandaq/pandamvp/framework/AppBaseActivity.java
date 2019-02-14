@@ -78,7 +78,8 @@ public abstract class AppBaseActivity<P extends BasePresenter> extends BaseActiv
         }
     }
 
-    public void showLoading() {
+
+    public void showLoading(String msg) {
         Toaster.with(this)
                 .msg("showLoading")
                 .show();

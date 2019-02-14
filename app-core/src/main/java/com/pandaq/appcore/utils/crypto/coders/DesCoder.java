@@ -1,8 +1,8 @@
-package com.pandaq.appcore.utils.code.coders;
+package com.pandaq.appcore.utils.crypto.coders;
 
 import android.util.Base64;
 
-import com.pandaq.appcore.utils.code.CodeType;
+import com.pandaq.appcore.utils.crypto.CodeType;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;

@@ -51,8 +51,8 @@ public class HomeActivity extends AppBaseActivity<HomePresenter> implements Home
     }
 
     @Override
-    public void showLoading() {
-        super.showLoading();
+    public void showLoading(String msg) {
+        super.showLoading(msg);
     }
 
     @Override

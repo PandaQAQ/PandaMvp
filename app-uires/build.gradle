@@ -17,4 +17,6 @@ dependencies {
     androidTestCompileOnly rootProject.ext.dependencies["espresso-core"]
     api rootProject.ext.dependencies["brvah"]
     api rootProject.ext.dependencies["constraint-layout"]
+    api rootProject.ext.dependencies["refresh-layout"]
+    api rootProject.ext.dependencies["refresh-header"]
 }
