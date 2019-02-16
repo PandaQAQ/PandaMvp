@@ -19,11 +19,11 @@ import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
  * <p>
  * Description : Api 管理类
  */
-public class PandaNet<T> {
+public class HttpManager<T> {
     /**
      * 单利对象
      */
-    private static PandaNet sPandaNet;
+    private static HttpManager sHttpManager;
     /**
      * api 接口类，由使用的 module app 提供
      */
@@ -53,13 +53,13 @@ public class PandaNet<T> {
     /**
      * 获取 ApiManger 静态对象
      *
-     * @return PandaNet 对象
+     * @return HttpManager 对象
      */
-    private static synchronized PandaNet getDefault() {
-        if (sPandaNet == null) {
-            sPandaNet = new PandaNet();
+    private static synchronized HttpManager getDefault() {
+        if (sHttpManager == null) {
+            sHttpManager = new HttpManager();
         }
-        return sPandaNet;
+        return sHttpManager;
     }
 
     /**
@@ -138,7 +138,7 @@ public class PandaNet<T> {
      * 重置 ApiManger
      */
     private static void reset() {
-        sPandaNet = null;
+        sHttpManager = null;
     }
 
     public Builder newBuilder() {
@@ -219,26 +219,26 @@ public class PandaNet<T> {
             return this;
         }
 
-        public <T> PandaNet<T> build() {
+        public <T> HttpManager<T> build() {
             reset();
-            PandaNet pandaNet = PandaNet.getDefault();
-            pandaNet.setBaseUrl(baseUrl);
+            HttpManager httpManager = HttpManager.getDefault();
+            httpManager.setBaseUrl(baseUrl);
             if (setHeaderMap != null) {
-                pandaNet.setSetHeaderMap(setHeaderMap);
+                httpManager.setSetHeaderMap(setHeaderMap);
             }
             if (addHeaderMap != null) {
-                pandaNet.setAddHeaderMap(addHeaderMap);
+                httpManager.setAddHeaderMap(addHeaderMap);
             }
-            pandaNet.setDebug(debug);
+            httpManager.setDebug(debug);
             if (okHttpClient != null) {
-                pandaNet.setClientBuilder(okHttpClient.newBuilder());
+                httpManager.setClientBuilder(okHttpClient.newBuilder());
             }
-            return cast(pandaNet);
+            return cast(httpManager);
         }
     }
 
     @SuppressWarnings("unchecked")
-    static <T> PandaNet<T> cast(Object obj) {
-        return (PandaNet<T>) obj;
+    static <T> HttpManager<T> cast(Object obj) {
+        return (HttpManager<T>) obj;
     }
 }

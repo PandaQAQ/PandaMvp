@@ -6,7 +6,7 @@ import android.content.Context;
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
 import com.pandaq.appcore.framework.app.lifecycle.ILifecycleInjector;
 import com.pandaq.appcore.framework.app.lifecycle.ManifestParser;
-import com.pandaq.appcore.http.PandaHttp;
+import com.pandaq.appcore.http.Panda;
 import com.pandaq.appcore.http.converter.PandaConvertFactory;
 import com.pandaq.appcore.utils.system.AppUtils;
 
@@ -63,7 +63,7 @@ public class AppProxy implements IAppLifeCycle {
             application.registerActivityLifecycleCallbacks(callbacks);
         }
 
-        PandaHttp.globalConfig()
+        Panda.globalConfig()
                 .baseUrl("")
                 .callAdapterFactory(RxJavaCallAdapterFactory.create())
                 .converterFactory(PandaConvertFactory.create())

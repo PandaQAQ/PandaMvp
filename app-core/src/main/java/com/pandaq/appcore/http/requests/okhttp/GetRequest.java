@@ -6,5 +6,8 @@ package com.pandaq.appcore.http.requests.okhttp;
  * <p>
  * Description :
  */
-public class GetRequest {
+public class GetRequest extends HttpRequest<GetRequest> {
+
+    public GetRequest(String path) {
+    }
 }

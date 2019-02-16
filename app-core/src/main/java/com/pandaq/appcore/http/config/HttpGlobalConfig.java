@@ -1,6 +1,6 @@
 package com.pandaq.appcore.http.config;
 
-import com.pandaq.appcore.http.PandaHttp;
+import com.pandaq.appcore.http.Panda;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -24,6 +24,7 @@ import retrofit2.Converter;
  */
 public class HttpGlobalConfig {
 
+    //todo cache 和 cookie 暂时未做
     private CallAdapter.Factory callAdapterFactory;//Call适配器工厂
     private Converter.Factory converterFactory;//转换工厂
     private Call.Factory callFactory;//Call工厂
@@ -107,27 +108,27 @@ public class HttpGlobalConfig {
     }
 
     public HttpGlobalConfig interceptor(@NonNull Interceptor interceptor) {
-        PandaHttp.getOkHttpBuilder().addInterceptor(interceptor);
+        Panda.getOkHttpBuilder().addInterceptor(interceptor);
         return this;
     }
 
     public HttpGlobalConfig netInterceptor(@NonNull Interceptor netInterceptor) {
-        PandaHttp.getOkHttpBuilder().addNetworkInterceptor(netInterceptor);
+        Panda.getOkHttpBuilder().addNetworkInterceptor(netInterceptor);
         return this;
     }
 
     public HttpGlobalConfig readTimeout(long readTimeout) {
-        PandaHttp.getOkHttpBuilder().readTimeout(readTimeout, TimeUnit.MILLISECONDS);
+        Panda.getOkHttpBuilder().readTimeout(readTimeout, TimeUnit.MILLISECONDS);
         return this;
     }
 
     public HttpGlobalConfig writeTimeout(long writeTimeout) {
-        PandaHttp.getOkHttpBuilder().writeTimeout(writeTimeout, TimeUnit.MILLISECONDS);
+        Panda.getOkHttpBuilder().writeTimeout(writeTimeout, TimeUnit.MILLISECONDS);
         return this;
     }
 
     public HttpGlobalConfig connectTimeout(long connectTimeout) {
-        PandaHttp.getOkHttpBuilder().connectTimeout(connectTimeout, TimeUnit.MILLISECONDS);
+        Panda.getOkHttpBuilder().connectTimeout(connectTimeout, TimeUnit.MILLISECONDS);
         return this;
     }
 

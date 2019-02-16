@@ -1,16 +1,25 @@
 package com.pandaq.appcore.http.requests;
 
-import com.pandaq.appcore.http.PandaHttp;
+import android.text.TextUtils;
+
+import com.pandaq.appcore.BuildConfig;
+import com.pandaq.appcore.http.Panda;
+import com.pandaq.appcore.http.config.CONFIG;
 import com.pandaq.appcore.http.config.HttpGlobalConfig;
+import com.pandaq.appcore.http.ssl.SSLManager;
 import com.pandaq.appcore.utils.CastUtils;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import androidx.annotation.NonNull;
+import okhttp3.ConnectionPool;
 import okhttp3.Interceptor;
+import okhttp3.OkHttpClient;
+import retrofit2.Retrofit;
 
 /**
  * Created by huxinyu on 2019/1/9.
@@ -20,16 +29,25 @@ import okhttp3.Interceptor;
  */
 public class Request<T extends Request> {
 
+    // local basUrl
     private String baseUrl;
+    // local readTimeout
     private Long readTimeout;
+    // local writeTimeout
     private Long writeTimeout;
+    // local connectTimeout
     private Long connectTimeout;
+    // local retryCount
     private int retryCount = 1;
-    private HttpGlobalConfig mGlobalConfig;
+
     private Map<String, String> headers = new LinkedHashMap<>();
     private List<Interceptor> interceptors = new ArrayList<>();
     private List<Interceptor> networkInterceptors = new ArrayList<>();
 
+    // default global config
+    private HttpGlobalConfig mGlobalConfig;
+
+    protected Retrofit retrofit;
 
     /**
      * set request base url
@@ -145,17 +163,50 @@ public class Request<T extends Request> {
     }
 
     /**
-     * 注入全局配置参数
+     * 使用全局配置覆盖当前配置
      */
-    protected void initGlobalParams() {
-        mGlobalConfig = PandaHttp.globalConfig();
+    private void resetGlobalParams() {
+        mGlobalConfig = Panda.globalConfig();
+        OkHttpClient.Builder builder = Panda.getOkHttpBuilder();
+
+        // http client config
+        if (mGlobalConfig.getConnectionPool() == null) {
+            mGlobalConfig.connectionPool(new ConnectionPool(CONFIG.DEFAULT_MAX_IDLE_CONNECTIONS,
+                    CONFIG.DEFAULT_KEEP_ALIVE_DURATION, TimeUnit.MILLISECONDS));
+        }
+        mGlobalConfig.connectionPool(mGlobalConfig.getConnectionPool());
+
+        if (mGlobalConfig.getHostnameVerifier() == null) {
+            mGlobalConfig.hostVerifier(new SSLManager.UnSafeHostnameVerifier(mGlobalConfig.getBaseUrl()));
+        }
+        builder.hostnameVerifier(mGlobalConfig.getHostnameVerifier());
+
+        if (mGlobalConfig.getSslSocketFactory() == null) {
+            mGlobalConfig.sslFactory(SSLManager.getSslSocketFactory(null, null, null));
+        }
+        builder.sslSocketFactory(mGlobalConfig.getSslSocketFactory());
+        builder.connectTimeout(CONFIG.DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+        builder.readTimeout(CONFIG.DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+        builder.writeTimeout(CONFIG.DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+
+        // retrofit config
+        Retrofit.Builder retrofitBuilder = Panda.getRetrofitBuilder();
+        if (!TextUtils.isEmpty(mGlobalConfig.getBaseUrl())) {
+            retrofitBuilder.baseUrl(mGlobalConfig.getBaseUrl());
+        } else {
+            throw new IllegalArgumentException("base url can not be empty !!!");
+        }
+
 
     }
 
     /**
      * 注入本地配置参数
      */
-    protected void initLocalParams() {
-
+    protected void injectLocalParams() {
+        // 注入本地配置前先重置现有配置为全局默认配置
+        resetGlobalParams();
+        OkHttpClient.Builder okHttpBuilder = Panda.getOkHttpBuilder();
+        Retrofit.Builder retrofitBuilder = Panda.getRetrofitBuilder();
     }
 }
