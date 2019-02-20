@@ -11,6 +11,7 @@ import com.pandaq.appcore.permission.source.ContextSource;
 import com.pandaq.appcore.permission.source.FragmentSource;
 import com.pandaq.appcore.permission.source.Source;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -91,6 +92,21 @@ public class RtPermission {
             }
         }
         return false;
+    }
+
+    /**
+     * Has always been denied permission.
+     */
+    public static List<String> getAlwaysDeniedPermission(
+            @NonNull Source source,
+            @NonNull List<String> deniedPermissions) {
+        List<String> alwaysDenied = new ArrayList<>();
+        for (String permission : deniedPermissions) {
+            if (!source.isShowRationalePermission(permission)) {
+                alwaysDenied.add(permission);
+            }
+        }
+        return alwaysDenied;
     }
 
     /**

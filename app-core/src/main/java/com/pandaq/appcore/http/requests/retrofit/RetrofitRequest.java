@@ -14,7 +14,6 @@ public class RetrofitRequest extends Request<RetrofitRequest> {
     }
 
     public <T> T create(Class<T> apiService) {
-        injectGlobalParams();
         injectLocalParams();
         return retrofit.create(apiService);
     }

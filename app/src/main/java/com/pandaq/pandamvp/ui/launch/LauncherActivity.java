@@ -1,13 +1,18 @@
 package com.pandaq.pandamvp.ui.launch;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.pandaq.appcore.eventbus.EventUtils;
+import com.pandaq.appcore.permission.Action;
+import com.pandaq.appcore.permission.Executor;
+import com.pandaq.appcore.permission.Rationale;
 import com.pandaq.appcore.permission.RtPermission;
 import com.pandaq.appcore.utils.log.PLogger;
 import com.pandaq.commonui.msgwindow.Snacker;
@@ -20,6 +25,8 @@ import com.pandaq.pandamvp.ui.home.HomeActivity;
 import com.pandaq.pandamvp.ui.home.bmodule.PlanBActivity;
 
 import org.greenrobot.eventbus.Subscribe;
+
+import java.util.List;
 
 import androidx.annotation.Nullable;
 import butterknife.BindView;
@@ -68,6 +75,19 @@ public class LauncherActivity extends AppBaseActivity<LauncherPresenter> impleme
             case R.id.btn1:
                 RtPermission.with(this)
                         .runtime(Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                        .rationale((context, permissions, executor) ->
+                                executor.execute())
+                        .onGranted(permissions -> {
+
+                        })
+                        .onDenied(permissions ->
+                                Toaster.with(LauncherActivity.this)
+                                        .msg("权限被拒绝！")
+                                        .show())
+                        .onAlwaysDenied(permissions ->
+                                Toaster.with(LauncherActivity.this)
+                                        .msg("权限被拒绝,且不再提醒！")
+                                        .show())
                         .start();
                 break;
             case R.id.btn2:
@@ -94,9 +114,8 @@ public class LauncherActivity extends AppBaseActivity<LauncherPresenter> impleme
                         .start();
                 break;
             case R.id.btn5:
-                Intent intent1 = new Intent(this, PlanBActivity.class);
-                this.startActivity(intent1);
-                PLogger.w("我是打印内容啊");
+                Toast.makeText(this,"111111",Toast.LENGTH_LONG).show();
+//                Toast.makeText(this,"2222222",Toast.LENGTH_LONG).show();
                 break;
         }
     }
