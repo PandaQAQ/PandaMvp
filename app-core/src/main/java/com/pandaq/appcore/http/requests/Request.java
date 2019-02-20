@@ -20,6 +20,8 @@ import okhttp3.ConnectionPool;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by huxinyu on 2019/1/9.
@@ -196,8 +198,17 @@ public class Request<T extends Request> {
         } else {
             throw new IllegalArgumentException("base url can not be empty !!!");
         }
-
-
+        if (mGlobalConfig.getConverterFactory() == null) {
+            mGlobalConfig.converterFactory(GsonConverterFactory.create());
+        }
+        retrofitBuilder.addConverterFactory(mGlobalConfig.getConverterFactory());
+        if (mGlobalConfig.getCallAdapterFactory() == null) {
+            mGlobalConfig.callAdapterFactory(RxJavaCallAdapterFactory.create());
+        }
+        retrofitBuilder.addCallAdapterFactory(mGlobalConfig.getCallAdapterFactory());
+        if (mGlobalConfig.getCallFactory() != null) {
+            retrofitBuilder.callFactory(mGlobalConfig.getCallFactory());
+        }
     }
 
     /**
@@ -208,5 +219,11 @@ public class Request<T extends Request> {
         resetGlobalParams();
         OkHttpClient.Builder okHttpBuilder = Panda.getOkHttpBuilder();
         Retrofit.Builder retrofitBuilder = Panda.getRetrofitBuilder();
+
+        if (writeTimeout > 0) {
+            okHttpBuilder.writeTimeout(writeTimeout, TimeUnit.MILLISECONDS);
+        }
+
+
     }
 }

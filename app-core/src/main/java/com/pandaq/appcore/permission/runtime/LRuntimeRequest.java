@@ -3,6 +3,7 @@ package com.pandaq.appcore.permission.runtime;
 
 import com.pandaq.appcore.permission.Action;
 import com.pandaq.appcore.permission.Rationale;
+import com.pandaq.appcore.permission.RtPermission;
 import com.pandaq.appcore.permission.source.Source;
 import com.pandaq.appcore.permission.test.checker.PermissionChecker;
 import com.pandaq.appcore.permission.test.checker.RealChecker;
@@ -31,6 +32,7 @@ public class LRuntimeRequest extends BaseRuntimeRequest implements RuntimeReques
     private String[] mPermissions;
     private Action<List<String>> mGranted;
     private Action<List<String>> mDenied;
+    private Action<List<String>> mAlwaysDenied;
 
     public LRuntimeRequest(Source source) {
         this.mSource = source;
@@ -71,6 +73,13 @@ public class LRuntimeRequest extends BaseRuntimeRequest implements RuntimeReques
         return this;
     }
 
+    @NonNull
+    @Override
+    public RuntimeRequest onAlwaysDenied(Action<List<String>> denied) {
+        this.mAlwaysDenied = denied;
+        return this;
+    }
+
     @Override
     final public void start() {
         List<String> deniedList = getDeniedPermissions(mSource, mPermissions);
@@ -98,8 +107,16 @@ public class LRuntimeRequest extends BaseRuntimeRequest implements RuntimeReques
      * Callback rejected state.
      */
     private void callbackFailed(@NonNull List<String> deniedList) {
-        if (mDenied != null) {
-            mDenied.onAction(deniedList);
+        if (RtPermission.hasAlwaysDeniedPermission(mSource.getContext(), deniedList)) { // 权限被拒绝并且不会再询问
+            // 包含拒绝后不再提醒项
+            if (mAlwaysDenied != null) {
+                mAlwaysDenied.onAction(RtPermission.getAlwaysDeniedPermission(mSource,
+                        deniedList));
+            }
+        } else { // 不包含拒绝后不再提醒项
+            if (mDenied != null) {
+                mDenied.onAction(deniedList);
+            }
         }
     }
 

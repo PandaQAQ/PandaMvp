@@ -7,6 +7,7 @@ import com.pandaq.appcore.permission.Action;
 import com.pandaq.appcore.permission.Executor;
 import com.pandaq.appcore.permission.PermissionActivity;
 import com.pandaq.appcore.permission.Rationale;
+import com.pandaq.appcore.permission.RtPermission;
 import com.pandaq.appcore.permission.source.Source;
 import com.pandaq.appcore.permission.test.checker.DoubleChecker;
 import com.pandaq.appcore.permission.test.checker.PermissionChecker;
@@ -40,6 +41,7 @@ public class MRuntimeRequest extends BaseRuntimeRequest implements RuntimeReques
     private Rationale<List<String>> mRationaleListener;
     private Action<List<String>> mGranted;
     private Action<List<String>> mDenied;
+    private Action<List<String>> mAlwaysDenied;
 
     private String[] mDeniedPermissions;
 
@@ -87,15 +89,23 @@ public class MRuntimeRequest extends BaseRuntimeRequest implements RuntimeReques
         return this;
     }
 
+    @NonNull
+    @Override
+    public RuntimeRequest onAlwaysDenied(Action<List<String>> denied) {
+        this.mAlwaysDenied = denied;
+        return this;
+    }
+
     @Override
     final public void start() {
         List<String> deniedList = getDeniedPermissions(CHECKER, mSource, mPermissions);
         mDeniedPermissions = deniedList.toArray(new String[0]);
-        if (mDeniedPermissions.length > 0) {
+        if (mDeniedPermissions.length > 0) { // 如果被拒绝权限不为空
             List<String> rationaleList = getRationalePermissions(mSource, mDeniedPermissions);
+            // 如果全选拒绝且未勾选不再询问则回调 rationale
             if (rationaleList.size() > 0 && mRationaleListener != null) {
                 mRationaleListener.showRationale(mSource.getContext(), rationaleList, this);
-            } else {
+            } else { // 如果权限拒绝并且勾选了不再询问则直接重新请求权限
                 execute();
             }
         } else {
@@ -137,8 +147,16 @@ public class MRuntimeRequest extends BaseRuntimeRequest implements RuntimeReques
      * Callback rejected state.
      */
     private void callbackFailed(@NonNull List<String> deniedList) {
-        if (mDenied != null) {
-            mDenied.onAction(deniedList);
+        if (RtPermission.hasAlwaysDeniedPermission(mSource.getContext(), deniedList)) { // 权限被拒绝并且不会再询问
+            // 包含拒绝后不再提醒项
+            if (mAlwaysDenied != null) {
+                mAlwaysDenied.onAction(RtPermission.getAlwaysDeniedPermission(mSource,
+                        deniedList));
+            }
+        } else { // 不包含拒绝后不再提醒项
+            if (mDenied != null) {
+                mDenied.onAction(deniedList);
+            }
         }
     }
 
@@ -161,6 +179,7 @@ public class MRuntimeRequest extends BaseRuntimeRequest implements RuntimeReques
     private static List<String> getRationalePermissions(@NonNull Source source, @NonNull String... permissions) {
         List<String> rationaleList = new ArrayList<>(1);
         for (String permission : permissions) {
+            // has requested before and user refused permission
             if (source.isShowRationalePermission(permission)) {
                 rationaleList.add(permission);
             }

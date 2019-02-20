@@ -70,6 +70,7 @@ public class AppProxy implements IAppLifeCycle {
                 .readTimeout(10000)
                 .writeTimeout(10000)
                 .connectTimeout(10000);
+
     }
 
     @Override
