@@ -1,18 +1,13 @@
 package com.pandaq.pandamvp.ui.launch;
 
 import android.Manifest;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
 import android.view.View;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.pandaq.appcore.eventbus.EventUtils;
-import com.pandaq.appcore.permission.Action;
-import com.pandaq.appcore.permission.Executor;
-import com.pandaq.appcore.permission.Rationale;
 import com.pandaq.appcore.permission.RtPermission;
 import com.pandaq.appcore.utils.log.PLogger;
 import com.pandaq.commonui.msgwindow.Snacker;
@@ -22,11 +17,8 @@ import com.pandaq.pandamvp.R;
 import com.pandaq.pandamvp.events.LaunchEvent;
 import com.pandaq.pandamvp.framework.AppBaseActivity;
 import com.pandaq.pandamvp.ui.home.HomeActivity;
-import com.pandaq.pandamvp.ui.home.bmodule.PlanBActivity;
 
 import org.greenrobot.eventbus.Subscribe;
-
-import java.util.List;
 
 import androidx.annotation.Nullable;
 import butterknife.BindView;
@@ -114,8 +106,7 @@ public class LauncherActivity extends AppBaseActivity<LauncherPresenter> impleme
                         .start();
                 break;
             case R.id.btn5:
-                Toast.makeText(this,"111111",Toast.LENGTH_LONG).show();
-//                Toast.makeText(this,"2222222",Toast.LENGTH_LONG).show();
+
                 break;
         }
     }
