@@ -6,7 +6,8 @@ import android.graphics.Color;
 
 import com.pandaq.appcore.cache.CacheTool;
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
-import com.pandaq.appcore.http.HttpManager;
+import com.pandaq.appcore.http.config.HttpGlobalConfig;
+import com.pandaq.appcore.utils.log.PLogger;
 import com.pandaq.commonui.msgwindow.SnackerConfig;
 import com.pandaq.pandamvp.BuildConfig;
 import com.pandaq.pandamvp.app.Constant;
@@ -14,6 +15,7 @@ import com.pandaq.pandamvp.entites.UserInfo;
 import com.pandaq.pandamvp.net.ApiService;
 
 import androidx.annotation.NonNull;
+import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
  * Created by huxinyu on 2018/12/25.
@@ -22,8 +24,6 @@ import androidx.annotation.NonNull;
  * Description :this module' appLifeCycle impl.the methods will called in global application
  */
 public class AppLifeCycle implements IAppLifeCycle {
-
-    public static HttpManager<ApiService> sHttpManager;
 
     @Override
     public void attachBaseContext(@NonNull Context base) {
@@ -48,12 +48,14 @@ public class AppLifeCycle implements IAppLifeCycle {
         UserInfo userInfo = CacheTool.with(application)
                 .open(Constant.Cache.CACHE_FILE_NAME)
                 .getSerializable(Constant.Cache.CACHE_USEINFO_KEY);
-        HttpManager.Builder builder = new HttpManager.Builder()
+        HttpGlobalConfig config = HttpGlobalConfig.getInstance()
                 .baseUrl(ApiService.BASE_URL)
+                .netInterceptor(new HttpLoggingInterceptor()
+                        .setLevel(HttpLoggingInterceptor.Level.BODY))
+                .apiSuccessCode(100L)
                 .debug(BuildConfig.DEBUG);
         if (userInfo != null) {
-            builder.setHeader(ApiService.TOKEN_HEADER, userInfo.getToken());
+            config.addGlobalHeader(ApiService.TOKEN_HEADER, userInfo.getToken());
         }
-        sHttpManager = builder.build();
     }
 }

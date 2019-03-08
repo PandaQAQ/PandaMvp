@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.pandaq.appcore.eventbus.EventUtils;
+import com.pandaq.appcore.http.Panda;
 import com.pandaq.appcore.permission.RtPermission;
 import com.pandaq.appcore.utils.log.PLogger;
 import com.pandaq.commonui.msgwindow.Snacker;
@@ -16,6 +17,7 @@ import com.pandaq.commonui.msgwindow.Toaster;
 import com.pandaq.pandamvp.R;
 import com.pandaq.pandamvp.events.LaunchEvent;
 import com.pandaq.pandamvp.framework.AppBaseActivity;
+import com.pandaq.pandamvp.net.ApiService;
 import com.pandaq.pandamvp.ui.home.HomeActivity;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -58,7 +60,7 @@ public class LauncherActivity extends AppBaseActivity<LauncherPresenter> impleme
 
     @Override
     protected void loadData() {
-        mPresenter.showErrorMsg();
+//        mPresenter.showErrorMsg();
     }
 
     @OnClick({R.id.btn1, R.id.btn2, R.id.btn3, R.id.btn4, R.id.btn5})
@@ -106,7 +108,8 @@ public class LauncherActivity extends AppBaseActivity<LauncherPresenter> impleme
                         .start();
                 break;
             case R.id.btn5:
-
+                ApiService api = Panda.retrofit().create(ApiService.class);
+                mPresenter.showErrorMsg();
                 break;
         }
     }

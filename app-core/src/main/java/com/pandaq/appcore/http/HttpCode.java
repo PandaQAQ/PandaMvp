@@ -6,17 +6,13 @@ package com.pandaq.appcore.http;
  * <p>
  * Description :http 请求的一些状态码
  */
-public class HttpCodes {
+public class HttpCode {
 
     /**
      * HTTP 部分为 http 协议 code
      */
     public static class HTTP {
 
-        /**
-         * http 请求响应成功
-         */
-        public static final int SUCCESS = 200;
         /**
          * http 请求创建
          */
@@ -96,22 +92,21 @@ public class HttpCodes {
          */
         public static final int HTTP_VERSION_UNSUPPORT = 505;
 
-        /**
-         * http 请求超时
-         */
-        public static final int TIME_OUT = -100;
-
-        /**
-         * 位置错误
-         */
-        public static final int UNKNOWN = -200;
     }
-
     /**
-     * API 部分为与服务端约定自定义 code
+     * 请求返回成功后，框架层处理错误
      */
-    public static class API {
-        public static final int SUCCESS = 0;
+    public static class FRAME_WORK{
+            //未知错误
+            public static final int UNKNOWN = 1000;
+            //解析错误
+            public static final int PARSE_ERROR = 1001;
+            //网络错误
+            public static final int NETWORK_ERROR = 1002;
+            //证书出错
+            public static final int SSL_ERROR = 1003;
+            //连接超时
+            public static final int TIMEOUT_ERROR = 1004;
     }
 
 }
