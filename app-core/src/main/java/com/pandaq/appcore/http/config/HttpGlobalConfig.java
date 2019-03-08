@@ -37,6 +37,8 @@ public class HttpGlobalConfig {
     private long retryDelayMillis;//请求失败重试间隔时间
     private int retryCount;//请求失败重试次数
     private static HttpGlobalConfig sHttpGlobalConfig;
+    private boolean isDebug;
+    private Long apiSuccessCode = 0L;
 
     private HttpGlobalConfig() {
     }
@@ -82,6 +84,11 @@ public class HttpGlobalConfig {
         return this;
     }
 
+    public HttpGlobalConfig addGlobalHeader(@NonNull String key, String header) {
+        this.globalHeaders.put(key, header);
+        return this;
+    }
+
     public HttpGlobalConfig globalHeader(@NonNull Map<String, String> headers) {
         this.globalHeaders = headers;
         return this;
@@ -89,6 +96,11 @@ public class HttpGlobalConfig {
 
     public HttpGlobalConfig globalParams(@NonNull Map<String, String> params) {
         this.globalParams = params;
+        return this;
+    }
+
+    public HttpGlobalConfig addGlobalParam(@NonNull String key, String param) {
+        this.globalParams.put(key, param);
         return this;
     }
 
@@ -176,5 +188,23 @@ public class HttpGlobalConfig {
 
     public int getRetryCount() {
         return retryCount;
+    }
+
+    public boolean isDebug() {
+        return isDebug;
+    }
+
+    public HttpGlobalConfig debug(boolean debug) {
+        isDebug = debug;
+        return this;
+    }
+
+    public Long getApiSuccessCode() {
+        return apiSuccessCode;
+    }
+
+    public HttpGlobalConfig apiSuccessCode(Long apiSuccessCode) {
+        this.apiSuccessCode = apiSuccessCode;
+        return this;
     }
 }

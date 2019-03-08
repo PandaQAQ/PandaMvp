@@ -6,6 +6,7 @@ import com.pandaq.appcore.BuildConfig;
 import com.pandaq.appcore.http.Panda;
 import com.pandaq.appcore.http.config.CONFIG;
 import com.pandaq.appcore.http.config.HttpGlobalConfig;
+import com.pandaq.appcore.http.interceptor.HeaderInterceptor;
 import com.pandaq.appcore.http.ssl.SSLManager;
 import com.pandaq.appcore.utils.CastUtils;
 
@@ -190,6 +191,7 @@ public class Request<T extends Request> {
         builder.connectTimeout(CONFIG.DEFAULT_TIMEOUT, TimeUnit.SECONDS);
         builder.readTimeout(CONFIG.DEFAULT_TIMEOUT, TimeUnit.SECONDS);
         builder.writeTimeout(CONFIG.DEFAULT_TIMEOUT, TimeUnit.SECONDS);
+        builder.retryOnConnectionFailure(true);
 
         // retrofit config
         Retrofit.Builder retrofitBuilder = Panda.getRetrofitBuilder();
@@ -209,6 +211,7 @@ public class Request<T extends Request> {
         if (mGlobalConfig.getCallFactory() != null) {
             retrofitBuilder.callFactory(mGlobalConfig.getCallFactory());
         }
+
     }
 
     /**
@@ -218,12 +221,55 @@ public class Request<T extends Request> {
         // 注入本地配置前先重置现有配置为全局默认配置
         resetGlobalParams();
         OkHttpClient.Builder okHttpBuilder = Panda.getOkHttpBuilder();
-        Retrofit.Builder retrofitBuilder = Panda.getRetrofitBuilder();
 
+        // 添加请求头
+        if (mGlobalConfig.getGlobalHeaders() != null) {
+            // 全局的请求头设置进去,将本地 header 加入到全局中（本地同名覆盖全局）
+            mGlobalConfig.getGlobalHeaders().putAll(headers);
+        }
+        if (!headers.isEmpty()) {
+            okHttpBuilder.addInterceptor(new HeaderInterceptor(headers));
+        }
+        // 添加请求拦截器
+        if (!interceptors.isEmpty()) {
+            for (Interceptor interceptor : interceptors) {
+                okHttpBuilder.addInterceptor(interceptor);
+            }
+        }
+        // 添加请求网络拦截器
+        if (!networkInterceptors.isEmpty()) {
+            for (Interceptor interceptor : networkInterceptors) {
+                okHttpBuilder.addInterceptor(interceptor);
+            }
+        }
+        //设置局部超时时间和重试次数
+        if (readTimeout > 0) {
+            okHttpBuilder.readTimeout(readTimeout, TimeUnit.MILLISECONDS);
+        }
         if (writeTimeout > 0) {
             okHttpBuilder.writeTimeout(writeTimeout, TimeUnit.MILLISECONDS);
         }
-
-
+        if (connectTimeout > 0) {
+            okHttpBuilder.connectTimeout(connectTimeout, TimeUnit.MILLISECONDS);
+        }
+        if (baseUrl != null) { // 如果基础地址改了者需要重新构建个 Retrofit 对象，避免影响默认请求的配置
+            Retrofit.Builder newRetrofitBuilder = new Retrofit.Builder();
+            newRetrofitBuilder.baseUrl(baseUrl);
+            if (mGlobalConfig.getConverterFactory() != null) {
+                newRetrofitBuilder.addConverterFactory(mGlobalConfig.getConverterFactory());
+            }
+            if (mGlobalConfig.getCallAdapterFactory() != null) {
+                newRetrofitBuilder.addCallAdapterFactory(mGlobalConfig.getCallAdapterFactory());
+            }
+            if (mGlobalConfig.getCallFactory() != null) {
+                newRetrofitBuilder.callFactory(mGlobalConfig.getCallFactory());
+            }
+            okHttpBuilder.hostnameVerifier(new SSLManager.UnSafeHostnameVerifier(baseUrl));
+            newRetrofitBuilder.client(okHttpBuilder.build());
+            retrofit = newRetrofitBuilder.build();
+        } else { // 使用默认配置的对象
+            Panda.getRetrofitBuilder().client(okHttpBuilder.build());
+            retrofit = Panda.getRetrofitBuilder().build();
+        }
     }
 }

@@ -1,6 +1,6 @@
 package com.pandaq.appcore.http.entity;
 
-import com.pandaq.appcore.http.HttpCodes;
+import com.pandaq.appcore.http.Panda;
 
 /**
  * Created by huxinyu on 2018/5/27.
@@ -61,6 +61,6 @@ public class ApiData<T> {
      * @return 判断结果
      */
     public boolean isSuccess() {
-        return this.code == HttpCodes.API.SUCCESS;
+        return this.code.longValue() == Panda.globalConfig().getApiSuccessCode().longValue();
     }
 }

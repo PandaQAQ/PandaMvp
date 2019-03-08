@@ -20,28 +20,18 @@ public class HeaderInterceptor implements Interceptor {
     /**
      * 设置的 header
      */
-    private Map<String, String> setHeaderMap;
-    /**
-     * 添加的 header
-     */
-    private Map<String, String> addHeaderMap;
+    private Map<String, String> headers;
 
-    public HeaderInterceptor() {
-        setHeaderMap = new HashMap<>();
-        addHeaderMap = new HashMap<>();
+    public HeaderInterceptor(@NonNull Map<String, String> headers) {
+        this.headers = headers;
     }
 
     @Override
     public Response intercept(@NonNull Chain chain) throws IOException {
         Request.Builder builder = chain.request().newBuilder();
-        if (checkNotNull(setHeaderMap)) {
-            for (String key : setHeaderMap.keySet()) {
-                builder.header(key, setHeaderMap.get(key));
-            }
-        }
-        if (checkNotNull(addHeaderMap)) {
-            for (String key : addHeaderMap.keySet()) {
-                builder.addHeader(key, addHeaderMap.get(key));
+        if (checkNotNull(headers)) {
+            for (Map.Entry<String, String> item : headers.entrySet()) {
+                builder.header(item.getKey(), item.getValue());
             }
         }
         return chain.proceed(builder.build());
@@ -49,30 +39,5 @@ public class HeaderInterceptor implements Interceptor {
 
     private boolean checkNotNull(Map map) {
         return map != null && !map.isEmpty();
-    }
-
-    /**
-     * 设置请求头
-     *
-     * @param setHeaders 设置的请求头 map
-     */
-    public void setHeaders(Map<String, String> setHeaders) {
-        this.setHeaderMap = setHeaderMap;
-        if (checkNotNull(addHeaderMap) && checkNotNull(setHeaderMap)) {
-            for (String key : setHeaderMap.keySet()) {
-                this.addHeaderMap.remove(key);
-            }
-        }
-    }
-
-    /**
-     * 添加请求头
-     *
-     * @param addHeaders 被添加的请求头 map
-     */
-    public void addHeaders(Map<String, String> addHeaders) {
-        if (addHeaders != null) {
-            this.addHeaderMap.putAll(addHeaders);
-        }
     }
 }

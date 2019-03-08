@@ -1,3 +1,5 @@
 
-P"squid:SwitchLastCaseIsDefaultCheckB""Add a default case to this switch.(é∫÷ç
-esquid:MaximumInheritanceDepth""<This class has 7 parents which is greater than 5 authorized.(–ÇßÒ
+W"squid:SwitchLastCaseIsDefaultCheckD""Add a default case to this switch.(é∫÷ç8çÊÑÊï-
+hsquid:CommentedOutCodeLine?"<This block of commented-out lines of code should be removed.(Û‰Ï8çÊÑÊï-
+Usquid:S1854o"7Remove this useless assignment to local variable "api".(ÉÒù∑8çÊÑÊï-
+lsquid:MaximumInheritanceDepth$"<This class has 7 parents which is greater than 5 authorized.(–ÇßÒ8çÊÑÊï-
