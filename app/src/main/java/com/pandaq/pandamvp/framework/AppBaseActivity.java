@@ -91,7 +91,7 @@ public abstract class AppBaseActivity<P extends BasePresenter> extends BaseActiv
                 .show();
     }
 
-    public void onError(int errCode, String errMsg) {
+    public void onError(long errCode, String errMsg) {
         Toaster.with(this)
                 .msg(errMsg)
                 .show();

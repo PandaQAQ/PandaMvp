@@ -8,16 +8,14 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.pandaq.appcore.eventbus.EventUtils;
-import com.pandaq.appcore.http.Panda;
 import com.pandaq.appcore.permission.RtPermission;
-import com.pandaq.appcore.utils.log.PLogger;
+import com.pandaq.appcore.utils.log.Plogger;
 import com.pandaq.commonui.msgwindow.Snacker;
 import com.pandaq.commonui.msgwindow.ToastIconGravity;
 import com.pandaq.commonui.msgwindow.Toaster;
 import com.pandaq.pandamvp.R;
 import com.pandaq.pandamvp.events.LaunchEvent;
 import com.pandaq.pandamvp.framework.AppBaseActivity;
-import com.pandaq.pandamvp.net.ApiService;
 import com.pandaq.pandamvp.ui.home.HomeActivity;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -108,7 +106,6 @@ public class LauncherActivity extends AppBaseActivity<LauncherPresenter> impleme
                         .start();
                 break;
             case R.id.btn5:
-                ApiService api = Panda.retrofit().create(ApiService.class);
                 mPresenter.showErrorMsg();
                 break;
         }
@@ -125,42 +122,42 @@ public class LauncherActivity extends AppBaseActivity<LauncherPresenter> impleme
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        PLogger.d("onCreate--->Launch");
+        Plogger.d("onCreate--->Launch");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        PLogger.d("onStart-->Launch");
+        Plogger.d("onStart-->Launch");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        PLogger.d("onResume--->Launch");
+        Plogger.d("onResume--->Launch");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        PLogger.d("onPause--->Launch");
+        Plogger.d("onPause--->Launch");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        PLogger.d("onStop--->Launch");
+        Plogger.d("onStop--->Launch");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        PLogger.d("onDestroy-->Launch");
+        Plogger.d("onDestroy-->Launch");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        PLogger.d("onReStart-->Launch");
+        Plogger.d("onReStart-->Launch");
     }
 }

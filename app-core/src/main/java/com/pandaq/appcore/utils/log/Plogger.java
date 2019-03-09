@@ -13,12 +13,12 @@ import com.pandaq.appcore.BuildConfig;
  */
 
 @SuppressLint("LogNotTimber")
-public class PLogger {
+public class Plogger {
     private static String className;//类名
     private static int lineNumber;//行数
-    private static String TAG = "PLogger";
+    private static String TAG = "Plogger";
 
-    private PLogger() {
+    private Plogger() {
         /* Protect from instantiations */
     }
 
