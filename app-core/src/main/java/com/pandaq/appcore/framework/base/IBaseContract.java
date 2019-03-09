@@ -33,7 +33,7 @@ public interface IBaseContract {
          * @param errCode 错误码
          * @param errMsg  错误信息
          */
-        void onError(int errCode, String errMsg);
+        void onError(long errCode, String errMsg);
 
         /**
          * 结束回调

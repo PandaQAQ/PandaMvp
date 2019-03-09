@@ -2,6 +2,7 @@ package com.pandaq.pandamvp.net;
 
 import io.reactivex.Observable;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 /**
@@ -10,10 +11,9 @@ import retrofit2.http.POST;
  * Description : retrofit api 接口
  */
 public interface ApiService {
-    String BASE_URL = "http://news-at.zhihu.com/api/4";
+    String BASE_URL = "http://news-at.zhihu.com/api/4/";
     String TOKEN_HEADER = "token";
 
-    @POST("/news/latest")
-    @FormUrlEncoded
+    @GET("news/latest")
     Observable<String> test();
 }

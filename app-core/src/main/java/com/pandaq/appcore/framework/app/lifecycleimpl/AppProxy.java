@@ -15,7 +15,6 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 
 /**
  * Created by huxinyu on 2018/12/25.
@@ -62,14 +61,6 @@ public class AppProxy implements IAppLifeCycle {
         for (Application.ActivityLifecycleCallbacks callbacks : mActivityLifeCycles) {
             application.registerActivityLifecycleCallbacks(callbacks);
         }
-
-        Panda.globalConfig()
-                .baseUrl("")
-                .callAdapterFactory(RxJavaCallAdapterFactory.create())
-                .converterFactory(PandaConvertFactory.create())
-                .readTimeout(10000)
-                .writeTimeout(10000)
-                .connectTimeout(10000);
 
     }
 

@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
     <uses-permission android:name="android.permission.READ_PROFILE"/>
     <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <!-- 默认使用侧滑返回的透明风格，不需要侧滑返回的则使用自己的 Theme 即可 -->
     <application

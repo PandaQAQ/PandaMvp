@@ -4,8 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.pandaq.appcore.eventbus.EventUtils;
-import com.pandaq.appcore.http.Panda;
-import com.pandaq.appcore.utils.log.PLogger;
+import com.pandaq.appcore.utils.log.Plogger;
 import com.pandaq.commonui.msgwindow.ToastIconGravity;
 import com.pandaq.commonui.msgwindow.Toaster;
 import com.pandaq.pandamvp.R;
@@ -62,7 +61,7 @@ public class HomeActivity extends AppBaseActivity<HomePresenter> implements Home
     }
 
     @Override
-    public void onError(int errCode, String errMsg) {
+    public void onError(long errCode, String errMsg) {
         super.onError(errCode, errMsg);
     }
 
@@ -89,43 +88,43 @@ public class HomeActivity extends AppBaseActivity<HomePresenter> implements Home
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        PLogger.d("onCreate--->Home");
+        Plogger.d("onCreate--->Home");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        PLogger.d("onStart-->Home");
+        Plogger.d("onStart-->Home");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        PLogger.d("onResume--->Home");
+        Plogger.d("onResume--->Home");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        PLogger.d("onPause--->Home");
+        Plogger.d("onPause--->Home");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        PLogger.d("onStop--->Home");
+        Plogger.d("onStop--->Home");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        PLogger.d("onDestroy-->Home");
+        Plogger.d("onDestroy-->Home");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        PLogger.d("onReStart-->Home");
+        Plogger.d("onReStart-->Home");
     }
 }
 

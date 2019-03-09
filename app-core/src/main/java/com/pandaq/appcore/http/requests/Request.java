@@ -2,7 +2,6 @@ package com.pandaq.appcore.http.requests;
 
 import android.text.TextUtils;
 
-import com.pandaq.appcore.BuildConfig;
 import com.pandaq.appcore.http.Panda;
 import com.pandaq.appcore.http.config.CONFIG;
 import com.pandaq.appcore.http.config.HttpGlobalConfig;
@@ -21,7 +20,7 @@ import okhttp3.ConnectionPool;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -33,15 +32,15 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Request<T extends Request> {
 
     // local basUrl
-    private String baseUrl;
+    private String baseUrl = "";
     // local readTimeout
-    private Long readTimeout;
+    private Long readTimeout = 0L;
     // local writeTimeout
-    private Long writeTimeout;
+    private Long writeTimeout = 0L;
     // local connectTimeout
-    private Long connectTimeout;
+    private Long connectTimeout = 0L;
     // local retryCount
-    private int retryCount = 1;
+    protected int retryCount = 1;
 
     private Map<String, String> headers = new LinkedHashMap<>();
     private List<Interceptor> interceptors = new ArrayList<>();
@@ -153,15 +152,18 @@ public class Request<T extends Request> {
     }
 
 
-    public T readTimeout() {
+    public T readTimeout(long readTimeout) {
+        this.readTimeout = readTimeout;
         return CastUtils.cast(this);
     }
 
-    public T writeTimeout() {
+    public T writeTimeout(long writeTimeout) {
+        this.writeTimeout = writeTimeout;
         return CastUtils.cast(this);
     }
 
-    public T connectTimeout() {
+    public T connectTimeout(long connectTimeout) {
+        this.connectTimeout = connectTimeout;
         return CastUtils.cast(this);
     }
 
@@ -205,7 +207,7 @@ public class Request<T extends Request> {
         }
         retrofitBuilder.addConverterFactory(mGlobalConfig.getConverterFactory());
         if (mGlobalConfig.getCallAdapterFactory() == null) {
-            mGlobalConfig.callAdapterFactory(RxJavaCallAdapterFactory.create());
+            mGlobalConfig.callAdapterFactory(RxJava2CallAdapterFactory.create());
         }
         retrofitBuilder.addCallAdapterFactory(mGlobalConfig.getCallAdapterFactory());
         if (mGlobalConfig.getCallFactory() != null) {
@@ -252,7 +254,7 @@ public class Request<T extends Request> {
         if (connectTimeout > 0) {
             okHttpBuilder.connectTimeout(connectTimeout, TimeUnit.MILLISECONDS);
         }
-        if (baseUrl != null) { // 如果基础地址改了者需要重新构建个 Retrofit 对象，避免影响默认请求的配置
+        if (!TextUtils.isEmpty(baseUrl)) { // 如果基础地址改了者需要重新构建个 Retrofit 对象，避免影响默认请求的配置
             Retrofit.Builder newRetrofitBuilder = new Retrofit.Builder();
             newRetrofitBuilder.baseUrl(baseUrl);
             if (mGlobalConfig.getConverterFactory() != null) {

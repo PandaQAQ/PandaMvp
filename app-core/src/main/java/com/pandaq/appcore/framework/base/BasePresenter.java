@@ -10,13 +10,13 @@ import io.reactivex.disposables.Disposable;
  */
 public abstract class BasePresenter<V> implements IBaseContract.IBasePresenter {
 
-    protected V mMvpView;
+    protected V mView;
     //将所有正在处理的Subscription都添加到CompositeSubscription中。统一退出的时候注销观察
     private CompositeDisposable mCompositeDisposable;
 
     public BasePresenter(V mvpView) {
         if (mvpView != null) {
-            mMvpView = mvpView;
+            mView = mvpView;
             onMvpViewAttach();
         } else {
             throw new NullPointerException("mvpView here must not be null !!!");
