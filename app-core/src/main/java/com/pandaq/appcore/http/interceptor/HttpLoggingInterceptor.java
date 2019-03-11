@@ -15,7 +15,7 @@
  */
 package com.pandaq.appcore.http.interceptor;
 
-import com.pandaq.appcore.utils.log.Logger;
+import com.pandaq.appcore.utils.log.PLogger;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -142,17 +142,17 @@ public final class HttpLoggingInterceptor implements Interceptor {
         if (!logHeaders && hasRequestBody) {
             requestStartMessage += " (" + requestBody.contentLength() + "-byte body)";
         }
-        Logger.logJson(requestStartMessage);
+        PLogger.logJson(requestStartMessage);
 
         if (logHeaders) {
             if (hasRequestBody) {
                 // Request body headers are only present when installed as a network interceptor. Force
                 // them to be included (when available) so there values are known.
                 if (requestBody.contentType() != null) {
-                    Logger.logJson("Content-Type: " + requestBody.contentType());
+                    PLogger.logJson("Content-Type: " + requestBody.contentType());
                 }
                 if (requestBody.contentLength() != -1) {
-                    Logger.logJson("Content-Length: " + requestBody.contentLength());
+                    PLogger.logJson("Content-Length: " + requestBody.contentLength());
                 }
             }
 
@@ -161,14 +161,14 @@ public final class HttpLoggingInterceptor implements Interceptor {
                 String name = headers.name(i);
                 // Skip headers from the request body as they are explicitly logged above.
                 if (!"Content-Type".equalsIgnoreCase(name) && !"Content-Length".equalsIgnoreCase(name)) {
-                    Logger.logJson(name + ": " + headers.value(i));
+                    PLogger.logJson(name + ": " + headers.value(i));
                 }
             }
 
             if (!logBody || !hasRequestBody) {
-                Logger.logJson("--> END " + request.method());
+                PLogger.logJson("--> END " + request.method());
             } else if (bodyHasUnknownEncoding(request.headers())) {
-                Logger.logJson("--> END " + request.method() + " (encoded body omitted)");
+                PLogger.logJson("--> END " + request.method() + " (encoded body omitted)");
             } else {
                 Buffer buffer = new Buffer();
                 requestBody.writeTo(buffer);
@@ -179,11 +179,11 @@ public final class HttpLoggingInterceptor implements Interceptor {
                     charset = contentType.charset(UTF8);
                 }
                 if (isPlaintext(buffer)) {
-                    Logger.logJson(buffer.readString(charset));
-                    Logger.logJson("--> END " + request.method()
+                    PLogger.logJson(buffer.readString(charset));
+                    PLogger.logJson("--> END " + request.method()
                             + " (" + requestBody.contentLength() + "-byte body)");
                 } else {
-                    Logger.logJson("--> END " + request.method() + " (binary "
+                    PLogger.logJson("--> END " + request.method() + " (binary "
                             + requestBody.contentLength() + "-byte body omitted)");
                 }
             }
@@ -194,7 +194,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
         try {
             response = chain.proceed(request);
         } catch (Exception e) {
-            Logger.logJson("<-- HTTP FAILED: " + e);
+            PLogger.logJson("<-- HTTP FAILED: " + e);
             throw e;
         }
         long tookMs = TimeUnit.NANOSECONDS.toMillis(System.nanoTime() - startNs);
@@ -205,7 +205,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
             contentLength = responseBody.contentLength();
         }
         String bodySize = contentLength != -1 ? contentLength + "-byte" : "unknown-length";
-        Logger.logJson("<-- "
+        PLogger.logJson("<-- "
                 + response.code()
                 + (response.message().isEmpty() ? "" : ' ' + response.message())
                 + ' ' + response.request().url()
@@ -214,18 +214,17 @@ public final class HttpLoggingInterceptor implements Interceptor {
         if (logHeaders) {
             Headers headers = response.headers();
             for (int i = 0, count = headers.size(); i < count; i++) {
-                Logger.logJson(headers.name(i) + ": " + headers.value(i));
+                PLogger.logJson(headers.name(i) + ": " + headers.value(i));
             }
 
             if (!logBody || !HttpHeaders.hasBody(response)) {
-                Logger.logJson("<-- END HTTP");
+                PLogger.logJson("<-- END HTTP");
             } else if (bodyHasUnknownEncoding(response.headers())) {
-                Logger.logJson("<-- END HTTP (encoded body omitted)");
+                PLogger.logJson("<-- END HTTP (encoded body omitted)");
             } else {
                 BufferedSource source = responseBody.source();
                 source.request(Long.MAX_VALUE); // Buffer the entire body.
                 Buffer buffer = source.buffer();
-
                 Long gzippedLength = null;
                 if ("gzip".equalsIgnoreCase(headers.get("Content-Encoding"))) {
                     gzippedLength = buffer.size();
@@ -234,9 +233,12 @@ public final class HttpLoggingInterceptor implements Interceptor {
                         gzippedResponseBody = new GzipSource(buffer.clone());
                         buffer = new Buffer();
                         buffer.writeAll(gzippedResponseBody);
+                    } catch (Exception e) {
+                        PLogger.e(e.getMessage(),e);
                     } finally {
                         if (gzippedResponseBody != null) {
                             gzippedResponseBody.close();
+                            buffer.close();
                         }
                     }
                 }
@@ -248,20 +250,20 @@ public final class HttpLoggingInterceptor implements Interceptor {
                 }
 
                 if (!isPlaintext(buffer)) {
-                    Logger.logJson("");
-                    Logger.logJson("<-- END HTTP (binary " + buffer.size() + "-byte body omitted)");
+                    PLogger.logJson("");
+                    PLogger.logJson("<-- END HTTP (binary " + buffer.size() + "-byte body omitted)");
                     return response;
                 }
 
                 if (contentLength != 0) {
-                    Logger.logJson(buffer.clone().readString(charset));
+                    PLogger.logJson(buffer.clone().readString(charset));
                 }
 
                 if (gzippedLength != null) {
-                    Logger.logJson("<-- END HTTP (" + buffer.size() + "-byte, "
+                    PLogger.logJson("<-- END HTTP (" + buffer.size() + "-byte, "
                             + gzippedLength + "-gzipped-byte body)");
                 } else {
-                    Logger.logJson("<-- END HTTP (" + buffer.size() + "-byte body)");
+                    PLogger.logJson("<-- END HTTP (" + buffer.size() + "-byte body)");
                 }
             }
         }
