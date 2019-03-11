@@ -8,6 +8,7 @@ import com.pandaq.appcore.cache.CacheTool;
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
 import com.pandaq.appcore.http.Panda;
 import com.pandaq.appcore.http.config.HttpGlobalConfig;
+import com.pandaq.appcore.http.interceptor.HttpLoggingInterceptor;
 import com.pandaq.commonui.msgwindow.SnackerConfig;
 import com.pandaq.pandamvp.BuildConfig;
 import com.pandaq.pandamvp.app.Constant;
@@ -15,7 +16,6 @@ import com.pandaq.pandamvp.entites.UserInfo;
 import com.pandaq.pandamvp.net.ApiService;
 
 import androidx.annotation.NonNull;
-import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
  * Created by huxinyu on 2018/12/25.

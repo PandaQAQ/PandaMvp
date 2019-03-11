@@ -25,7 +25,6 @@ dependencies {
     api rootProject.ext.dependencies["retrofit"]
     api rootProject.ext.dependencies["retrofit-converter"]
     api rootProject.ext.dependencies["retrofit-adapter"]
-    api rootProject.ext.dependencies["logging-interceptor"]
     api rootProject.ext.dependencies["gson"]
     //事件总线
     api rootProject.ext.dependencies["eventbus"]

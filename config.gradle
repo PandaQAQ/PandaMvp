@@ -47,8 +47,6 @@ ext {
             "retrofit"            : "com.squareup.retrofit2:retrofit:${version["retrofitVersion"]}",
             "retrofit-converter"  : "com.squareup.retrofit2:converter-gson:${version["retrofitVersion"]}",
             "retrofit-adapter"    : "com.squareup.retrofit2:adapter-rxjava2:${version["retrofitVersion"]}",
-            //interceptor
-            "logging-interceptor" : "com.squareup.okhttp3:logging-interceptor:3.10.0",
 
             // EventBus 3.0
             "eventbus"            : "org.greenrobot:eventbus:3.1.1",

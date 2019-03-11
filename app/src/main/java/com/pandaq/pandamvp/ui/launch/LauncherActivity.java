@@ -9,7 +9,7 @@ import android.widget.LinearLayout;
 
 import com.pandaq.appcore.eventbus.EventUtils;
 import com.pandaq.appcore.permission.RtPermission;
-import com.pandaq.appcore.utils.log.Plogger;
+import com.pandaq.appcore.utils.log.PLogger;
 import com.pandaq.commonui.msgwindow.Snacker;
 import com.pandaq.commonui.msgwindow.ToastIconGravity;
 import com.pandaq.commonui.msgwindow.Toaster;
@@ -122,42 +122,42 @@ public class LauncherActivity extends AppBaseActivity<LauncherPresenter> impleme
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Plogger.d("onCreate--->Launch");
+        PLogger.d("onCreate--->Launch");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Plogger.d("onStart-->Launch");
+        PLogger.d("onStart-->Launch");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Plogger.d("onResume--->Launch");
+        PLogger.d("onResume--->Launch");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Plogger.d("onPause--->Launch");
+        PLogger.d("onPause--->Launch");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Plogger.d("onStop--->Launch");
+        PLogger.d("onStop--->Launch");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Plogger.d("onDestroy-->Launch");
+        PLogger.d("onDestroy-->Launch");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Plogger.d("onReStart-->Launch");
+        PLogger.d("onReStart-->Launch");
     }
 }

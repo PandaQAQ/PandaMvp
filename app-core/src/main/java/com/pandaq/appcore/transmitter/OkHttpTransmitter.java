@@ -1,5 +1,6 @@
 package com.pandaq.appcore.transmitter;
 
+import com.pandaq.appcore.http.interceptor.HttpLoggingInterceptor;
 import com.pandaq.appcore.transmitter.download.DownloadInterceptor;
 import com.pandaq.appcore.transmitter.upload.UploadInterceptor;
 
@@ -22,7 +23,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-import okhttp3.logging.HttpLoggingInterceptor;
 
 /**
  * Created by huxinyu on 2018/6/8.
