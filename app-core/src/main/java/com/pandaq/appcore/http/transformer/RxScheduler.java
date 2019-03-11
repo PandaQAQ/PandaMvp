@@ -1,8 +1,18 @@
 package com.pandaq.appcore.http.transformer;
 
+import com.pandaq.appcore.http.Panda;
+import com.pandaq.appcore.http.exception.ApiException;
+
+import java.net.ConnectException;
+import java.net.SocketTimeoutException;
+import java.util.concurrent.TimeUnit;
+
 import io.reactivex.FlowableTransformer;
+import io.reactivex.Observable;
+import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 /**
@@ -14,27 +24,40 @@ import io.reactivex.schedulers.Schedulers;
 public class RxScheduler {
 
     /**
-     * Observable 类型线程转换器
+     * 网络请求过程线程转换器，io 线程发射 ui 线程观察，且自带重试机制
      *
      * @param <T> 数据类型
      * @return 指定了在 io 线程执行，UI 线程观察结果的观察对象
      */
-    public static <T> ObservableTransformer<T, T> observableSync() {
+    public static <T> ObservableTransformer<T, T> netSync() {
+        return upstream -> upstream.subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .retryWhen(new RetryFunc(Panda.globalConfig().getRetryCount(),
+                        Panda.globalConfig().getRetryDelayMillis()));
+    }
+
+    /**
+     * 普通的异步请求线程转换器，不带网络重试机制
+     *
+     * @param <T>
+     * @return
+     */
+    public static <T> ObservableTransformer<T, T> sync() {
         return upstream -> upstream.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread());
     }
 
     /**
-     * Flowable 类型线程转换器
+     * 指定 io 线程
      *
-     * @param <T> 数据类型
-     * @return 指定了在 io 线程执行，UI 线程观察结果的观察对象
+     * @param <T>
+     * @return
      */
-    public static <T> FlowableTransformer<T, T> flowableSycn() {
+    public static <T> ObservableTransformer<T, T> io() {
         return upstream -> upstream.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+                .observeOn(Schedulers.io());
     }
-
 }

@@ -32,15 +32,15 @@ public class Panda {
     /**
      * normal get request
      */
-    public static GetRequest get(String path) {
-        return new GetRequest(path);
+    public static GetRequest get(String url) {
+        return new GetRequest(url);
     }
 
     /**
      * normal post request
      */
-    public static PostRequest post() {
-        return new PostRequest();
+    public static PostRequest post(String url) {
+        return new PostRequest(url);
     }
 
     /**
@@ -71,5 +71,14 @@ public class Panda {
 
     public static Retrofit.Builder getRetrofitBuilder() {
         return retrofitBuilder;
+    }
+
+    /**
+     * 获取到请求管理器
+     *
+     * @return requestManager
+     */
+    public static RequestManager manager() {
+        return RequestManager.get();
     }
 }

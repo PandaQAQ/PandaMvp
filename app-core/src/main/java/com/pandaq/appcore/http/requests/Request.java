@@ -9,6 +9,8 @@ import com.pandaq.appcore.http.interceptor.HeaderInterceptor;
 import com.pandaq.appcore.http.ssl.SSLManager;
 import com.pandaq.appcore.utils.CastUtils;
 
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -47,7 +49,7 @@ public class Request<T extends Request> {
     private List<Interceptor> networkInterceptors = new ArrayList<>();
 
     // default global config
-    private HttpGlobalConfig mGlobalConfig;
+    protected HttpGlobalConfig mGlobalConfig;
 
     protected Retrofit retrofit;
 
@@ -273,5 +275,29 @@ public class Request<T extends Request> {
             Panda.getRetrofitBuilder().client(okHttpBuilder.build());
             retrofit = Panda.getRetrofitBuilder().build();
         }
+    }
+
+    /**
+     * 获取第一级type
+     *
+     * @param t
+     * @param <T>
+     * @return
+     */
+    protected <T> Type getType(T t) {
+        Type genType = t.getClass().getGenericSuperclass();
+        if (!(genType instanceof ParameterizedType)) {
+            return Object.class;
+        }
+        Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
+        Type type = params[0];
+        Type finalNeedType;
+        if (params.length > 1) {
+            if (!(type instanceof ParameterizedType)) throw new IllegalStateException("没有填写泛型参数");
+            finalNeedType = ((ParameterizedType) type).getActualTypeArguments()[0];
+        } else {
+            finalNeedType = type;
+        }
+        return finalNeedType;
     }
 }

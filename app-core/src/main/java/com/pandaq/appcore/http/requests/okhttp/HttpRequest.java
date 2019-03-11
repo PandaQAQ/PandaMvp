@@ -5,10 +5,18 @@ import android.text.TextUtils;
 import com.pandaq.appcore.http.api.Api;
 import com.pandaq.appcore.http.observer.ApiObserver;
 import com.pandaq.appcore.http.requests.Request;
+import com.pandaq.appcore.http.transformer.CastFunc;
+import com.pandaq.appcore.http.transformer.RxScheduler;
+import com.pandaq.appcore.utils.CastUtils;
 
 import java.lang.reflect.Type;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
+import androidx.annotation.NonNull;
 import io.reactivex.Observable;
+import io.reactivex.ObservableTransformer;
+import okhttp3.ResponseBody;
 
 /**
  * Created by huxinyu on 2019/1/11.
@@ -16,11 +24,26 @@ import io.reactivex.Observable;
  * <p>
  * Description : baseRequest for use okHttp lib, also can return an observable response
  */
-public abstract class HttpRequest<T extends HttpRequest> extends Request<T> {
+public abstract class HttpRequest<R extends HttpRequest> extends Request<R> {
 
     // http api,兼容 rxJava 观察者模式，需要返回观察对象时，将请求转换成 Retrofit 去请求
-    private Api mApi;
-    private String url = "";
+    protected Api mApi;
+    protected String url = "";
+    // request tag
+    protected Object tag;
+    protected Map<String, String> params = new LinkedHashMap<>();//请求参数
+    protected long retryDelayMillis;//请求失败重试间隔时间
+
+    /**
+     * set request‘s tag，use to manage the request
+     *
+     * @param tag
+     * @return
+     */
+    public R tag(@NonNull Object tag) {
+        this.tag = tag;
+        return CastUtils.cast(this);
+    }
 
     public HttpRequest(String url) {
         if (!TextUtils.isEmpty(url)) {
@@ -33,9 +56,33 @@ public abstract class HttpRequest<T extends HttpRequest> extends Request<T> {
         return execute(type);
     }
 
+    public void request(ApiObserver callback) {
+        injectLocalParams();
+        execute(callback);
+    }
+
     protected abstract <T> Observable<T> execute(Type type);
 
-//    protected abstract <T> Observable<CacheResult<T>> cacheExecute(Type type);
+    protected abstract void execute(ApiObserver callback);
 
-    protected abstract void execute(ApiObserver<T> callback);
+    @Override
+    protected void injectLocalParams() {
+        super.injectLocalParams();
+        if (mGlobalConfig.getGlobalParams() != null) {
+            params.putAll(mGlobalConfig.getGlobalParams());
+        }
+        if (retryCount <= 0) {
+            retryCount = mGlobalConfig.getRetryCount();
+        }
+        if (retryDelayMillis <= 0) {
+            retryDelayMillis = mGlobalConfig.getRetryDelayMillis();
+        }
+        mApi = retrofit.create(Api.class);
+    }
+
+    protected <T> ObservableTransformer<ResponseBody, T> httpTransformer(final Type type) {
+        return apiResultObservable -> apiResultObservable
+                .compose(RxScheduler.netSync())
+                .map(new CastFunc<T>(type));
+    }
 }
