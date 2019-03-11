@@ -1,9 +1,10 @@
 package com.pandaq.pandamvp.ui.launch;
 
+import com.google.gson.Gson;
 import com.pandaq.appcore.framework.base.BasePresenter;
 import com.pandaq.appcore.http.Panda;
 import com.pandaq.appcore.http.transformer.RxScheduler;
-import com.pandaq.appcore.utils.log.Plogger;
+import com.pandaq.pandamvp.entites.UserInfo;
 import com.pandaq.pandamvp.net.ApiService;
 import com.pandaq.pandamvp.net.AppCallBack;
 
@@ -22,6 +23,10 @@ public class LauncherPresenter extends BasePresenter<LauncherContract.View> impl
     }
 
     public void showErrorMsg() {
+        UserInfo userInfo = new UserInfo();
+        userInfo.setAccount("15195867128");
+        userInfo.setToken("token:1sajdaskjdkasdkjadsajkdkad1");
+        userInfo.setUserName("PandaQ");
         api.test()
                 .doOnSubscribe(this::addDisposable)
                 .compose(RxScheduler.observableSync())
@@ -33,7 +38,7 @@ public class LauncherPresenter extends BasePresenter<LauncherContract.View> impl
 
                     @Override
                     protected void fail(Long code, String msg) {
-                        mView.onError(code,msg);
+                        mView.onError(code, msg);
                     }
 
                     @Override

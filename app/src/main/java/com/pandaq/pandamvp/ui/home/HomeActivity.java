@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.pandaq.appcore.eventbus.EventUtils;
-import com.pandaq.appcore.utils.log.Plogger;
+import com.pandaq.appcore.utils.log.PLogger;
 import com.pandaq.commonui.msgwindow.ToastIconGravity;
 import com.pandaq.commonui.msgwindow.Toaster;
 import com.pandaq.pandamvp.R;
@@ -88,43 +88,43 @@ public class HomeActivity extends AppBaseActivity<HomePresenter> implements Home
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Plogger.d("onCreate--->Home");
+        PLogger.d("onCreate--->Home");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Plogger.d("onStart-->Home");
+        PLogger.d("onStart-->Home");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Plogger.d("onResume--->Home");
+        PLogger.d("onResume--->Home");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Plogger.d("onPause--->Home");
+        PLogger.d("onPause--->Home");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Plogger.d("onStop--->Home");
+        PLogger.d("onStop--->Home");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Plogger.d("onDestroy-->Home");
+        PLogger.d("onDestroy-->Home");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Plogger.d("onReStart-->Home");
+        PLogger.d("onReStart-->Home");
     }
 }
 
