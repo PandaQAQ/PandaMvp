@@ -17,13 +17,13 @@ import org.json.JSONObject;
  */
 
 @SuppressLint("LogNotTimber")
-public class Logger {
+public class PLogger {
     private static String className;//类名
     private static int lineNumber;//行数
     private static String TAG = "Log";
     private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
-    private Logger() {
+    private PLogger() {
         /* Protect from instantiations */
     }
 
@@ -36,6 +36,17 @@ public class Logger {
         lineNumber = sElements[1].getLineNumber();
     }
 
+    public static void e(String message, Throwable e) {
+        e(TAG, message, e);
+    }
+
+    public static void e(String tag, String message, Throwable e) {
+        if (!BuildConfig.DEBUG)
+            return;
+        // Throwable instance must be created before any methods
+        getMethodNames(new Throwable().getStackTrace());
+        Log.e(tag, createLog(message), e);
+    }
 
     public static void e(String message) {
         e(TAG, message);

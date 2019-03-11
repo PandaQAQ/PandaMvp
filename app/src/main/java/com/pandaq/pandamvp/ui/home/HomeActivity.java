@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.pandaq.appcore.eventbus.EventUtils;
-import com.pandaq.appcore.utils.log.Logger;
+import com.pandaq.appcore.utils.log.PLogger;
 import com.pandaq.commonui.msgwindow.ToastIconGravity;
 import com.pandaq.commonui.msgwindow.Toaster;
 import com.pandaq.pandamvp.R;
@@ -50,25 +50,6 @@ public class HomeActivity extends AppBaseActivity<HomePresenter> implements Home
 
     }
 
-    @Override
-    public void showLoading(String msg) {
-        super.showLoading(msg);
-    }
-
-    @Override
-    public void hideLoading() {
-        super.hideLoading();
-    }
-
-    @Override
-    public void onError(long errCode, String errMsg) {
-        super.onError(errCode, errMsg);
-    }
-
-    @Override
-    public void onLoadFinish() {
-        super.onLoadFinish();
-    }
 
     @OnClick(R.id.tv_test)
     public void onViewClicked() {
@@ -88,43 +69,43 @@ public class HomeActivity extends AppBaseActivity<HomePresenter> implements Home
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Logger.d("onCreate--->Home");
+        PLogger.d("onCreate--->Home");
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        Logger.d("onStart-->Home");
+        PLogger.d("onStart-->Home");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Logger.d("onResume--->Home");
+        PLogger.d("onResume--->Home");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Logger.d("onPause--->Home");
+        PLogger.d("onPause--->Home");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Logger.d("onStop--->Home");
+        PLogger.d("onStop--->Home");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Logger.d("onDestroy-->Home");
+        PLogger.d("onDestroy-->Home");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Logger.d("onReStart-->Home");
+        PLogger.d("onReStart-->Home");
     }
 }
 
