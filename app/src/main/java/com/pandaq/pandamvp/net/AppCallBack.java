@@ -2,7 +2,7 @@ package com.pandaq.pandamvp.net;
 
 import com.pandaq.appcore.http.exception.ApiException;
 import com.pandaq.appcore.http.observer.ApiObserver;
-import com.pandaq.appcore.utils.log.PLogger;
+import com.pandaq.appcore.utils.log.Logger;
 
 /**
  * Created by huxinyu on 2019/3/8.
@@ -28,7 +28,7 @@ public abstract class AppCallBack<T> extends ApiObserver<T> {
 
     private void handleException(ApiException e) {
         if (e.getCode() == ExceptionCode.TOKEN_INVALID) {
-            PLogger.e("TOKEN 已过期");
+            Logger.e("TOKEN 已过期");
         }
     }
 
