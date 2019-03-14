@@ -17,7 +17,7 @@ import io.reactivex.functions.Function;
  */
 public class RetryFunc implements Function<Observable<Throwable>, ObservableSource<?>> {
 
-    private int count =1;
+    private int count = 1;
     private int maxCount;
     private long retryDelayMillis;
 
@@ -33,7 +33,7 @@ public class RetryFunc implements Function<Observable<Throwable>, ObservableSour
                     || throwable1 instanceof ConnectException)) {
                 return Observable.timer(retryDelayMillis, TimeUnit.MILLISECONDS);
             }
-            return Observable.error(ApiException.handleException(throwable1));
+            throw ApiException.handleException(throwable1);
         });
     }
 }

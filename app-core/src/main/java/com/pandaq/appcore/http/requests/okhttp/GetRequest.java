@@ -1,17 +1,11 @@
 package com.pandaq.appcore.http.requests.okhttp;
 
 import com.pandaq.appcore.http.Panda;
-import com.pandaq.appcore.http.RequestManager;
-import com.pandaq.appcore.http.exception.ApiException;
 import com.pandaq.appcore.http.observer.ApiObserver;
-import com.pandaq.appcore.http.transformer.RetryFunc;
-import com.pandaq.appcore.http.transformer.RxScheduler;
 
 import java.lang.reflect.Type;
 
 import io.reactivex.Observable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Consumer;
 
 /**
  * Created by huxinyu on 2019/1/11.
