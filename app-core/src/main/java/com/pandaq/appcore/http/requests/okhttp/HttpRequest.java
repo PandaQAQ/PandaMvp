@@ -31,8 +31,8 @@ public abstract class HttpRequest<R extends HttpRequest> extends Request<R> {
     protected String url = "";
     // request tag
     protected Object tag;
-    protected Map<String, String> params = new LinkedHashMap<>();//请求参数
-    protected long retryDelayMillis;//请求失败重试间隔时间
+    protected Map<String, String> globalParams = new LinkedHashMap<>();//请求参数
+    private long retryDelayMillis;//请求失败重试间隔时间
 
     /**
      * set request‘s tag，use to manage the request
@@ -69,7 +69,7 @@ public abstract class HttpRequest<R extends HttpRequest> extends Request<R> {
     protected void injectLocalParams() {
         super.injectLocalParams();
         if (mGlobalConfig.getGlobalParams() != null) {
-            params.putAll(mGlobalConfig.getGlobalParams());
+            globalParams.putAll(mGlobalConfig.getGlobalParams());
         }
         if (retryCount <= 0) {
             retryCount = mGlobalConfig.getRetryCount();
