@@ -21,7 +21,7 @@ public class GetRequest extends HttpRequest<GetRequest> {
 
     @Override
     protected <T> Observable<T> execute(Type type) {
-        return mApi.get(url, params)
+        return mApi.get(url, globalParams)
                 .doOnSubscribe(disposable -> {
                     if (tag != null) {
                         Panda.manager().addTag(tag, disposable);

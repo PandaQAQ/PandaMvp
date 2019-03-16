@@ -2,7 +2,9 @@ package com.pandaq.appcore.http;
 
 import com.pandaq.appcore.http.config.HttpGlobalConfig;
 import com.pandaq.appcore.http.requests.okhttp.GetRequest;
-import com.pandaq.appcore.http.requests.okhttp.PostRequest;
+import com.pandaq.appcore.http.requests.okhttp.post.PostBodyRequest;
+import com.pandaq.appcore.http.requests.okhttp.post.PostFormRequest;
+import com.pandaq.appcore.http.requests.okhttp.post.PostRequest;
 import com.pandaq.appcore.http.requests.retrofit.RetrofitRequest;
 
 import java.util.ArrayList;
@@ -20,6 +22,10 @@ import retrofit2.Retrofit;
  * Description :http request tool class
  */
 public class Panda {
+
+    private Panda(){
+
+    }
 
     private static OkHttpClient.Builder okHttpBuilder = new OkHttpClient.Builder();
     private static Retrofit.Builder retrofitBuilder = new Retrofit.Builder();
@@ -41,6 +47,20 @@ public class Panda {
      */
     public static PostRequest post(String url) {
         return new PostRequest(url);
+    }
+
+    /**
+     * form post request
+     */
+    public static PostFormRequest postForm(String url) {
+        return new PostFormRequest(url);
+    }
+
+    /**
+     * body post request
+     */
+    public static PostBodyRequest postBody(String url) {
+        return new PostBodyRequest(url);
     }
 
     /**
