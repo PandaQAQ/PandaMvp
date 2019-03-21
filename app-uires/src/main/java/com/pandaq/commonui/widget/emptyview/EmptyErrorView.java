@@ -3,6 +3,7 @@ package com.pandaq.commonui.widget.emptyview;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -145,19 +146,21 @@ public class EmptyErrorView extends View {
 
     /**
      * 设置文本字体大小
+     *
      * @param textSp 字体大小
      */
     public void setTextSize(float textSp) {
-        mEmptyMsg.setTextSize(textSp);
+        mEmptyMsg.setTextSize(TypedValue.COMPLEX_UNIT_SP, textSp);
     }
 
-//    /**
-//     * 设置文本字体大小
-//     * @param textSp 字体大小
-//     */
-//    public void setTextSize(float textSp,) {
-//        mEmptyMsg.setTextSize(textSp);
-//    }
+    /**
+     * 设置文本字体大小
+     *
+     * @param textSp 字体大小
+     */
+    public void setTextSize(float textSp, int unit) {
+        mEmptyMsg.setTextSize(unit, textSp);
+    }
 
     /**
      * 设置当前页面的点击事件
