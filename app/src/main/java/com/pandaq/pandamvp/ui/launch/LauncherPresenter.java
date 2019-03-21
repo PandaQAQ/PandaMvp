@@ -1,19 +1,11 @@
 package com.pandaq.pandamvp.ui.launch;
 
-import com.google.gson.Gson;
 import com.pandaq.appcore.framework.base.BasePresenter;
-import com.pandaq.appcore.http.Panda;
-import com.pandaq.appcore.http.interceptor.HttpLoggingInterceptor;
-import com.pandaq.appcore.http.requests.okhttp.GetRequest;
-import com.pandaq.appcore.http.transformer.RxScheduler;
+import com.pandaq.appcore.network.Panda;
 import com.pandaq.pandamvp.entites.UserInfo;
 import com.pandaq.pandamvp.entites.Zhihu;
 import com.pandaq.pandamvp.net.ApiService;
 import com.pandaq.pandamvp.net.AppCallBack;
-
-import java.io.IOException;
-
-import okhttp3.ResponseBody;
 
 /**
  * Created by huxinyu on 2018/5/23.

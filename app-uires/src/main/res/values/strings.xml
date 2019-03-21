@@ -1,3 +1,4 @@
 <resources>
     <string name="res_app_name">CommonUI</string>
+    <string name="res_text_net_error">网络在开小差，稍后再试</string>
 </resources>

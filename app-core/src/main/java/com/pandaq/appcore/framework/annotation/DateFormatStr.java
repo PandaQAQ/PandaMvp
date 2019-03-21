@@ -13,7 +13,7 @@ import androidx.annotation.StringDef;
  * Created by huxinyu on 2018/12/24.
  * Email : panda.h@foxmail.com
  * <p>
- * Description :
+ * Description : MakeDateFormatString Rule
  */
 
 @Retention(RetentionPolicy.CLASS)

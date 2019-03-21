@@ -6,9 +6,9 @@ import android.graphics.Color;
 
 import com.pandaq.appcore.cache.CacheTool;
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
-import com.pandaq.appcore.http.Panda;
-import com.pandaq.appcore.http.config.HttpGlobalConfig;
-import com.pandaq.appcore.http.interceptor.HttpLoggingInterceptor;
+import com.pandaq.appcore.network.Panda;
+import com.pandaq.appcore.network.config.HttpGlobalConfig;
+import com.pandaq.appcore.network.interceptor.HttpLoggingInterceptor;
 import com.pandaq.commonui.msgwindow.SnackerConfig;
 import com.pandaq.pandamvp.BuildConfig;
 import com.pandaq.pandamvp.app.Constant;
@@ -36,6 +36,7 @@ public class AppLifeCycle implements IAppLifeCycle {
         SnackerConfig.getDefault()
                 .setActionColor(Color.RED)
                 .setBackgroundColor(Color.GREEN);
+
     }
 
     @Override
