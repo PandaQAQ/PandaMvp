@@ -3,6 +3,7 @@ package com.pandaq.commonui.msgwindow;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -48,6 +49,14 @@ public class Toaster {
             mToast = null;
         }
         return new ToastBuilder(context);
+    }
+
+    /**
+     * 获取当前的 toast
+     * @return 当前的 toast
+     */
+    public static Toast getToast(){
+        return mToast;
     }
 
     public static class ToastBuilder {
@@ -120,7 +129,10 @@ public class Toaster {
         }
 
         @SuppressLint("ShowToast")
-        public Toast show() {
+        public void show() {
+            if (TextUtils.isEmpty(msg)) {
+                return;
+            }
             if (mToast == null) {
                 mToast = Toast.makeText(mContext, msg, duration);
                 // 新建时为显示 ToastMsg 的 textview 设置 tag
@@ -178,7 +190,6 @@ public class Toaster {
                 }
             }
             mToast.show();
-            return mToast;
         }
     }
 

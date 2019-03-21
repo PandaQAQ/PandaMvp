@@ -11,4 +11,5 @@
     <declare-styleable name="ProportionImageView" tools:ignore="ResourceName">
         <attr name="ratio" format="float"/>
     </declare-styleable>
+
 </resources>

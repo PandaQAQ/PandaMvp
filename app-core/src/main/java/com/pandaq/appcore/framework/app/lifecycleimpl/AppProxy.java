@@ -6,8 +6,6 @@ import android.content.Context;
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
 import com.pandaq.appcore.framework.app.lifecycle.ILifecycleInjector;
 import com.pandaq.appcore.framework.app.lifecycle.ManifestParser;
-import com.pandaq.appcore.http.Panda;
-import com.pandaq.appcore.http.converter.PandaConvertFactory;
 import com.pandaq.appcore.utils.system.AppUtils;
 
 import java.util.ArrayList;

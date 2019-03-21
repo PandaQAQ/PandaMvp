@@ -1,6 +1,6 @@
 package com.pandaq.appcore.transmitter;
 
-import com.pandaq.appcore.http.interceptor.HttpLoggingInterceptor;
+import com.pandaq.appcore.network.interceptor.HttpLoggingInterceptor;
 import com.pandaq.appcore.transmitter.download.DownloadInterceptor;
 import com.pandaq.appcore.transmitter.upload.UploadInterceptor;
 

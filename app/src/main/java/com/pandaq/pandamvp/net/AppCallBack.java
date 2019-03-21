@@ -1,7 +1,7 @@
 package com.pandaq.pandamvp.net;
 
-import com.pandaq.appcore.http.exception.ApiException;
-import com.pandaq.appcore.http.observer.ApiObserver;
+import com.pandaq.appcore.network.exception.ApiException;
+import com.pandaq.appcore.network.observer.ApiObserver;
 import com.pandaq.appcore.utils.log.PLogger;
 
 /**
