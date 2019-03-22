@@ -5,11 +5,9 @@ import android.app.Activity;
 import android.content.Context;
 
 import com.pandaq.appcore.permission.runtime.RuntimeRequest;
-import com.pandaq.appcore.permission.source.ActivitySource;
-import com.pandaq.appcore.permission.source.AndroidxFragmentSource;
 import com.pandaq.appcore.permission.source.ContextSource;
-import com.pandaq.appcore.permission.source.FragmentSource;
 import com.pandaq.appcore.permission.source.Source;
+import com.pandaq.appcore.utils.system.AppUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,7 +36,8 @@ public class RtPermission {
     public static boolean hasAlwaysDeniedPermission(
             @NonNull Activity activity,
             @NonNull List<String> deniedPermissions) {
-        return hasAlwaysDeniedPermission(new ActivitySource(activity), deniedPermissions);
+        return hasAlwaysDeniedPermission(new ContextSource(activity.getApplicationContext()),
+                deniedPermissions);
     }
 
     /**
@@ -51,7 +50,14 @@ public class RtPermission {
     public static boolean hasAlwaysDeniedPermission(
             @NonNull Fragment fragment,
             @NonNull List<String> deniedPermissions) {
-        return hasAlwaysDeniedPermission(new AndroidxFragmentSource(fragment), deniedPermissions);
+        Activity activity = fragment.getActivity();
+        Context context;
+        if (activity == null) {
+            context = AppUtils.instance.getApplicationContext();
+        } else {
+            context = activity.getApplicationContext();
+        }
+        return hasAlwaysDeniedPermission(new ContextSource(context), deniedPermissions);
     }
 
     /**
@@ -64,7 +70,14 @@ public class RtPermission {
     public static boolean hasAlwaysDeniedPermission(
             @NonNull android.app.Fragment fragment,
             @NonNull List<String> deniedPermissions) {
-        return hasAlwaysDeniedPermission(new FragmentSource(fragment), deniedPermissions);
+        Activity activity = fragment.getActivity();
+        Context context;
+        if (activity == null) {
+            context = AppUtils.instance.getApplicationContext();
+        } else {
+            context = activity.getApplicationContext();
+        }
+        return hasAlwaysDeniedPermission(new ContextSource(context), deniedPermissions);
     }
 
     /**
@@ -119,7 +132,8 @@ public class RtPermission {
     public static boolean hasAlwaysDeniedPermission(
             @NonNull Activity activity,
             @NonNull String... deniedPermissions) {
-        return hasAlwaysDeniedPermission(new ActivitySource(activity), deniedPermissions);
+        return hasAlwaysDeniedPermission(new ContextSource(activity.getApplicationContext()),
+                deniedPermissions);
     }
 
     /**
@@ -132,7 +146,14 @@ public class RtPermission {
     public static boolean hasAlwaysDeniedPermission(
             @NonNull Fragment fragment,
             @NonNull String... deniedPermissions) {
-        return hasAlwaysDeniedPermission(new AndroidxFragmentSource(fragment), deniedPermissions);
+        Activity activity = fragment.getActivity();
+        Context context;
+        if (activity == null) {
+            context = AppUtils.instance.getApplicationContext();
+        } else {
+            context = activity.getApplicationContext();
+        }
+        return hasAlwaysDeniedPermission(new ContextSource(context), deniedPermissions);
     }
 
     /**
@@ -145,7 +166,14 @@ public class RtPermission {
     public static boolean hasAlwaysDeniedPermission(
             @NonNull android.app.Fragment fragment,
             @NonNull String... deniedPermissions) {
-        return hasAlwaysDeniedPermission(new FragmentSource(fragment), deniedPermissions);
+        Activity activity = fragment.getActivity();
+        Context context;
+        if (activity == null) {
+            context = AppUtils.instance.getApplicationContext();
+        } else {
+            context = activity.getApplicationContext();
+        }
+        return hasAlwaysDeniedPermission(new ContextSource(context), deniedPermissions);
     }
 
     /**
@@ -183,7 +211,7 @@ public class RtPermission {
      */
     @NonNull
     public static ISettingAction permissionSetting(@NonNull Activity activity) {
-        return new SettingActionImp(new ActivitySource(activity));
+        return new SettingActionImp(new ContextSource(activity.getApplicationContext()));
     }
 
     /**
@@ -194,7 +222,14 @@ public class RtPermission {
      */
     @NonNull
     public static ISettingAction permissionSetting(@NonNull Fragment fragment) {
-        return new SettingActionImp(new AndroidxFragmentSource(fragment));
+        Activity activity = fragment.getActivity();
+        Context context;
+        if (activity == null) {
+            context = AppUtils.instance.getApplicationContext();
+        } else {
+            context = activity.getApplicationContext();
+        }
+        return new SettingActionImp(new ContextSource(context));
     }
 
     /**
@@ -205,7 +240,14 @@ public class RtPermission {
      */
     @NonNull
     public static ISettingAction permissionSetting(@NonNull android.app.Fragment fragment) {
-        return new SettingActionImp(new FragmentSource(fragment));
+        Activity activity = fragment.getActivity();
+        Context context;
+        if (activity == null) {
+            context = AppUtils.instance.getApplicationContext();
+        } else {
+            context = activity.getApplicationContext();
+        }
+        return new SettingActionImp(new ContextSource(context));
     }
 
     /**
@@ -227,7 +269,7 @@ public class RtPermission {
      */
     @NonNull
     public static RequestBuilder with(@NonNull Activity activity) {
-        return builder.source(new ActivitySource(activity));
+        return builder.source(new ContextSource(activity.getApplicationContext()));
     }
 
     /**
@@ -238,7 +280,14 @@ public class RtPermission {
      */
     @NonNull
     public static RequestBuilder with(@NonNull Fragment fragment) {
-        return builder.source(new AndroidxFragmentSource(fragment));
+        Activity activity = fragment.getActivity();
+        Context context;
+        if (activity == null) {
+            context = AppUtils.instance.getApplicationContext();
+        } else {
+            context = activity.getApplicationContext();
+        }
+        return builder.source(new ContextSource(context));
     }
 
     /**
@@ -249,7 +298,14 @@ public class RtPermission {
      */
     @NonNull
     public static RequestBuilder with(@NonNull android.app.Fragment fragment) {
-        return builder.source(new FragmentSource(fragment));
+        Activity activity = fragment.getActivity();
+        Context context;
+        if (activity == null) {
+            context = AppUtils.instance.getApplicationContext();
+        } else {
+            context = activity.getApplicationContext();
+        }
+        return builder.source(new ContextSource(context));
     }
 
     /**
