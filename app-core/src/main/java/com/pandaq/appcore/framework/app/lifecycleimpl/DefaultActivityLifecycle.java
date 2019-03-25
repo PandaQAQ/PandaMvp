@@ -62,7 +62,7 @@ public class DefaultActivityLifecycle implements Application.ActivityLifecycleCa
     }
 
     private void registerFragmentCallbacks(Activity activity) {
-        //注册框架外部, 开发者扩展的 Fragment 生命周期逻辑
+        //注册框架外部, 开发者扩展的 BaseFragment 生命周期逻辑
         for (FragmentManager.FragmentLifecycleCallbacks fragmentLifecycle : mFragmentLifeCycles) {
             if (activity instanceof FragmentActivity) {
                 ((FragmentActivity) activity).getSupportFragmentManager().registerFragmentLifecycleCallbacks(fragmentLifecycle, true);

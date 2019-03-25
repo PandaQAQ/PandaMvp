@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.FrameLayout;
 
-import com.pandaq.appcore.framework.base.BaseActivity;
-import com.pandaq.appcore.framework.base.BasePresenter;
+import com.pandaq.appcore.framework.mvp.BaseActivity;
+import com.pandaq.appcore.framework.mvp.BasePresenter;
 import com.pandaq.commonui.guide.GuideCoverView;
 import com.pandaq.commonui.msgwindow.Toaster;
 import com.pandaq.pandamvp.R;
@@ -16,19 +16,20 @@ import androidx.appcompat.widget.Toolbar;
 /**
  * Created by huxinyu on 2018/1/26.
  * Email : panda.h@foxmail.com
- * Description :所有 Activity 类的最基础类
+ * Description :所有 BaseActivity 类的最基础类
  */
 
 public abstract class AppBaseActivity<P extends BasePresenter> extends BaseActivity<P> {
 
-    protected @Nullable Toolbar mToolbar;
+    protected @Nullable
+    Toolbar mToolbar;
     private FrameLayout mParentView;
     /**
      * 遮罩引导载体图层
      */
     private GuideCoverView mGuideCoverView;
     /**
-     * 标识 activity 是否是向导 Activity
+     * 标识 activity 是否是向导 BaseActivity
      */
     protected boolean isGuide;
 
@@ -98,6 +99,8 @@ public abstract class AppBaseActivity<P extends BasePresenter> extends BaseActiv
     }
 
     public void onLoadFinish() {
+        // 加载完成肯定会调用隐藏 loading
+        hideLoading();
         Toaster.with(this)
                 .msg("finishLoading")
                 .show();

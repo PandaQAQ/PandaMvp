@@ -85,7 +85,7 @@ public class ActivityTask {
     }
 
     /**
-     * 结束指定 Activity
+     * 结束指定 BaseActivity
      */
     public void killActivity(Activity activity) {
         mActivityStack.remove(activity);
@@ -130,7 +130,7 @@ public class ActivityTask {
     /**
      * 结束除了当前的其他所有Activity
      *
-     * @param activity 保留的 Activity
+     * @param activity 保留的 BaseActivity
      */
     public void killOthersActivity(Activity activity) {
         if (activity == null) {

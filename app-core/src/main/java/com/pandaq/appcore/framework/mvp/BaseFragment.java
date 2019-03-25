@@ -1,4 +1,4 @@
-package com.pandaq.appcore.framework.base;
+package com.pandaq.appcore.framework.mvp;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,11 +7,8 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * Created by huxinyu on 2018/5/19.
@@ -20,9 +17,7 @@ import butterknife.Unbinder;
  * Description : 给出的模板基类,可选择继承此类实现 bindButterKnife（）方法使用 ButterKnife 绑定 UI
  * 也可完全自己写基类绑定 UI
  */
-public abstract class BaseFragment<P extends BasePresenter> extends Fragment {
-
-    private Unbinder mUnbinder;
+public abstract class BaseFragment<P extends BasePresenter> extends androidx.fragment.app.Fragment implements IContract.IMvpView {
     protected P mPresenter;
 
     protected abstract P injectPresenter();
@@ -43,8 +38,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment {
             throw new RuntimeException("must binContentRes first !!!");
         }
         view = inflater.inflate(bindContentRes(), container, false);
-        mUnbinder = ButterKnife.bind(this, view);
-        initView();
+        initView(view);
         return view;
     }
 
@@ -55,7 +49,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment {
     }
 
     /**
-     * 绑定当前 Fragment 的 layout 资源 id
+     * 绑定当前 BaseFragment 的 layout 资源 id
      *
      * @return layout 资源 id
      */
@@ -69,20 +63,12 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment {
     /**
      * 初始化 View 视图
      */
-    protected abstract void initView();
+    protected abstract void initView(View contentView);
 
     /**
      * 加载数据
      */
     protected abstract void loadData();
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (mUnbinder != null) {
-            mUnbinder.unbind();
-        }
-    }
 
     /**
      * 封装的 fragment 切换工具方法 fragment 中嵌套子 fragment
@@ -92,7 +78,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment {
      * @param to          即将显示的 fragment
      * @return 切换后的 currentFragment
      */
-    protected Fragment switchFragment(int containerId, @Nullable Fragment from, @NonNull Fragment to) {
+    protected androidx.fragment.app.Fragment switchFragment(int containerId, @Nullable androidx.fragment.app.Fragment from, @NonNull androidx.fragment.app.Fragment to) {
         FragmentManager manager = getChildFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         if (to.isAdded()) {
@@ -107,5 +93,11 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment {
             }
         }
         return to;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mPresenter.onMvpViewDetach();
     }
 }

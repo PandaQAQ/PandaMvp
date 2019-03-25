@@ -1,4 +1,4 @@
-package com.pandaq.appcore.framework.base;
+package com.pandaq.appcore.framework.mvp;
 
 import io.reactivex.disposables.Disposable;
 
@@ -8,7 +8,7 @@ import io.reactivex.disposables.Disposable;
  * <p>
  * Description :基础中介接口类
  */
-public interface IBaseContract {
+public interface IContract {
 
     /**
      * <p>
@@ -16,7 +16,7 @@ public interface IBaseContract {
      * <p>
      * module 中让 Mvp 的 baseView 实现此接口（app 中将给出实现模板）
      */
-    interface IBaseMvpView {
+    interface IMvpView {
         /**
          * 显示加载 Loading
          */
@@ -47,7 +47,7 @@ public interface IBaseContract {
      * Description :    /**
      * module 中让 Mvp 的 basePresenter 实现此接口（app 中将给出实现模板）
      */
-    interface IBasePresenter {
+    interface IPresenter {
         /**
          * 统一管理订阅的 Disposable
          *

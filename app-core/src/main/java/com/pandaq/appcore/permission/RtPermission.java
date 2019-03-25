@@ -262,7 +262,7 @@ public class RtPermission {
     }
 
     /**
-     * With Activity.
+     * With BaseActivity.
      *
      * @param activity {@link Activity}.
      * @return {@link RuntimeRequest}.
@@ -273,7 +273,7 @@ public class RtPermission {
     }
 
     /**
-     * With androidx.Fragment.
+     * With androidx.BaseFragment.
      *
      * @param fragment {@link Fragment}.
      * @return {@link RuntimeRequest}.
@@ -291,7 +291,7 @@ public class RtPermission {
     }
 
     /**
-     * With android.app.Fragment.
+     * With android.app.BaseFragment.
      *
      * @param fragment {@link android.app.Fragment}.
      * @return {@link RuntimeRequest}.

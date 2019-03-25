@@ -1,4 +1,4 @@
-package com.pandaq.appcore.framework.base;
+package com.pandaq.appcore.framework.mvp;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -6,9 +6,9 @@ import io.reactivex.disposables.Disposable;
 /**
  * Created by huxinyu on 2018/4/2.
  * Email : panda.h@foxmail.com
- * Description :Presenter 实现类基类模板,可直接 module 中继承重写生命周期函数
+ * Description :BasePresenter 实现类基类模板,可直接 module 中继承重写生命周期函数
  */
-public abstract class BasePresenter<V> implements IBaseContract.IBasePresenter {
+public abstract class BasePresenter<V> implements IContract.IPresenter {
 
     protected V mView;
     //将所有正在处理的Subscription都添加到CompositeSubscription中。统一退出的时候注销观察

@@ -152,4 +152,8 @@ public class RefreshRecyclerView extends FrameLayout {
         mErrorView.setOnPageClickListener(clickListener);
     }
 
+    public void setEnableLoadMore(boolean enable) {
+        mRefreshLayout.setEnableLoadMore(enable);
+    }
+
 }
