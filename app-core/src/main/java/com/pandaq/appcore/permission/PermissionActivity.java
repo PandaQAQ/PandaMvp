@@ -22,7 +22,7 @@ import androidx.annotation.RequiresApi;
  * Created by huxinyu on 2018/12/20.
  * Email : panda.h@foxmail.com
  * <p>
- * Description : 申请权限的 Activity 透明界面
+ * Description : 申请权限的 BaseActivity 透明界面
  */
 @RequiresApi(api = Build.VERSION_CODES.M)
 public final class PermissionActivity extends Activity {

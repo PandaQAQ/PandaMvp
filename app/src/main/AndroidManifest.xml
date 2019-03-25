@@ -24,7 +24,7 @@
             android:value="AppInjector"/>
 
         <activity
-            android:name=".ui.launch.LauncherActivity"
+            android:name=".ui.launch.FlashActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -37,10 +37,6 @@
         <activity
             android:name=".ui.home.HomeActivity"
             android:label="@string/title_">
-        </activity>
-        <activity
-            android:name=".ui.home.bmodule.PlanBActivity"
-            android:label="@string/title_activity_plan_b">
         </activity>
     </application>
 

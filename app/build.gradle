@@ -1,6 +1,9 @@
 apply plugin: 'com.android.application'
 apply plugin: 'org.greenrobot.greendao'
 
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
 android {
 
     compileOptions {
@@ -65,6 +68,7 @@ android {
 }
 
 dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //noinspection GradleCompatible
     implementation rootProject.ext.dependencies["appcompat-v7"]
@@ -77,13 +81,6 @@ dependencies {
     implementation rootProject.ext.dependencies["picasso"]
     //GreenDao 3.0
     implementation rootProject.ext.dependencies["greendao"]
-    // ButterKnife
-    implementation (rootProject.ext.dependencies["butterknife"]) {
-        exclude module: 'support-annotations'
-    }
-    annotationProcessor(rootProject.ext.dependencies["butterknife-compiler"]) {
-        exclude module: 'support-annotations'
-    }
 
     implementation(project(':app-core')) {
         exclude group: 'com.android.support'
@@ -100,4 +97,5 @@ dependencies {
         exclude module: 'appcompat-v7'
         exclude module: 'support-v4'
     }
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
 }
