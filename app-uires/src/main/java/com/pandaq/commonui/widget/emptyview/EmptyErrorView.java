@@ -1,12 +1,10 @@
 package com.pandaq.commonui.widget.emptyview;
 
 import android.content.Context;
-import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.TypedValue;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.pandaq.commonui.R;
@@ -25,8 +23,8 @@ import androidx.constraintlayout.widget.ConstraintLayout;
  * <p>
  * Description :公用的数据加载出错或数据为空页面
  */
-public class EmptyErrorView extends View {
-    enum Mode {
+public class EmptyErrorView extends LinearLayout {
+    public enum Mode {
         // show emptyView
         EMPTY,
         // show errorView
@@ -36,13 +34,9 @@ public class EmptyErrorView extends View {
     // 默认以空数据 View 显示
     private Mode showMode = Mode.EMPTY;
 
-    private ConstraintLayout mContainer;
+    private LinearLayout mContainer;
     private ImageView mEmptyIcon;
     private TextView mEmptyMsg;
-
-    private void setShowMode(Mode mode) {
-        this.showMode = mode;
-    }
 
     public EmptyErrorView(Context context) {
         this(context, Mode.EMPTY);
@@ -62,10 +56,29 @@ public class EmptyErrorView extends View {
      * 初始化
      */
     private void init() {
-        inflate(getContext(), R.layout.res_empty_view, null);
-        mEmptyIcon = findViewById(R.id.iv_icon);
-        mEmptyMsg = findViewById(R.id.tv_message);
-        mContainer = findViewById(R.id.cl_empty_view);
+        inflate(getContext(), R.layout.res_empty_view, this);
+        mEmptyIcon = this.findViewById(R.id.iv_icon);
+        mEmptyMsg = this.findViewById(R.id.tv_message);
+        mContainer = this.findViewById(R.id.cl_empty_view);
+        mEmptyMsg.setTextSize(EmptyConfig.DEFAULT_MSG_SIZE);
+        resetByMode();
+    }
+
+    public void setShowMode(Mode mode) {
+        this.showMode = mode;
+        resetByMode();
+    }
+
+    private void resetByMode() {
+        if (this.showMode == Mode.EMPTY) {
+            mEmptyIcon.setImageResource(EmptyConfig.DEFAULT_EMPTY_ICON);
+            mEmptyMsg.setTextColor(getResources().getColor(EmptyConfig.EMPTY_MSG_COLOR));
+            mEmptyMsg.setText(EmptyConfig.EMPTY_MSG);
+        } else {
+            mEmptyIcon.setImageResource(EmptyConfig.DEFAULT_ERROR_ICON);
+            mEmptyMsg.setTextColor(getResources().getColor(EmptyConfig.ERROR_MSG_COLOR));
+            mEmptyMsg.setText(EmptyConfig.ERROR_MSG);
+        }
     }
 
     /**
@@ -82,7 +95,7 @@ public class EmptyErrorView extends View {
      *
      * @return emptyView 根布局
      */
-    public ConstraintLayout getContainer() {
+    public LinearLayout getContainer() {
         return mContainer;
     }
 
@@ -179,4 +192,6 @@ public class EmptyErrorView extends View {
     public void setOnIconClickListener(OnClickListener listener) {
         mEmptyIcon.setOnClickListener(listener);
     }
+
+
 }

@@ -11,9 +11,11 @@ import com.pandaq.appcore.network.config.HttpGlobalConfig;
 import com.pandaq.appcore.network.interceptor.HttpLoggingInterceptor;
 import com.pandaq.commonui.msgwindow.SnackerConfig;
 import com.pandaq.pandamvp.BuildConfig;
+import com.pandaq.pandamvp.R;
 import com.pandaq.pandamvp.app.Constant;
 import com.pandaq.pandamvp.entites.UserInfo;
 import com.pandaq.pandamvp.net.ApiService;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 
 import androidx.annotation.NonNull;
 
@@ -36,7 +38,6 @@ public class AppLifeCycle implements IAppLifeCycle {
         SnackerConfig.getDefault()
                 .setActionColor(Color.RED)
                 .setBackgroundColor(Color.GREEN);
-
     }
 
     @Override
