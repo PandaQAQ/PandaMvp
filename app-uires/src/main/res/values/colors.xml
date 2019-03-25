@@ -9,4 +9,28 @@
     <color name="res_colorAccent">#FF4081</color>
     <color name="res_colorWhite">#FFFFFF</color>
     <color name="res_dividing">#f0f0f0</color>
+
+    <!--#########################刷新布局刷新头颜色######################-->
+    <color name="res_color_refresh_header1">#3F51B5</color>
+    <color name="res_color_refresh_header2">#E91E63</color>
+    <color name="res_color_refresh_header3">#00BCD4</color>
+    <color name="res_color_load_footer1">#00FFFFFF</color>
+    <color name="res_color_load_footer2">#3F51B5</color>
+
+    <!--#########################文字颜色######################-->
+    <color name="res_colorTextPrimary">@color/res_colorPrimary</color>
+    <!--警告信息文本颜色-->
+    <color name="res_colorTextWarning">#ff9900</color>
+    <!--格式错误提示、格式匹配强调色-->
+    <color name="res_colorTextError">#F66C6C</color>
+    <!--正文颜色，标题颜色-->
+    <color name="res_colorTextMain">#1F2F3E</color>
+    <!--次要文字、辅助说明文字-->
+    <color name="res_colorTextMinor">#A1A7AD</color>
+    <!--缺省页文字、已读文字-->
+    <color name="res_colorTextEmpty">#C1C7D4</color>
+    <!--可点击文字颜色-->
+    <color name="res_colorTextLink">#4894E9</color>
+    <!--Tips 提示文字-->
+    <color name="res_colorTextTip">#525252</color>
 </resources>

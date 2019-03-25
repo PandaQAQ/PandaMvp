@@ -1,21 +1,32 @@
 package com.pandaq.pandamvp.ui.home;
 
-import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
 import com.pandaq.appcore.eventbus.EventUtils;
 import com.pandaq.appcore.utils.log.PLogger;
 import com.pandaq.commonui.msgwindow.ToastIconGravity;
 import com.pandaq.commonui.msgwindow.Toaster;
+import com.pandaq.commonui.widget.recyclerview.RefreshRecyclerView;
 import com.pandaq.pandamvp.R;
 import com.pandaq.pandamvp.events.HomeEvent;
 import com.pandaq.pandamvp.framework.AppBaseActivity;
-import com.pandaq.pandamvp.ui.launch.LauncherActivity;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 
 import org.greenrobot.eventbus.Subscribe;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import butterknife.OnClick;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import butterknife.BindView;
 
 /**
  * By Template Create
@@ -24,6 +35,11 @@ import butterknife.OnClick;
  */
 
 public class HomeActivity extends AppBaseActivity<HomePresenter> implements HomeContract.View {
+
+    @BindView(R.id.cl_container)
+    ConstraintLayout mClContainer;
+    @BindView(R.id.refreshList)
+    RefreshRecyclerView mRefreshList;
 
     @Override
     public HomePresenter injectPresenter() {
@@ -37,7 +53,23 @@ public class HomeActivity extends AppBaseActivity<HomePresenter> implements Home
 
     @Override
     protected void initView() {
-
+        mRefreshList.setLayoutManager(new LinearLayoutManager(this));
+        mRefreshList.setAdapter(mBaseQuickAdapter);
+        mRefreshList.setOnRefreshListener(refreshLayout -> {
+            mClContainer.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    List<String> testData = new ArrayList<>();
+                    testData.add("数据1");
+                    testData.add("数据2");
+                    testData.add("数据3");
+                    testData.add("数据4");
+                    testData.add("数据5");
+                    mBaseQuickAdapter.setNewData(testData);
+                    mRefreshList.finishRefresh(false);
+                }
+            }, 4000);
+        });
     }
 
     @Override
@@ -50,13 +82,6 @@ public class HomeActivity extends AppBaseActivity<HomePresenter> implements Home
 
     }
 
-
-    @OnClick(R.id.tv_test)
-    public void onViewClicked() {
-        Intent intent = new Intent();
-        intent.setClass(this, LauncherActivity.class);
-        startActivity(intent);
-    }
 
     @Subscribe
     public void handleEvent(HomeEvent event) {
@@ -72,40 +97,12 @@ public class HomeActivity extends AppBaseActivity<HomePresenter> implements Home
         PLogger.d("onCreate--->Home");
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        PLogger.d("onStart-->Home");
-    }
+    private BaseQuickAdapter mBaseQuickAdapter = new BaseQuickAdapter<String, BaseViewHolder>(R.layout.res_item_list_select_popup) {
+        @Override
+        protected void convert(BaseViewHolder helper, String item) {
+            helper.setText(R.id.tv_item, item);
+        }
+    };
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        PLogger.d("onResume--->Home");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        PLogger.d("onPause--->Home");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        PLogger.d("onStop--->Home");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        PLogger.d("onDestroy-->Home");
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        PLogger.d("onReStart-->Home");
-    }
 }
 
