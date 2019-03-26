@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--白色背景涟漪-->
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:color="@color/res_ripple"
+        tools:ignore="ResourceName">
+    <item
+        android:id="@android:id/mask"
+        android:drawable="@color/res_colorWhite" />
+    <item android:drawable="@color/res_colorWhite" />
+</ripple>
