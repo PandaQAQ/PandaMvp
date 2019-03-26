@@ -9,7 +9,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.pandaq.commonui.R;
 import com.pandaq.commonui.popupwindows.adapters.ListSelectAdapter;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -26,7 +25,7 @@ public class ListSelectPopupWindow extends PopupWindow implements BaseQuickAdapt
 
     private RecyclerView dataList;
 
-    private List<String> itemDatas;
+    private List<ItemData> itemData;
 
     private Context mContext;
 
@@ -40,18 +39,33 @@ public class ListSelectPopupWindow extends PopupWindow implements BaseQuickAdapt
         init();
     }
 
-    public void setItemData(ArrayList<String> itemDatas, int index) {
-        this.itemDatas = itemDatas;
+    /**
+     * 设置数据
+     *
+     * @param itemData 数据源
+     */
+    public void setItemData(List<ItemData> itemData) {
+        setItemData(itemData, 0);
+    }
+
+    /**
+     * 设置数据
+     *
+     * @param itemData 数据源
+     * @param index    默认选中 index
+     */
+    public void setItemData(List<ItemData> itemData, int index) {
+        this.itemData = itemData;
         if (mAdapter != null) {
-            mAdapter.setNewData(itemDatas);
+            mAdapter.setNewData(itemData);
         } else {
-            mAdapter = new ListSelectAdapter(this.itemDatas);
+            mAdapter = new ListSelectAdapter(this.itemData);
             mAdapter.setOnItemChildClickListener(this);
         }
         if (index >= 0) {
-            mAdapter.setSelected(itemDatas.get(index));
+            mAdapter.setSelected(index);
         } else {
-            mAdapter.setSelected(itemDatas.get(0));
+            mAdapter.setSelected(0);
         }
         dataList.setLayoutManager(new LinearLayoutManager(this.mContext));
         DividerItemDecoration divider = new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL);
@@ -68,14 +82,14 @@ public class ListSelectPopupWindow extends PopupWindow implements BaseQuickAdapt
 
     @Override
     public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-        mAdapter.setSelected(itemDatas.get(position));
+        mAdapter.setSelected(position);
         if (mItemClickListener != null) {
-            mItemClickListener.itemClicked(position, itemDatas.get(position));
+            mItemClickListener.itemClicked(position, itemData.get(position));
         }
     }
 
     public interface OnItemClickListener {
-        void itemClicked(int position, String itemString);
+        void itemClicked(int position, ItemData itemString);
     }
 
     public void addOnItemClickListener(OnItemClickListener listener) {

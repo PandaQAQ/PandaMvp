@@ -5,14 +5,12 @@
     android:id="@+id/cl_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBackground"
+    android:background="@color/res_colorBackground"
     tools:context=".ui.home.HomeActivity">
 
     <com.pandaq.commonui.widget.recyclerview.RefreshRecyclerView
         android:id="@+id/refreshList"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingTop="@dimen/res_dp_16"
-        android:paddingBottom="@dimen/res_dp_16"/>
+        android:layout_height="match_parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

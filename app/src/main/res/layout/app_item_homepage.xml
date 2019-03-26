@@ -3,8 +3,10 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_container"
     android:layout_width="wrap_content"
-    android:layout_height="160dp">
+    android:layout_height="160dp"
+    android:background="@drawable/res_stateful_ripple_white">
 
     <ImageView
         android:id="@+id/iv_icon"

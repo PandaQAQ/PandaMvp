@@ -23,7 +23,7 @@
         android:cursorVisible="false"
         android:inputType="number"
         android:minWidth="@dimen/res_dp_16"
-        android:textColor="@color/res_colorTextBlack"
+        android:textColor="@color/res_colorTextMain"
         android:textSize="@dimen/res_sp_16"/>
 
     <ImageView

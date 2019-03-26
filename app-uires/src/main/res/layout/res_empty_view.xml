@@ -31,7 +31,7 @@
         android:layout_marginTop="@dimen/res_dp_16"
         android:layout_marginEnd="@dimen/res_dp_8"
         android:text="@string/res_text_net_error"
-        android:textColor="@color/res_colorTextGray"
+        android:textColor="@color/res_colorTextEmpty"
         android:textSize="@dimen/sp_14"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
