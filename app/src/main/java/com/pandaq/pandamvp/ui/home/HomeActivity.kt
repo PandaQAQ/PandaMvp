@@ -1,5 +1,6 @@
 package com.pandaq.pandamvp.ui.home
 
+import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -28,12 +29,13 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
             override fun convert(helper: BaseViewHolder?, item: String?) {
                 helper?.let {
                     val itemView = it.getView<ConstraintLayout>(R.id.cl_container)
+                    val icon = it.getView<ImageView>(R.id.iv_icon);
                     itemView.layoutParams.width = DisplayUtils.getScreenWidth() / 3
                     it.setText(R.id.tv_name, item)
                     it.addOnClickListener(R.id.cl_container)
                     PicLoader.with(this@HomeActivity)
                             .load(iconList[it.adapterPosition])
-                            .into(iv_icon)
+                            .into(icon)
                 }
             }
         }
