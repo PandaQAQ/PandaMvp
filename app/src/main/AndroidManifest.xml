@@ -38,6 +38,7 @@
             android:name=".ui.home.HomeActivity"
             android:label="@string/title_">
         </activity>
+        <activity android:name=".ui.functions.GalleryActivity"/>
     </application>
 
 </manifest>

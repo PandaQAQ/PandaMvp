@@ -1,5 +1,7 @@
 package com.pandaq.pandamvp.ui.home
 
+import android.content.Intent
+import android.os.Environment
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
@@ -8,13 +10,16 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.pandaq.appcore.framework.mvp.BasePresenter
 import com.pandaq.appcore.imageloader.core.PicLoader
+import com.pandaq.appcore.permission.RtPermission
+import com.pandaq.appcore.utils.system.FileUtils
 import com.pandaq.commonui.msgwindow.Toaster
 import com.pandaq.commonui.utils.DisplayUtils
 import com.pandaq.commonui.widget.recyclerview.decoration.DividerDecoration
 import com.pandaq.pandamvp.R
 import com.pandaq.pandamvp.framework.AppBaseActivity
+import com.pandaq.pandamvp.ui.functions.GalleryActivity
 import kotlinx.android.synthetic.main.app_activity_home.*
-import kotlinx.android.synthetic.main.app_item_homepage.*
+import java.io.File
 
 /**
  * Created by huxinyu on 2019/3/25.
@@ -72,9 +77,31 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
         refreshList.setEnableLoadMore(false)
         refreshList.addItemDecoration(DividerDecoration(DisplayUtils.dp2px(8f), 3))
         adapter.setOnItemChildClickListener { adapter, _, position ->
-            Toaster.with(this)
-                    .msg(adapter.data[position] as String)
-                    .show()
+            when (position) {
+                0 -> {
+                    val intent = Intent(this, GalleryActivity::class.java)
+                    startActivity(intent)
+                }
+                1 -> {
+                    RtPermission.with(this)
+                            .install(Environment.getExternalStoragePublicDirectory("panda")
+                                    .absolutePath + File.separator + "panda.apk")
+                            .onDenied {
+                                Toaster.with(this)
+                                        .msg("无应用安装权限！")
+                                        .show()
+                            }
+                            .start()
+                }
+                3 -> {
+                    FileUtils.getUri(this, "sdsadadas")
+                }
+                else -> {
+                    Toaster.with(this)
+                            .msg(adapter.data[position] as String)
+                            .show()
+                }
+            }
         }
     }
 

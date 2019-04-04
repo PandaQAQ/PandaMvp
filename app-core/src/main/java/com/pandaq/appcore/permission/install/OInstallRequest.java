@@ -26,7 +26,7 @@ public class OInstallRequest extends BaseInstallRequest implements Executor, Per
 
 
     @Override
-    final public void execute() {
+    public final void execute() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             PermissionActivity.requestInstall(mSource.getContext(), this);
         }
@@ -34,7 +34,7 @@ public class OInstallRequest extends BaseInstallRequest implements Executor, Per
 
 
     @Override
-    final public void onRequestCallback() {
+    public final void onRequestCallback() {
         new Handler(Looper.getMainLooper()).postDelayed(this::dispatchCallback, 100);
     }
 
@@ -47,7 +47,7 @@ public class OInstallRequest extends BaseInstallRequest implements Executor, Per
     }
 
     @Override
-    final public void start() {
+    public final void start() {
         if (mSource.canRequestPackageInstalls()) {
             installExecute();
         } else {
@@ -57,14 +57,14 @@ public class OInstallRequest extends BaseInstallRequest implements Executor, Per
 
     @NonNull
     @Override
-    final public InstallRequest file(File apk) {
+    public final InstallRequest file(File apk) {
         mFile = apk;
         return this;
     }
 
     @NonNull
     @Override
-    final public InstallRequest file(String path) {
+    public final InstallRequest file(String path) {
         mFile = new File(path);
         return this;
     }

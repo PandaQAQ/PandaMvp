@@ -27,14 +27,14 @@ public abstract class BaseInstallRequest implements InstallRequest {
     private Action<File> mDenied;
 
     @NonNull
-    final public InstallRequest source(Source source) {
+    public final InstallRequest source(Source source) {
         mSource = source;
         return this;
     }
 
     @NonNull
     @Override
-    final public InstallRequest onDenied(Action<File> denied) {
+    public final InstallRequest onDenied(Action<File> denied) {
         this.mDenied = denied;
         return this;
     }
