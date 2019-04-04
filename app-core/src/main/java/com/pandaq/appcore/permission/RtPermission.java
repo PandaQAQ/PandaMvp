@@ -318,7 +318,6 @@ public class RtPermission {
     public static RequestBuilder with(@NonNull Context context) {
         return builder.source(new ContextSource(context));
     }
-
     private RtPermission() {
     }
 

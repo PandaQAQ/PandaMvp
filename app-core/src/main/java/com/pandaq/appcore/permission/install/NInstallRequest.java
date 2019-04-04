@@ -26,14 +26,14 @@ public class NInstallRequest extends BaseInstallRequest {
 
     @NonNull
     @Override
-    final public InstallRequest file(File apk) {
+    public final  InstallRequest file(File apk) {
         mFile = apk;
         return this;
     }
 
     @NonNull
     @Override
-    final public InstallRequest file(String path) {
+    public final  InstallRequest file(String path) {
         mFile = new File(path);
         return this;
     }

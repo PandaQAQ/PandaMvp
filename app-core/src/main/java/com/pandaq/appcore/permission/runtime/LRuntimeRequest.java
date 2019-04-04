@@ -55,20 +55,20 @@ public class LRuntimeRequest extends BaseRuntimeRequest implements RuntimeReques
 
     @NonNull
     @Override
-    final public RuntimeRequest rationale(Rationale listener) {
+    public final RuntimeRequest rationale(Rationale listener) {
         return this;
     }
 
     @NonNull
     @Override
-    final public RuntimeRequest onGranted(Action<List<String>> granted) {
+    public final RuntimeRequest onGranted(Action<List<String>> granted) {
         this.mGranted = granted;
         return this;
     }
 
     @NonNull
     @Override
-    final public RuntimeRequest onDenied(Action<List<String>> denied) {
+    public final RuntimeRequest onDenied(Action<List<String>> denied) {
         this.mDenied = denied;
         return this;
     }
@@ -81,7 +81,7 @@ public class LRuntimeRequest extends BaseRuntimeRequest implements RuntimeReques
     }
 
     @Override
-    final public void start() {
+    public final void start() {
         List<String> deniedList = getDeniedPermissions(mSource, mPermissions);
         if (deniedList.isEmpty())
             callbackSucceed();

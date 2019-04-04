@@ -51,14 +51,14 @@ public class MRuntimeRequest extends BaseRuntimeRequest implements RuntimeReques
 
     @NonNull
     @Override
-    final public RuntimeRequest permission(String... permissions) {
+    public final RuntimeRequest permission(String... permissions) {
         this.mPermissions = permissions;
         return this;
     }
 
     @NonNull
     @Override
-    final public RuntimeRequest permission(String[]... groups) {
+    public final RuntimeRequest permission(String[]... groups) {
         List<String> permissionList = new ArrayList<>();
         for (String[] group : groups) {
             permissionList.addAll(Arrays.asList(group));
@@ -70,21 +70,21 @@ public class MRuntimeRequest extends BaseRuntimeRequest implements RuntimeReques
 
     @NonNull
     @Override
-    final public RuntimeRequest rationale(Rationale<List<String>> listener) {
+    public final RuntimeRequest rationale(Rationale<List<String>> listener) {
         this.mRationaleListener = listener;
         return this;
     }
 
     @NonNull
     @Override
-    final public RuntimeRequest onGranted(Action<List<String>> granted) {
+    public final RuntimeRequest onGranted(Action<List<String>> granted) {
         this.mGranted = granted;
         return this;
     }
 
     @NonNull
     @Override
-    final public RuntimeRequest onDenied(Action<List<String>> denied) {
+    public final RuntimeRequest onDenied(Action<List<String>> denied) {
         this.mDenied = denied;
         return this;
     }
@@ -97,7 +97,7 @@ public class MRuntimeRequest extends BaseRuntimeRequest implements RuntimeReques
     }
 
     @Override
-    final public void start() {
+    public final void start() {
         List<String> deniedList = getDeniedPermissions(CHECKER, mSource, mPermissions);
         mDeniedPermissions = deniedList.toArray(new String[0]);
         if (mDeniedPermissions.length > 0) { // 如果被拒绝权限不为空
@@ -115,12 +115,12 @@ public class MRuntimeRequest extends BaseRuntimeRequest implements RuntimeReques
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
-    final public void execute() {
+    public final void execute() {
         PermissionActivity.requestPermission(mSource.getContext(), mDeniedPermissions, this);
     }
 
     @Override
-    final public void onRequestPermissionsResult(@NonNull String[] permissions) {
+    public final void onRequestPermissionsResult(@NonNull String[] permissions) {
         List<String> deniedList = getDeniedPermissions(DOUBLE_CHECKER, mSource, permissions);
         if (deniedList.isEmpty()) {
             callbackSucceed();
