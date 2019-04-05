@@ -17,9 +17,15 @@ import com.pandaq.commonui.utils.DisplayUtils
 import com.pandaq.commonui.widget.recyclerview.decoration.DividerDecoration
 import com.pandaq.pandamvp.R
 import com.pandaq.pandamvp.framework.AppBaseActivity
+import com.pandaq.pandamvp.net.AppCallBack
 import com.pandaq.pandamvp.ui.functions.GalleryActivity
+import io.reactivex.Observable
+import io.reactivex.ObservableSource
+import io.reactivex.functions.BiFunction
+import io.reactivex.functions.Function
 import kotlinx.android.synthetic.main.app_activity_home.*
 import java.io.File
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by huxinyu on 2019/3/25.
@@ -34,7 +40,7 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
             override fun convert(helper: BaseViewHolder?, item: String?) {
                 helper?.let {
                     val itemView = it.getView<ConstraintLayout>(R.id.cl_container)
-                    val icon = it.getView<ImageView>(R.id.iv_icon);
+                    val icon = it.getView<ImageView>(R.id.iv_icon)
                     itemView.layoutParams.width = DisplayUtils.getScreenWidth() / 3
                     it.setText(R.id.tv_name, item)
                     it.addOnClickListener(R.id.cl_container)
@@ -93,6 +99,9 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
                             }
                             .start()
                 }
+                2 -> {
+                    contact()
+                }
                 3 -> {
                     FileUtils.getUri(this, "sdsadadas")
                 }
@@ -117,6 +126,108 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
         list.add("向导遮罩")
         adapter.setNewData(list)
         refreshList.finishRefresh(true)
+    }
+
+
+    private val observable = Observable.fromArray(1, 2, 3)
+            .concatMap(object : Function<Int, ObservableSource<Int>> {
+                override fun apply(t: Int): ObservableSource<Int> {
+                    return Observable.just(t).delay(1000, TimeUnit.MILLISECONDS)
+                }
+            })
+
+    private val observable1 = Observable.just("a", "b", "c")
+            .concatMap(object : Function<String, ObservableSource<String>> {
+                override fun apply(t: String): ObservableSource<String> {
+                    return Observable.just(t).delay(800, TimeUnit.MILLISECONDS)
+                }
+            })
+
+    private fun contact() {
+        Observable.concat(observable, observable1)
+                .subscribe(object : AppCallBack<Any>() {
+                    override fun success(data: Any?) {
+                        println("contact----->$data")
+                    }
+
+                    override fun fail(code: Long?, msg: String?) {
+
+                    }
+
+                    override fun finish(success: Boolean) {
+                        merge()
+                    }
+
+                })
+    }
+
+    private fun merge() {
+        Observable.merge(observable, observable1)
+                .subscribe(object : AppCallBack<Any>() {
+                    override fun success(data: Any?) {
+                        println("merge----->$data")
+                    }
+
+                    override fun fail(code: Long?, msg: String?) {
+
+                    }
+
+                    override fun finish(success: Boolean) {
+                        zip()
+                    }
+
+                })
+    }
+
+    private fun zip() {
+        val observables = mutableListOf<Observable<*>>()
+        observables.add(observable)
+        observables.add(observable1)
+        observables.add(observable)
+
+        Observable.zip(observables, object : Function<Any, String> {
+            override fun apply(t: Any): String {
+                if (t is Int) {
+                    println("$t is Int")
+                }
+                if (t is String) {
+                    println("$t is String")
+                }
+                return t.toString()
+            }
+        }).subscribe(object : AppCallBack<String>() {
+            override fun success(data: String?) {
+                println("zip----->$data")
+            }
+
+            override fun fail(code: Long?, msg: String?) {
+
+            }
+
+            override fun finish(success: Boolean) {
+
+            }
+
+        })
+
+//        Observable.zip(observable, observable1, object : BiFunction<Int, String, String> {
+//            override fun apply(t1: Int, t2: String): String {
+//                return "t1=$t1  t2=$t2"
+//            }
+//        }).subscribe(object : AppCallBack<String>() {
+//            override fun success(data: String?) {
+//                println("zip----->$data")
+//            }
+//
+//            override fun fail(code: Long?, msg: String?) {
+//
+//            }
+//
+//            override fun finish(success: Boolean) {
+//
+//            }
+//
+//        })
     }
 
 }
