@@ -1,5 +1,6 @@
 include ':app',
-        ':app-core',
-        ':app-uires',
-        ':thirdlibs:lib-pay',
-        ':thirdlibs:lib-browser'
+        ':functionlibs:pay',
+        ':uires',
+        ':router',
+        ':sdk_core'
+

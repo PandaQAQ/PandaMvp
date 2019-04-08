@@ -13,7 +13,7 @@ android {
 
     defaultConfig {
         applicationId "com.pandaq.pandamvp"
-        compileSdkVersion 28
+        compileSdkVersion rootProject.ext.android["compileSdkVersion"]
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
@@ -72,7 +72,6 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //noinspection GradleCompatible
     implementation rootProject.ext.dependencies["appcompat-v7"]
-//    implementation rootProject.ext.dependencies["support-v4"]
     testImplementation rootProject.ext.dependencies["junit"]
     androidTestImplementation rootProject.ext.dependencies["test-runner"]
     androidTestImplementation rootProject.ext.dependencies["espresso-core"]
@@ -82,17 +81,13 @@ dependencies {
     //GreenDao 3.0
     implementation rootProject.ext.dependencies["greendao"]
 
-    implementation(project(':app-core')) {
+    implementation(project(':uires')) {
         exclude group: 'com.android.support'
         exclude module: 'appcompat-v7'
         exclude module: 'support-v4'
     }
-    implementation(project(':app-uires')) {
-        exclude group: 'com.android.support'
-        exclude module: 'appcompat-v7'
-        exclude module: 'support-v4'
-    }
-    implementation(project(':thirdlibs:lib-pay')) {
+
+    implementation(project(':functionlibs:pay')) {
         exclude group: 'com.android.support'
         exclude module: 'appcompat-v7'
         exclude module: 'support-v4'

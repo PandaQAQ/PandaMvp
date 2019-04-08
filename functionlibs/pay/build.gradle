@@ -1,0 +1,25 @@
+apply from:"../../common_sdk_build.gradle"
+
+android{
+    defaultConfig{
+        resourcePrefix "pay"
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    compileOnly rootProject.ext.dependencies["design"]
+    compileOnly rootProject.ext.dependencies["appcompat-v7"]
+    testCompileOnly rootProject.ext.dependencies["junit"]
+    androidTestCompileOnly rootProject.ext.dependencies["test-runner"]
+    androidTestCompileOnly rootProject.ext.dependencies["espresso-core"]
+    api(project(':uires')){
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-v4'
+    }
+    //微信支付
+    api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.1.4'
+    //支付宝接入方式为 jar 包接入
+    api files('libs/alipaySdk-20180601.jar')
+}

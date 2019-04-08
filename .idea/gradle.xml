@@ -9,11 +9,11 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/app-core" />
-            <option value="$PROJECT_DIR$/app-uires" />
-            <option value="$PROJECT_DIR$/thirdlibs" />
-            <option value="$PROJECT_DIR$/thirdlibs/lib-browser" />
-            <option value="$PROJECT_DIR$/thirdlibs/lib-pay" />
+            <option value="$PROJECT_DIR$/functionlibs" />
+            <option value="$PROJECT_DIR$/functionlibs/pay" />
+            <option value="$PROJECT_DIR$/router" />
+            <option value="$PROJECT_DIR$/sdk_core" />
+            <option value="$PROJECT_DIR$/uires" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

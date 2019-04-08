@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="browser_colorPrimary">#3F51B5</color>
-    <color name="browser_colorPrimaryCenter">#3548b3</color>
-    <color name="browser_colorPrimaryDark">#303F9F</color>
-    <color name="browser_colorAccent">#FF4081</color>
-    <color name="browser_colorWhite">#FFFFFF</color>
-</resources>
