@@ -1,2 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.pandaq.router"/>
+          package="com.pandaq.router">
+
+    <application>
+        <meta-data
+            android:name="com.pandaq.router.lifecycle.LifeCycleInjector"
+            android:value="AppInjector"/>
+    </application>
+</manifest>

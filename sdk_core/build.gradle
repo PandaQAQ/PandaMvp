@@ -1,11 +1,26 @@
-apply from: "../common_sdk_build.gradle"
+apply plugin: 'com.android.library'
 
 android {
-    buildToolsVersion = '28.0.3'
     defaultConfig{
-        resourcePrefix "core"
+        compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    defaultConfig {
+
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            consumerProguardFiles 'proguard-rules.pro'
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -37,7 +52,6 @@ dependencies {
     //图片框架，如果需要使用，编译依赖即可
     api rootProject.ext.dependencies["glide"]
     annotationProcessor rootProject.ext.dependencies["glide-annotation"]
-
-    implementation "com.android.support:support-annotations:28.0.0"
-    annotationProcessor 'com.android.support:support-annotations:28.0.0'
+    compileOnly "com.android.support:support-annotations:28.0.0"
+    annotationProcessor "com.android.support:support-annotations:28.0.0"
 }

@@ -6,12 +6,12 @@ import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.pandaq.appcore.framework.mvp.BasePresenter
 import com.pandaq.appcore.imageloader.core.PicLoader
-import com.pandaq.appcore.network.Panda
-import com.pandaq.appcore.network.entity.ApiData
 import com.pandaq.appcore.permission.RtPermission
 import com.pandaq.appcore.utils.system.FileUtils
 import com.pandaq.commonui.msgwindow.Toaster
@@ -19,17 +19,15 @@ import com.pandaq.commonui.utils.DisplayUtils
 import com.pandaq.commonui.widget.recyclerview.decoration.DividerDecoration
 import com.pandaq.pandamvp.R
 import com.pandaq.pandamvp.framework.AppBaseActivity
-import com.pandaq.pandamvp.net.ApiService
 import com.pandaq.pandamvp.net.AppCallBack
 import com.pandaq.pandamvp.ui.functions.GalleryActivity
+import com.pandaq.router.routers.RouterPath
 import io.reactivex.Observable
 import io.reactivex.ObservableSource
 import io.reactivex.functions.BiFunction
 import io.reactivex.functions.Function
 import kotlinx.android.synthetic.main.app_activity_home.*
-import okhttp3.*
 import java.io.File
-import java.io.IOException
 import java.util.concurrent.TimeUnit
 
 /**
@@ -37,6 +35,7 @@ import java.util.concurrent.TimeUnit
  * Email : panda.h@foxmail.com
  * Description :
  */
+@Route(path = RouterPath.APP_ACTIVITY_HOME)
 class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
 
 
@@ -104,11 +103,15 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
                             }
                             .start()
                 }
-                2 -> {
-                    contact()
+                6 -> {
+                    ARouter.getInstance()
+                            .build(RouterPath.A_ACTIVITY_MAIN)
+                            .navigation(this)
                 }
-                3 -> {
-                    FileUtils.getUri(this, "sdsadadas")
+                7 -> {
+                    ARouter.getInstance()
+                            .build(RouterPath.B_ACTIVITY_MAIN)
+                            .navigation(this)
                 }
                 else -> {
                     Toaster.with(this)
@@ -127,122 +130,9 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
         list.add("网络请求")
         list.add("WebView")
         list.add("Dialogs")
-        list.add("Pickers")
-        list.add("向导遮罩")
+        list.add("跳转 A Module ")
+        list.add("跳转 B Module")
         adapter.setNewData(list)
         refreshList.finishRefresh(true)
     }
-
-    private val observable = Observable.fromArray(1, 2, 3)
-            .concatMap(object : Function<Int, ObservableSource<Int>> {
-                override fun apply(t: Int): ObservableSource<Int> {
-                    return Observable.just(t).delay(1000, TimeUnit.MILLISECONDS)
-                }
-            })
-
-    private val observable1 = Observable.just("a", "b", "c")
-            .concatMap(object : Function<String, ObservableSource<String>> {
-                override fun apply(t: String): ObservableSource<String> {
-                    return Observable.just(t).delay(400, TimeUnit.MILLISECONDS)
-                }
-            })
-
-    private val observable2 = Observable.fromArray(1.0f, 2.0f, 3.0f)
-            .concatMap(object : Function<Float, ObservableSource<Float>> {
-                override fun apply(t: Float): ObservableSource<Float> {
-                    return Observable.just(t).delay(1000, TimeUnit.MILLISECONDS)
-                }
-            })
-
-    private fun contact() {
-        Observable.concat(observable, observable1)
-                .subscribe(object : AppCallBack<Any>() {
-                    override fun success(data: Any?) {
-                        println("contact----->$data")
-                    }
-
-                    override fun fail(code: Long?, msg: String?) {
-
-                    }
-
-                    override fun finish(success: Boolean) {
-                        merge()
-                    }
-
-                })
-    }
-
-    private fun merge() {
-        Observable.merge(observable, observable1)
-                .subscribe(object : AppCallBack<Any>() {
-                    override fun success(data: Any?) {
-                        println("merge----->$data")
-                    }
-
-                    override fun fail(code: Long?, msg: String?) {
-
-                    }
-
-                    override fun finish(success: Boolean) {
-                        zip()
-                    }
-
-                })
-    }
-
-    private fun zip() {
-        val observables = mutableListOf<Observable<*>>()
-        observables.add(observable)
-        observables.add(observable1)
-        observables.add(observable)
-
-//        Observable.zip(observables, object : Function<Array<Any>, String> {
-//            override fun apply(t: Array<Any>): String {
-//                var result = ""
-//                t.forEach {
-//                    if (it is Int) {
-//                        println("$it is Int")
-//                    }
-//                    if (it is String) {
-//                        println("$it is String")
-//                    }
-//                    result = "$result$it------"
-//                }
-//                return result
-//            }
-//        }).subscribe(object : AppCallBack<String>() {
-//            override fun success(data: String?) {
-//                println("zip----->$data")
-//            }
-//
-//            override fun fail(code: Long?, msg: String?) {
-//
-//            }
-//
-//            override fun finish(success: Boolean) {
-//
-//            }
-//
-//        })
-
-        Observable.zip(observable, observable1, object : BiFunction<Int, String, String> {
-            override fun apply(t1: Int, t2: String): String {
-                return "t1=$t1  t2=$t2"
-            }
-        }).subscribe(object : AppCallBack<String>() {
-            override fun success(data: String?) {
-                println("zip----->$data")
-            }
-
-            override fun fail(code: Long?, msg: String?) {
-
-            }
-
-            override fun finish(success: Boolean) {
-
-            }
-
-        })
-    }
-
 }

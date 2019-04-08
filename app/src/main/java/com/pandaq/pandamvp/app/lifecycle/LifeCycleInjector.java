@@ -24,12 +24,12 @@ public class LifeCycleInjector implements ILifecycleInjector {
     @Override
     public void injectActivityLifeCycle(Application application, List<Application.ActivityLifecycleCallbacks> activityLifecycleCallbacks) {
         // add it if you have do something in ActivityLifeCycle
-        //        activityLifecycleCallbacks.add(new ActivityLifeCycle());
+        activityLifecycleCallbacks.add(new ActivityLifeCycle());
     }
 
     @Override
     public void injectFragmentLifeCycle(Application application, List<FragmentManager.FragmentLifecycleCallbacks> fragmentLifecycleCallbacks) {
         // add it if you have do something in FragmentLifeCycle
-        //        activityLifecycleCallbacks.add(new FragmentLifeCycle());
+        fragmentLifecycleCallbacks.add(new FragmentLifeCycle());
     }
 }

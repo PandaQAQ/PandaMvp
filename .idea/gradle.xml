@@ -9,6 +9,8 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/app_amodule" />
+            <option value="$PROJECT_DIR$/app_bmodule" />
             <option value="$PROJECT_DIR$/functionlibs" />
             <option value="$PROJECT_DIR$/functionlibs/pay" />
             <option value="$PROJECT_DIR$/router" />
