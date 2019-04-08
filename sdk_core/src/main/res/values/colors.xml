@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <color name="colorPrimary" tools:ignore="ResourceName">#3F51B5</color>
+    <color name="colorPrimaryDark" tools:ignore="ResourceName">#303F9F</color>
+    <color name="colorPrimaryCenter" tools:ignore="ResourceName">#3548b3</color>
+    <color name="colorAccent" tools:ignore="ResourceName">#FF4081</color>
+    <color name="core_colorWhite">#FFFFFF</color>
+    <color name="core_colorTrans">#00FFFFFF</color>
+    <color name="core_colorNegative">#b9b9b9</color>
+</resources>

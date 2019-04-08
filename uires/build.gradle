@@ -1,0 +1,38 @@
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        resourcePrefix "res"
+        compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    api(project(':sdk_core')) {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-v4'
+    }
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    compileOnly rootProject.ext.dependencies["design"]
+    compileOnly rootProject.ext.dependencies["appcompat-v7"]
+    testCompileOnly rootProject.ext.dependencies["junit"]
+    androidTestCompileOnly rootProject.ext.dependencies["test-runner"]
+    androidTestCompileOnly rootProject.ext.dependencies["espresso-core"]
+    api rootProject.ext.dependencies["brvah"]
+    api rootProject.ext.dependencies["constraint-layout"]
+    api rootProject.ext.dependencies["refresh-layout"]
+    api rootProject.ext.dependencies["refresh-header"]
+}

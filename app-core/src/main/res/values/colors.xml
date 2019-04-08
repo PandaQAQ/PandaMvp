@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <color name="core_colorPrimary">#3F51B5</color>
-    <color name="core_colorPrimaryDark">#303F9F</color>
-    <color name="core_colorAccent">#FF4081</color>
-    <color name="core_colorWhite">#FFFFFF</color>
-    <color name="core_colorTrans">#00FFFFFF</color>
-    <color name="core_colorNegative">#b9b9b9</color>
-</resources>

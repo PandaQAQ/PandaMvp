@@ -15,8 +15,8 @@ import kotlinx.android.synthetic.main.app_activity_flash.*
  * Email : panda.h@foxmail.com
  * Description :
  */
-class FlashActivity : AppBaseActivity<FlashPresenter<FlashContract.View>>(), FlashContract.View {
-    override fun injectPresenter(): FlashPresenter<FlashContract.View> {
+class FlashActivity : AppBaseActivity<FlashPresenter>(), FlashContract.View {
+    override fun injectPresenter(): FlashPresenter {
         return FlashPresenter(this)
     }
 
