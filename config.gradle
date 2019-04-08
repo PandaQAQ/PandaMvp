@@ -1,6 +1,7 @@
 ext {
 
     android = [
+            buildToolsVersion: 28,
             compileSdkVersion: 28,
             targetSdkVersion : 28,
             minSdkVersion    : 21,
@@ -16,7 +17,7 @@ ext {
     version = [
             androidSupportVersion: "1.0.0",
             retrofitVersion      : "2.4.0",
-            glideVersion         : "4.8.0",
+            glideVersion         : "4.9.0",
     ]
 
 //    plugin = [
@@ -68,5 +69,7 @@ ext {
             //SmartRefreshLayout
             "refresh-layout"           : "com.scwang.smartrefresh:SmartRefreshLayout:1.1.0-andx-1",
             "refresh-header"           : "com.scwang.smartrefresh:SmartRefreshHeader:1.1.0-andx-1",
+            "arouter" :'com.alibaba:arouter-api:1.4.1',
+            "arouter_compiler":"com.alibaba:arouter-compiler:1.2.2",
     ]
 }

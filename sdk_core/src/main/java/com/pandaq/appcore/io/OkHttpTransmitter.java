@@ -1,8 +1,8 @@
 package com.pandaq.appcore.io;
 
-import com.pandaq.appcore.network.interceptor.HttpLoggingInterceptor;
 import com.pandaq.appcore.io.download.DownloadInterceptor;
 import com.pandaq.appcore.io.upload.UploadInterceptor;
+import com.pandaq.appcore.network.interceptor.HttpLoggingInterceptor;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -55,7 +55,7 @@ public class OkHttpTransmitter {
      * @param url       上传
      * @param paramsMap 上传请求参数
      */
-    public void uploadFile(String url, Map<String, Object> paramsMap, TransmitCallback callback) {
+    public void uploadFile(String url, Map<String, Object> paramsMap, final TransmitCallback callback) {
         MultipartBody.Builder multipartBody = new MultipartBody.Builder();
         //form 表单上传
         multipartBody.setType(MultipartBody.FORM);
@@ -73,21 +73,24 @@ public class OkHttpTransmitter {
         }
         RequestBody requestBody = multipartBody.build();
         //创建Request对象
-        Request request = new Request.Builder().url(url).post(requestBody).build();
-        mExecutorService.execute(() -> {
-            try {
-                new OkHttpClient.Builder()
-                        //设置最长读写时间
-                        .readTimeout(100000, TimeUnit.SECONDS)
-                        .writeTimeout(100000, TimeUnit.SECONDS)
-                        .connectTimeout(100000, TimeUnit.SECONDS)
-                        .addInterceptor(new UploadInterceptor(callback))
+        final Request request = new Request.Builder().url(url).post(requestBody).build();
+        mExecutorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    new OkHttpClient.Builder()
+                            //设置最长读写时间
+                            .readTimeout(100000, TimeUnit.SECONDS)
+                            .writeTimeout(100000, TimeUnit.SECONDS)
+                            .connectTimeout(100000, TimeUnit.SECONDS)
+                            .addInterceptor(new UploadInterceptor(callback))
 //                        .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                        .build()
-                        .newCall(request)
-                        .execute();
-            } catch (IOException e) {
-                e.printStackTrace();
+                            .build()
+                            .newCall(request)
+                            .execute();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -98,7 +101,7 @@ public class OkHttpTransmitter {
      * @param file 下载文件存放位置
      * @param url  下载地址
      */
-    public void downloadFile(final File file, String url, TransmitCallback callback) {
+    public void downloadFile(final File file, String url, final TransmitCallback callback) {
         // 父目录是否存在
         File parent = file.getParentFile();
         if (!parent.exists()) {
@@ -112,38 +115,43 @@ public class OkHttpTransmitter {
                 e.printStackTrace();
             }
         }
-        Request request = new Request.Builder().url(url).build();
-        mExecutorService.execute(() -> new OkHttpClient.Builder()
-                .readTimeout(100000, TimeUnit.SECONDS)
-                .writeTimeout(100000, TimeUnit.SECONDS)
-                .connectTimeout(100000, TimeUnit.SECONDS)
-                .addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                .addInterceptor(new DownloadInterceptor(callback))
-                .build()
-                .newCall(request)
-                .enqueue(new Callback() {
-                    @Override
-                    public void onFailure(@NonNull Call call, @NonNull IOException e) {
-                        e.printStackTrace();
-                    }
+        final Request request = new Request.Builder().url(url).build();
+        mExecutorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                new OkHttpClient.Builder()
+                        .readTimeout(100000, TimeUnit.SECONDS)
+                        .writeTimeout(100000, TimeUnit.SECONDS)
+                        .connectTimeout(100000, TimeUnit.SECONDS)
+                        .addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                        .addInterceptor(new DownloadInterceptor(callback))
+                        .build()
+                        .newCall(request)
+                        .enqueue(new Callback() {
+                            @Override
+                            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+                                e.printStackTrace();
+                            }
 
-                    @Override
-                    public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
-                        ResponseBody body = response.body();
-                        if (body == null) {
-                            return;
-                        }
-                        InputStream is = body.byteStream();
-                        FileOutputStream fos = new FileOutputStream(file);
-                        int len;
-                        byte[] buffer = new byte[2048];
-                        while (-1 != (len = is.read(buffer))) {
-                            fos.write(buffer, 0, len);
-                        }
-                        fos.flush();
-                        fos.close();
-                        is.close();
-                    }
-                }));
+                            @Override
+                            public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+                                ResponseBody body = response.body();
+                                if (body == null) {
+                                    return;
+                                }
+                                InputStream is = body.byteStream();
+                                FileOutputStream fos = new FileOutputStream(file);
+                                int len;
+                                byte[] buffer = new byte[2048];
+                                while (-1 != (len = is.read(buffer))) {
+                                    fos.write(buffer, 0, len);
+                                }
+                                fos.flush();
+                                fos.close();
+                                is.close();
+                            }
+                        });
+            }
+        });
     }
 }
