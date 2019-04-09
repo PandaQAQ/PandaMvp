@@ -29,14 +29,7 @@ android {
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
         testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME: project.getName()]
-                includeCompileClasspath true
-            }
-        }
         multiDexEnabled true
-        buildConfigField "String", "TOKEN", "\"123\""
     }
     buildTypes {
         debug {
@@ -90,7 +83,6 @@ dependencies {
         exclude module: 'appcompat-v7'
         exclude module: 'support-v4'
     }
-//    annotationProcessor rootProject.ext.dependencies["arouter-compiler"]
     kapt rootProject.ext.dependencies["arouter_compiler"]
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     api(project(':uires')) {
