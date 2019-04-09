@@ -39,4 +39,10 @@ public interface ILifecycleInjector {
      */
     void injectFragmentLifeCycle(Application application, List<FragmentManager.FragmentLifecycleCallbacks> fragmentLifecycleCallbacks);
 
+    /**
+     * priority for lifeCycle methods inject
+     *
+     * @return priority 0 for first
+     */
+    int priority();
 }

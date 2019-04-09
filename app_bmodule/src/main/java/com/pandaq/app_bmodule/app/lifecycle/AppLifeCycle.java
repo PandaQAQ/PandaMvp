@@ -9,6 +9,7 @@ import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
 import com.pandaq.appcore.network.Panda;
 import com.pandaq.appcore.network.config.HttpGlobalConfig;
 import com.pandaq.appcore.network.interceptor.HttpLoggingInterceptor;
+import com.pandaq.appcore.utils.log.PLogger;
 import com.pandaq.commonui.msgwindow.SnackerConfig;
 
 import androidx.annotation.NonNull;
@@ -28,19 +29,11 @@ public class AppLifeCycle implements IAppLifeCycle {
 
     @Override
     public void onCreate(@NonNull Application application) {
-        initNet(application);
-        SnackerConfig.getDefault()
-                .setActionColor(Color.RED)
-                .setBackgroundColor(Color.GREEN);
+        PLogger.d("AppInit","----BModule");
     }
 
     @Override
     public void onTerminate(@NonNull Application application) {
-
-    }
-
-    // 初始化网络请求
-    private void initNet(Application application) {
 
     }
 }

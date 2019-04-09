@@ -30,4 +30,9 @@ public class LifeCycleInjector implements ILifecycleInjector {
     public void injectFragmentLifeCycle(Application application, List<FragmentManager.FragmentLifecycleCallbacks> fragmentLifecycleCallbacks) {
         // add it if you have do something in FragmentLifeCycle
     }
+
+    @Override
+    public int priority() {
+        return 0;
+    }
 }

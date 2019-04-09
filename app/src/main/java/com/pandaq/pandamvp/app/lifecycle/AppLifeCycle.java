@@ -9,6 +9,7 @@ import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
 import com.pandaq.appcore.network.Panda;
 import com.pandaq.appcore.network.config.HttpGlobalConfig;
 import com.pandaq.appcore.network.interceptor.HttpLoggingInterceptor;
+import com.pandaq.appcore.utils.log.PLogger;
 import com.pandaq.commonui.msgwindow.SnackerConfig;
 import com.pandaq.pandamvp.BuildConfig;
 import com.pandaq.pandamvp.R;
@@ -38,6 +39,7 @@ public class AppLifeCycle implements IAppLifeCycle {
         SnackerConfig.getDefault()
                 .setActionColor(Color.RED)
                 .setBackgroundColor(Color.GREEN);
+        PLogger.d("AppInit","----APPModule");
     }
 
     @Override

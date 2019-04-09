@@ -1,4 +1,6 @@
-include ':app', ':app_amodule', ':app_bmodule',
+include ':app',
+        ':app_amodule',
+        ':app_bmodule',
         ':functionlibs:pay',
         ':uires',
         ':router',

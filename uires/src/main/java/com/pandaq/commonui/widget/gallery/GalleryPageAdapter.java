@@ -53,7 +53,7 @@ public class GalleryPageAdapter extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        View page = LayoutInflater.from(container.getContext()).inflate(R.layout.app_item_gallery, null);
+        View page = LayoutInflater.from(container.getContext()).inflate(R.layout.res_item_gallery, null);
         TextView textView = page.findViewById(R.id.tv_position);
         textView.setText(pageData.get(position));
         container.addView(page);

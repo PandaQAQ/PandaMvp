@@ -18,7 +18,7 @@
         </activity>
         <meta-data
             android:name="com.pandaq.app_amodule.app.lifecycle.LifeCycleInjector"
-            android:value="AppInjector"/>
+            android:value="@string/lifecycle_proxy"/>
     </application>
 
 </manifest>

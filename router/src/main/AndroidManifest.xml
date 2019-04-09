@@ -4,6 +4,6 @@
     <application>
         <meta-data
             android:name="com.pandaq.router.lifecycle.LifeCycleInjector"
-            android:value="AppInjector"/>
+            android:value="@string/lifecycle_proxy"/>
     </application>
 </manifest>
