@@ -2,6 +2,8 @@ apply from: "../components_app_build.gradle"
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+boolean isLaunchApp = project.getName() == launchApp
+
 android {
 
     compileOptions {
@@ -10,13 +12,14 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.pandaq.pandamvp"
-        compileSdkVersion rootProject.ext.android["compileSdkVersion"]
-        minSdkVersion rootProject.ext.android["minSdkVersion"]
-        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
-        versionCode rootProject.ext.android["versionCode"]
-        versionName rootProject.ext.android["versionName"]
-        buildConfigField("String", "BASE_URL", "\"https://test.api.pandaq\"")
+        if (isLaunchApp) {
+            applicationId "com.pandaq.pandamvp"
+            compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+            minSdkVersion rootProject.ext.android["minSdkVersion"]
+            targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+            versionCode rootProject.ext.android["versionCode"]
+            versionName rootProject.ext.android["versionName"]
+        }
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         multiDexEnabled true
@@ -32,12 +35,13 @@ android {
     buildTypes {
 
         release {
-            minifyEnabled true
-            shrinkResources true
-            zipAlignEnabled true
-            minifyEnabled true
-
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            if (isLaunchApp) {
+                minifyEnabled true
+                shrinkResources true
+                zipAlignEnabled true
+                minifyEnabled true
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            }
         }
 
         debug {
@@ -71,17 +75,25 @@ dependencies {
         exclude module: 'appcompat-v7'
         exclude module: 'support-v4'
     }
-    if (!runAsApplication.toBoolean()) {
-        implementation(project(':app_amodule')) {
-            exclude group: 'com.android.support'
-            exclude module: 'appcompat-v7'
-            exclude module: 'support-v4'
-        }
 
-        implementation(project(':app_bmodule')) {
-            exclude group: 'com.android.support'
-            exclude module: 'appcompat-v7'
-            exclude module: 'support-v4'
+    // 按需加载依赖业务 APP
+    if (buildAll.toBoolean()) {
+        for (String name : allComponents.split(",")) {
+            implementation(project(":$name")) {
+                exclude group: 'com.android.support'
+                exclude module: 'appcompat-v7'
+                exclude module: 'support-v4'
+            }
+        }
+    } else {
+        for (String name : loadComponents.split(",")) {
+            if (!name.isEmpty()) {
+                implementation(project(":$name")) {
+                    exclude group: 'com.android.support'
+                    exclude module: 'appcompat-v7'
+                    exclude module: 'support-v4'
+                }
+            }
         }
     }
 }

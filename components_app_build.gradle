@@ -1,5 +1,6 @@
-boolean isShellApp = project.getName() == shellModuleName
-if (runAsApplication.toBoolean() || isShellApp) {
+boolean isShellApp = project.getName() == shellApp
+boolean isLaunchApp = project.getName() == launchApp
+if (isLaunchApp) { // 壳 APP 始终以 application 模式运行，其他业务组件以依赖库模式根据配置拔插
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
@@ -41,9 +42,8 @@ android {
         debug {
             buildConfigField "boolean", "LOG_DEBUG", "true"
             buildConfigField "boolean", "USE_CANARY", "true"
-            buildConfigField "boolean", "RUN_AS_APP", "${runAsApplication}"
             minifyEnabled false
-            if (runAsApplication.toBoolean()) {
+            if (isLaunchApp) {
                 consumerProguardFiles 'proguard-rules.pro'
             } else {
                 proguardFiles 'proguard-rules.pro'
@@ -53,10 +53,9 @@ android {
         release {
             buildConfigField "boolean", "LOG_DEBUG", "false"
             buildConfigField "boolean", "USE_CANARY", "false"
-            buildConfigField "boolean", "RUN_AS_APP", "${runAsApplication}"
             minifyEnabled true
             zipAlignEnabled true
-            if (runAsApplication.toBoolean()) {
+            if (isLaunchApp) {
                 consumerProguardFiles 'proguard-rules.pro'
             } else {
                 proguardFiles 'proguard-rules.pro'
@@ -76,7 +75,7 @@ android {
             if (isShellApp){
                 manifest.srcFile 'src/main/AndroidManifest.xml'
             }else {
-                if (runAsApplication.toBoolean()) {
+                if (isLaunchApp) {
                     manifest.srcFile 'src/main/debug/AndroidManifest.xml'
                 } else {
                     manifest.srcFile 'src/main/release/AndroidManifest.xml'

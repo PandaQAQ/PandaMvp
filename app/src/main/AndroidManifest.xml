@@ -21,7 +21,7 @@
         <!--配置 Application-->
         <meta-data
             android:name="com.pandaq.pandamvp.app.lifecycle.LifeCycleInjector"
-            android:value="AppInjector"/>
+            android:value="@string/lifecycle_proxy"/>
 
         <activity
             android:name=".ui.launch.FlashActivity"
@@ -29,7 +29,6 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <action android:name="android.intent.action.VIEW"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>

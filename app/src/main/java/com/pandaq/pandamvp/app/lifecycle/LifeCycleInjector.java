@@ -32,4 +32,9 @@ public class LifeCycleInjector implements ILifecycleInjector {
         // add it if you have do something in FragmentLifeCycle
         fragmentLifecycleCallbacks.add(new FragmentLifeCycle());
     }
+
+    @Override
+    public int priority() {
+        return 4;
+    }
 }

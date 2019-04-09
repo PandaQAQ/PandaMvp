@@ -1,3 +1,4 @@
 <resources>
-    <string name="core_app_name">PandaCore</string>
+    <string name="app_name">PandaCore</string>
+    <string name="lifecycle_proxy">AppInjector</string>
 </resources>
