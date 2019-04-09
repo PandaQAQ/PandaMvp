@@ -71,4 +71,17 @@ dependencies {
         exclude module: 'appcompat-v7'
         exclude module: 'support-v4'
     }
+    if (!runAsApplication.toBoolean()) {
+        implementation(project(':app_amodule')) {
+            exclude group: 'com.android.support'
+            exclude module: 'appcompat-v7'
+            exclude module: 'support-v4'
+        }
+
+        implementation(project(':app_bmodule')) {
+            exclude group: 'com.android.support'
+            exclude module: 'appcompat-v7'
+            exclude module: 'support-v4'
+        }
+    }
 }
