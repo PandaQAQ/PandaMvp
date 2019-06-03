@@ -10,12 +10,12 @@ class RouterPath {
     companion object {
         private const val GROUP_A = "/app_a"
         private const val GROUP_B = "/app_b"
-        private const val GROUP_SHELL = "/app"
+        private const val GROUP_LAUNCH = "/app_launcher"
 
         const val SERVICE = "/service"
 
-        const val APP_ACTIVITY_HOME = "$GROUP_SHELL/HomeActivity"
-        const val APP_ACTIVITY_MAIN = "$GROUP_SHELL/MainActivity"
+        const val APP_ACTIVITY_FLASH = "$GROUP_LAUNCH/launch/FlashActivity"
+        const val APP_ACTIVITY_HOME = "$GROUP_LAUNCH/home/HomeActivity"
 
         const val A_ACTIVITY_MAIN = "$GROUP_A/MainActivity"
         const val A_SERVICE = "$GROUP_A/$SERVICE/AModuleService"

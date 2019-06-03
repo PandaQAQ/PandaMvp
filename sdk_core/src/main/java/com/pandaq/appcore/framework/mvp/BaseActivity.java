@@ -2,6 +2,7 @@ package com.pandaq.appcore.framework.mvp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,6 +28,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = injectPresenter();
+        getLifecycle().addObserver(mPresenter);
         initVariable();
         if (bindContentRes() != 0) {
             setContentView(bindContentRes());
@@ -93,8 +95,9 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        Log.d("LifeCycle", "removeObserver");
         if (mPresenter != null) {
-            mPresenter.onMvpViewDetach();
+            getLifecycle().removeObserver(mPresenter);
         }
     }
 }

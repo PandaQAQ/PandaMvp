@@ -24,7 +24,7 @@
             android:value="@string/lifecycle_proxy"/>
 
         <activity
-            android:name=".ui.launch.FlashActivity"
+            android:name=".EmptyLauncherActivity"
             android:theme="@style/AppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -32,12 +32,8 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
         <activity android:name=".wxapi.WXPayEntryActivity"/>
-        <activity
-            android:name=".ui.home.HomeActivity"
-            android:label="@string/title_">
-        </activity>
-        <activity android:name=".ui.functions.GalleryActivity"/>
     </application>
 
 </manifest>

@@ -12,11 +12,9 @@ import com.pandaq.appcore.network.interceptor.HttpLoggingInterceptor;
 import com.pandaq.appcore.utils.log.PLogger;
 import com.pandaq.commonui.msgwindow.SnackerConfig;
 import com.pandaq.pandamvp.BuildConfig;
-import com.pandaq.pandamvp.R;
 import com.pandaq.pandamvp.app.Constant;
-import com.pandaq.pandamvp.entites.UserInfo;
-import com.pandaq.pandamvp.net.ApiService;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.pandaq.app_launcher.entites.UserInfo;
+import com.pandaq.app_amodule.app.net.ApiService;
 
 import androidx.annotation.NonNull;
 
