@@ -1,0 +1,54 @@
+apply from: "../components_app_build.gradle"
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+boolean isLaunchApp = project.getName() == launchApp
+
+android {
+    compileSdkVersion 28
+    resourcePrefix "launcher_"
+
+    defaultConfig {
+        if (isLaunchApp) {
+            applicationId "com.pandaq.app_amodule"
+            versionCode 1
+            versionName "1.0"
+            testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            if (isLaunchApp) {
+                consumerProguardFiles 'proguard-rules.pro'
+            } else {
+                proguardFiles 'proguard-rules.pro'
+            }
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    //Picasso
+    implementation rootProject.ext.dependencies["picasso"]
+
+    implementation(project(':uires')) {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-v4'
+    }
+    implementation(project(':functionlibs:pay')) {
+        exclude group: 'com.android.support'
+        exclude module: 'appcompat-v7'
+        exclude module: 'support-v4'
+    }
+}

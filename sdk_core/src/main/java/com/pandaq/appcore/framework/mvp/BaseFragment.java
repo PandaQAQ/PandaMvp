@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -26,6 +27,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends androidx.fra
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = injectPresenter();
+        getLifecycle().addObserver(mPresenter);
         initVariable();
     }
 
@@ -78,7 +80,7 @@ public abstract class BaseFragment<P extends BasePresenter> extends androidx.fra
      * @param to          即将显示的 fragment
      * @return 切换后的 currentFragment
      */
-    protected androidx.fragment.app.Fragment switchFragment(int containerId, @Nullable androidx.fragment.app.Fragment from, @NonNull androidx.fragment.app.Fragment to) {
+    protected Fragment switchFragment(int containerId, @Nullable Fragment from, @NonNull Fragment to) {
         FragmentManager manager = getChildFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         if (to.isAdded()) {
@@ -98,6 +100,8 @@ public abstract class BaseFragment<P extends BasePresenter> extends androidx.fra
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        mPresenter.onMvpViewDetach();
+        if (mPresenter != null) {
+            getLifecycle().removeObserver(mPresenter);
+        }
     }
 }

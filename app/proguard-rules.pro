@@ -29,11 +29,11 @@
 }
 # Ignore annotation used for build tooling.
 -dontwarn org.codehaus.mojo.animal_sniffer.IgnoreJRERequirement
--dontwarn butterknife.internal.**
-############################## ButterKnife ##############################
--keep class butterknife.*
--keepclasseswithmembernames class * { @butterknife.* <methods>; }
--keepclasseswithmembernames class * { @butterknife.* <fields>; }
+############################### ButterKnife ##############################
+#-dontwarn butterknife.internal.**
+#-keep class butterknife.*
+#-keepclasseswithmembernames class * { @butterknife.* <methods>; }
+#-keepclasseswithmembernames class * { @butterknife.* <fields>; }
 ############################## RxJava ##############################
 -dontwarn sun.misc.**
 -keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
