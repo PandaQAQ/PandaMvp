@@ -3,9 +3,17 @@
           package="com.pandaq.app_launcher">
 
     <application>
+
+        <!--配置 Application-->
+        <meta-data
+            android:name="com.pandaq.app_launcher.app.LifeCycleInjector"
+            android:value="@string/lifecycle_proxy"/>
+
         <activity
             android:name=".ui.launch.FlashActivity">
         </activity>
+        <activity android:name=".ui.home.HomeActivity"/>
+        <activity android:name=".ui.functions.GalleryActivity"/>
     </application>
 
 </manifest>

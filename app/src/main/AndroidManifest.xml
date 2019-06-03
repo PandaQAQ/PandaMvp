@@ -18,11 +18,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
-        <!--配置 Application-->
-        <meta-data
-            android:name="com.pandaq.pandamvp.app.lifecycle.LifeCycleInjector"
-            android:value="@string/lifecycle_proxy"/>
-
         <activity
             android:name=".EmptyLauncherActivity"
             android:theme="@style/AppTheme">

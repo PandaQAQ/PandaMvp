@@ -1,4 +1,4 @@
-package com.pandaq.pandamvp.app.lifecycle;
+package com.pandaq.app_launcher.app;
 
 import android.app.Application;
 
@@ -35,6 +35,6 @@ public class LifeCycleInjector implements ILifecycleInjector {
 
     @Override
     public int priority() {
-        return 4;
+        return 1;
     }
 }

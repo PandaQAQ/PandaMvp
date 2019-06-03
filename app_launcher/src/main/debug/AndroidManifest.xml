@@ -9,16 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+
+        <!--配置 Application-->
+        <meta-data
+            android:name="com.pandaq.app_launcher.app.LifeCycleInjector"
+            android:value="@string/lifecycle_proxy"/>
+
+        <activity android:name=".ui.launch.FlashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <meta-data
-            android:name="com.pandaq.app_bmodule.app.lifecycle.LifeCycleInjector"
-            android:value="@string/lifecycle_proxy"/>
+
+        <activity android:name=".ui.home.HomeActivity"/>
+        <activity android:name=".ui.functions.GalleryActivity"/>
+
     </application>
 
 </manifest>

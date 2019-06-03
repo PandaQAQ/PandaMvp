@@ -1,11 +1,12 @@
 package com.pandaq.app_launcher.ui.launch
 
-import android.content.Intent
 import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.alibaba.android.arouter.launcher.ARouter
 import com.pandaq.app_launcher.R
 import com.pandaq.app_launcher.ui.framework.AppBaseActivity
-import com.pandaq.app_launcher.ui.home.HomeActivity
+import com.pandaq.router.routers.RouterPath
 import kotlinx.android.synthetic.main.launcher_activity_flash.*
 
 /**
@@ -13,6 +14,7 @@ import kotlinx.android.synthetic.main.launcher_activity_flash.*
  * Email : panda.hxmail.com
  * Description :
  */
+@Route(path = RouterPath.LAUNCH_ACTIVITY_FLASH)
 class FlashActivity : AppBaseActivity<FlashPresenter>(), FlashContract.View {
     override fun injectPresenter(): FlashPresenter {
         return FlashPresenter(this)
@@ -33,8 +35,9 @@ class FlashActivity : AppBaseActivity<FlashPresenter>(), FlashContract.View {
             }
 
             override fun onAnimationEnd(animation: Animation?) {
-                val intent = Intent(this@FlashActivity, HomeActivity::class.java)
-                startActivity(intent)
+                ARouter.getInstance()
+                        .build(RouterPath.LAUNCH_ACTIVITY_HOME)
+                        .navigation()
                 finish()
             }
 

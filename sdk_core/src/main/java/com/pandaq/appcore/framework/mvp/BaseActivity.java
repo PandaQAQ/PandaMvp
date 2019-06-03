@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.LifecycleOwner;
 
 /**
  * Created by huxinyu on 2018/5/19.
@@ -28,7 +29,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = injectPresenter();
-        getLifecycle().addObserver(mPresenter);
+//        getLifecycle().addObserver(mPresenter);
         initVariable();
         if (bindContentRes() != 0) {
             setContentView(bindContentRes());

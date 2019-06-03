@@ -28,7 +28,7 @@ import java.io.File
  * Email : panda.h@foxmail.com
  * Description :
  */
-@Route(path = RouterPath.APP_ACTIVITY_HOME)
+@Route(path = RouterPath.LAUNCH_ACTIVITY_HOME)
 class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
 
 
