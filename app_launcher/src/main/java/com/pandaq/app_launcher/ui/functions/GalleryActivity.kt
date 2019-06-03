@@ -3,10 +3,11 @@ package com.pandaq.app_launcher.ui.functions
 import android.annotation.SuppressLint
 import android.view.MotionEvent
 import android.view.View
+import com.pandaq.app_launcher.R
+import com.pandaq.app_launcher.ui.framework.AppBaseActivity
 import com.pandaq.appcore.framework.mvp.BasePresenter
 import com.pandaq.commonui.utils.DisplayUtils
 import com.pandaq.commonui.widget.gallery.GalleryPageAdapter
-import com.pandaq.pandamvp.framework.AppBaseActivity
 import kotlinx.android.synthetic.main.launcher_activity_gallery.*
 
 
@@ -24,7 +25,7 @@ class GalleryActivity : AppBaseActivity<BasePresenter<*>>() {
     override fun injectPresenter(): BasePresenter<*>? = null
 
     override fun bindContentRes(): Int {
-        return com.pandaq.pandamvp.R.layout.app_activity_gallery
+        return R.layout.launcher_activity_gallery
     }
 
     override fun initVariable() {

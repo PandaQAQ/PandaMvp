@@ -1,4 +1,4 @@
-package com.pandaq.pandamvp.app.lifecycle;
+package com.pandaq.app_launcher.app;
 
 import android.app.Activity;
 import android.app.Application;

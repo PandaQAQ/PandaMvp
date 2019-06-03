@@ -1,6 +1,4 @@
 apply from: "../components_app_build.gradle"
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 boolean isLaunchApp = project.getName() == launchApp
 android {

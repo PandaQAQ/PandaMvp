@@ -14,7 +14,7 @@ class EmptyLauncherActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         ARouter.getInstance()
-                .build(RouterPath.APP_ACTIVITY_FLASH)
+                .build(RouterPath.LAUNCH_ACTIVITY_FLASH)
                 .navigation()
         this.finish()
     }

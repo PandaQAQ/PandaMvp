@@ -1,6 +1,4 @@
 apply from: "../components_app_build.gradle"
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 boolean isLaunchApp = project.getName() == launchApp
 
@@ -46,6 +44,7 @@ dependencies {
         exclude module: 'appcompat-v7'
         exclude module: 'support-v4'
     }
+
     implementation(project(':functionlibs:pay')) {
         exclude group: 'com.android.support'
         exclude module: 'appcompat-v7'

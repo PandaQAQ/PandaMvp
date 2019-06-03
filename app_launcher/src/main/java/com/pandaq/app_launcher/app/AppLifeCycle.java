@@ -1,9 +1,12 @@
-package com.pandaq.pandamvp.app.lifecycle;
+package com.pandaq.app_launcher.app;
 
 import android.app.Application;
 import android.content.Context;
 import android.graphics.Color;
 
+import com.pandaq.app_launcher.BuildConfig;
+import com.pandaq.app_launcher.entites.UserInfo;
+import com.pandaq.app_launcher.net.ApiService;
 import com.pandaq.appcore.cache.CacheTool;
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
 import com.pandaq.appcore.network.Panda;
@@ -11,10 +14,6 @@ import com.pandaq.appcore.network.config.HttpGlobalConfig;
 import com.pandaq.appcore.network.interceptor.HttpLoggingInterceptor;
 import com.pandaq.appcore.utils.log.PLogger;
 import com.pandaq.commonui.msgwindow.SnackerConfig;
-import com.pandaq.pandamvp.BuildConfig;
-import com.pandaq.pandamvp.app.Constant;
-import com.pandaq.app_launcher.entites.UserInfo;
-import com.pandaq.app_amodule.app.net.ApiService;
 
 import androidx.annotation.NonNull;
 
@@ -37,7 +36,7 @@ public class AppLifeCycle implements IAppLifeCycle {
         SnackerConfig.getDefault()
                 .setActionColor(Color.RED)
                 .setBackgroundColor(Color.GREEN);
-        PLogger.d("AppInit","----APPModule");
+        PLogger.d("AppInit", "----APPModule");
     }
 
     @Override
