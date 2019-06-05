@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/PandaMvp.iml" filepath="$PROJECT_DIR$/.idea/PandaMvp.iml" />
-      <module fileurl="file://$PROJECT_DIR$/PandaMvp.iml" filepath="$PROJECT_DIR$/PandaMvp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app_amodule/app_amodule.iml" filepath="$PROJECT_DIR$/app_amodule/app_amodule.iml" />
       <module fileurl="file://$PROJECT_DIR$/app_bmodule/app_bmodule.iml" filepath="$PROJECT_DIR$/app_bmodule/app_bmodule.iml" />

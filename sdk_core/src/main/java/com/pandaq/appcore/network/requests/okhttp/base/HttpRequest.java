@@ -1,4 +1,4 @@
-package com.pandaq.appcore.network.requests.okhttp;
+package com.pandaq.appcore.network.requests.okhttp.base;
 
 import android.text.TextUtils;
 

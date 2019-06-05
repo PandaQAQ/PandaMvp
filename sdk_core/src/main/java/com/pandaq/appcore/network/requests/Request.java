@@ -21,6 +21,8 @@ import androidx.annotation.NonNull;
 import okhttp3.ConnectionPool;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import retrofit2.CallAdapter;
+import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -204,14 +206,18 @@ public class Request<T extends Request> {
         } else {
             throw new IllegalArgumentException("base url can not be empty !!!");
         }
-        if (mGlobalConfig.getConverterFactory() == null) {
-            mGlobalConfig.converterFactory(GsonConverterFactory.create());
+        if (mGlobalConfig.getConverterFactories().isEmpty()) {
+            mGlobalConfig.addConverterFactory(GsonConverterFactory.create());
         }
-        retrofitBuilder.addConverterFactory(mGlobalConfig.getConverterFactory());
-        if (mGlobalConfig.getCallAdapterFactory() == null) {
-            mGlobalConfig.callAdapterFactory(RxJava2CallAdapterFactory.create());
+        for (Converter.Factory factory : mGlobalConfig.getConverterFactories()) {
+            retrofitBuilder.addConverterFactory(factory);
         }
-        retrofitBuilder.addCallAdapterFactory(mGlobalConfig.getCallAdapterFactory());
+        if (mGlobalConfig.getCallAdapterFactories().isEmpty()) {
+            mGlobalConfig.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
+        }
+        for (CallAdapter.Factory factory : mGlobalConfig.getCallAdapterFactories()) {
+            retrofitBuilder.addCallAdapterFactory(factory);
+        }
         if (mGlobalConfig.getCallFactory() != null) {
             retrofitBuilder.callFactory(mGlobalConfig.getCallFactory());
         }
@@ -259,11 +265,15 @@ public class Request<T extends Request> {
         if (!TextUtils.isEmpty(baseUrl)) { // 如果基础地址改了者需要重新构建个 Retrofit 对象，避免影响默认请求的配置
             Retrofit.Builder newRetrofitBuilder = new Retrofit.Builder();
             newRetrofitBuilder.baseUrl(baseUrl);
-            if (mGlobalConfig.getConverterFactory() != null) {
-                newRetrofitBuilder.addConverterFactory(mGlobalConfig.getConverterFactory());
+            if (!mGlobalConfig.getConverterFactories().isEmpty()) {
+                for (Converter.Factory factory : mGlobalConfig.getConverterFactories()) {
+                    newRetrofitBuilder.addConverterFactory(factory);
+                }
             }
-            if (mGlobalConfig.getCallAdapterFactory() != null) {
-                newRetrofitBuilder.addCallAdapterFactory(mGlobalConfig.getCallAdapterFactory());
+            if (!mGlobalConfig.getCallAdapterFactories().isEmpty()) {
+                for (CallAdapter.Factory factory : mGlobalConfig.getCallAdapterFactories()) {
+                    newRetrofitBuilder.addCallAdapterFactory(factory);
+                }
             }
             if (mGlobalConfig.getCallFactory() != null) {
                 newRetrofitBuilder.callFactory(mGlobalConfig.getCallFactory());

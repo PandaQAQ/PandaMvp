@@ -2,26 +2,31 @@ package com.pandaq.appcore.network.requests.okhttp;
 
 import com.pandaq.appcore.network.Panda;
 import com.pandaq.appcore.network.observer.ApiObserver;
+import com.pandaq.appcore.network.requests.okhttp.base.HttpRequest;
 
 import java.lang.reflect.Type;
 
 import io.reactivex.Observable;
 
 /**
- * Created by huxinyu on 2019/3/16.
+ * Created by huxinyu on 2019/6/3.
  * Email : panda.h@foxmail.com
- * <p>
- * Description :http connect request
+ * Description :
  */
-public class ConnectRequest extends HttpRequest<ConnectRequest> {
-
-    public ConnectRequest(String url) {
+public class PatchRequest extends HttpRequest<PatchRequest> {
+    public PatchRequest(String url) {
         super(url);
     }
 
     @Override
     protected <T> Observable<T> execute(Type type) {
-        return null;
+        return mApi.patch(url, globalParams)
+                .doOnSubscribe(disposable -> {
+                    if (tag != null) {
+                        Panda.manager().addTag(tag, disposable);
+                    }
+                })
+                .compose(httpTransformer(type));
     }
 
     @SuppressWarnings("unchecked")

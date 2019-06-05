@@ -1,6 +1,8 @@
 package com.pandaq.appcore.network.requests.okhttp;
 
+import com.pandaq.appcore.network.Panda;
 import com.pandaq.appcore.network.observer.ApiObserver;
+import com.pandaq.appcore.network.requests.okhttp.base.HttpRequest;
 
 import java.lang.reflect.Type;
 
@@ -12,18 +14,28 @@ import io.reactivex.Observable;
  * <p>
  * Description :request in delete method
  */
-public class DeleteRequest extends HttpRequest<DeleteRequest>{
+public class DeleteRequest extends HttpRequest<DeleteRequest> {
     public DeleteRequest(String url) {
         super(url);
     }
 
     @Override
     protected <T> Observable<T> execute(Type type) {
-        return null;
+        return mApi.delete(url, globalParams)
+                .doOnSubscribe(disposable -> {
+                    if (tag != null) {
+                        Panda.manager().addTag(tag, disposable);
+                    }
+                })
+                .compose(httpTransformer(type));
     }
 
+    @SuppressWarnings("unchecked")
     @Override
     protected void execute(ApiObserver callback) {
-
+        if (tag != null) {
+            Panda.manager().addTag(tag, callback);
+        }
+        this.execute(getType(callback)).subscribe(callback);
     }
 }
