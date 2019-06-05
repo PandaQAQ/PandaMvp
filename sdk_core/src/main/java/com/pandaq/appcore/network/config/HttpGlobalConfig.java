@@ -2,7 +2,9 @@ package com.pandaq.appcore.network.config;
 
 import com.pandaq.appcore.network.Panda;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
@@ -25,8 +27,8 @@ import retrofit2.Converter;
 public class HttpGlobalConfig {
 
     //todo cache 和 cookie 暂时未做
-    private CallAdapter.Factory callAdapterFactory;//Call适配器工厂
-    private Converter.Factory converterFactory;//转换工厂
+    private List<CallAdapter.Factory> callAdapterFactories = new ArrayList<>();//Call适配器工厂
+    private List<Converter.Factory> converterFactories = new ArrayList<>();//转换工厂
     private Call.Factory callFactory;//Call工厂
     private SSLSocketFactory sslSocketFactory;//SSL工厂
     private HostnameVerifier hostnameVerifier;//主机域名验证
@@ -54,13 +56,13 @@ public class HttpGlobalConfig {
         return sHttpGlobalConfig;
     }
 
-    public HttpGlobalConfig callAdapterFactory(@NonNull CallAdapter.Factory factory) {
-        this.callAdapterFactory = factory;
+    public HttpGlobalConfig addCallAdapterFactory(@NonNull CallAdapter.Factory factory) {
+        this.callAdapterFactories.add(factory);
         return this;
     }
 
-    public HttpGlobalConfig converterFactory(@NonNull Converter.Factory factory) {
-        this.converterFactory = factory;
+    public HttpGlobalConfig addConverterFactory(@NonNull Converter.Factory factory) {
+        this.converterFactories.add(factory);
         return this;
     }
 
@@ -146,12 +148,12 @@ public class HttpGlobalConfig {
 
 //    ######################################## getter ########################################
 
-    public CallAdapter.Factory getCallAdapterFactory() {
-        return callAdapterFactory;
+    public List<CallAdapter.Factory> getCallAdapterFactories() {
+        return callAdapterFactories;
     }
 
-    public Converter.Factory getConverterFactory() {
-        return converterFactory;
+    public List<Converter.Factory> getConverterFactories() {
+        return converterFactories;
     }
 
     public Call.Factory getCallFactory() {

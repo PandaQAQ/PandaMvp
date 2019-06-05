@@ -2,7 +2,7 @@ package com.pandaq.appcore.network.requests.okhttp.post;
 
 import com.pandaq.appcore.network.Panda;
 import com.pandaq.appcore.network.observer.ApiObserver;
-import com.pandaq.appcore.network.requests.okhttp.HttpRequest;
+import com.pandaq.appcore.network.requests.okhttp.base.HttpRequest;
 
 import java.lang.reflect.Type;
 

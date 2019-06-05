@@ -11,6 +11,7 @@ import com.pandaq.appcore.cache.CacheTool;
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
 import com.pandaq.appcore.network.Panda;
 import com.pandaq.appcore.network.config.HttpGlobalConfig;
+import com.pandaq.appcore.network.converter.PandaConvertFactory;
 import com.pandaq.appcore.network.interceptor.HttpLoggingInterceptor;
 import com.pandaq.appcore.utils.log.PLogger;
 import com.pandaq.commonui.msgwindow.SnackerConfig;
@@ -54,6 +55,7 @@ public class AppLifeCycle implements IAppLifeCycle {
                 .netInterceptor(new HttpLoggingInterceptor()
                         .setLevel(HttpLoggingInterceptor.Level.BODY))
                 .apiSuccessCode(100L)
+                .addConverterFactory(PandaConvertFactory.create())
                 .connectTimeout(10000)
                 .readTimeout(10000)
                 .writeTimeout(10000)
