@@ -51,6 +51,8 @@ public class PandaResponseBodyConverter<T> implements Converter<ResponseBody, T>
                     throw new ApiException(apiData.getCode(), apiData.getMsg(), data);
                 }
                 return typeAdapter.fromJson(data);
+            } catch (Exception e) {
+                return typeAdapter.fromJson("{}");
             } finally {
                 value.close();
             }
