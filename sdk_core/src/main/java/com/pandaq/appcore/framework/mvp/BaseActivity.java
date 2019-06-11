@@ -1,6 +1,7 @@
 package com.pandaq.appcore.framework.mvp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 
