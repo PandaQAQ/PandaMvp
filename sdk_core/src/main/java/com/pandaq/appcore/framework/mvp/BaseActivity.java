@@ -30,7 +30,9 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = injectPresenter();
-        getLifecycle().addObserver(mPresenter);
+        if (mPresenter != null) {
+            getLifecycle().addObserver(mPresenter);
+        }
         initVariable();
         if (bindContentRes() != 0) {
             setContentView(bindContentRes());
