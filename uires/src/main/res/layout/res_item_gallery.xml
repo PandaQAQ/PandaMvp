@@ -38,7 +38,7 @@
             android:gravity="center"
             android:text="Position"
             android:textColor="#39C0E2"
-            android:textSize="@dimen/sp_16"
+            android:textSize="@dimen/res_sp_16"
             android:textStyle="bold"/>
     </LinearLayout>
 </androidx.cardview.widget.CardView>

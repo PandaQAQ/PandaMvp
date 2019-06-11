@@ -48,7 +48,7 @@ public class SettingDialogUtils {
             window.setWindowAnimations(R.style.AnimationSettingDialog);
         }
         alertDialog.show();
-        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(ContextCompat.getColor(context, R.color.core_colorNegative));
+        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(ContextCompat.getColor(context, R.color.colorNegative));
         return alertDialog;
     }
 }
