@@ -6,7 +6,6 @@ import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import java.util.Map;
 
 import androidx.annotation.StringDef;
 
@@ -17,7 +16,7 @@ import androidx.annotation.StringDef;
  * Description : MakeDateFormatString Rule
  */
 
-@Retention(RetentionPolicy.SOURCE )
+@Retention(RetentionPolicy.SOURCE)
 @StringDef({DateFormatter.FORMAT_DAY, DateFormatter.FORMAT_DHM, DateFormatter.FORMAT_DHMS,
         DateFormatter.FORMAT_HM, DateFormatter.FORMAT_HMS, DateFormatter.FORMAT_WD,
         DateFormatter.FORMAT_WDHM, DateFormatter.FORMAT_WDHMS})
