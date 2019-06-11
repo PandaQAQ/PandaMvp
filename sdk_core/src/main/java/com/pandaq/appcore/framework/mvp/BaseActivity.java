@@ -17,7 +17,7 @@ import androidx.lifecycle.LifecycleOwner;
  * Created by huxinyu on 2018/5/19.
  * Email : panda.h@foxmail.com
  * <p>
- * Description :给出的模板基类,可选择继承此类实现 bindButterKnife（）方法使用 ButterKnife 绑定 UI
+ * Description :给出的模板基类
  * 也可完全自己写基类绑定 UI
  */
 public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements IContract.IMvpView {
@@ -30,7 +30,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mPresenter = injectPresenter();
-//        getLifecycle().addObserver(mPresenter);
+        getLifecycle().addObserver(mPresenter);
         initVariable();
         if (bindContentRes() != 0) {
             setContentView(bindContentRes());

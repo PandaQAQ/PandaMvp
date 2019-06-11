@@ -8,7 +8,7 @@
         <item name="android:screenOrientation">portrait</item>
         <item name="actionOverflowMenuStyle">@style/PopupTheme</item>
         <item name="android:windowDisablePreview">true</item>
-        <item name="actionMenuTextColor">@color/core_colorWhite</item>
+        <item name="actionMenuTextColor">@color/colorWhite</item>
     </style>
 
     <style name="NoTitleAppTheme" parent="AppTheme" tools:ignore="ResourceName">
