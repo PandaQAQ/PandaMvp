@@ -16,6 +16,7 @@ class EmptyLauncherActivity : Activity() {
         ARouter.getInstance()
                 .build(RouterPath.LAUNCH_ACTIVITY_FLASH)
                 .navigation()
+
         this.finish()
     }
 }
