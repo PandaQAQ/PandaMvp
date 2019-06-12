@@ -1,6 +1,6 @@
 package com.pandaq.appcore.network.config;
 
-import com.pandaq.appcore.network.Panda;
+import com.pandaq.appcore.network.RxPanda;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -122,27 +122,27 @@ public class HttpGlobalConfig {
     }
 
     public HttpGlobalConfig interceptor(@NonNull Interceptor interceptor) {
-        Panda.getOkHttpBuilder().addInterceptor(interceptor);
+        RxPanda.getOkHttpBuilder().addInterceptor(interceptor);
         return this;
     }
 
     public HttpGlobalConfig netInterceptor(@NonNull Interceptor netInterceptor) {
-        Panda.getOkHttpBuilder().addNetworkInterceptor(netInterceptor);
+        RxPanda.getOkHttpBuilder().addNetworkInterceptor(netInterceptor);
         return this;
     }
 
     public HttpGlobalConfig readTimeout(long readTimeout) {
-        Panda.getOkHttpBuilder().readTimeout(readTimeout, TimeUnit.MILLISECONDS);
+        RxPanda.getOkHttpBuilder().readTimeout(readTimeout, TimeUnit.MILLISECONDS);
         return this;
     }
 
     public HttpGlobalConfig writeTimeout(long writeTimeout) {
-        Panda.getOkHttpBuilder().writeTimeout(writeTimeout, TimeUnit.MILLISECONDS);
+        RxPanda.getOkHttpBuilder().writeTimeout(writeTimeout, TimeUnit.MILLISECONDS);
         return this;
     }
 
     public HttpGlobalConfig connectTimeout(long connectTimeout) {
-        Panda.getOkHttpBuilder().connectTimeout(connectTimeout, TimeUnit.MILLISECONDS);
+        RxPanda.getOkHttpBuilder().connectTimeout(connectTimeout, TimeUnit.MILLISECONDS);
         return this;
     }
 

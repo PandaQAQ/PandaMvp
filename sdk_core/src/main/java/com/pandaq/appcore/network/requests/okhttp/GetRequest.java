@@ -1,6 +1,6 @@
 package com.pandaq.appcore.network.requests.okhttp;
 
-import com.pandaq.appcore.network.Panda;
+import com.pandaq.appcore.network.RxPanda;
 import com.pandaq.appcore.network.observer.ApiObserver;
 import com.pandaq.appcore.network.requests.okhttp.base.HttpRequest;
 
@@ -25,7 +25,7 @@ public class GetRequest extends HttpRequest<GetRequest> {
         return mApi.get(url, globalParams)
                 .doOnSubscribe(disposable -> {
                     if (tag != null) {
-                        Panda.manager().addTag(tag, disposable);
+                        RxPanda.manager().addTag(tag, disposable);
                     }
                 })
                 .compose(httpTransformer(type));
@@ -35,7 +35,7 @@ public class GetRequest extends HttpRequest<GetRequest> {
     @Override
     protected void execute(ApiObserver callback) {
         if (tag != null) {
-            Panda.manager().addTag(tag, callback);
+            RxPanda.manager().addTag(tag, callback);
         }
         this.execute(getType(callback)).subscribe(callback);
     }

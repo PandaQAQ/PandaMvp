@@ -1,6 +1,6 @@
 package com.pandaq.appcore.network.requests.okhttp.post;
 
-import com.pandaq.appcore.network.Panda;
+import com.pandaq.appcore.network.RxPanda;
 import com.pandaq.appcore.network.constants.MediaTypes;
 import com.pandaq.appcore.network.observer.ApiObserver;
 import com.pandaq.appcore.network.requests.okhttp.base.HttpRequest;
@@ -44,7 +44,7 @@ public class PostBodyRequest extends HttpRequest<PostBodyRequest> {
             return mApi.postBody(url, requestBody)
                     .doOnSubscribe(disposable -> {
                         if (tag != null) {
-                            Panda.manager().addTag(tag, disposable);
+                            RxPanda.manager().addTag(tag, disposable);
                         }
                     })
                     .compose(httpTransformer(type));
@@ -54,7 +54,7 @@ public class PostBodyRequest extends HttpRequest<PostBodyRequest> {
             return mApi.postBody(url, requestBody)
                     .doOnSubscribe(disposable -> {
                         if (tag != null) {
-                            Panda.manager().addTag(tag, disposable);
+                            RxPanda.manager().addTag(tag, disposable);
                         }
                     })
                     .compose(httpTransformer(type));
@@ -62,7 +62,7 @@ public class PostBodyRequest extends HttpRequest<PostBodyRequest> {
         return mApi.post(url, globalParams)
                 .doOnSubscribe(disposable -> {
                     if (tag != null) {
-                        Panda.manager().addTag(tag, disposable);
+                        RxPanda.manager().addTag(tag, disposable);
                     }
                 })
                 .compose(httpTransformer(type));
@@ -72,7 +72,7 @@ public class PostBodyRequest extends HttpRequest<PostBodyRequest> {
     @Override
     protected void execute(ApiObserver callback) {
         if (tag != null) {
-            Panda.manager().addTag(tag, callback);
+            RxPanda.manager().addTag(tag, callback);
         }
         this.execute(getType(callback)).subscribe(callback);
     }

@@ -9,7 +9,7 @@ import com.pandaq.app_launcher.entites.UserInfo;
 import com.pandaq.app_launcher.net.ApiService;
 import com.pandaq.appcore.cache.CacheTool;
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
-import com.pandaq.appcore.network.Panda;
+import com.pandaq.appcore.network.RxPanda;
 import com.pandaq.appcore.network.config.HttpGlobalConfig;
 import com.pandaq.appcore.network.converter.PandaConvertFactory;
 import com.pandaq.appcore.network.interceptor.HttpLoggingInterceptor;
@@ -50,7 +50,7 @@ public class AppLifeCycle implements IAppLifeCycle {
         UserInfo userInfo = CacheTool.with(application)
                 .open(Constant.Cache.CACHE_FILE_NAME)
                 .getSerializable(Constant.Cache.CACHE_USEINFO_KEY);
-        HttpGlobalConfig config = Panda.globalConfig()
+        HttpGlobalConfig config = RxPanda.globalConfig()
                 .baseUrl(ApiService.BASE_URL)
                 .netInterceptor(new HttpLoggingInterceptor()
                         .setLevel(HttpLoggingInterceptor.Level.BODY))

@@ -21,9 +21,9 @@ import retrofit2.Retrofit;
  * <p>
  * Description :http request tool class
  */
-public class Panda {
+public class RxPanda {
 
-    private Panda(){
+    private RxPanda(){
 
     }
 

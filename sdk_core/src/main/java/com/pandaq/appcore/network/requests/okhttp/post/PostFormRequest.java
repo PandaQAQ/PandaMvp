@@ -1,6 +1,6 @@
 package com.pandaq.appcore.network.requests.okhttp.post;
 
-import com.pandaq.appcore.network.Panda;
+import com.pandaq.appcore.network.RxPanda;
 import com.pandaq.appcore.network.observer.ApiObserver;
 import com.pandaq.appcore.network.requests.okhttp.base.HttpRequest;
 
@@ -37,7 +37,7 @@ public class PostFormRequest extends HttpRequest<PostFormRequest> {
             return mApi.postForm(url, forms)
                     .doOnSubscribe(disposable -> {
                         if (tag != null) {
-                            Panda.manager().addTag(tag, disposable);
+                            RxPanda.manager().addTag(tag, disposable);
                         }
                     })
                     .compose(httpTransformer(type));
@@ -45,7 +45,7 @@ public class PostFormRequest extends HttpRequest<PostFormRequest> {
         return mApi.post(url, globalParams)
                 .doOnSubscribe(disposable -> {
                     if (tag != null) {
-                        Panda.manager().addTag(tag, disposable);
+                        RxPanda.manager().addTag(tag, disposable);
                     }
                 })
                 .compose(httpTransformer(type));
@@ -55,7 +55,7 @@ public class PostFormRequest extends HttpRequest<PostFormRequest> {
     @Override
     protected void execute(ApiObserver callback) {
         if (tag != null) {
-            Panda.manager().addTag(tag, callback);
+            RxPanda.manager().addTag(tag, callback);
         }
         this.execute(getType(callback)).subscribe(callback);
     }

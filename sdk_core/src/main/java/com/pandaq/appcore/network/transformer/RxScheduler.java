@@ -1,6 +1,6 @@
 package com.pandaq.appcore.network.transformer;
 
-import com.pandaq.appcore.network.Panda;
+import com.pandaq.appcore.network.RxPanda;
 
 import io.reactivex.ObservableTransformer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -24,8 +24,8 @@ public class RxScheduler {
         return upstream -> upstream.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .retryWhen(new RetryFunc(Panda.globalConfig().getRetryCount(),
-                        Panda.globalConfig().getRetryDelayMillis()));
+                .retryWhen(new RetryFunc(RxPanda.globalConfig().getRetryCount(),
+                        RxPanda.globalConfig().getRetryDelayMillis()));
     }
 
     /**
