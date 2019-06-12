@@ -44,12 +44,12 @@ public class PandaResponseBodyConverter<T> implements Converter<ResponseBody, T>
                 value.close();
             }
         } else {
+            // 获取解析数据
+            String data = new Gson().toJson(apiData.getData());
+            if (!apiData.isSuccess()) {
+                throw new ApiException(apiData.getCode(), apiData.getMsg(), data);
+            }
             try {
-                // 获取解析数据
-                String data = new Gson().toJson(apiData.getData());
-                if (!apiData.isSuccess()) {
-                    throw new ApiException(apiData.getCode(), apiData.getMsg(), data);
-                }
                 return typeAdapter.fromJson(data);
             } catch (Exception e) {
                 return typeAdapter.fromJson("{}");
