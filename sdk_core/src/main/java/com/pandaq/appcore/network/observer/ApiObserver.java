@@ -28,6 +28,7 @@ public abstract class ApiObserver<T> extends DisposableObserver<T> {
             onError(new ApiException(t, HttpCode.FRAME_WORK.UNKNOWN));
         }
         success = false;
+        finished(false);
     }
 
     @Override
