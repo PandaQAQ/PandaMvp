@@ -2,15 +2,9 @@ package com.pandaq.app_bmodule.app.lifecycle;
 
 import android.app.Application;
 import android.content.Context;
-import android.graphics.Color;
 
-import com.pandaq.appcore.cache.CacheTool;
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
-import com.pandaq.appcore.network.Panda;
-import com.pandaq.appcore.network.config.HttpGlobalConfig;
-import com.pandaq.appcore.network.interceptor.HttpLoggingInterceptor;
 import com.pandaq.appcore.utils.log.PLogger;
-import com.pandaq.commonui.msgwindow.SnackerConfig;
 
 import androidx.annotation.NonNull;
 

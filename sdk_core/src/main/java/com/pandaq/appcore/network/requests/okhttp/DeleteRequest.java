@@ -1,6 +1,6 @@
 package com.pandaq.appcore.network.requests.okhttp;
 
-import com.pandaq.appcore.network.Panda;
+import com.pandaq.appcore.network.RxPanda;
 import com.pandaq.appcore.network.observer.ApiObserver;
 import com.pandaq.appcore.network.requests.okhttp.base.HttpRequest;
 
@@ -24,7 +24,7 @@ public class DeleteRequest extends HttpRequest<DeleteRequest> {
         return mApi.delete(url, globalParams)
                 .doOnSubscribe(disposable -> {
                     if (tag != null) {
-                        Panda.manager().addTag(tag, disposable);
+                        RxPanda.manager().addTag(tag, disposable);
                     }
                 })
                 .compose(httpTransformer(type));
@@ -34,7 +34,7 @@ public class DeleteRequest extends HttpRequest<DeleteRequest> {
     @Override
     protected void execute(ApiObserver callback) {
         if (tag != null) {
-            Panda.manager().addTag(tag, callback);
+            RxPanda.manager().addTag(tag, callback);
         }
         this.execute(getType(callback)).subscribe(callback);
     }

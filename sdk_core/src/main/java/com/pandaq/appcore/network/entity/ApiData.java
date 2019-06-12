@@ -1,6 +1,6 @@
 package com.pandaq.appcore.network.entity;
 
-import com.pandaq.appcore.network.Panda;
+import com.pandaq.appcore.network.RxPanda;
 
 /**
  * Created by huxinyu on 2018/5/27.
@@ -61,6 +61,6 @@ public class ApiData<T> {
      * @return 判断结果
      */
     public boolean isSuccess() {
-        return this.code.longValue() == Panda.globalConfig().getApiSuccessCode().longValue();
+        return this.code.longValue() == RxPanda.globalConfig().getApiSuccessCode().longValue();
     }
 }

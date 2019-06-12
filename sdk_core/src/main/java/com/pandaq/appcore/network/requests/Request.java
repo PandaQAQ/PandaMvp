@@ -2,7 +2,7 @@ package com.pandaq.appcore.network.requests;
 
 import android.text.TextUtils;
 
-import com.pandaq.appcore.network.Panda;
+import com.pandaq.appcore.network.RxPanda;
 import com.pandaq.appcore.network.config.CONFIG;
 import com.pandaq.appcore.network.config.HttpGlobalConfig;
 import com.pandaq.appcore.network.interceptor.HeaderInterceptor;
@@ -175,8 +175,8 @@ public class Request<T extends Request> {
      * 使用全局配置覆盖当前配置
      */
     private void resetGlobalParams() {
-        mGlobalConfig = Panda.globalConfig();
-        OkHttpClient.Builder builder = Panda.getOkHttpBuilder();
+        mGlobalConfig = RxPanda.globalConfig();
+        OkHttpClient.Builder builder = RxPanda.getOkHttpBuilder();
 
         // http client config
         if (mGlobalConfig.getConnectionPool() == null) {
@@ -200,7 +200,7 @@ public class Request<T extends Request> {
         builder.retryOnConnectionFailure(true);
 
         // retrofit config
-        Retrofit.Builder retrofitBuilder = Panda.getRetrofitBuilder();
+        Retrofit.Builder retrofitBuilder = RxPanda.getRetrofitBuilder();
         if (!TextUtils.isEmpty(mGlobalConfig.getBaseUrl())) {
             retrofitBuilder.baseUrl(mGlobalConfig.getBaseUrl());
         } else {
@@ -230,7 +230,7 @@ public class Request<T extends Request> {
     protected void injectLocalParams() {
         // 注入本地配置前先重置现有配置为全局默认配置
         resetGlobalParams();
-        OkHttpClient.Builder okHttpBuilder = Panda.getOkHttpBuilder();
+        OkHttpClient.Builder okHttpBuilder = RxPanda.getOkHttpBuilder();
 
         // 添加请求头
         if (mGlobalConfig.getGlobalHeaders() != null) {
@@ -282,8 +282,8 @@ public class Request<T extends Request> {
             newRetrofitBuilder.client(okHttpBuilder.build());
             retrofit = newRetrofitBuilder.build();
         } else { // 使用默认配置的对象
-            Panda.getRetrofitBuilder().client(okHttpBuilder.build());
-            retrofit = Panda.getRetrofitBuilder().build();
+            RxPanda.getRetrofitBuilder().client(okHttpBuilder.build());
+            retrofit = RxPanda.getRetrofitBuilder().build();
         }
     }
 

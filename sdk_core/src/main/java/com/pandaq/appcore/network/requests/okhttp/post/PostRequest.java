@@ -1,6 +1,6 @@
 package com.pandaq.appcore.network.requests.okhttp.post;
 
-import com.pandaq.appcore.network.Panda;
+import com.pandaq.appcore.network.RxPanda;
 import com.pandaq.appcore.network.observer.ApiObserver;
 import com.pandaq.appcore.network.requests.okhttp.base.HttpRequest;
 
@@ -32,7 +32,7 @@ public class PostRequest extends HttpRequest<PostRequest> {
         return mApi.post(url, globalParams)
                 .doOnSubscribe(disposable -> {
                     if (tag != null) {
-                        Panda.manager().addTag(tag, disposable);
+                        RxPanda.manager().addTag(tag, disposable);
                     }
                 })
                 .compose(httpTransformer(type));
@@ -42,7 +42,7 @@ public class PostRequest extends HttpRequest<PostRequest> {
     @Override
     protected void execute(ApiObserver callback) {
         if (tag != null) {
-            Panda.manager().addTag(tag, callback);
+            RxPanda.manager().addTag(tag, callback);
         }
         //获取到callback 中的泛型类型
         this.execute(getType(callback)).subscribe(callback);
