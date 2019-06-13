@@ -21,10 +21,21 @@ public class RxScheduler {
      * @return 指定了在 io 线程执行，UI 线程观察结果的观察对象
      */
     public static <T> ObservableTransformer<T, T> retrySync() {
+        return retrySync(RxPanda.globalConfig().getRetryCount());
+    }
+
+    /**
+     * 网络请求过程线程转换器，io 线程发射 ui 线程观察，且自带重试机制
+     *
+     * @param count 重试次数
+     * @param <T>   数据类型
+     * @return 指定了在 io 线程执行，UI 线程观察结果的观察对象
+     */
+    public static <T> ObservableTransformer<T, T> retrySync(int count) {
         return upstream -> upstream.subscribeOn(Schedulers.io())
                 .unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .retryWhen(new RetryFunc(RxPanda.globalConfig().getRetryCount(),
+                .retryWhen(new RetryFunc(count,
                         RxPanda.globalConfig().getRetryDelayMillis()));
     }
 

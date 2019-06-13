@@ -1,6 +1,7 @@
 package com.pandaq.appcore.network.config;
 
 import com.pandaq.appcore.network.RxPanda;
+import com.pandaq.appcore.network.ssl.SSLManager;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -28,7 +29,7 @@ public class HttpGlobalConfig {
 
     //todo cache 和 cookie 暂时未做
     private List<CallAdapter.Factory> callAdapterFactories = new ArrayList<>();//Call适配器工厂
-    private List<Converter.Factory> converterFactories = new ArrayList<>();//转换工厂
+    private Converter.Factory converterFactory;//转换工厂
     private Call.Factory callFactory;//Call工厂
     private SSLSocketFactory sslSocketFactory;//SSL工厂
     private HostnameVerifier hostnameVerifier;//主机域名验证
@@ -56,66 +57,134 @@ public class HttpGlobalConfig {
         return sHttpGlobalConfig;
     }
 
+    /**
+     *add a CallAdapter.Factory,if never add ,will add a RxJava2CallAdapterFactory as default
+     * @param factory the factory to add
+     * @return Config self
+     */
     public HttpGlobalConfig addCallAdapterFactory(@NonNull CallAdapter.Factory factory) {
         this.callAdapterFactories.add(factory);
         return this;
     }
 
-    public HttpGlobalConfig addConverterFactory(@NonNull Converter.Factory factory) {
-        this.converterFactories.add(factory);
+    /**
+     * add a Converter.Factory,if never add ,will add a GsonConverterFactory as default
+     * @param factory the factory to add
+     * @return Config self
+     */
+    public HttpGlobalConfig converterFactory(@NonNull Converter.Factory factory) {
+        this.converterFactory = factory;
         return this;
     }
 
+    /**
+     * add a Converter.Factory,if never add ,will add a GsonConverterFactory as default
+     * @param factory the factory to add
+     * @return Config self
+     */
     public HttpGlobalConfig callFactory(@NonNull Call.Factory factory) {
         this.callFactory = factory;
         return this;
     }
 
+    /**
+     * add a Converter.Factory,if never add ,will add a GsonConverterFactory as default
+     * @param factory the factory to add
+     * @return Config self
+     */
     public HttpGlobalConfig sslFactory(@NonNull SSLSocketFactory factory) {
         this.sslSocketFactory = factory;
         return this;
     }
 
-    public HttpGlobalConfig hostVerifier(@NonNull HostnameVerifier verifier) {
+    /**
+     * add a HostnameVerifier,the Request will add your baseUrl as default,if you want add other host
+     * call this method
+     * @param verifier the hostname verifier
+     * @return Config self
+     */
+    public HttpGlobalConfig hostVerifier(@NonNull SSLManager.UnSafeHostnameVerifier verifier) {
         this.hostnameVerifier = verifier;
         return this;
     }
 
+    /**
+     * set custom connectionPool
+     * @param pool custom pool
+     * @return Config self
+     */
     public HttpGlobalConfig connectionPool(@NonNull ConnectionPool pool) {
         this.connectionPool = pool;
         return this;
     }
 
+    /**
+     * add globalHeader this header will be added with every request
+     * @param key header name
+     * @param header header value
+     * @return Config self
+     */
     public HttpGlobalConfig addGlobalHeader(@NonNull String key, String header) {
         this.globalHeaders.put(key, header);
         return this;
     }
 
+    /**
+     * add globalHeader by map
+     * @param headers http request headers
+     * @return Config self
+     */
     public HttpGlobalConfig globalHeader(@NonNull Map<String, String> headers) {
         this.globalHeaders = headers;
         return this;
     }
 
+    /**
+     * add globalParams,the params will be added with every HttpRequest exclude RetrofitRequest
+     * @param params the params
+     * @return config self
+     */
     public HttpGlobalConfig globalParams(@NonNull Map<String, String> params) {
         this.globalParams = params;
         return this;
     }
 
+    /**
+     * add globalParam,the param will be added with every HttpRequest exclude RetrofitRequest
+     * @param key the paramsKey
+     * @param param the paramValue
+     * @return config self
+     */
     public HttpGlobalConfig addGlobalParam(@NonNull String key, String param) {
         this.globalParams.put(key, param);
         return this;
     }
 
+    /**
+     * if you use this http lib,must call it
+     * @param baseUrl RetrofitRequest's baseUrl,and this url will be added to HostnameVerifier
+     * @return config self
+     */
     public HttpGlobalConfig baseUrl(@NonNull String baseUrl) {
         this.baseUrl = baseUrl;
         return this;
     }
 
+    /**
+     * if you open retry strategy,you can set delay between tow requests
+     * @param retryDelay delay time (unit is 'ms')
+     * @return config self
+     */
     public HttpGlobalConfig retryDelayMillis(long retryDelay) {
         this.retryDelayMillis = retryDelay;
         return this;
     }
 
+    /**
+     * set retry count
+     * @param retryCount retryCount
+     * @return config self
+     */
     public HttpGlobalConfig retryCount(int retryCount) {
         this.retryCount = retryCount;
         return this;
@@ -152,8 +221,8 @@ public class HttpGlobalConfig {
         return callAdapterFactories;
     }
 
-    public List<Converter.Factory> getConverterFactories() {
-        return converterFactories;
+    public Converter.Factory getConverterFactory() {
+        return converterFactory;
     }
 
     public Call.Factory getCallFactory() {
