@@ -52,7 +52,7 @@ public class PandaResponseBodyConverter<T> implements Converter<ResponseBody, T>
             try {
                 return typeAdapter.fromJson(data);
             } catch (Exception e) {
-                throw new ApiException(apiData.getCode(), apiData.getMsg(), data);
+                throw new ApiException(apiData.getCode(), "illegal data type!!!", data);
             } finally {
                 value.close();
             }

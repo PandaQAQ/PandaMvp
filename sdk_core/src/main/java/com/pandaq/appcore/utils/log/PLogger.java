@@ -9,6 +9,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.Objects;
+
+import androidx.annotation.NonNull;
+
 /**
  * Created by huxinyu on 2018/9/5.
  * Email : panda.h@foxmail.com
@@ -21,7 +25,6 @@ public class PLogger {
     private static String className;//类名
     private static int lineNumber;//行数
     private static String TAG = "Log";
-    private static final String LINE_SEPARATOR = System.getProperty("line.separator");
 
     private PLogger() {
         /* Protect from instantiations */
@@ -116,57 +119,4 @@ public class PLogger {
         Log.wtf(tag, createLog(message));
     }
 
-
-    private static void printLine(boolean isTop) {
-        if (isTop) {
-            if (BuildConfig.DEBUG) {
-                Log.d(TAG, "╔═══════════════════════════════════════════════════════════════════════════════════════");
-            }
-        } else {
-            if (BuildConfig.DEBUG) {
-                Log.d(TAG, "╚═══════════════════════════════════════════════════════════════════════════════════════");
-            }
-        }
-    }
-
-
-    /**
-     * 格式化 json 后输出日志（网络日志拦截器信息打印）
-     *
-     * @param msg 格式化前 json 数据
-     */
-    public static void logJson(String msg) {
-        String message;
-        try {
-            if (msg.startsWith("{")) {
-                JSONObject jsonObject = new JSONObject(msg);
-                message = jsonObject.toString(2);//最重要的方法，就一行，返回格式化的json字符串，其中的数字4是缩进字符数
-            } else if (msg.startsWith("[")) {
-                JSONArray jsonArray = new JSONArray(msg);
-                message = jsonArray.toString(2);
-            } else {
-                message = msg;
-                if (BuildConfig.DEBUG) {
-                    Log.d(TAG, message);
-                }
-                return;
-            }
-        } catch (JSONException e) {
-            message = msg;
-            if (BuildConfig.DEBUG) {
-                Log.d(TAG, message);
-            }
-            return;
-        }
-        // 输出 json 格式数据
-        printLine(true);
-        message = LINE_SEPARATOR + message;
-        String[] lines = message.split(LINE_SEPARATOR);
-        for (String line : lines) {
-            if (!line.isEmpty() && BuildConfig.DEBUG) {
-                Log.d(TAG, "║ " + line);
-            }
-        }
-        printLine(false);
-    }
 }
