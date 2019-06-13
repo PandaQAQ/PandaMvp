@@ -55,7 +55,7 @@ public class AppLifeCycle implements IAppLifeCycle {
                 .netInterceptor(new HttpLoggingInterceptor()
                         .setLevel(HttpLoggingInterceptor.Level.BODY))
                 .apiSuccessCode(100L)
-                .addConverterFactory(PandaConvertFactory.create())
+                .converterFactory(PandaConvertFactory.create())
                 .connectTimeout(10000)
                 .readTimeout(10000)
                 .writeTimeout(10000)

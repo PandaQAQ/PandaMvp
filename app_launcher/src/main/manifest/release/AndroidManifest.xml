@@ -3,7 +3,6 @@
           package="com.pandaq.app_launcher">
 
     <application>
-
         <!--配置 Application-->
         <meta-data
             android:name="com.pandaq.app_launcher.app.LifeCycleInjector"

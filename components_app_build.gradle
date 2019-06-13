@@ -69,9 +69,9 @@ android {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
             }else {
                 if (isLaunchApp) {
-                    manifest.srcFile 'src/main/debug/AndroidManifest.xml'
+                    manifest.srcFile 'src/main/manifest/component/AndroidManifest.xml'
                 } else {
-                    manifest.srcFile 'src/main/release/AndroidManifest.xml'
+                    manifest.srcFile 'src/main/manifest/release/AndroidManifest.xml'
                 }
             }
         }
