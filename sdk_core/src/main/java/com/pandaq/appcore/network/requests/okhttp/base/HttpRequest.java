@@ -71,9 +71,6 @@ public abstract class HttpRequest<R extends HttpRequest> extends Request<R> {
         if (mGlobalConfig.getGlobalParams() != null) {
             globalParams.putAll(mGlobalConfig.getGlobalParams());
         }
-        if (retryCount <= 0) {
-            retryCount = mGlobalConfig.getRetryCount();
-        }
         if (retryDelayMillis <= 0) {
             retryDelayMillis = mGlobalConfig.getRetryDelayMillis();
         }

@@ -43,8 +43,6 @@ public class Request<T extends Request> {
     private Long writeTimeout = 0L;
     // local connectTimeout
     private Long connectTimeout = 0L;
-    // local retryCount
-    protected int retryCount = 1;
 
     private Map<String, String> headers = new LinkedHashMap<>();
     private List<Interceptor> interceptors = new ArrayList<>();
@@ -63,17 +61,6 @@ public class Request<T extends Request> {
      */
     public T baseUrl(String baseUrl) {
         this.baseUrl = baseUrl;
-        return CastUtils.cast(this);
-    }
-
-    /**
-     * 重试次数
-     *
-     * @param retryCount 次数
-     * @return 请求体
-     */
-    public T retry(int retryCount) {
-        this.retryCount = retryCount;
         return CastUtils.cast(this);
     }
 
@@ -206,12 +193,10 @@ public class Request<T extends Request> {
         } else {
             throw new IllegalArgumentException("base url can not be empty !!!");
         }
-        if (mGlobalConfig.getConverterFactories().isEmpty()) {
-            mGlobalConfig.addConverterFactory(GsonConverterFactory.create());
+        if (mGlobalConfig.getConverterFactory() == null) {
+            mGlobalConfig.converterFactory(GsonConverterFactory.create());
         }
-        for (Converter.Factory factory : mGlobalConfig.getConverterFactories()) {
-            retrofitBuilder.addConverterFactory(factory);
-        }
+        retrofitBuilder.addConverterFactory(mGlobalConfig.getConverterFactory());
         if (mGlobalConfig.getCallAdapterFactories().isEmpty()) {
             mGlobalConfig.addCallAdapterFactory(RxJava2CallAdapterFactory.create());
         }
@@ -265,10 +250,8 @@ public class Request<T extends Request> {
         if (!TextUtils.isEmpty(baseUrl)) { // 如果基础地址改了者需要重新构建个 Retrofit 对象，避免影响默认请求的配置
             Retrofit.Builder newRetrofitBuilder = new Retrofit.Builder();
             newRetrofitBuilder.baseUrl(baseUrl);
-            if (!mGlobalConfig.getConverterFactories().isEmpty()) {
-                for (Converter.Factory factory : mGlobalConfig.getConverterFactories()) {
-                    newRetrofitBuilder.addConverterFactory(factory);
-                }
+            if (mGlobalConfig.getConverterFactory() != null) {
+                newRetrofitBuilder.addConverterFactory(mGlobalConfig.getConverterFactory());
             }
             if (!mGlobalConfig.getCallAdapterFactories().isEmpty()) {
                 for (CallAdapter.Factory factory : mGlobalConfig.getCallAdapterFactories()) {
