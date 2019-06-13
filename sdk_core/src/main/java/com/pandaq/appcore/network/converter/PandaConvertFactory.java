@@ -36,12 +36,17 @@ public class PandaConvertFactory extends Converter.Factory {
         this.gson = gson;
     }
 
+    /**
+     * 这里这个 type 是本地接口方法中传入的泛型类型
+     *
+     * @param type        Retrofit 接口传入的泛型对象
+     * @param annotations Retrofit 接口的注解
+     * @param retrofit    Retrofit 对象
+     * @return 转换器
+     */
     @Nullable
     @Override
     public Converter<ResponseBody, ?> responseBodyConverter(Type type, Annotation[] annotations, Retrofit retrofit) {
-        if (type == String.class) {
-            return new StringResponseBodyConverter();
-        }
         TypeAdapter<?> adapter = gson.getAdapter(TypeToken.get(type));
         return new PandaResponseBodyConverter<>(gson, adapter);
     }
