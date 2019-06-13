@@ -11,10 +11,14 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.pandaq.app_launcher.R
+import com.pandaq.app_launcher.entites.Zhihu
+import com.pandaq.app_launcher.net.AppCallBack
+import com.pandaq.app_launcher.net.intercepter.DelayRequestInterceptor
 import com.pandaq.app_launcher.ui.framework.AppBaseActivity
 import com.pandaq.app_launcher.ui.functions.GalleryActivity
 import com.pandaq.appcore.framework.mvp.BasePresenter
 import com.pandaq.appcore.imageloader.core.PicLoader
+import com.pandaq.appcore.network.RxPanda
 import com.pandaq.appcore.permission.RtPermission
 import com.pandaq.commonui.msgwindow.Toaster
 import com.pandaq.commonui.utils.DisplayUtils
@@ -95,6 +99,41 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
                                         .show()
                             }
                             .start()
+                }
+                2 ->{
+                    RxPanda.get("http://news-at.zhihu.com/api/4/news/latest")
+                            .request(object :AppCallBack<Zhihu>(){
+                                override fun success(data: Zhihu?) {
+
+                                }
+
+                                override fun fail(code: Long?, msg: String?) {
+
+                                }
+
+                                override fun finish(success: Boolean) {
+
+                                }
+
+                            })
+                }
+                3 ->{
+                    RxPanda.get("http://news-at.zhihu.com/api/4/news/before/20190613")
+                            .interceptor(DelayRequestInterceptor())
+                            .request(object :AppCallBack<Zhihu>(){
+                                override fun success(data: Zhihu?) {
+
+                                }
+
+                                override fun fail(code: Long?, msg: String?) {
+
+                                }
+
+                                override fun finish(success: Boolean) {
+
+                                }
+
+                            })
                 }
                 6 -> {
                     ARouter.getInstance()

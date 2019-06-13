@@ -31,7 +31,7 @@ public class ApiException extends IOException {
     }
 
 
-    public ApiException(long code, String data, String msg) {
+    public ApiException(long code, String msg, String data) {
         this.code = code;
         this.data = data;
         this.message = msg;

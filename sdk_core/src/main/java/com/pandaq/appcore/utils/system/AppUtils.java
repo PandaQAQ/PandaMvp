@@ -43,8 +43,8 @@ public class AppUtils {
         this.appContext = applicationContext;
     }
 
-    public Context getApplicationContext() {
-        return appContext.getApplicationContext();
+    public static Context applicationContext() {
+        return instance.appContext.getApplicationContext();
     }
 
     /**
@@ -52,9 +52,9 @@ public class AppUtils {
      *
      * @return 应用版本号
      */
-    public int getVersionCode() {
+    public static int versionCode() {
         try {
-            PackageInfo info = appContext.getPackageManager().getPackageInfo(appContext.getApplicationContext().getPackageName(), 0);
+            PackageInfo info = instance.appContext.getPackageManager().getPackageInfo(instance.appContext.getApplicationContext().getPackageName(), 0);
             return info.versionCode;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
@@ -67,9 +67,9 @@ public class AppUtils {
      *
      * @return 版本名称
      */
-    public String getVersionName() {
+    public static String versionName() {
         try {
-            PackageInfo info = appContext.getPackageManager().getPackageInfo(appContext.getApplicationContext().getPackageName(), 0);
+            PackageInfo info = instance.appContext.getPackageManager().getPackageInfo(instance.appContext.getApplicationContext().getPackageName(), 0);
             return info.versionName;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();

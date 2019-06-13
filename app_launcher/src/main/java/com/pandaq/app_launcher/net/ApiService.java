@@ -1,6 +1,7 @@
 package com.pandaq.app_launcher.net;
 
 import io.reactivex.Observable;
+import okhttp3.ResponseBody;
 import retrofit2.http.GET;
 
 /**
@@ -13,5 +14,5 @@ public interface ApiService {
     String TOKEN_HEADER = "token";
 
     @GET("news/latest")
-    Observable<String> test();
+    Observable<ResponseBody> test();
 }
