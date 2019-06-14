@@ -15,8 +15,8 @@
  */
 package com.pandaq.appcore.network.interceptor;
 
+import com.pandaq.appcore.BuildConfig;
 import com.pandaq.appcore.network.log.LogEntity;
-import com.pandaq.appcore.utils.log.PLogger;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -34,7 +34,6 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-import okhttp3.internal.http.HttpHeaders;
 import okio.Buffer;
 import okio.BufferedSource;
 import okio.GzipSource;
@@ -49,7 +48,6 @@ import okio.GzipSource;
 public final class HttpLoggingInterceptor implements Interceptor {
 
     private static final Charset UTF8 = Charset.forName("UTF-8");
-    private Map<String, LogEntity> logMap = new HashMap<>();
 
     public enum Level {
         /**
@@ -115,6 +113,9 @@ public final class HttpLoggingInterceptor implements Interceptor {
      * Change the level at which this interceptor logs.
      */
     public HttpLoggingInterceptor setLevel(Level level) {
+        // 非debug模式直接返回 NONE 级别
+        if(!BuildConfig.DEBUG) return this;
+
         if (level == null) throw new NullPointerException("level == null. Use Level.NONE instead.");
         this.level = level;
         return this;
@@ -126,12 +127,12 @@ public final class HttpLoggingInterceptor implements Interceptor {
 
     @Override
     public Response intercept(Chain chain) throws IOException {
-        LogEntity entity = new LogEntity();
         Level level = this.level;
         Request request = chain.request();
         if (level == Level.NONE) {
             return chain.proceed(request);
         }
+        LogEntity entity = new LogEntity();
         boolean logBody = level == Level.BODY;
         boolean logHeaders = logBody || level == Level.HEADERS;
         RequestBody requestBody = request.body();
@@ -236,7 +237,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
                         buffer = new Buffer();
                         buffer.writeAll(gzippedResponseBody);
                     } catch (Exception e) {
-                        PLogger.e(e.getMessage(), e);
+                        entity.addLog("Error: " + e.getMessage());
                     } finally {
                         if (gzippedResponseBody != null) {
                             gzippedResponseBody.close();
