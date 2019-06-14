@@ -36,6 +36,7 @@ public class LogEntity {
      * @param log 日志
      */
     public void addLog(String log) {
+        if(!BuildConfig.DEBUG) return;
         if (log == null) return;
         if (log.equals(" ") || log.startsWith("{")
                 || log.startsWith("╔") || log.startsWith("╚")) {
@@ -49,6 +50,7 @@ public class LogEntity {
      * 输出日志到控制台
      */
     public void printLog() {
+        if(!BuildConfig.DEBUG) return;
         addLog("");
         addLog("╚════════════════════════  HTTP  END  ═══════════════════════════");
         addLog(" ");
