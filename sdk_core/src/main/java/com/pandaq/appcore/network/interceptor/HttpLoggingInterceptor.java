@@ -265,7 +265,6 @@ public final class HttpLoggingInterceptor implements Interceptor {
                 } else {
                     entity.addLog("Info: " + buffer.size() + "-byte body");
                 }
-                source.close();
             }
         }
         entity.printLog();
