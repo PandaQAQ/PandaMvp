@@ -22,7 +22,7 @@ public class LogEntity {
 
     public LogEntity() {
         addLog(" ");
-        addLog("╔════════════════════════  HTTP REQUEST START  ══════════════════════════");
+        addLog("╔════════════════════════  HTTP  START  ══════════════════════════");
         addLog("");
     }
 
@@ -50,7 +50,7 @@ public class LogEntity {
      */
     public void printLog() {
         addLog("");
-        addLog("╚════════════════════════  HTTP REQUEST END  ═══════════════════════════");
+        addLog("╚════════════════════════  HTTP  END  ═══════════════════════════");
         addLog(" ");
         for (String log : logs) {
             logJson(log);
