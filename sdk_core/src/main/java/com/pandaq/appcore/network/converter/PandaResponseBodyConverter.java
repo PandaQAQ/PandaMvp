@@ -45,7 +45,7 @@ public class PandaResponseBodyConverter<T> implements Converter<ResponseBody, T>
             }
         } else {
             // 获取解析数据
-            String data = new Gson().toJson(apiData.getData());
+            String data = apiData.getData() != null ? new Gson().toJson(apiData.getData()) : "{}";
             if (!apiData.isSuccess()) {
                 throw new ApiException(apiData.getCode(), apiData.getMsg(), data);
             }
