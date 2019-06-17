@@ -2,6 +2,7 @@ package com.pandaq.app_launcher.ui.home
 
 import android.content.Intent
 import android.os.Environment
+import android.util.Log
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
@@ -24,8 +25,19 @@ import com.pandaq.commonui.msgwindow.Toaster
 import com.pandaq.commonui.utils.DisplayUtils
 import com.pandaq.commonui.widget.recyclerview.decoration.DividerDecoration
 import com.pandaq.router.routers.RouterPath
+import io.reactivex.Observable
+import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.functions.Consumer
+import io.reactivex.functions.Function
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.launcher_activity_home.*
 import java.io.File
+import java.io.IOException
+import java.lang.Exception
+import java.net.ConnectException
+import java.net.SocketTimeoutException
+import java.util.concurrent.TimeUnit
 
 /**
  * Created by huxinyu on 2019/3/25.
@@ -100,27 +112,23 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
                             }
                             .start()
                 }
-                2 ->{
-                    RxPanda.get("http://news-at.zhihu.com/api/4/news/latest")
-                            .request(object :AppCallBack<Zhihu>(){
-                                override fun success(data: Zhihu?) {
-
+                2 -> {
+                    Observable.just("test")
+                            .subscribeOn(Schedulers.computation())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .map {
+                                throw IOException("exception")
+                            }
+                            .subscribe(object : Consumer<String> {
+                                override fun accept(t: String?) {
+                                    Log.d("result: ", t)
                                 }
-
-                                override fun fail(code: Long?, msg: String?) {
-
-                                }
-
-                                override fun finish(success: Boolean) {
-
-                                }
-
                             })
                 }
-                3 ->{
+                3 -> {
                     RxPanda.get("http://news-at.zhihu.com/api/4/news/before/20190613")
                             .interceptor(DelayRequestInterceptor())
-                            .request(object :AppCallBack<Zhihu>(){
+                            .request(object : AppCallBack<Zhihu>() {
                                 override fun success(data: Zhihu?) {
 
                                 }
