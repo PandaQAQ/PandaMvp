@@ -5,14 +5,6 @@ import android.util.Log;
 
 import com.pandaq.appcore.BuildConfig;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.util.Objects;
-
-import androidx.annotation.NonNull;
-
 /**
  * Created by huxinyu on 2018/9/5.
  * Email : panda.h@foxmail.com
@@ -35,87 +27,123 @@ public class PLogger {
     }
 
     private static void getMethodNames(StackTraceElement[] sElements) {
+        if (!BuildConfig.DEBUG) return;
         className = sElements[1].getFileName();
         lineNumber = sElements[1].getLineNumber();
     }
 
     public static void e(String message, Throwable e) {
-        e(TAG, message, e);
+        getMethodNames(new Throwable().getStackTrace());
+        logThrowable(TAG, message, e);
     }
 
+
     public static void e(String tag, String message, Throwable e) {
-        if (!BuildConfig.DEBUG)
-            return;
         // Throwable instance must be created before any methods
         getMethodNames(new Throwable().getStackTrace());
+        logThrowable(tag, message, e);
+    }
+
+    /**
+     * 输出日志
+     *
+     * @param tag     标签
+     * @param message 信息
+     * @param e       错误
+     */
+    private static void logThrowable(String tag, String message, Throwable e) {
+        if (!BuildConfig.DEBUG) return;
         Log.e(tag, createLog(message), e);
     }
 
     public static void e(String message) {
-        e(TAG, message);
+        getMethodNames(new Throwable().getStackTrace());
+        logErr(TAG, message);
     }
 
     public static void e(String tag, String message) {
-        if (!BuildConfig.DEBUG)
-            return;
         // Throwable instance must be created before any methods
         getMethodNames(new Throwable().getStackTrace());
+        logErr(tag, createLog(message));
+    }
+
+    private static void logErr(String tag, String message) {
+        if (!BuildConfig.DEBUG) return;
         Log.e(tag, createLog(message));
     }
 
-
     public static void i(String message) {
-        i(TAG, message);
+        getMethodNames(new Throwable().getStackTrace());
+        logI(TAG, message);
     }
 
     public static void i(String tag, String message) {
-        if (!BuildConfig.DEBUG)
-            return;
         getMethodNames(new Throwable().getStackTrace());
+        logI(tag, createLog(message));
+    }
+
+    private static void logI(String tag, String message) {
+        if (!BuildConfig.DEBUG) return;
         Log.i(tag, createLog(message));
     }
 
     public static void d(String message) {
-        d(TAG, message);
+        getMethodNames(new Throwable().getStackTrace());
+        logD(TAG, message);
     }
 
     public static void d(String tag, String message) {
-        if (!BuildConfig.DEBUG)
-            return;
         getMethodNames(new Throwable().getStackTrace());
+        logD(tag, createLog(message));
+    }
+
+    private static void logD(String tag, String message) {
+        if (!BuildConfig.DEBUG) return;
         Log.d(tag, createLog(message));
     }
 
     public static void v(String message) {
-        v(TAG, message);
+        getMethodNames(new Throwable().getStackTrace());
+        logV(TAG, message);
     }
 
     public static void v(String tag, String message) {
-        if (!BuildConfig.DEBUG)
-            return;
         getMethodNames(new Throwable().getStackTrace());
+        logV(tag, createLog(message));
+    }
+
+    private static void logV(String tag, String message) {
+        if (!BuildConfig.DEBUG) return;
         Log.v(tag, createLog(message));
     }
 
     public static void w(String message) {
-        w(TAG, message);
+        getMethodNames(new Throwable().getStackTrace());
+        logW(TAG, message);
     }
 
     public static void w(String tag, String message) {
-        if (!BuildConfig.DEBUG)
-            return;
         getMethodNames(new Throwable().getStackTrace());
+        logW(tag, createLog(message));
+    }
+
+    private static void logW(String tag, String message) {
+        if (!BuildConfig.DEBUG) return;
         Log.w(tag, createLog(message));
     }
 
     public static void wtf(String message) {
-        wtf(TAG, message);
+        getMethodNames(new Throwable().getStackTrace());
+        logWtf(TAG, message);
     }
 
     public static void wtf(String tag, String message) {
-        if (!BuildConfig.DEBUG)
-            return;
         getMethodNames(new Throwable().getStackTrace());
+        logWtf(tag, createLog(message));
+    }
+
+    private static void logWtf(String tag, String message) {
+        if (!BuildConfig.DEBUG) return;
         Log.wtf(tag, createLog(message));
     }
 

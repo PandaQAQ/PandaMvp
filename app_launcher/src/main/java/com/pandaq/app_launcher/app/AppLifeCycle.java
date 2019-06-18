@@ -5,11 +5,13 @@ import android.content.Context;
 import android.graphics.Color;
 
 import com.pandaq.app_launcher.BuildConfig;
+import com.pandaq.app_launcher.entites.WanApiData;
 import com.pandaq.app_launcher.net.ApiService;
 import com.pandaq.appcore.cache.CacheTool;
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
 import com.pandaq.appcore.network.RxPanda;
 import com.pandaq.appcore.network.config.HttpGlobalConfig;
+import com.pandaq.appcore.network.converter.PandaConvertFactory;
 import com.pandaq.appcore.network.interceptor.HttpLoggingInterceptor;
 import com.pandaq.appcore.utils.log.PLogger;
 import com.pandaq.appcore.utils.system.AppUtils;
@@ -33,7 +35,7 @@ public class AppLifeCycle implements IAppLifeCycle {
 
     @Override
     public void onCreate(@NonNull Application application) {
-        initNet(application);
+        initNet();
         SnackerConfig.getDefault()
                 .setActionColor(Color.RED)
                 .setBackgroundColor(Color.GREEN);
@@ -46,13 +48,14 @@ public class AppLifeCycle implements IAppLifeCycle {
     }
 
     // 初始化网络请求
-    private void initNet(Application application) {
+    private void initNet() {
         RxPanda.globalConfig()
                 .baseUrl(ApiService.BASE_URL)
                 .netInterceptor(new HttpLoggingInterceptor()
                         .setLevel(HttpLoggingInterceptor.Level.BODY))
                 .apiSuccessCode(100L)
-                .converterFactory(GsonConverterFactory.create())
+                .apiDataClazz(WanApiData.class)
+                .converterFactory(PandaConvertFactory.create())
                 .connectTimeout(10000)
                 .readTimeout(10000)
                 .writeTimeout(10000)
