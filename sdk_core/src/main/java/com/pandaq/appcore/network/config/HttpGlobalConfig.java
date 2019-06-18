@@ -1,6 +1,9 @@
 package com.pandaq.appcore.network.config;
 
+import com.google.gson.annotations.SerializedName;
 import com.pandaq.appcore.network.RxPanda;
+import com.pandaq.appcore.network.entity.ApiData;
+import com.pandaq.appcore.network.entity.IApiData;
 import com.pandaq.appcore.network.ssl.SSLManager;
 
 import java.util.ArrayList;
@@ -41,7 +44,8 @@ public class HttpGlobalConfig {
     private int retryCount;//请求失败重试次数
     private static HttpGlobalConfig sHttpGlobalConfig;
     private boolean isDebug;
-    private Long apiSuccessCode = 0L;
+    private Long apiSuccessCode = -1L;
+    private Class apiDataClazz = ApiData.class;
 
     private HttpGlobalConfig() {
     }
@@ -58,7 +62,8 @@ public class HttpGlobalConfig {
     }
 
     /**
-     *add a CallAdapter.Factory,if never add ,will add a RxJava2CallAdapterFactory as default
+     * add a CallAdapter.Factory,if never add ,will add a RxJava2CallAdapterFactory as default
+     *
      * @param factory the factory to add
      * @return Config self
      */
@@ -69,6 +74,7 @@ public class HttpGlobalConfig {
 
     /**
      * add a Converter.Factory,if never add ,will add a GsonConverterFactory as default
+     *
      * @param factory the factory to add
      * @return Config self
      */
@@ -79,6 +85,7 @@ public class HttpGlobalConfig {
 
     /**
      * add a Converter.Factory,if never add ,will add a GsonConverterFactory as default
+     *
      * @param factory the factory to add
      * @return Config self
      */
@@ -89,6 +96,7 @@ public class HttpGlobalConfig {
 
     /**
      * add a Converter.Factory,if never add ,will add a GsonConverterFactory as default
+     *
      * @param factory the factory to add
      * @return Config self
      */
@@ -100,6 +108,7 @@ public class HttpGlobalConfig {
     /**
      * add a HostnameVerifier,the Request will add your baseUrl as default,if you want add other host
      * call this method
+     *
      * @param verifier the hostname verifier
      * @return Config self
      */
@@ -110,6 +119,7 @@ public class HttpGlobalConfig {
 
     /**
      * set custom connectionPool
+     *
      * @param pool custom pool
      * @return Config self
      */
@@ -120,7 +130,8 @@ public class HttpGlobalConfig {
 
     /**
      * add globalHeader this header will be added with every request
-     * @param key header name
+     *
+     * @param key    header name
      * @param header header value
      * @return Config self
      */
@@ -131,6 +142,7 @@ public class HttpGlobalConfig {
 
     /**
      * add globalHeader by map
+     *
      * @param headers http request headers
      * @return Config self
      */
@@ -141,6 +153,7 @@ public class HttpGlobalConfig {
 
     /**
      * add globalParams,the params will be added with every HttpRequest exclude RetrofitRequest
+     *
      * @param params the params
      * @return config self
      */
@@ -151,7 +164,8 @@ public class HttpGlobalConfig {
 
     /**
      * add globalParam,the param will be added with every HttpRequest exclude RetrofitRequest
-     * @param key the paramsKey
+     *
+     * @param key   the paramsKey
      * @param param the paramValue
      * @return config self
      */
@@ -162,6 +176,7 @@ public class HttpGlobalConfig {
 
     /**
      * if you use this http lib,must call it
+     *
      * @param baseUrl RetrofitRequest's baseUrl,and this url will be added to HostnameVerifier
      * @return config self
      */
@@ -172,6 +187,7 @@ public class HttpGlobalConfig {
 
     /**
      * if you open retry strategy,you can set delay between tow requests
+     *
      * @param retryDelay delay time (unit is 'ms')
      * @return config self
      */
@@ -182,6 +198,7 @@ public class HttpGlobalConfig {
 
     /**
      * set retry count
+     *
      * @param retryCount retryCount
      * @return config self
      */
@@ -212,6 +229,11 @@ public class HttpGlobalConfig {
 
     public HttpGlobalConfig connectTimeout(long connectTimeout) {
         RxPanda.getOkHttpBuilder().connectTimeout(connectTimeout, TimeUnit.MILLISECONDS);
+        return this;
+    }
+
+    public HttpGlobalConfig apiDataClazz(Class clazz) {
+        apiDataClazz = clazz;
         return this;
     }
 
@@ -268,6 +290,10 @@ public class HttpGlobalConfig {
     public HttpGlobalConfig debug(boolean debug) {
         isDebug = debug;
         return this;
+    }
+
+    public Class getApiDataClazz() {
+        return apiDataClazz;
     }
 
     public Long getApiSuccessCode() {

@@ -12,7 +12,9 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.pandaq.app_launcher.R
+import com.pandaq.app_launcher.entites.WxArticle
 import com.pandaq.app_launcher.entites.Zhihu
+import com.pandaq.app_launcher.net.ApiService
 import com.pandaq.app_launcher.net.AppCallBack
 import com.pandaq.app_launcher.net.intercepter.DelayRequestInterceptor
 import com.pandaq.app_launcher.ui.framework.AppBaseActivity
@@ -20,24 +22,15 @@ import com.pandaq.app_launcher.ui.functions.GalleryActivity
 import com.pandaq.appcore.framework.mvp.BasePresenter
 import com.pandaq.appcore.imageloader.core.PicLoader
 import com.pandaq.appcore.network.RxPanda
+import com.pandaq.appcore.network.transformer.RxScheduler
 import com.pandaq.appcore.permission.RtPermission
+import com.pandaq.appcore.utils.log.PLogger
 import com.pandaq.commonui.msgwindow.Toaster
 import com.pandaq.commonui.utils.DisplayUtils
 import com.pandaq.commonui.widget.recyclerview.decoration.DividerDecoration
 import com.pandaq.router.routers.RouterPath
-import io.reactivex.Observable
-import io.reactivex.Scheduler
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.functions.Consumer
-import io.reactivex.functions.Function
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.launcher_activity_home.*
 import java.io.File
-import java.io.IOException
-import java.lang.Exception
-import java.net.ConnectException
-import java.net.SocketTimeoutException
-import java.util.concurrent.TimeUnit
 
 /**
  * Created by huxinyu on 2019/3/25.
@@ -113,16 +106,24 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
                             .start()
                 }
                 2 -> {
-                    Observable.just("test")
-                            .subscribeOn(Schedulers.computation())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .map {
-                                throw IOException("exception")
-                            }
-                            .subscribe(object : Consumer<String> {
-                                override fun accept(t: String?) {
-                                    Log.d("result: ", t)
+                    val service = RxPanda
+                            .retrofit()
+                            .create(ApiService::class.java)
+                    service.test()
+                            .compose(RxScheduler.sync())
+                            .subscribe(object : AppCallBack<List<WxArticle>>() {
+                                override fun success(data: List<WxArticle>) {
+                                    Log.d("data", data.toString())
                                 }
+
+                                override fun fail(code: Long?, msg: String?) {
+                                    PLogger.e(msg.toString())
+                                }
+
+                                override fun finish(success: Boolean) {
+
+                                }
+
                             })
                 }
                 3 -> {

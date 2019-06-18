@@ -273,12 +273,12 @@ public class Request<T extends Request> {
     /**
      * 获取第一级type
      *
-     * @param t
-     * @param <T>
-     * @return
+     * @param k 类对象
+     * @param <K> 泛型
+     * @return 泛型 Type
      */
-    protected <T> Type getType(T t) {
-        Type genType = t.getClass().getGenericSuperclass();
+    protected <K> Type getType(K k) {
+        Type genType = k.getClass().getGenericSuperclass();
         if (!(genType instanceof ParameterizedType)) {
             return Object.class;
         }

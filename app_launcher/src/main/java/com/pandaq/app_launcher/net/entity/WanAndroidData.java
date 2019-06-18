@@ -1,5 +1,6 @@
-package com.pandaq.appcore.network.entity;
+package com.pandaq.app_launcher.net.entity;
 
+import com.google.gson.annotations.SerializedName;
 import com.pandaq.appcore.network.RxPanda;
 
 /**
@@ -16,15 +17,17 @@ import com.pandaq.appcore.network.RxPanda;
  * *    "data":data Object or data Array
  * *}
  */
-public class ApiData<T> implements IApiData<T> {
+public class WanAndroidData<T> {
 
     /**
      * 接口请求返回码
      */
+    @SerializedName("errorCode")
     private Long code;
     /**
      * 消息，可为空
      */
+    @SerializedName("errorMsg")
     private String msg;
     /**
      * 数据 data 可为空
@@ -61,7 +64,6 @@ public class ApiData<T> implements IApiData<T> {
      * @return 判断结果
      */
     public boolean isSuccess() {
-        if (this.code == null) return false;
-        return this.code.longValue() == RxPanda.globalConfig().getApiSuccessCode().longValue();
+        return this.code == 0L;
     }
 }

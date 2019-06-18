@@ -1,5 +1,10 @@
 package com.pandaq.app_launcher.net;
 
+import com.pandaq.app_launcher.entites.WxArticle;
+import com.pandaq.app_launcher.entites.Zhihu;
+
+import java.util.List;
+
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.http.GET;
@@ -10,9 +15,9 @@ import retrofit2.http.GET;
  * Description : retrofit api 接口
  */
 public interface ApiService {
-    String BASE_URL = "http://news-at.zhihu.com/api/4/";
+    String BASE_URL = "https://wanandroid.com/";
     String TOKEN_HEADER = "token";
 
-    @GET("news/latest")
-    Observable<ResponseBody> test();
+    @GET("wxarticle/chapters/json")
+    Observable<List<WxArticle>> test();
 }
