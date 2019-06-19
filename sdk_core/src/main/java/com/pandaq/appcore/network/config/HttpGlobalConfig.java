@@ -45,7 +45,7 @@ public class HttpGlobalConfig {
     private static HttpGlobalConfig sHttpGlobalConfig;
     private boolean isDebug;
     private Long apiSuccessCode = -1L;
-    private Class apiDataClazz = ApiData.class;
+    private Class<? extends IApiData> apiDataClazz = ApiData.class;
 
     private HttpGlobalConfig() {
     }
@@ -232,7 +232,7 @@ public class HttpGlobalConfig {
         return this;
     }
 
-    public HttpGlobalConfig apiDataClazz(Class clazz) {
+    public HttpGlobalConfig apiDataClazz(Class<? extends IApiData> clazz) {
         apiDataClazz = clazz;
         return this;
     }

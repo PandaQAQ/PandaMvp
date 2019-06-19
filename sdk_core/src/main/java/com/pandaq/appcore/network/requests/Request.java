@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import com.pandaq.appcore.network.RxPanda;
 import com.pandaq.appcore.network.config.CONFIG;
 import com.pandaq.appcore.network.config.HttpGlobalConfig;
+import com.pandaq.appcore.network.entity.IApiData;
 import com.pandaq.appcore.network.interceptor.HeaderInterceptor;
 import com.pandaq.appcore.network.ssl.SSLManager;
 import com.pandaq.appcore.utils.CastUtils;
@@ -273,7 +274,7 @@ public class Request<T extends Request> {
     /**
      * 获取第一级type
      *
-     * @param k 类对象
+     * @param k   类对象
      * @param <K> 泛型
      * @return 泛型 Type
      */

@@ -30,17 +30,25 @@ public class PandaResponseBodyConverter<T> implements Converter<ResponseBody, T>
 
     private Gson gson;
     private TypeAdapter<T> typeAdapter;
+    private Class apiDataClazz;
 
-    public PandaResponseBodyConverter(Gson gson, TypeAdapter<T> typeAdapter) {
+    PandaResponseBodyConverter(Gson gson, TypeAdapter<T> typeAdapter) {
         this.gson = gson;
         this.typeAdapter = typeAdapter;
+    }
+
+    PandaResponseBodyConverter(Gson gson, TypeAdapter<T> typeAdapter, Class<? extends IApiData> clazz) {
+        this.gson = gson;
+        this.typeAdapter = typeAdapter;
+        this.apiDataClazz = clazz;
     }
 
     @Override
     public T convert(@NonNull ResponseBody value) throws IOException {
         String response = value.string();
-        // 如是加密信息可在此处解密后再解析
-        Class apiDataClazz = RxPanda.globalConfig().getApiDataClazz();
+        if (apiDataClazz == null) {
+            apiDataClazz = RxPanda.globalConfig().getApiDataClazz();
+        }
         IApiData apiData = gson.fromJson(response, (Type) apiDataClazz);
         /* 如是按约定格式返回数据 apiData 中的 code 是必须的。
          * 因此可以用 code 是否存在来判断数据是否合法

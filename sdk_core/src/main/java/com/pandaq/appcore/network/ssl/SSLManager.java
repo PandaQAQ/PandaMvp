@@ -11,6 +11,7 @@ import java.security.UnrecoverableKeyException;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
 import java.security.cert.X509Certificate;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -141,6 +142,9 @@ public class SSLManager {
             this.hosts.addAll(hosts);
         }
 
+        public UnSafeHostnameVerifier(String ... hosts) {
+            this.hosts.addAll(Arrays.asList(hosts));
+        }
         /**
          * 添加一个 host
          *
