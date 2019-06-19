@@ -13,6 +13,7 @@ import com.pandaq.appcore.network.RxPanda;
 import com.pandaq.appcore.network.config.HttpGlobalConfig;
 import com.pandaq.appcore.network.converter.PandaConvertFactory;
 import com.pandaq.appcore.network.interceptor.HttpLoggingInterceptor;
+import com.pandaq.appcore.network.ssl.SSLManager;
 import com.pandaq.appcore.utils.log.PLogger;
 import com.pandaq.appcore.utils.system.AppUtils;
 import com.pandaq.commonui.msgwindow.SnackerConfig;
@@ -54,7 +55,8 @@ public class AppLifeCycle implements IAppLifeCycle {
                 .netInterceptor(new HttpLoggingInterceptor()
                         .setLevel(HttpLoggingInterceptor.Level.BODY))
                 .apiSuccessCode(100L)
-                .apiDataClazz(WanApiData.class)
+                .hostVerifier(new SSLManager.UnSafeHostnameVerifier("www.easy-mock.com","https://wanandroid.com/","http://news-at.zhihu.com/"))
+//                .apiDataClazz(WanApiData.class)
                 .converterFactory(PandaConvertFactory.create())
                 .connectTimeout(10000)
                 .readTimeout(10000)

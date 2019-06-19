@@ -3,6 +3,7 @@ package com.pandaq.appcore.network.converter;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;
+import com.pandaq.appcore.network.annotation.ApiData;
 import com.pandaq.appcore.network.annotation.RealEntity;
 
 import java.lang.annotation.Annotation;
@@ -52,6 +53,10 @@ public class PandaConvertFactory extends Converter.Factory {
             // PandaResponseBodyConverter 转换时不使用 ApiData 剥壳，直接转换为接口中定义的对象
             if (annotation instanceof RealEntity) {
                 return new GsonResponseBodyConverter<>(gson, adapter);
+            }
+            // 指定某一接口自己的 App壳
+            if (annotation instanceof ApiData) {
+                return new PandaResponseBodyConverter<>(gson, adapter, ((ApiData) annotation).clazz());
             }
         }
         return new PandaResponseBodyConverter<>(gson, adapter);

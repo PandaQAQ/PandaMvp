@@ -39,7 +39,9 @@ import java.io.File
  */
 @Route(path = RouterPath.LAUNCH_ACTIVITY_HOME)
 class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
-
+    private val service = RxPanda
+            .retrofit()
+            .create(ApiService::class.java)
 
     private val adapter: BaseQuickAdapter<String, BaseViewHolder> by lazy {
         return@lazy object : BaseQuickAdapter<String, BaseViewHolder>(R.layout.launcher_item_homepage) {
@@ -106,14 +108,11 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
                             .start()
                 }
                 2 -> {
-                    val service = RxPanda
-                            .retrofit()
-                            .create(ApiService::class.java)
                     service.test()
                             .compose(RxScheduler.sync())
-                            .subscribe(object : AppCallBack<List<WxArticle>>() {
-                                override fun success(data: List<WxArticle>) {
-                                    Log.d("data", data.toString())
+                            .subscribe(object : AppCallBack<String>() {
+                                override fun success(data: String) {
+                                    Log.d("正常数据，Data 为 String", data)
                                 }
 
                                 override fun fail(code: Long?, msg: String?) {
@@ -127,15 +126,15 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
                             })
                 }
                 3 -> {
-                    RxPanda.get("http://news-at.zhihu.com/api/4/news/before/20190613")
-                            .interceptor(DelayRequestInterceptor())
-                            .request(object : AppCallBack<Zhihu>() {
-                                override fun success(data: Zhihu?) {
-
+                    service.testApiData()
+                            .compose(RxScheduler.sync())
+                            .subscribe(object : AppCallBack<List<WxArticle>>() {
+                                override fun success(data: List<WxArticle>) {
+                                    Log.d("玩 Android 自定义 Api 壳", data.toString())
                                 }
 
                                 override fun fail(code: Long?, msg: String?) {
-
+                                    PLogger.e(msg.toString())
                                 }
 
                                 override fun finish(success: Boolean) {
@@ -144,6 +143,26 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
 
                             })
                 }
+
+                4 -> {
+                    service.zhihu()
+                            .compose(RxScheduler.sync())
+                            .subscribe(object : AppCallBack<Zhihu>() {
+                                override fun success(data: Zhihu) {
+                                    Log.d("不去壳知乎", data.toString())
+                                }
+
+                                override fun fail(code: Long?, msg: String?) {
+                                    PLogger.e(msg.toString())
+                                }
+
+                                override fun finish(success: Boolean) {
+
+                                }
+
+                            })
+                }
+
                 6 -> {
                     ARouter.getInstance()
                             .build(RouterPath.A_ACTIVITY_MAIN)
