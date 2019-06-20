@@ -16,6 +16,7 @@
 package com.pandaq.appcore.network.interceptor;
 
 import com.pandaq.appcore.BuildConfig;
+import com.pandaq.appcore.network.RxPanda;
 import com.pandaq.appcore.network.log.LogEntity;
 
 import java.io.EOFException;
@@ -114,7 +115,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
      */
     public HttpLoggingInterceptor setLevel(Level level) {
         // 非debug模式直接返回 NONE 级别
-        if(!BuildConfig.DEBUG) return this;
+        if (!RxPanda.globalConfig().isDebug()) return this;
 
         if (level == null) throw new NullPointerException("level == null. Use Level.NONE instead.");
         this.level = level;
