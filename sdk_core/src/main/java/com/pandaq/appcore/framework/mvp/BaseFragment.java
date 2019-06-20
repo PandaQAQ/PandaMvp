@@ -18,7 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
  * Description : 给出的模板基类,可选择继承此类实现 bindButterKnife（）方法使用 ButterKnife 绑定 UI
  * 也可完全自己写基类绑定 UI
  */
-public abstract class BaseFragment<P extends BasePresenter> extends androidx.fragment.app.Fragment implements IContract.IMvpView {
+public abstract class BaseFragment<P extends BasePresenter> extends Fragment implements IContract.IMvpView {
     protected P mPresenter;
 
     protected abstract P injectPresenter();
