@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;
+import com.google.gson.stream.JsonReader;
 import com.pandaq.appcore.network.RxPanda;
 import com.pandaq.appcore.network.entity.ApiData;
 import com.pandaq.appcore.network.entity.EmptyData;
@@ -13,6 +14,8 @@ import com.pandaq.appcore.network.entity.IApiData;
 import com.pandaq.appcore.network.exception.ApiException;
 
 import java.io.IOException;
+import java.io.Reader;
+import java.io.StringReader;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 
@@ -61,41 +64,26 @@ public class PandaResponseBodyConverter<T> implements Converter<ResponseBody, T>
             }
         } else {
             // 获取解析数据,无 data 数据，默认以空对象替代
-            String data = apiData.getData() != null ? new Gson().toJson(apiData.getData()) : new Gson().toJson(new EmptyData());
+            String data = apiData.getData() != null ? new Gson().toJson(apiData.getData()) : "data";
             if (!apiData.isSuccess()) {
                 throw new ApiException(apiData.getCode(), apiData.getMsg(), data);
             } else {
                 try {
-                    return typeAdapter.fromJson(data);
+                    Reader reader = new StringReader(data);
+                    JsonReader jsonReader = gson.newJsonReader(reader);
+                    jsonReader.setLenient(true);
+                    return typeAdapter.read(jsonReader);
                 } catch (Exception e) {
-                    throw new ApiException(apiData.getCode(), "illegal data type!!!", data);
+                    // 原始数据解析不通返回 EmptyData对象解析
+                    try {
+                        return typeAdapter.fromJson(new Gson().toJson(new EmptyData()));
+                    } catch (Exception e1) {
+                        throw new ApiException(apiData.getCode(), "illegal data type!!!", data);
+                    }
                 } finally {
                     value.close();
                 }
             }
         }
-    }
-
-    /**
-     * 获取第一级type
-     *
-     * @param k clazz 对象
-     * @return 泛型 Type
-     */
-    protected Type getType(Class k) {
-        Type genType = k.getGenericSuperclass();
-        if (!(genType instanceof ParameterizedType)) {
-            return Object.class;
-        }
-        Type[] params = ((ParameterizedType) genType).getActualTypeArguments();
-        Type type = params[0];
-        Type finalNeedType;
-        if (params.length > 1) {
-            if (!(type instanceof ParameterizedType)) throw new IllegalStateException("没有填写泛型参数");
-            finalNeedType = ((ParameterizedType) type).getActualTypeArguments()[0];
-        } else {
-            finalNeedType = type;
-        }
-        return finalNeedType;
     }
 }
