@@ -5,21 +5,19 @@ import android.content.Context;
 import android.graphics.Color;
 
 import com.pandaq.app_launcher.BuildConfig;
-import com.pandaq.app_launcher.entites.WanApiData;
 import com.pandaq.app_launcher.net.ApiService;
-import com.pandaq.appcore.cache.CacheTool;
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
 import com.pandaq.appcore.network.RxPanda;
-import com.pandaq.appcore.network.config.HttpGlobalConfig;
 import com.pandaq.appcore.network.converter.PandaConvertFactory;
 import com.pandaq.appcore.network.interceptor.HttpLoggingInterceptor;
 import com.pandaq.appcore.network.ssl.SSLManager;
 import com.pandaq.appcore.utils.log.PLogger;
-import com.pandaq.appcore.utils.system.AppUtils;
 import com.pandaq.commonui.msgwindow.SnackerConfig;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
+
 import androidx.annotation.NonNull;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by huxinyu on 2018/12/25.
@@ -55,7 +53,7 @@ public class AppLifeCycle implements IAppLifeCycle {
                 .netInterceptor(new HttpLoggingInterceptor()
                         .setLevel(HttpLoggingInterceptor.Level.BODY))
                 .apiSuccessCode(100L)
-                .hostVerifier(new SSLManager.UnSafeHostnameVerifier("www.easy-mock.com","https://wanandroid.com/","http://news-at.zhihu.com/"))
+                .hosts("http://192.168.0.34:8080")
 //                .apiDataClazz(WanApiData.class)
                 .converterFactory(PandaConvertFactory.create())
                 .connectTimeout(10000)

@@ -131,18 +131,18 @@ public class SSLManager {
         return null;
     }
 
-    public static class UnSafeHostnameVerifier implements HostnameVerifier {
+    public static class SafeHostnameVerifier implements HostnameVerifier {
         private Set<String> hosts = new ArraySet<>();
 
-        public UnSafeHostnameVerifier(String host) {
+        public SafeHostnameVerifier(String host) {
             this.hosts.add(host);
         }
 
-        public UnSafeHostnameVerifier(List<String> hosts) {
+        public SafeHostnameVerifier(List<String> hosts) {
             this.hosts.addAll(hosts);
         }
 
-        public UnSafeHostnameVerifier(String ... hosts) {
+        public SafeHostnameVerifier(String ... hosts) {
             this.hosts.addAll(Arrays.asList(hosts));
         }
         /**

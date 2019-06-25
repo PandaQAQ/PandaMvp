@@ -5,7 +5,6 @@ import android.text.TextUtils;
 import com.pandaq.appcore.network.RxPanda;
 import com.pandaq.appcore.network.config.CONFIG;
 import com.pandaq.appcore.network.config.HttpGlobalConfig;
-import com.pandaq.appcore.network.entity.IApiData;
 import com.pandaq.appcore.network.interceptor.HeaderInterceptor;
 import com.pandaq.appcore.network.ssl.SSLManager;
 import com.pandaq.appcore.utils.CastUtils;
@@ -23,7 +22,6 @@ import okhttp3.ConnectionPool;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import retrofit2.CallAdapter;
-import retrofit2.Converter;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -174,7 +172,7 @@ public class Request<T extends Request> {
         mGlobalConfig.connectionPool(mGlobalConfig.getConnectionPool());
 
         if (mGlobalConfig.getHostnameVerifier() == null) {
-            mGlobalConfig.hostVerifier(new SSLManager.UnSafeHostnameVerifier(mGlobalConfig.getBaseUrl()));
+            mGlobalConfig.hostVerifier(new SSLManager.SafeHostnameVerifier(mGlobalConfig.getBaseUrl()));
         }
         builder.hostnameVerifier(mGlobalConfig.getHostnameVerifier());
 
@@ -262,7 +260,7 @@ public class Request<T extends Request> {
             if (mGlobalConfig.getCallFactory() != null) {
                 newRetrofitBuilder.callFactory(mGlobalConfig.getCallFactory());
             }
-            okHttpBuilder.hostnameVerifier(new SSLManager.UnSafeHostnameVerifier(baseUrl));
+            okHttpBuilder.hostnameVerifier(new SSLManager.SafeHostnameVerifier(baseUrl));
             newRetrofitBuilder.client(okHttpBuilder.build());
             retrofit = newRetrofitBuilder.build();
         } else { // 使用默认配置的对象

@@ -28,6 +28,15 @@ public interface ApiService {
     @GET("wxarticle/chapters/json")
     Observable<List<WxArticle>> testApiData();
 
+    /**
+     * 纯文本 Test
+     *
+     * @return String
+     */
+    @RealEntity
+    @GET("http://192.168.0.34:8080/TestServlet")
+    Observable<Boolean> stringTest();
+
     // 在线 mock 正常使用 ApiData 数据壳
     @GET("https://www.easy-mock.com/mock/5cef4b3e651e4075bad237f8/example/test")
     Observable<String> test();
