@@ -1,12 +1,12 @@
 package com.pandaq.appcore.network.config;
 
-import com.google.gson.annotations.SerializedName;
 import com.pandaq.appcore.network.RxPanda;
 import com.pandaq.appcore.network.entity.ApiData;
 import com.pandaq.appcore.network.entity.IApiData;
 import com.pandaq.appcore.network.ssl.SSLManager;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -112,8 +112,30 @@ public class HttpGlobalConfig {
      * @param verifier the hostname verifier
      * @return Config self
      */
-    public HttpGlobalConfig hostVerifier(@NonNull SSLManager.UnSafeHostnameVerifier verifier) {
+    public HttpGlobalConfig hostVerifier(@NonNull HostnameVerifier verifier) {
         this.hostnameVerifier = verifier;
+        return this;
+    }
+
+    /**
+     * 添加安全认证的 hosts
+     *
+     * @param hosts hosts 地址
+     * @return config self
+     */
+    public HttpGlobalConfig hosts(String... hosts) {
+        // 默认添加基础域名
+        if (this.hostnameVerifier == null) {
+            this.hostnameVerifier = new SSLManager.SafeHostnameVerifier(hosts);
+            ((SSLManager.SafeHostnameVerifier) this.hostnameVerifier).addHost(baseUrl);
+        } else {
+            if (this.hostnameVerifier instanceof SSLManager.SafeHostnameVerifier) {
+                ((SSLManager.SafeHostnameVerifier) this.hostnameVerifier).addHosts(Arrays.asList(hosts));
+                ((SSLManager.SafeHostnameVerifier) this.hostnameVerifier).addHost(baseUrl);
+            } else {
+                throw new IllegalArgumentException("please verifier host in your custom hostnameVerifier,or do not call hostVerifier()");
+            }
+        }
         return this;
     }
 

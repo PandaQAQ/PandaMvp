@@ -16,7 +16,6 @@ import com.pandaq.app_launcher.entites.WxArticle
 import com.pandaq.app_launcher.entites.Zhihu
 import com.pandaq.app_launcher.net.ApiService
 import com.pandaq.app_launcher.net.AppCallBack
-import com.pandaq.app_launcher.net.intercepter.DelayRequestInterceptor
 import com.pandaq.app_launcher.ui.framework.AppBaseActivity
 import com.pandaq.app_launcher.ui.functions.GalleryActivity
 import com.pandaq.appcore.framework.mvp.BasePresenter
@@ -154,6 +153,25 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
 
                                 override fun fail(code: Long?, msg: String?) {
                                     PLogger.e(msg.toString())
+                                }
+
+                                override fun finish(success: Boolean) {
+
+                                }
+
+                            })
+                }
+
+                5 -> {
+                    service.stringTest()
+                            .compose(RxScheduler.sync())
+                            .subscribe(object : AppCallBack<Boolean>() {
+                                override fun success(data: Boolean?) {
+                                    Log.d("RxPanda", data.toString())
+                                }
+
+                                override fun fail(code: Long?, msg: String?) {
+                                    PLogger.d(msg)
                                 }
 
                                 override fun finish(success: Boolean) {

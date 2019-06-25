@@ -5,6 +5,15 @@ import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;
 import com.pandaq.appcore.network.annotation.ApiData;
 import com.pandaq.appcore.network.annotation.RealEntity;
+import com.pandaq.appcore.network.converter.ScalarResponseBodyConverters.BooleanResponseBodyConverter;
+import com.pandaq.appcore.network.converter.ScalarResponseBodyConverters.ByteResponseBodyConverter;
+import com.pandaq.appcore.network.converter.ScalarResponseBodyConverters.CharacterResponseBodyConverter;
+import com.pandaq.appcore.network.converter.ScalarResponseBodyConverters.DoubleResponseBodyConverter;
+import com.pandaq.appcore.network.converter.ScalarResponseBodyConverters.FloatResponseBodyConverter;
+import com.pandaq.appcore.network.converter.ScalarResponseBodyConverters.IntegerResponseBodyConverter;
+import com.pandaq.appcore.network.converter.ScalarResponseBodyConverters.LongResponseBodyConverter;
+import com.pandaq.appcore.network.converter.ScalarResponseBodyConverters.ShortResponseBodyConverter;
+import com.pandaq.appcore.network.converter.ScalarResponseBodyConverters.StringResponseBodyConverter;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
@@ -52,7 +61,27 @@ public class PandaConvertFactory extends Converter.Factory {
         for (Annotation annotation : annotations) {
             // PandaResponseBodyConverter 转换时不使用 ApiData 剥壳，直接转换为接口中定义的对象
             if (annotation instanceof RealEntity) {
-                return new GsonResponseBodyConverter<>(gson, adapter);
+                if (type == String.class) {
+                    return StringResponseBodyConverter.INSTANCE;
+                } else if (type == Boolean.class || type == Boolean.TYPE) {
+                    return BooleanResponseBodyConverter.INSTANCE;
+                } else if (type == Byte.class || type == Byte.TYPE) {
+                    return ByteResponseBodyConverter.INSTANCE;
+                } else if (type == Character.class || type == Character.TYPE) {
+                    return CharacterResponseBodyConverter.INSTANCE;
+                } else if (type == Double.class || type == Double.TYPE) {
+                    return DoubleResponseBodyConverter.INSTANCE;
+                } else if (type == Float.class || type == Float.TYPE) {
+                    return FloatResponseBodyConverter.INSTANCE;
+                } else if (type == Integer.class || type == Integer.TYPE) {
+                    return IntegerResponseBodyConverter.INSTANCE;
+                } else if (type == Long.class || type == Long.TYPE) {
+                    return LongResponseBodyConverter.INSTANCE;
+                } else if (type == Short.class || type == Short.TYPE) {
+                    return ShortResponseBodyConverter.INSTANCE;
+                } else {
+                    return new GsonResponseBodyConverter<>(gson, adapter);
+                }
             }
             // 指定某一接口自己的 App壳
             if (annotation instanceof ApiData) {
