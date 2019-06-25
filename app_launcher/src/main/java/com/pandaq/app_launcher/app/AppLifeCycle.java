@@ -53,7 +53,7 @@ public class AppLifeCycle implements IAppLifeCycle {
                 .netInterceptor(new HttpLoggingInterceptor()
                         .setLevel(HttpLoggingInterceptor.Level.BODY))
                 .apiSuccessCode(100L)
-                .hosts("http://192.168.0.34:8080")
+                .hosts("http://192.168.0.107:8080")
 //                .apiDataClazz(WanApiData.class)
                 .converterFactory(PandaConvertFactory.create())
                 .connectTimeout(10000)

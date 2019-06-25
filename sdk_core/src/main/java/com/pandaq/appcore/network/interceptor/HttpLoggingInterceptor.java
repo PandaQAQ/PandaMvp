@@ -115,7 +115,7 @@ public final class HttpLoggingInterceptor implements Interceptor {
      */
     public HttpLoggingInterceptor setLevel(Level level) {
         // 非debug模式直接返回 NONE 级别
-        if (!RxPanda.globalConfig().isDebug()) return this;
+        if (!BuildConfig.DEBUG) return this;
 
         if (level == null) throw new NullPointerException("level == null. Use Level.NONE instead.");
         this.level = level;
@@ -183,7 +183,9 @@ public final class HttpLoggingInterceptor implements Interceptor {
                 }
                 if (isPlaintext(buffer)) {
                     if (charset != null) {
-                        entity.addLog(buffer.readString(charset));
+                        String data = buffer.readString(charset);
+                        entity.addLog(data);
+//                        entity.addLog("ResponseData: "+data);
                     }
                     entity.addLog("Info: " + request.method() + requestBody.contentLength() + "-byte body");
                 } else {
@@ -260,7 +262,9 @@ public final class HttpLoggingInterceptor implements Interceptor {
                 }
 
                 if (contentLength != 0 && charset != null) {
-                    entity.addLog(buffer.clone().readString(charset));
+                    String data = buffer.clone().readString(charset);
+                    entity.addLog(data);
+//                    entity.addLog("ResponseData: "+data);
                 }
                 if (gzippedLength != null) {
                     entity.addLog("Info: " + buffer.size() + "-byte, " + gzippedLength + "-gzipped-byte body");
