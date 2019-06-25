@@ -34,7 +34,7 @@ public interface ApiService {
      * @return String
      */
     @RealEntity
-    @GET("http://192.168.0.34:8080/TestServlet")
+    @GET("http://192.168.0.107:8080/HelloServlet")
     Observable<Boolean> stringTest();
 
     // 在线 mock 正常使用 ApiData 数据壳
