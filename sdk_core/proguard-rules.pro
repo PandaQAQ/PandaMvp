@@ -84,7 +84,7 @@
 -keep class com.google.gson.stream.** { *; }
 -keepattributes EnclosingMethod
 # Gson 定义的实体类
--keep class com.gouuse.goengine.entity.**{*;}
+-keep class com.pandaq.appcore.network.entity.**{*;}
 
 ########### BRVAH ###########
 -keep class com.chad.library.adapter.** {
