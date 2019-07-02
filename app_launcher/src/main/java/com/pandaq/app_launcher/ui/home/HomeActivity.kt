@@ -28,6 +28,10 @@ import com.pandaq.commonui.msgwindow.Toaster
 import com.pandaq.commonui.utils.DisplayUtils
 import com.pandaq.commonui.widget.recyclerview.decoration.DividerDecoration
 import com.pandaq.router.routers.RouterPath
+import io.reactivex.Observable
+import io.reactivex.Observer
+import io.reactivex.disposables.Disposable
+import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.launcher_activity_home.*
 import java.io.File
 
@@ -107,78 +111,18 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
                             .start()
                 }
                 2 -> {
-                    service.test()
-                            .compose(RxScheduler.sync())
-                            .subscribe(object : AppCallBack<String>() {
-                                override fun success(data: String) {
-                                    Log.d("正常数据，Data 为 String", data)
-                                }
-
-                                override fun fail(code: Long?, msg: String?) {
-                                    PLogger.e(msg.toString())
-                                }
-
-                                override fun finish(success: Boolean) {
-
-                                }
-
-                            })
+                    testRxJava()
                 }
                 3 -> {
-                    service.testApiData()
-                            .compose(RxScheduler.sync())
-                            .subscribe(object : AppCallBack<List<WxArticle>>() {
-                                override fun success(data: List<WxArticle>) {
-                                    Log.d("玩 Android 自定义 Api 壳", data.toString())
-                                }
 
-                                override fun fail(code: Long?, msg: String?) {
-                                    PLogger.e(msg.toString())
-                                }
-
-                                override fun finish(success: Boolean) {
-
-                                }
-
-                            })
                 }
 
                 4 -> {
-                    service.zhihu()
-                            .compose(RxScheduler.sync())
-                            .subscribe(object : AppCallBack<Zhihu>() {
-                                override fun success(data: Zhihu) {
-                                    Log.d("不去壳知乎", data.toString())
-                                }
 
-                                override fun fail(code: Long?, msg: String?) {
-                                    PLogger.e(msg.toString())
-                                }
-
-                                override fun finish(success: Boolean) {
-
-                                }
-
-                            })
                 }
 
                 5 -> {
-                    service.stringTest()
-                            .compose(RxScheduler.sync())
-                            .subscribe(object : AppCallBack<Boolean>() {
-                                override fun success(data: Boolean?) {
-                                    Log.d("RxPanda", data.toString())
-                                }
 
-                                override fun fail(code: Long?, msg: String?) {
-                                    PLogger.d(msg)
-                                }
-
-                                override fun finish(success: Boolean) {
-
-                                }
-
-                            })
                 }
 
                 6 -> {
@@ -198,6 +142,44 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
                 }
             }
         }
+    }
+
+    private fun testRxJava(){
+        Observable.just("Data")
+                .doOnSubscribe {
+                    Log.d("doOnSubscribe1",Thread.currentThread().name)
+                }
+                .map {
+                    Log.d("Subscribe1",Thread.currentThread().name)
+                    return@map it
+                }
+                .subscribeOn(Schedulers.io())
+                .doOnSubscribe {
+                    Log.d("doOnSubscribe0",Thread.currentThread().name)
+                }
+                .map {
+                    Log.d("Subscribe0 ",Thread.currentThread().name)
+                    return@map it
+                }
+                .subscribeOn(Schedulers.computation())
+                .subscribe(object : Observer<String> {
+                    override fun onComplete() {
+
+                    }
+
+                    override fun onSubscribe(d: Disposable) {
+                        Log.d("doOnSubscribe-1",Thread.currentThread().name)
+                    }
+
+                    override fun onNext(t: String) {
+
+                    }
+
+                    override fun onError(e: Throwable) {
+
+                    }
+
+                })
     }
 
     override fun loadData() {
