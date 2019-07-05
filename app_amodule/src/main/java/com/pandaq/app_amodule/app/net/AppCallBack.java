@@ -1,8 +1,8 @@
 package com.pandaq.app_amodule.app.net;
 
-import com.pandaq.appcore.network.exception.ApiException;
-import com.pandaq.appcore.network.observer.ApiObserver;
 import com.pandaq.appcore.utils.log.PLogger;
+import com.pandaq.rxpanda.exception.ApiException;
+import com.pandaq.rxpanda.observer.ApiObserver;
 
 /**
  * Created by huxinyu on 2019/3/8.

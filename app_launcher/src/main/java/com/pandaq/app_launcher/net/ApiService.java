@@ -3,8 +3,8 @@ package com.pandaq.app_launcher.net;
 import com.pandaq.app_launcher.entites.WanApiData;
 import com.pandaq.app_launcher.entites.WxArticle;
 import com.pandaq.app_launcher.entites.Zhihu;
-import com.pandaq.appcore.network.annotation.ApiData;
-import com.pandaq.appcore.network.annotation.RealEntity;
+import com.pandaq.rxpanda.annotation.ApiData;
+import com.pandaq.rxpanda.annotation.RealEntity;
 
 import java.util.List;
 

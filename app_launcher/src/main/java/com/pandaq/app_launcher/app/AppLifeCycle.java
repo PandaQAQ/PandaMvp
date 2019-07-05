@@ -7,15 +7,11 @@ import android.graphics.Color;
 import com.pandaq.app_launcher.BuildConfig;
 import com.pandaq.app_launcher.net.ApiService;
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
-import com.pandaq.appcore.network.RxPanda;
-import com.pandaq.appcore.network.converter.PandaConvertFactory;
-import com.pandaq.appcore.network.interceptor.HttpLoggingInterceptor;
-import com.pandaq.appcore.network.ssl.SSLManager;
 import com.pandaq.appcore.utils.log.PLogger;
 import com.pandaq.commonui.msgwindow.SnackerConfig;
-
-import javax.net.ssl.HostnameVerifier;
-import javax.net.ssl.SSLSession;
+import com.pandaq.rxpanda.RxPanda;
+import com.pandaq.rxpanda.converter.PandaConvertFactory;
+import com.pandaq.rxpanda.log.HttpLoggingInterceptor;
 
 import androidx.annotation.NonNull;
 
