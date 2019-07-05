@@ -1,7 +1,7 @@
 package com.pandaq.app_launcher.entites
 
 import com.google.gson.annotations.SerializedName
-import com.pandaq.appcore.network.entity.IApiData
+import com.pandaq.rxpanda.entity.IApiData
 
 /**
  * Created by huxinyu on 2019/6/18.

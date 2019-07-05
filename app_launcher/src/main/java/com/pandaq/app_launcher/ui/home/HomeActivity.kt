@@ -12,22 +12,17 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.pandaq.app_launcher.R
-import com.pandaq.app_launcher.entites.WxArticle
-import com.pandaq.app_launcher.entites.Zhihu
 import com.pandaq.app_launcher.net.ApiService
-import com.pandaq.app_launcher.net.AppCallBack
 import com.pandaq.app_launcher.ui.framework.AppBaseActivity
 import com.pandaq.app_launcher.ui.functions.GalleryActivity
 import com.pandaq.appcore.framework.mvp.BasePresenter
 import com.pandaq.appcore.imageloader.core.PicLoader
-import com.pandaq.appcore.network.RxPanda
-import com.pandaq.appcore.network.transformer.RxScheduler
 import com.pandaq.appcore.permission.RtPermission
-import com.pandaq.appcore.utils.log.PLogger
 import com.pandaq.commonui.msgwindow.Toaster
 import com.pandaq.commonui.utils.DisplayUtils
 import com.pandaq.commonui.widget.recyclerview.decoration.DividerDecoration
 import com.pandaq.router.routers.RouterPath
+import com.pandaq.rxpanda.RxPanda
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
@@ -144,21 +139,21 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
         }
     }
 
-    private fun testRxJava(){
+    private fun testRxJava() {
         Observable.just("Data")
                 .doOnSubscribe {
-                    Log.d("doOnSubscribe1",Thread.currentThread().name)
+                    Log.d("doOnSubscribe1", Thread.currentThread().name)
                 }
                 .map {
-                    Log.d("Subscribe1",Thread.currentThread().name)
+                    Log.d("Subscribe1", Thread.currentThread().name)
                     return@map it
                 }
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe {
-                    Log.d("doOnSubscribe0",Thread.currentThread().name)
+                    Log.d("doOnSubscribe0", Thread.currentThread().name)
                 }
                 .map {
-                    Log.d("Subscribe0 ",Thread.currentThread().name)
+                    Log.d("Subscribe0 ", Thread.currentThread().name)
                     return@map it
                 }
                 .subscribeOn(Schedulers.computation())
@@ -168,7 +163,7 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
                     }
 
                     override fun onSubscribe(d: Disposable) {
-                        Log.d("doOnSubscribe-1",Thread.currentThread().name)
+                        Log.d("doOnSubscribe-1", Thread.currentThread().name)
                     }
 
                     override fun onNext(t: String) {

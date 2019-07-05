@@ -1,7 +1,6 @@
 package com.pandaq.app_launcher.net.entity;
 
 import com.google.gson.annotations.SerializedName;
-import com.pandaq.appcore.network.RxPanda;
 
 /**
  * Created by huxinyu on 2018/5/27.

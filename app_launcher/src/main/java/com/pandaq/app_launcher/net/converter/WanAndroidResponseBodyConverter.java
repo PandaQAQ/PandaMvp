@@ -4,8 +4,7 @@ import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
 import com.google.gson.reflect.TypeToken;
 import com.pandaq.app_launcher.net.entity.WanAndroidData;
-import com.pandaq.appcore.network.entity.ApiData;
-import com.pandaq.appcore.network.exception.ApiException;
+import com.pandaq.rxpanda.exception.ApiException;
 
 import java.io.IOException;
 

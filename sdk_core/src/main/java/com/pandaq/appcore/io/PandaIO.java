@@ -2,7 +2,7 @@ package com.pandaq.appcore.io;
 
 import com.pandaq.appcore.io.download.DownloadInterceptor;
 import com.pandaq.appcore.io.upload.UploadInterceptor;
-import com.pandaq.appcore.network.interceptor.HttpLoggingInterceptor;
+import com.pandaq.rxpanda.log.HttpLoggingInterceptor;
 
 import java.io.File;
 import java.io.FileOutputStream;
