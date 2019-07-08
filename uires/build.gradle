@@ -32,6 +32,9 @@ dependencies {
     api rootProject.ext.dependencies["constraint-layout"]
     api rootProject.ext.dependencies["refresh-layout"]
     api rootProject.ext.dependencies["refresh-header"]
-
+    api rootProject.ext.dependencies["pickerview"]
+    api rootProject.ext.dependencies["calendar"]
+    api rootProject.ext.dependencies["supertextview"]
+    api rootProject.ext.dependencies["colorpicker"]
     api 'androidx.recyclerview:recyclerview:1.0.0'
 }
