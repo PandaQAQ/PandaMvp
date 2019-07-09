@@ -8,6 +8,7 @@ import com.pandaq.app_launcher.R
 import com.pandaq.app_launcher.ui.framework.AppBaseActivity
 import com.pandaq.router.routers.RouterPath
 import kotlinx.android.synthetic.main.launcher_activity_flash.*
+import kotlinx.android.synthetic.main.launcher_activity_flash1.*
 
 /**
  * Created by huxinyu on 2019/3/25.
@@ -20,7 +21,7 @@ class FlashActivity : AppBaseActivity<FlashPresenter>(), FlashContract.View {
         return FlashPresenter(this)
     }
 
-    override fun bindContentRes(): Int = R.layout.launcher_activity_flash
+    override fun bindContentRes(): Int = R.layout.launcher_activity_flash1
 
     override fun initVariable() {
 
@@ -35,10 +36,10 @@ class FlashActivity : AppBaseActivity<FlashPresenter>(), FlashContract.View {
             }
 
             override fun onAnimationEnd(animation: Animation?) {
-                ARouter.getInstance()
-                        .build(RouterPath.LAUNCH_ACTIVITY_HOME)
-                        .navigation()
-                finish()
+//                ARouter.getInstance()
+//                        .build(RouterPath.LAUNCH_ACTIVITY_HOME)
+//                        .navigation()
+//                finish()
             }
 
             override fun onAnimationStart(animation: Animation?) {
@@ -46,7 +47,8 @@ class FlashActivity : AppBaseActivity<FlashPresenter>(), FlashContract.View {
             }
 
         })
-        iv_flash.startAnimation(animator)
+//        iv_flash.startAnimation(animator)
+        launcher_textview4.isSelected = true
     }
 
     override fun loadData() {
