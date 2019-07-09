@@ -25,8 +25,8 @@
     <color name="btn_white_disable">#9BF7F7F7</color>
     <color name="btn_white_pressed">#ECF4FC</color>
 
-    <!--<color name="btn_selected_color">#4894E9</color>-->
-    <!--<color name="btn_unselected_stoke">#F66C6C</color>-->
+    <color name="cb_checked_color">#4894E9</color>
+    <color name="cb_unchecked_stoke">#4894E9</color>
 
     <!--#########################刷新布局刷新头颜色######################-->
     <color name="res_color_refresh_header1">#3F51B5</color>

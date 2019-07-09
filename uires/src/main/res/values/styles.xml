@@ -20,4 +20,10 @@
         <item name="android:windowEnterAnimation">@anim/res_dialog_appear</item>
         <item name="android:windowExitAnimation">@anim/res_dialog_disappear</item>
     </style>
+
+    <style name="CheckItemStyle">
+        <item name="android:background">@drawable/res_bg_check_item</item>
+        <item name="android:textColor">@color/res_checkable_text_color</item>
+        <item name="android:button">@null</item>
+    </style>
 </resources>
