@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar" tools:ignore="ResourceName">
+    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.NoActionBar" tools:ignore="ResourceName">
         <item name="android:windowEnableSplitTouch">false</item>
         <item name="android:splitMotionEvents">false</item>
         <!--<item name="android:windowAnimationStyle">@style/SwipeBackActivityAnim</item>-->
         <item name="android:screenOrientation">portrait</item>
         <item name="actionOverflowMenuStyle">@style/PopupTheme</item>
         <item name="android:windowDisablePreview">true</item>
+        <item name="colorButtonNormal">@color/colorAccent</item>
         <item name="actionMenuTextColor">@color/colorWhite</item>
     </style>
 
-    <style name="NoTitleAppTheme" parent="AppTheme" tools:ignore="ResourceName">
+    <style name="NoTitleAppTheme" parent="BaseAppTheme" tools:ignore="ResourceName">
         <!-- Customize your theme here. -->
         <item name="android:windowNoTitle">true</item>
     </style>
@@ -30,7 +31,7 @@
         <item name="android:windowDisablePreview">true</item>
     </style>
 
-    <style name="FitSystemWindow" parent="AppTheme" tools:ignore="ResourceName">
+    <style name="FitSystemWindow" parent="BaseAppTheme" tools:ignore="ResourceName">
         <item name="android:fitsSystemWindows">true</item>
     </style>
 

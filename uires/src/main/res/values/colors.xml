@@ -16,14 +16,17 @@
     <color name="res_colorBorder">#C1C7D4</color>
     <color name="res_ripple">#aaa</color>
 
-    <!--#########################背景颜色######################-->
-    <color name="res_primary_normal">#4894E9</color>
-    <color name="res_primary_disable">#9b4894e9</color>
-    <color name="res_primary_pressed">#b44894e9</color>
+    <!--#########################按钮控件背景颜色######################-->
+    <color name="btn_primary_normal">#F44336</color>
+    <color name="btn_primary_disable">#F08881</color>
+    <color name="btn_primary_pressed">#009688</color>
 
-    <color name="res_white_normal">#F7F7F7</color>
-    <color name="res_white_disable">#9BF7F7F7</color>
-    <color name="res_white_pressed">#ECF4FC</color>
+    <color name="btn_white_normal">#F7F7F7</color>
+    <color name="btn_white_disable">#9BF7F7F7</color>
+    <color name="btn_white_pressed">#ECF4FC</color>
+
+    <!--<color name="btn_selected_color">#4894E9</color>-->
+    <!--<color name="btn_unselected_stoke">#F66C6C</color>-->
 
     <!--#########################刷新布局刷新头颜色######################-->
     <color name="res_color_refresh_header1">#3F51B5</color>
