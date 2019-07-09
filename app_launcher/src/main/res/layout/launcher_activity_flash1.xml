@@ -55,7 +55,6 @@
         android:id="@+id/launcher_textview4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@drawable/res_stateful_ripple_primary_round_4"
         android:padding="@dimen/dp_10"
         android:text="TextView"
         app:layout_constraintBottom_toBottomOf="@+id/launcher_textview3"
