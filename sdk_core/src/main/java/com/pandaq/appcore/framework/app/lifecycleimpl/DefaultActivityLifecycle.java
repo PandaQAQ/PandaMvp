@@ -3,13 +3,12 @@ package com.pandaq.appcore.framework.app.lifecycleimpl;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 
 import com.pandaq.appcore.framework.app.ActivityTask;
 
 import java.util.List;
-
-import androidx.fragment.app.FragmentActivity;
-import androidx.fragment.app.FragmentManager;
 
 /**
  * Created by huxinyu on 2018/9/20.

@@ -10,8 +10,8 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.CallLog;
 
-import androidx.annotation.RequiresApi;
-import androidx.annotation.RequiresPermission;
+import android.support.annotation.RequiresApi;
+import android.support.annotation.RequiresPermission;
 
 /**
  * Created by huxinyu on 2018/12/20.

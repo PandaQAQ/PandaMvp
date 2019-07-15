@@ -6,8 +6,8 @@ import android.net.Uri;
 
 import java.io.File;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 
 /**
  * Created by huxinyu on 2018/6/27.

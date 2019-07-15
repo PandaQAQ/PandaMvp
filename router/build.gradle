@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'org.greenrobot.greendao'
 
 android {
@@ -21,6 +21,11 @@ android {
             proguardFiles 'proguard-rules.pro'
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 //GreenDao 配置
@@ -39,19 +44,16 @@ dependencies {
     testCompileOnly rootProject.ext.dependencies["junit"]
     androidTestCompileOnly rootProject.ext.dependencies["test-runner"]
     androidTestCompileOnly rootProject.ext.dependencies["espresso-core"]
-    api(rootProject.ext.dependencies["arouter"]) {
-        exclude module: 'support-annotations'
-        exclude module: 'appcompat-v7'
-        exclude module: 'support-v4'
+
+    api (rootProject.ext.dependencies["arouter"]){
+        exclude group: 'com.android.support'
     }
+
     api(project(':sdk_core')) {
-        exclude group: 'androidx'
-        exclude module: 'appcompat-v7'
-        exclude module: 'support-v4'
+        exclude group: 'com.android.support'
     }
     //GreenDao 3.0
     implementation rootProject.ext.dependencies["greendao"]
-    apply plugin: 'org.greenrobot.greendao'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 }
 repositories {

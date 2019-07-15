@@ -10,7 +10,7 @@ import android.os.Bundle;
 
 import java.util.List;
 
-import androidx.annotation.RequiresPermission;
+import android.support.annotation.RequiresPermission;
 
 /**
  * Created by huxinyu on 2018/12/20.

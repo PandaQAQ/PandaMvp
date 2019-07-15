@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import androidx.annotation.ColorInt;
+import android.support.annotation.ColorInt;
 
 /**
  * 脉冲球动画

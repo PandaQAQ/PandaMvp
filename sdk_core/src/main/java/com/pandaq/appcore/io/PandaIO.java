@@ -13,7 +13,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import androidx.annotation.NonNull;
+import android.support.annotation.NonNull;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;

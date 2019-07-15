@@ -5,7 +5,7 @@ import com.pandaq.appcore.utils.crypto.CodeType;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-import androidx.annotation.NonNull;
+import android.support.annotation.NonNull;
 
 /**
  * Created by huxinyu on 2018/7/6.

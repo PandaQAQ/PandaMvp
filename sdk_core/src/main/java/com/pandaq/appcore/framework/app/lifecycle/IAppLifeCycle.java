@@ -3,7 +3,7 @@ package com.pandaq.appcore.framework.app.lifecycle;
 import android.app.Application;
 import android.content.Context;
 
-import androidx.annotation.NonNull;
+import android.support.annotation.NonNull;
 
 /**
  * Created by huxinyu on 2018/12/25.

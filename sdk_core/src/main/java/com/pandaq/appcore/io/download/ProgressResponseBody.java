@@ -6,7 +6,7 @@ import com.pandaq.appcore.io.UploadResponse;
 
 import java.io.IOException;
 
-import androidx.annotation.NonNull;
+import android.support.annotation.NonNull;
 import okhttp3.MediaType;
 import okhttp3.ResponseBody;
 import okio.Buffer;

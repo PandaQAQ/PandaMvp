@@ -1,5 +1,7 @@
 package com.pandaq.appcore.framework.annotation;
 
+import android.support.annotation.StringDef;
+
 import com.pandaq.appcore.utils.format.formaters.DateFormatter;
 
 import java.lang.annotation.ElementType;
@@ -7,7 +9,6 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-import androidx.annotation.StringDef;
 
 /**
  * Created by huxinyu on 2018/12/24.

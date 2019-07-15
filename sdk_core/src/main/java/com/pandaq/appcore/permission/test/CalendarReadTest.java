@@ -8,8 +8,8 @@ import android.database.Cursor;
 import android.os.Build;
 import android.provider.CalendarContract;
 
-import androidx.annotation.RequiresApi;
-import androidx.annotation.RequiresPermission;
+import android.support.annotation.RequiresApi;
+import android.support.annotation.RequiresPermission;
 
 
 /**

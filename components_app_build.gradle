@@ -65,9 +65,9 @@ android {
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
-            if (isShellApp){
+            if (isShellApp) {
                 manifest.srcFile 'src/main/AndroidManifest.xml'
-            }else {
+            } else {
                 if (isLaunchApp) {
                     manifest.srcFile 'src/main/manifest/component/AndroidManifest.xml'
                 } else {
@@ -78,16 +78,15 @@ android {
     }
 }
 dependencies {
-    implementation(project(':router')) {
-        exclude group: 'androidx'
-        exclude module: 'appcompat-v7'
-        exclude module: 'support-v4'
+    implementation(project(':router'))
+    api (rootProject.ext.dependencies["arouter"]){
+        exclude group: 'com.android.support'
     }
     kapt rootProject.ext.dependencies["arouter_compiler"]
+    implementation rootProject.ext.dependencies["annotation"]
+    annotationProcessor rootProject.ext.dependencies["annotation"]
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     api(project(':uires')) {
         exclude group: 'com.android.support'
-        exclude module: 'appcompat-v7'
-        exclude module: 'support-v4'
     }
 }

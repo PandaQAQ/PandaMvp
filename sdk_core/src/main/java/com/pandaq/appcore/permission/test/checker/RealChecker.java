@@ -27,8 +27,8 @@ import com.pandaq.appcore.permission.test.StorageWriteTest;
 
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
+import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 
 /**
  * Created by huxinyu on 2018/12/18.

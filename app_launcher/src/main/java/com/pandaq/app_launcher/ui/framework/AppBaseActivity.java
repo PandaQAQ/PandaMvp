@@ -2,6 +2,8 @@ package com.pandaq.app_launcher.ui.framework;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 
 import com.pandaq.app_launcher.R;
@@ -9,9 +11,6 @@ import com.pandaq.appcore.framework.mvp.BaseActivity;
 import com.pandaq.appcore.framework.mvp.BasePresenter;
 import com.pandaq.commonui.guide.GuideCoverView;
 import com.pandaq.commonui.msgwindow.Toaster;
-
-import androidx.annotation.Nullable;
-import androidx.appcompat.widget.Toolbar;
 
 /**
  * Created by huxinyu on 2018/1/26.

@@ -1,10 +1,9 @@
 package com.pandaq.appcore.framework.app.lifecycle;
 
 import android.app.Application;
+import android.support.v4.app.FragmentManager;
 
 import java.util.List;
-
-import androidx.fragment.app.FragmentManager;
 
 /**
  * Created by huxinyu on 2018/12/25.

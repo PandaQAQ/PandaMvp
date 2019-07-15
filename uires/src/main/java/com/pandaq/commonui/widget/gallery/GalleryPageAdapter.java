@@ -1,5 +1,6 @@
 package com.pandaq.commonui.widget.gallery;
 
+import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,8 +11,7 @@ import com.pandaq.commonui.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.viewpager.widget.PagerAdapter;
+import android.support.annotation.NonNull;
 
 /**
  * Created by huxinyu on 2019/4/3.
