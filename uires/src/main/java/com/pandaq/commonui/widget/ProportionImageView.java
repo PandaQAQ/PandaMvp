@@ -2,12 +2,12 @@ package com.pandaq.commonui.widget;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.v7.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.view.View;
 
 import com.pandaq.commonui.R;
 
-import androidx.appcompat.widget.AppCompatImageView;
 
 /**
  * Created by huxinyu on 2018/5/23.

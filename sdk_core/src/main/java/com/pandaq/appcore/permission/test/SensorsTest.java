@@ -8,7 +8,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Build;
 
-import androidx.annotation.RequiresApi;
+import android.support.annotation.RequiresApi;
 
 /**
  * Created by huxinyu on 2018/12/20.

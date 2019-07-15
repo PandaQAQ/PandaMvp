@@ -2,18 +2,18 @@ package com.pandaq.commonui.msgwindow;
 
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.support.design.widget.Snackbar;
+import android.support.design.widget.SnackbarContentLayout;
+import android.support.v7.widget.AppCompatButton;
+import android.support.v7.widget.AppCompatTextView;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.FrameLayout;
 
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.snackbar.SnackbarContentLayout;
 
-import androidx.annotation.ColorInt;
-import androidx.annotation.Dimension;
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.AppCompatTextView;
+import android.support.annotation.ColorInt;
+import android.support.annotation.Dimension;
+import android.support.annotation.NonNull;
 
 /**
  * Created by huxinyu on 2018/7/18.

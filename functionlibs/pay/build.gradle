@@ -8,7 +8,6 @@ android{
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     compileOptions {
@@ -25,9 +24,7 @@ dependencies {
     androidTestCompileOnly rootProject.ext.dependencies["test-runner"]
     androidTestCompileOnly rootProject.ext.dependencies["espresso-core"]
     api(project(':uires')){
-        exclude group: 'androidx'
-        exclude module: 'appcompat-v7'
-        exclude module: 'support-v4'
+        exclude group: 'com.android.support'
     }
     //微信支付
     api 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:5.1.4'

@@ -1,12 +1,12 @@
 package com.pandaq.commonui.widget.gallery;
 
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.TextView;
 
 import com.pandaq.commonui.R;
 
-import androidx.annotation.NonNull;
-import androidx.viewpager.widget.ViewPager;
+import android.support.annotation.NonNull;
 
 /**
  * Created by huxinyu on 2019/4/3.

@@ -8,7 +8,7 @@ import com.pandaq.rxpanda.exception.ApiException;
 
 import java.io.IOException;
 
-import androidx.annotation.NonNull;
+import android.support.annotation.NonNull;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 

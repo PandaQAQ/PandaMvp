@@ -18,9 +18,7 @@ android {
 
 dependencies {
     api(project(':sdk_core')) {
-        exclude group: 'androidx'
-        exclude module: 'appcompat-v7'
-        exclude module: 'support-v4'
+        exclude group: 'com.android.support'
     }
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     compileOnly rootProject.ext.dependencies["design"]
@@ -28,13 +26,28 @@ dependencies {
     testCompileOnly rootProject.ext.dependencies["junit"]
     androidTestCompileOnly rootProject.ext.dependencies["test-runner"]
     androidTestCompileOnly rootProject.ext.dependencies["espresso-core"]
-    api rootProject.ext.dependencies["brvah"]
-    api rootProject.ext.dependencies["constraint-layout"]
-    api rootProject.ext.dependencies["refresh-layout"]
-    api rootProject.ext.dependencies["refresh-header"]
-    api rootProject.ext.dependencies["pickerview"]
-    api rootProject.ext.dependencies["calendar"]
-    api rootProject.ext.dependencies["supertextview"]
-    api rootProject.ext.dependencies["colorpicker"]
-    api 'androidx.recyclerview:recyclerview:1.0.0'
+    api (rootProject.ext.dependencies["brvah"]){
+        exclude group: 'com.android.support'
+    }
+    api (rootProject.ext.dependencies["constraint-layout"]){
+        exclude group: 'com.android.support'
+    }
+    api (rootProject.ext.dependencies["refresh-layout"]){
+        exclude group: 'com.android.support'
+    }
+    api (rootProject.ext.dependencies["refresh-header"]){
+        exclude group: 'com.android.support'
+    }
+    api (rootProject.ext.dependencies["pickerview"]){
+        exclude group: 'com.android.support'
+    }
+    api (rootProject.ext.dependencies["calendar"]){
+        exclude group: 'com.android.support'
+    }
+    api (rootProject.ext.dependencies["supertextview"]){
+        exclude group: 'com.android.support'
+    }
+    api (rootProject.ext.dependencies["colorpicker"]){
+        exclude group: 'com.android.support'
+    }
 }

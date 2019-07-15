@@ -12,8 +12,8 @@ import com.pandaq.appcore.utils.system.AppUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
+import android.support.annotation.NonNull;
+import android.support.v4.app.Fragment;
 
 /**
  * Created by huxinyu on 2018/12/18.

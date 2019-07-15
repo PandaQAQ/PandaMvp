@@ -11,7 +11,6 @@ android {
             applicationId "com.pandaq.app_amodule"
             versionCode 1
             versionName "1.0"
-            testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         }
     }
 
@@ -30,19 +29,19 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation 'androidx.appcompat:appcompat:1.0.2'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.2.0'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation rootProject.ext.dependencies["design"]
+    implementation rootProject.ext.dependencies["appcompat-v7"]
+    testCompileOnly rootProject.ext.dependencies["junit"]
+    androidTestCompileOnly rootProject.ext.dependencies["test-runner"]
+    androidTestCompileOnly rootProject.ext.dependencies["espresso-core"]
 
     //Picasso
     implementation rootProject.ext.dependencies["picasso"]
 
     implementation(project(':uires')) {
         exclude group: 'com.android.support'
-        exclude module: 'appcompat-v7'
-        exclude module: 'support-v4'
     }
 
     implementation(project(':functionlibs:pay')) {

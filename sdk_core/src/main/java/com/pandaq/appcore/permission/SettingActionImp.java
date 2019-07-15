@@ -10,7 +10,7 @@ import android.provider.Settings;
 
 import com.pandaq.appcore.permission.source.Source;
 
-import androidx.annotation.NonNull;
+import android.support.annotation.NonNull;
 
 /**
  * Created by huxinyu on 2018/12/18.

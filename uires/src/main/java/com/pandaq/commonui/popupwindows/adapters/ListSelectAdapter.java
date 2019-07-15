@@ -9,8 +9,8 @@ import com.pandaq.commonui.popupwindows.ItemData;
 
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 /**
  * Created by huxinyu on 2018/6/13.

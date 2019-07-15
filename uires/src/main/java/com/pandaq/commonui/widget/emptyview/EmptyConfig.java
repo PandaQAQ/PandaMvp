@@ -2,9 +2,9 @@ package com.pandaq.commonui.widget.emptyview;
 
 import com.pandaq.commonui.R;
 
-import androidx.annotation.ColorRes;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.StringRes;
+import android.support.annotation.ColorRes;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.StringRes;
 
 /**
  * Created by huxinyu on 2019/3/21.

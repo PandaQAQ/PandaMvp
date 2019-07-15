@@ -8,5 +8,5 @@ import com.alibaba.android.arouter.facade.template.IProvider
  * <p>
  * Description :路由服务方法暴露
  */
-interface BModuleService:IProvider {
+interface BModuleService: IProvider {
 }

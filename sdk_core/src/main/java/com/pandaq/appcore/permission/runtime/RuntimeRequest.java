@@ -7,7 +7,7 @@ import com.pandaq.appcore.permission.Rationale;
 
 import java.util.List;
 
-import androidx.annotation.NonNull;
+import android.support.annotation.NonNull;
 
 /**
  * Created by huxinyu on 2018/12/20.

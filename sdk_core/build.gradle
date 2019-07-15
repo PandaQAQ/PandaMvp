@@ -7,7 +7,6 @@ android {
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode rootProject.ext.android["versionCode"]
         versionName rootProject.ext.android["versionName"]
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     defaultConfig {
@@ -32,8 +31,8 @@ android {
  */
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    compileOnly rootProject.ext.dependencies["design"]
-    compileOnly rootProject.ext.dependencies["appcompat-v7"]
+    implementation rootProject.ext.dependencies["design"]
+    implementation rootProject.ext.dependencies["appcompat-v7"]
     testCompileOnly rootProject.ext.dependencies["junit"]
     androidTestCompileOnly rootProject.ext.dependencies["test-runner"]
     androidTestCompileOnly rootProject.ext.dependencies["espresso-core"]
@@ -50,9 +49,13 @@ dependencies {
     //磁盘缓存
     api rootProject.ext.dependencies["disklrucache"]
     //图片框架，如果需要使用，编译依赖即可
-    api rootProject.ext.dependencies["glide"]
-    annotationProcessor rootProject.ext.dependencies["glide-annotation"]
-    compileOnly "com.android.support:support-annotations:28.0.0"
-    annotationProcessor "com.android.support:support-annotations:28.0.0"
-    compile 'com.pandaq:rxpanda:0.1.1'
+    api (rootProject.ext.dependencies["glide"]){
+        exclude group: 'com.android.support'
+    }
+    annotationProcessor (rootProject.ext.dependencies["glide-annotation"]){
+        exclude group: 'com.android.support'
+    }
+    implementation rootProject.ext.dependencies["annotation"]
+    annotationProcessor rootProject.ext.dependencies["annotation"]
+    api 'com.pandaq:rxpanda:0.1.6'
 }

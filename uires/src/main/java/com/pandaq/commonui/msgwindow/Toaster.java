@@ -12,10 +12,10 @@ import android.widget.Toast;
 
 import com.pandaq.commonui.utils.DisplayUtils;
 
-import androidx.annotation.ColorInt;
-import androidx.annotation.Dimension;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
+import android.support.annotation.ColorInt;
+import android.support.annotation.Dimension;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 
 
 /**
