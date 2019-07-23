@@ -53,6 +53,17 @@ android {
     }
 }
 
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion '28.0.0'
+            }
+        }
+    }
+}
+
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation fileTree(include: ['*.jar'], dir: 'libs')
@@ -64,29 +75,17 @@ dependencies {
     implementation rootProject.ext.dependencies["design"]
 
     // 支付模块
-    implementation(project(':functionlibs:pay')) {
-        exclude group: 'com.android.support'
-        exclude module: 'appcompat-v7'
-        exclude module: 'support-v4'
-    }
+    implementation(project(':functionlibs:pay'))
 
     // 按需加载依赖业务 APP
     if (buildAll.toBoolean()) {
         for (String name : allComponents.split(",")) {
-            implementation(project(":$name")) {
-                exclude group: 'com.android.support'
-                exclude module: 'appcompat-v7'
-                exclude module: 'support-v4'
-            }
+            implementation(project(":$name"))
         }
     } else {
         for (String name : loadComponents.split(",")) {
             if (!name.isEmpty()) {
-                implementation(project(":$name")) {
-                    exclude group: 'com.android.support'
-                    exclude module: 'appcompat-v7'
-                    exclude module: 'support-v4'
-                }
+                implementation(project(":$name"))
             }
         }
     }
