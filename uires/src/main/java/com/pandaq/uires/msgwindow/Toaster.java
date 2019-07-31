@@ -1,8 +1,11 @@
 package com.pandaq.uires.msgwindow;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.support.annotation.ColorInt;
+import android.support.annotation.Dimension;
+import android.support.annotation.DrawableRes;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.widget.ImageView;
@@ -10,12 +13,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.pandaq.appcore.utils.system.AppUtils;
 import com.pandaq.uires.utils.DisplayUtils;
-
-import android.support.annotation.ColorInt;
-import android.support.annotation.Dimension;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
 
 
 /**
@@ -43,25 +42,16 @@ public class Toaster {
         }
     }
 
-    public static ToastBuilder with(Context context) {
+    public static ToastBuilder msg(String msg) {
         if (mToast != null) {
             cancelToast();
             mToast = null;
         }
-        return new ToastBuilder(context);
-    }
-
-    /**
-     * 获取当前的 toast
-     * @return 当前的 toast
-     */
-    public static Toast getToast(){
-        return mToast;
+        return new ToastBuilder(msg);
     }
 
     public static class ToastBuilder {
-        private Context mContext;
-        private CharSequence msg = "toast msg";
+        private CharSequence msg;
         private int msgColor;
         private int msgFont;
         private int backgroundColor;
@@ -71,13 +61,8 @@ public class Toaster {
         private ToastIconGravity mIconGravity;
         private int duration = Toast.LENGTH_SHORT;
 
-        private ToastBuilder(@NonNull Context context) {
-            mContext = context;
-        }
-
-        public ToastBuilder msg(@NonNull CharSequence msg) {
+        private ToastBuilder(String msg) {
             this.msg = msg;
-            return this;
         }
 
         public ToastBuilder msgColor(@ColorInt int msgColor) {
@@ -107,7 +92,7 @@ public class Toaster {
         }
 
         public ToastBuilder icon(@DrawableRes int icon, @NonNull ToastIconGravity gravity) {
-            this.icon = mContext.getResources().getDrawable(icon);
+            this.icon = AppUtils.getResource().getDrawable(icon);
             this.mIconGravity = gravity;
             return this;
         }
@@ -134,7 +119,7 @@ public class Toaster {
                 return;
             }
             if (mToast == null) {
-                mToast = Toast.makeText(mContext, msg, duration);
+                mToast = Toast.makeText(AppUtils.getContext(), msg, duration);
                 // 新建时为显示 ToastMsg 的 textview 设置 tag
                 LinearLayout toastView = (LinearLayout) mToast.getView();
                 toastView.getChildAt(0).setTag(TEXT_TAG);
@@ -166,7 +151,7 @@ public class Toaster {
                     toastView.removeView(iconView);
                 }
                 LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams(iconSize, iconSize);
-                iconView = new ImageView(mContext);
+                iconView = new ImageView(AppUtils.getContext());
                 iconView.setLayoutParams(iconParams);
                 iconView.setImageDrawable(icon);
                 if (mIconGravity == ToastIconGravity.START) {

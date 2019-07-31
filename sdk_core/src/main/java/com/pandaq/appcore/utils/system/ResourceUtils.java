@@ -27,7 +27,7 @@ public class ResourceUtils {
      * @return 字符串
      */
     public static String getString(@StringRes int string) {
-        return AppUtils.applicationContext().getString(string);
+        return AppUtils.getContext().getString(string);
     }
 
     /**
@@ -38,9 +38,9 @@ public class ResourceUtils {
      */
     public static int getColor(@ColorRes int color) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            return AppUtils.applicationContext().getColor(color);
+            return AppUtils.getContext().getColor(color);
         } else {
-            return AppUtils.applicationContext().getResources().getColor(color, null);
+            return AppUtils.getContext().getResources().getColor(color, null);
         }
     }
 
@@ -52,9 +52,9 @@ public class ResourceUtils {
      */
     public static Drawable getDrawable(@DrawableRes int drawable) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            return AppUtils.applicationContext().getDrawable(drawable);
+            return AppUtils.getContext().getDrawable(drawable);
         } else {
-            return AppUtils.applicationContext().getResources().getDrawable(drawable, null);
+            return AppUtils.getContext().getResources().getDrawable(drawable, null);
         }
     }
 
@@ -63,7 +63,7 @@ public class ResourceUtils {
      * @return 字库类型
      */
     public static Typeface getAssetTypeFace(String fontPath) {
-        return Typeface.createFromAsset(AppUtils.applicationContext().getAssets(),
+        return Typeface.createFromAsset(AppUtils.getContext().getAssets(),
                 fontPath);
     }
 }

@@ -103,8 +103,7 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
                             .install(Environment.getExternalStoragePublicDirectory("panda")
                                     .absolutePath + File.separator + "panda.apk")
                             .onDenied {
-                                Toaster.with(this)
-                                        .msg("无应用安装权限！")
+                                Toaster.msg("无应用安装权限！")
                                         .show()
                             }
                             .start()
@@ -135,8 +134,7 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
                             .navigation(this)
                 }
                 else -> {
-                    Toaster.with(this)
-                            .msg(adapter.data[position] as String)
+                    Toaster.msg(adapter.data[position] as String)
                             .show()
                 }
             }

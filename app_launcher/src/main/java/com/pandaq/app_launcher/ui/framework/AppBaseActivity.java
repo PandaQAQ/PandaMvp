@@ -80,28 +80,24 @@ public abstract class AppBaseActivity<P extends BasePresenter> extends BaseActiv
 
 
     public void showLoading(String msg) {
-        Toaster.with(this)
-                .msg("showLoading")
+        Toaster.msg("showLoading")
                 .show();
     }
 
     public void hideLoading() {
-        Toaster.with(this)
-                .msg("hideLoading")
+        Toaster.msg("hideLoading")
                 .show();
     }
 
     public void onError(long errCode, String errMsg) {
-        Toaster.with(this)
-                .msg(errMsg)
+        Toaster.msg(errMsg)
                 .show();
     }
 
     public void onLoadFinish() {
         // 加载完成肯定会调用隐藏 loading
         hideLoading();
-        Toaster.with(this)
-                .msg("finishLoading")
+        Toaster.msg("finishLoading")
                 .show();
     }
 
