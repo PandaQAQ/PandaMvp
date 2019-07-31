@@ -8,7 +8,7 @@
     android:background="@color/res_colorBackground"
     tools:context="com.pandaq.app_launcher.ui.home.HomeActivity">
 
-    <com.pandaq.commonui.widget.recyclerview.RefreshRecyclerView
+    <com.pandaq.uires.widget.recyclerview.RefreshRecyclerView
         android:id="@+id/refreshList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

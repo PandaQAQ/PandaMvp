@@ -18,13 +18,11 @@ import com.pandaq.app_launcher.ui.functions.GalleryActivity
 import com.pandaq.appcore.framework.mvp.BasePresenter
 import com.pandaq.appcore.imageloader.core.PicLoader
 import com.pandaq.appcore.permission.RtPermission
-import com.pandaq.commonui.msgwindow.Toaster
-import com.pandaq.commonui.utils.DisplayUtils
-import com.pandaq.commonui.widget.recyclerview.decoration.DividerDecoration
 import com.pandaq.router.routers.RouterPath
 import com.pandaq.rxpanda.RxPanda
-import com.pandaq.rxpanda.exception.ApiException
-import com.pandaq.rxpanda.observer.ApiObserver
+import com.pandaq.uires.msgwindow.Toaster
+import com.pandaq.uires.utils.DisplayUtils
+import com.pandaq.uires.widget.recyclerview.decoration.ItemDecoration
 import io.reactivex.Observable
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
@@ -89,7 +87,11 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
             loadData()
         }
         refreshList.setEnableLoadMore(false)
-        refreshList.addItemDecoration(DividerDecoration(DisplayUtils.dp2px(8f), 3))
+        val divider = ItemDecoration.Builder()
+                .space(DisplayUtils.dp2px(8f))
+                .spanCount(3)
+                .build()
+        refreshList.addItemDecoration(divider)
         adapter.setOnItemChildClickListener { adapter, _, position ->
             when (position) {
                 0 -> {

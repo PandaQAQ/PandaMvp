@@ -17,15 +17,17 @@ android {
 }
 
 dependencies {
+
+    testCompileOnly rootProject.ext.dependencies["junit"]
+    androidTestCompileOnly rootProject.ext.dependencies["test-runner"]
+    androidTestCompileOnly rootProject.ext.dependencies["espresso-core"]
+
     api(project(':sdk_core')) {
         exclude group: 'com.android.support'
     }
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    compileOnly rootProject.ext.dependencies["design"]
-    compileOnly rootProject.ext.dependencies["appcompat-v7"]
-    testCompileOnly rootProject.ext.dependencies["junit"]
-    androidTestCompileOnly rootProject.ext.dependencies["test-runner"]
-    androidTestCompileOnly rootProject.ext.dependencies["espresso-core"]
+
+    api rootProject.ext.dependencies["design"]
     api (rootProject.ext.dependencies["brvah"]){
         exclude group: 'com.android.support'
     }

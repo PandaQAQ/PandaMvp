@@ -6,8 +6,8 @@ import android.view.View
 import com.pandaq.app_launcher.R
 import com.pandaq.app_launcher.ui.framework.AppBaseActivity
 import com.pandaq.appcore.framework.mvp.BasePresenter
-import com.pandaq.commonui.utils.DisplayUtils
-import com.pandaq.commonui.widget.gallery.GalleryPageAdapter
+import com.pandaq.uires.utils.DisplayUtils
+import com.pandaq.uires.widget.gallery.GalleryPageAdapter
 import kotlinx.android.synthetic.main.launcher_activity_gallery.*
 
 
