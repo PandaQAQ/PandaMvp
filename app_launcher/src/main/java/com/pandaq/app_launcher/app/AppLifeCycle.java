@@ -8,7 +8,7 @@ import com.pandaq.app_launcher.BuildConfig;
 import com.pandaq.app_launcher.net.ApiService;
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
 import com.pandaq.appcore.utils.log.PLogger;
-import com.pandaq.commonui.msgwindow.SnackerConfig;
+import com.pandaq.uires.msgwindow.SnackerConfig;
 import com.pandaq.rxpanda.RxPanda;
 import com.pandaq.rxpanda.converter.PandaConvertFactory;
 import com.pandaq.rxpanda.log.HttpLoggingInterceptor;

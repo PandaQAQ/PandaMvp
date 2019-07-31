@@ -2,11 +2,9 @@ package com.pandaq.app_amodule.app.lifecycle;
 
 import android.app.Application;
 import android.content.Context;
-import android.graphics.Color;
 
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
 import com.pandaq.appcore.utils.log.PLogger;
-import com.pandaq.commonui.msgwindow.SnackerConfig;
 
 import android.support.annotation.NonNull;
 

@@ -9,8 +9,8 @@ import android.widget.FrameLayout;
 import com.pandaq.app_launcher.R;
 import com.pandaq.appcore.framework.mvp.BaseActivity;
 import com.pandaq.appcore.framework.mvp.BasePresenter;
-import com.pandaq.commonui.guide.GuideCoverView;
-import com.pandaq.commonui.msgwindow.Toaster;
+import com.pandaq.uires.guide.GuideCoverView;
+import com.pandaq.uires.msgwindow.Toaster;
 
 /**
  * Created by huxinyu on 2018/1/26.
