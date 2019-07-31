@@ -53,7 +53,7 @@ public class RtPermission {
         Activity activity = fragment.getActivity();
         Context context;
         if (activity == null) {
-            context = AppUtils.applicationContext();
+            context = AppUtils.getContext();
         } else {
             context = activity.getApplicationContext();
         }
@@ -73,7 +73,7 @@ public class RtPermission {
         Activity activity = fragment.getActivity();
         Context context;
         if (activity == null) {
-            context = AppUtils.applicationContext();
+            context = AppUtils.getContext();
         } else {
             context = activity.getApplicationContext();
         }
@@ -149,7 +149,7 @@ public class RtPermission {
         Activity activity = fragment.getActivity();
         Context context;
         if (activity == null) {
-            context = AppUtils.applicationContext();
+            context = AppUtils.getContext();
         } else {
             context = activity.getApplicationContext();
         }
@@ -169,7 +169,7 @@ public class RtPermission {
         Activity activity = fragment.getActivity();
         Context context;
         if (activity == null) {
-            context = AppUtils.applicationContext();
+            context = AppUtils.getContext();
         } else {
             context = activity.getApplicationContext();
         }
@@ -225,7 +225,7 @@ public class RtPermission {
         Activity activity = fragment.getActivity();
         Context context;
         if (activity == null) {
-            context = AppUtils.applicationContext();
+            context = AppUtils.getContext();
         } else {
             context = activity.getApplicationContext();
         }
@@ -243,7 +243,7 @@ public class RtPermission {
         Activity activity = fragment.getActivity();
         Context context;
         if (activity == null) {
-            context = AppUtils.applicationContext();
+            context = AppUtils.getContext();
         } else {
             context = activity.getApplicationContext();
         }
@@ -283,7 +283,7 @@ public class RtPermission {
         Activity activity = fragment.getActivity();
         Context context;
         if (activity == null) {
-            context = AppUtils.applicationContext();
+            context = AppUtils.getContext();
         } else {
             context = activity.getApplicationContext();
         }
@@ -301,7 +301,7 @@ public class RtPermission {
         Activity activity = fragment.getActivity();
         Context context;
         if (activity == null) {
-            context = AppUtils.applicationContext();
+            context = AppUtils.getContext();
         } else {
             context = activity.getApplicationContext();
         }

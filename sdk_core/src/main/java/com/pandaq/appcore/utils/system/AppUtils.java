@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 
 /**
  * Created by huxinyu on 2019/1/7.
@@ -43,8 +44,12 @@ public class AppUtils {
         this.appContext = applicationContext;
     }
 
-    public static Context applicationContext() {
+    public static Context getContext() {
         return instance.appContext.getApplicationContext();
+    }
+
+    public static Resources getResource() {
+        return instance.appContext.getResources();
     }
 
     /**
