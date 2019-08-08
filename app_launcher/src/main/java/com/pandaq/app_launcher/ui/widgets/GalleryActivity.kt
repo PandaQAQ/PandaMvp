@@ -1,4 +1,4 @@
-package com.pandaq.app_launcher.ui.functions
+package com.pandaq.app_launcher.ui.widgets
 
 import android.annotation.SuppressLint
 import android.view.MotionEvent

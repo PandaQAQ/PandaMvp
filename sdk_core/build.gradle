@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 android {
     defaultConfig{
@@ -58,4 +60,8 @@ dependencies {
     implementation rootProject.ext.dependencies["annotation"]
     annotationProcessor rootProject.ext.dependencies["annotation"]
     api 'com.pandaq:rxpanda:0.1.6'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }

@@ -14,12 +14,13 @@ import com.chad.library.adapter.base.BaseViewHolder
 import com.pandaq.app_launcher.R
 import com.pandaq.app_launcher.net.ApiService
 import com.pandaq.app_launcher.ui.framework.AppBaseActivity
-import com.pandaq.app_launcher.ui.functions.GalleryActivity
+import com.pandaq.app_launcher.ui.widgets.GalleryActivity
 import com.pandaq.appcore.framework.mvp.BasePresenter
 import com.pandaq.appcore.imageloader.core.PicLoader
 import com.pandaq.appcore.permission.RtPermission
 import com.pandaq.router.routers.RouterPath
 import com.pandaq.rxpanda.RxPanda
+import com.pandaq.uires.msgwindow.Snacker
 import com.pandaq.uires.msgwindow.Toaster
 import com.pandaq.uires.utils.DisplayUtils
 import com.pandaq.uires.widget.recyclerview.decoration.ItemDecoration
@@ -112,7 +113,10 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
                     testRxJava()
                 }
                 3 -> {
-
+                    Snacker.with(refreshList)
+                            .action("确定")
+                            .msg("我说消息")
+                            .show()
                 }
 
                 4 -> {
