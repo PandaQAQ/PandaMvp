@@ -2,4 +2,5 @@
     <string name="res_app_name">CommonUI</string>
     <string name="res_text_net_error">网络在开小差，稍后再试</string>
     <string name="res_text_empty">暂无数据，稍后再试</string>
+    <string name="loading">加载中···</string>
 </resources>

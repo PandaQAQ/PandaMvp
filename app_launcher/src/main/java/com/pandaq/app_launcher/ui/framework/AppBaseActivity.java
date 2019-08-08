@@ -11,6 +11,7 @@ import com.pandaq.appcore.framework.mvp.BaseActivity;
 import com.pandaq.appcore.framework.mvp.BasePresenter;
 import com.pandaq.uires.guide.GuideCoverView;
 import com.pandaq.uires.msgwindow.Toaster;
+import com.pandaq.uires.progress.LoadingDialog;
 
 /**
  * Created by huxinyu on 2018/1/26.
@@ -31,6 +32,8 @@ public abstract class AppBaseActivity<P extends BasePresenter> extends BaseActiv
      * 标识 activity 是否是向导 BaseActivity
      */
     protected boolean isGuide;
+
+    private LoadingDialog mLoadingDialog;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -78,15 +81,24 @@ public abstract class AppBaseActivity<P extends BasePresenter> extends BaseActiv
         }
     }
 
-
     public void showLoading(String msg) {
-        Toaster.msg("showLoading")
-                .show();
+        if (mLoadingDialog == null) {
+            mLoadingDialog = new LoadingDialog(this);
+        }
+        mLoadingDialog.show(false);
     }
 
     public void hideLoading() {
-        Toaster.msg("hideLoading")
-                .show();
+        if (mLoadingDialog != null) {
+            mLoadingDialog.dismiss();
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        hideLoading();
+        mLoadingDialog = null;
     }
 
     public void onError(long errCode, String errMsg) {
@@ -97,8 +109,7 @@ public abstract class AppBaseActivity<P extends BasePresenter> extends BaseActiv
     public void onLoadFinish() {
         // 加载完成肯定会调用隐藏 loading
         hideLoading();
-        Toaster.msg("finishLoading")
-                .show();
     }
+
 
 }

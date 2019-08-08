@@ -71,17 +71,7 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
                 topSpace = 2 * halfSpace;
             }
         }
-        // 横向分割线都绘制在底部
-        if (showBottom) {
-            bottomSpace = 2 * halfSpace;
-        } else {
-            if (parent.getAdapter() != null) {
-                int count = parent.getAdapter().getItemCount();
-                if (parent.getChildLayoutPosition(view) < count - spanCount) {
-                    bottomSpace = 2 * halfSpace;
-                }
-            }
-        }
+        bottomSpace = 2 * halfSpace;
         outRect.top = topSpace;
         outRect.left = leftSpace;
         outRect.right = rightSpace;

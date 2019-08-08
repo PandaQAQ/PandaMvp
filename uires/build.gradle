@@ -1,4 +1,6 @@
 apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-android'
 
 android {
     defaultConfig {
@@ -52,4 +54,8 @@ dependencies {
     api (rootProject.ext.dependencies["colorpicker"]){
         exclude group: 'com.android.support'
     }
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }

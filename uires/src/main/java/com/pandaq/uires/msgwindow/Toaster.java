@@ -58,7 +58,7 @@ public class Toaster {
         private Drawable backgroundDrawable;
         private Drawable icon;
         private int iconSize = DisplayUtils.dp2px(16);
-        private ToastIconGravity mIconGravity;
+        private int mIconGravity;
         private int duration = Toast.LENGTH_SHORT;
 
         private ToastBuilder(String msg) {
@@ -85,13 +85,13 @@ public class Toaster {
             return this;
         }
 
-        public ToastBuilder icon(@NonNull Drawable icon, @NonNull ToastIconGravity gravity) {
+        public ToastBuilder icon(@NonNull Drawable icon, int gravity) {
             this.icon = icon;
             this.mIconGravity = gravity;
             return this;
         }
 
-        public ToastBuilder icon(@DrawableRes int icon, @NonNull ToastIconGravity gravity) {
+        public ToastBuilder icon(@DrawableRes int icon, int gravity) {
             this.icon = AppUtils.getResource().getDrawable(icon);
             this.mIconGravity = gravity;
             return this;
@@ -154,20 +154,20 @@ public class Toaster {
                 iconView = new ImageView(AppUtils.getContext());
                 iconView.setLayoutParams(iconParams);
                 iconView.setImageDrawable(icon);
-                if (mIconGravity == ToastIconGravity.START) {
+                if (mIconGravity == Gravity.START) {
                     iconParams.rightMargin = DisplayUtils.dp2px(8);
                     toastView.setOrientation(LinearLayout.HORIZONTAL);
                     toastView.addView(iconView, 0);
-                } else if (mIconGravity == ToastIconGravity.END) {
+                } else if (mIconGravity == Gravity.END) {
                     iconParams.leftMargin = DisplayUtils.dp2px(8);
                     toastView.setOrientation(LinearLayout.HORIZONTAL);
                     toastView.addView(iconView, toastView.getChildCount());
-                } else if (mIconGravity == ToastIconGravity.TOP) {
+                } else if (mIconGravity == Gravity.TOP) {
                     iconParams.bottomMargin = DisplayUtils.dp2px(8);
                     iconParams.topMargin = DisplayUtils.dp2px(8);
                     toastView.setOrientation(LinearLayout.VERTICAL);
                     toastView.addView(iconView, 0);
-                } else if (mIconGravity == ToastIconGravity.BOTTOM) {
+                } else if (mIconGravity == Gravity.BOTTOM) {
                     iconParams.bottomMargin = DisplayUtils.dp2px(8);
                     iconParams.topMargin = DisplayUtils.dp2px(8);
                     toastView.setOrientation(LinearLayout.VERTICAL);
@@ -176,25 +176,5 @@ public class Toaster {
             }
             mToast.show();
         }
-    }
-
-    public static class GlobalConfig {
-
-        public static GlobalConfig sConfig;
-
-        public GlobalConfig instance() {
-            if (sConfig == null) {
-                synchronized (GlobalConfig.class) {
-                    if (sConfig == null) {
-                        sConfig = new GlobalConfig();
-                    }
-                }
-            }
-            return sConfig;
-        }
-
-        private GlobalConfig() {
-        }
-
     }
 }

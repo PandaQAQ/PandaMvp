@@ -3,17 +3,16 @@ package com.pandaq.app_launcher.app;
 import android.app.Application;
 import android.content.Context;
 import android.graphics.Color;
+import android.support.annotation.NonNull;
 
 import com.pandaq.app_launcher.BuildConfig;
 import com.pandaq.app_launcher.net.ApiService;
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
 import com.pandaq.appcore.utils.log.PLogger;
-import com.pandaq.uires.msgwindow.SnackerConfig;
 import com.pandaq.rxpanda.RxPanda;
 import com.pandaq.rxpanda.converter.PandaConvertFactory;
 import com.pandaq.rxpanda.log.HttpLoggingInterceptor;
-
-import android.support.annotation.NonNull;
+import com.pandaq.uires.configs.CommonUiConfigs;
 
 /**
  * Created by huxinyu on 2018/12/25.
@@ -31,9 +30,13 @@ public class AppLifeCycle implements IAppLifeCycle {
     @Override
     public void onCreate(@NonNull Application application) {
         initNet();
-        SnackerConfig.getDefault()
-                .setActionColor(Color.RED)
-                .setBackgroundColor(Color.GREEN);
+        CommonUiConfigs.Companion.snacker()
+                .setMsgColor(Color.parseColor("#ff00ff"))
+                .setActionColor(Color.parseColor("#0000ff"))
+                .setBackgroundColor(Color.parseColor("#ffff00"));
+
+        CommonUiConfigs.Companion.toast();
+
         PLogger.d("AppInit", "----APPModule");
     }
 
