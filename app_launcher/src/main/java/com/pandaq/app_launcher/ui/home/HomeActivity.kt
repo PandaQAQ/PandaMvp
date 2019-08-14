@@ -154,6 +154,7 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
                     Log.d("Subscribe1", Thread.currentThread().name)
                     return@map it
                 }
+//                .observeOn()
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe {
                     Log.d("doOnSubscribe0", Thread.currentThread().name)

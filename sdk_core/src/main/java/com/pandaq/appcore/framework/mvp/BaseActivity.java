@@ -37,6 +37,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
         } else {
             throw new RuntimeException("must bindContentRes first!!!");
         }
+        initToolbar();
         initView();
         loadData();
     }
@@ -58,6 +59,11 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
      * 初始化属性参数值
      */
     protected abstract void initVariable();
+
+    /**
+     * 初始化 toolbar
+     */
+    protected abstract void initToolbar();
 
     /**
      * 初始化 View 视图
