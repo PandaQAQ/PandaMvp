@@ -42,13 +42,13 @@ public abstract class AppBaseActivity<P extends BasePresenter> extends BaseActiv
         if (isGuide) {
             initGuide();
         }
-        initToolBar();
     }
 
     /**
      * 初始化ToolBar
      */
-    public void initToolBar() {
+    @Override
+    protected void initToolbar() {
         mToolbar = findViewById(R.id.titleBar);
         if (mToolbar != null) {
             setSupportActionBar(mToolbar);

@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
 
+import com.pandaq.app_launcher.BuildConfig;
+
 /**
  * Created by huxinyu on 2018/12/25.
  * Email : panda.h@foxmail.com
@@ -18,7 +20,7 @@ public class ActivityLifeCycle implements Application.ActivityLifecycleCallbacks
 
     @Override
     public void onActivityStarted(Activity activity) {
-
+        BuildConfig.DEBUG
     }
 
     @Override
