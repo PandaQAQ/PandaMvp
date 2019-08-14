@@ -20,7 +20,7 @@ public class ActivityLifeCycle implements Application.ActivityLifecycleCallbacks
 
     @Override
     public void onActivityStarted(Activity activity) {
-        BuildConfig.DEBUG
+
     }
 
     @Override
