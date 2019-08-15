@@ -2,17 +2,19 @@ package com.pandaq.appcore.framework.app.lifecycleimpl;
 
 import android.app.Application;
 import android.content.Context;
+import android.support.annotation.NonNull;
+import android.support.v4.app.FragmentManager;
 
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
 import com.pandaq.appcore.framework.app.lifecycle.ILifecycleInjector;
 import com.pandaq.appcore.framework.app.lifecycle.ManifestParser;
+import com.pandaq.appcore.utils.log.PLogger;
 import com.pandaq.appcore.utils.system.AppUtils;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
+import io.reactivex.plugins.RxJavaPlugins;
 
 /**
  * Created by huxinyu on 2018/12/25.
@@ -27,7 +29,7 @@ public class AppProxy implements IAppLifeCycle {
     private List<Application.ActivityLifecycleCallbacks> mActivityLifeCycles = new ArrayList<>();
     private List<FragmentManager.FragmentLifecycleCallbacks> mFragmentLifecycleCallbacks = new ArrayList<>();
 
-    public  AppProxy(Application application) {
+    public AppProxy(Application application) {
         AppUtils.init(application);
         List<ILifecycleInjector> injectors = new ManifestParser(application).parse();
         for (ILifecycleInjector injector : injectors) {
@@ -41,10 +43,12 @@ public class AppProxy implements IAppLifeCycle {
         // register fragment lifecycle callbacks
         mActivityLifeCycles.add(new DefaultActivityLifecycle(mFragmentLifecycleCallbacks));
         // it will never use in the future
+        // 全局捕获 RxJava 的异常，避免因取消订阅，未捕获异常等导致的闪退
+        RxJavaPlugins.setErrorHandler(PLogger::e);
     }
 
     @Override
-    public void  attachBaseContext(@NonNull Context base) {
+    public void attachBaseContext(@NonNull Context base) {
         for (IAppLifeCycle appLifeCycle : mAppLifeCycles) {
             appLifeCycle.attachBaseContext(base);
         }
