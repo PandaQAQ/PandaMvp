@@ -32,6 +32,12 @@ public class PLogger {
         lineNumber = sElements[1].getLineNumber();
     }
 
+
+    public static void e(Throwable e) {
+        getMethodNames(new Throwable().getStackTrace());
+        logThrowable(TAG, "", e);
+    }
+
     public static void e(String message, Throwable e) {
         getMethodNames(new Throwable().getStackTrace());
         logThrowable(TAG, message, e);
