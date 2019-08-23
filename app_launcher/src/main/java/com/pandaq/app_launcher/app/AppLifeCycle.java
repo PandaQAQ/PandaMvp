@@ -14,6 +14,8 @@ import com.pandaq.rxpanda.converter.PandaConvertFactory;
 import com.pandaq.rxpanda.log.HttpLoggingInterceptor;
 import com.pandaq.uires.configs.CommonUiConfigs;
 
+import io.reactivex.plugins.RxJavaPlugins;
+
 /**
  * Created by huxinyu on 2018/12/25.
  * Email : panda.h@foxmail.com

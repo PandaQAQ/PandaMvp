@@ -44,7 +44,7 @@ public class AppProxy implements IAppLifeCycle {
         mActivityLifeCycles.add(new DefaultActivityLifecycle(mFragmentLifecycleCallbacks));
         // it will never use in the future
         // 全局捕获 RxJava 的异常，避免因取消订阅，未捕获异常等导致的闪退
-        RxJavaPlugins.setErrorHandler(PLogger::e);
+//        RxJavaPlugins.setErrorHandler(PLogger::e);
     }
 
     @Override

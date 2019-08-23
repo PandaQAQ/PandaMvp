@@ -25,6 +25,8 @@ import com.pandaq.uires.msgwindow.Toaster
 import com.pandaq.uires.utils.DisplayUtils
 import com.pandaq.uires.widget.recyclerview.decoration.ItemDecoration
 import io.reactivex.Observable
+import io.reactivex.ObservableEmitter
+import io.reactivex.ObservableOnSubscribe
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
@@ -120,6 +122,33 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
                 }
 
                 4 -> {
+
+                    Observable.create<String>(object : ObservableOnSubscribe<String> {
+                        override fun subscribe(emitter: ObservableEmitter<String>) {
+                            emitter.onNext("ssss")
+                        }
+
+                    })
+                            .observeOn(Schedulers.io())
+                            .subscribe(object : Observer<String> {
+                                override fun onComplete() {
+
+                                }
+
+                                override fun onSubscribe(d: Disposable) {
+
+                                }
+
+                                override fun onNext(t: String) {
+                                    Log.d("result::", t)
+                                    throw RuntimeException("run llllll")
+                                }
+
+                                override fun onError(e: Throwable) {
+                                    Log.e("sss", "sss", e)
+                                }
+
+                            })
 
                 }
 
