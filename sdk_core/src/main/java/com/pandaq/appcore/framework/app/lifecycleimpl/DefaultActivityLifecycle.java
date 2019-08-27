@@ -5,8 +5,10 @@ import android.app.Application;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
+import android.view.Display;
 
 import com.pandaq.appcore.framework.app.ActivityTask;
+import com.pandaq.appcore.utils.system.DisplayUtils;
 
 import java.util.List;
 
@@ -26,6 +28,9 @@ public class DefaultActivityLifecycle implements Application.ActivityLifecycleCa
 
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
+
+        DisplayUtils.adaptDensity(activity, 360f);
+
         ActivityTask.getInstance().addActivity(activity);
         registerFragmentCallbacks(activity);
     }
@@ -37,7 +42,7 @@ public class DefaultActivityLifecycle implements Application.ActivityLifecycleCa
 
     @Override
     public void onActivityResumed(Activity activity) {
-
+//        DisplayUtils.adaptDensity(activity, activity.getApplication());
     }
 
     @Override

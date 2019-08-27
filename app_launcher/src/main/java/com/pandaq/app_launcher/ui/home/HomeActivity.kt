@@ -22,7 +22,7 @@ import com.pandaq.router.routers.RouterPath
 import com.pandaq.rxpanda.RxPanda
 import com.pandaq.uires.msgwindow.Snacker
 import com.pandaq.uires.msgwindow.Toaster
-import com.pandaq.uires.utils.DisplayUtils
+import com.pandaq.appcore.utils.system.DisplayUtils
 import com.pandaq.uires.widget.recyclerview.decoration.ItemDecoration
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
