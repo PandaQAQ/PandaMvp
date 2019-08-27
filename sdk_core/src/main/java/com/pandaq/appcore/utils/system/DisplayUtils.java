@@ -1,9 +1,13 @@
-package com.pandaq.uires.utils;
+package com.pandaq.appcore.utils.system;
 
 import android.app.Activity;
+import android.app.Application;
+import android.content.ComponentCallbacks;
 import android.content.Context;
+import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.graphics.Rect;
+import android.support.annotation.NonNull;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
@@ -142,6 +146,50 @@ public class DisplayUtils {
      */
     public static int getScreenHeight() {
         return Resources.getSystem().getDisplayMetrics().heightPixels;
+    }
+
+
+    private static float sSystemDensity;
+    private static float sSystemScaledDensity;
+
+    /**
+     * 才有今日头条方案，适配 UI
+     *
+     * @param activity    被适配的 Activity
+     * @param designWidth 设计稿宽度尺寸（单位为 dp)
+     */
+    public static void adaptDensity(@NonNull Activity activity, float designWidth) {
+        Application application = activity.getApplication();
+        final DisplayMetrics metrics = application.getResources().getDisplayMetrics();
+        if (sSystemDensity == 0) {
+            sSystemDensity = metrics.density;
+            sSystemScaledDensity = metrics.scaledDensity;
+            application.registerComponentCallbacks(new ComponentCallbacks() {
+                @Override
+                public void onConfigurationChanged(Configuration newConfig) {
+                    if (newConfig != null && newConfig.fontScale > 0) {
+                        sSystemScaledDensity = application.getResources().getDisplayMetrics().scaledDensity;
+                    }
+                }
+
+                @Override
+                public void onLowMemory() {
+
+                }
+            });
+        }
+        final float targetDensity = metrics.widthPixels / designWidth;
+        final float targetScaledDensity = targetDensity * (sSystemScaledDensity / sSystemDensity);
+        final int targetDpi = (int) (160 * targetDensity);
+
+        metrics.density = targetDensity;
+        metrics.scaledDensity = targetScaledDensity;
+        metrics.densityDpi = targetDpi;
+
+        final DisplayMetrics activityDisplayMetrics = activity.getResources().getDisplayMetrics();
+        activityDisplayMetrics.density = targetDensity;
+        activityDisplayMetrics.scaledDensity = targetScaledDensity;
+        activityDisplayMetrics.densityDpi = targetDpi;
     }
 
 }

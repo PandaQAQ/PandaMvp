@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.pandaq.appcore.utils.system.AppUtils;
-import com.pandaq.uires.utils.DisplayUtils;
+import com.pandaq.appcore.utils.system.DisplayUtils;
 
 
 /**
