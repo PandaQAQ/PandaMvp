@@ -1,13 +1,13 @@
 package com.pandaq.appcore.imageloader.core;
 
-import android.app.Activity;
 import android.content.Context;
 import android.net.Uri;
-
-import java.io.File;
-
+import android.support.annotation.DrawableRes;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
+
+import java.io.File;
 
 /**
  * Created by huxinyu on 2018/6/27.
@@ -22,7 +22,7 @@ public class PicLoader {
         return new Requester(context);
     }
 
-    public static Requester with(@NonNull Activity activity) {
+    public static Requester with(@NonNull AppCompatActivity activity) {
         return new Requester(activity);
     }
 

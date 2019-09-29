@@ -1,13 +1,12 @@
 package com.pandaq.app_launcher.ui.widgets
 
 import android.annotation.SuppressLint
-import android.view.MotionEvent
-import android.view.View
 import com.pandaq.app_launcher.R
 import com.pandaq.app_launcher.ui.framework.AppBaseActivity
-import com.pandaq.appcore.framework.mvp.BasePresenter
+import com.pandaq.app_launcher.ui.framework.AppBasePresenter
 import com.pandaq.appcore.utils.system.DisplayUtils
 import com.pandaq.uires.widget.gallery.GalleryPageAdapter
+import com.pandaq.uires.widget.gallery.IPagerItem
 import kotlinx.android.synthetic.main.launcher_activity_gallery.*
 
 
@@ -16,13 +15,13 @@ import kotlinx.android.synthetic.main.launcher_activity_gallery.*
  * Email : panda.h@foxmail.com
  * Description :
  */
-class GalleryActivity : AppBaseActivity<BasePresenter<*>>() {
+class GalleryActivity : AppBaseActivity<AppBasePresenter<*>>() {
 
 
-    private val mList = ArrayList<String>()
+    private val mList = ArrayList<IPagerItem>()
 
 
-    override fun injectPresenter(): BasePresenter<*>? = null
+    override fun injectPresenter(): AppBasePresenter<*>? = null
 
     override fun bindContentRes(): Int {
         return R.layout.launcher_activity_gallery
@@ -35,19 +34,22 @@ class GalleryActivity : AppBaseActivity<BasePresenter<*>>() {
     @SuppressLint("SetTextI18n")
     override fun initView() {
         for (i in 1..3) {
-            mList.add("Position: $i")
+            mList.add(object : IPagerItem {
+                override fun getUrl(): String {
+                    return "title$i"
+                }
+
+                override fun getTitleStr(): String {
+                    return "title$i"
+                }
+
+            })
         }
         val adapter = GalleryPageAdapter(mList, true)
         adapter.bindPager(vp_gallery)
         vp_gallery.offscreenPageLimit = 2
         vp_gallery.pageMargin = DisplayUtils.dp2px(20f)
-        ll_container.setOnTouchListener(object : View.OnTouchListener {
-            override fun onTouch(v: View, event: MotionEvent): Boolean {
-                return vp_gallery.dispatchTouchEvent(event)
-            }
-
-        })
-
+        ll_container.setOnTouchListener { v, event -> vp_gallery.dispatchTouchEvent(event) }
     }
 
 

@@ -6,6 +6,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.pandaq.app_launcher.R
 import com.pandaq.app_launcher.ui.framework.AppBaseActivity
+import com.pandaq.app_launcher.ui.framework.AppBasePresenter
 import com.pandaq.router.routers.RouterPath
 import kotlinx.android.synthetic.main.launcher_activity_flash.*
 

@@ -12,9 +12,4 @@
         android:layout_height="wrap_content"
         android:divider="@color/res_dividing"
         android:dividerHeight="@dimen/res_dp_half"/>
-
-    <include
-        layout="@layout/res_common_shade_v19"
-        android:layout_width="match_parent"
-        android:layout_height="3dp"/>
 </LinearLayout>

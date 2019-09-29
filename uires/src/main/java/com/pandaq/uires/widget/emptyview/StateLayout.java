@@ -58,7 +58,7 @@ public class StateLayout extends LinearLayout {
         mEmptyIcon = this.findViewById(R.id.iv_icon);
         mEmptyMsg = this.findViewById(R.id.tv_message);
         mContainer = this.findViewById(R.id.cl_empty_view);
-        mEmptyMsg.setTextSize(EmptyConfig.DEFAULT_MSG_SIZE);
+        mEmptyMsg.setTextSize(EmptyConfig.get().getMsgSize());
         resetByMode();
     }
 
@@ -69,13 +69,13 @@ public class StateLayout extends LinearLayout {
 
     private void resetByMode() {
         if (this.showMode == Mode.EMPTY) {
-            mEmptyIcon.setImageResource(EmptyConfig.DEFAULT_EMPTY_ICON);
-            mEmptyMsg.setTextColor(getResources().getColor(EmptyConfig.EMPTY_MSG_COLOR));
-            mEmptyMsg.setText(EmptyConfig.EMPTY_MSG);
+            mEmptyIcon.setImageResource(EmptyConfig.get().getEmptyIconRes());
+            mEmptyMsg.setTextColor(getResources().getColor(EmptyConfig.get().getEmptyMsgColor()));
+            mEmptyMsg.setText(EmptyConfig.get().getEmptyMsg());
         } else {
-            mEmptyIcon.setImageResource(EmptyConfig.DEFAULT_ERROR_ICON);
-            mEmptyMsg.setTextColor(getResources().getColor(EmptyConfig.ERROR_MSG_COLOR));
-            mEmptyMsg.setText(EmptyConfig.ERROR_MSG);
+            mEmptyIcon.setImageResource(EmptyConfig.get().getErrorIconRes());
+            mEmptyMsg.setTextColor(getResources().getColor(EmptyConfig.get().getErrorMsgColor()));
+            mEmptyMsg.setText(EmptyConfig.get().getErrorMsg());
         }
     }
 

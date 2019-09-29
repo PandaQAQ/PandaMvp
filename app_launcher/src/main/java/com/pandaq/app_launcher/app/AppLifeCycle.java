@@ -12,9 +12,7 @@ import com.pandaq.appcore.utils.log.PLogger;
 import com.pandaq.rxpanda.RxPanda;
 import com.pandaq.rxpanda.converter.PandaConvertFactory;
 import com.pandaq.rxpanda.log.HttpLoggingInterceptor;
-import com.pandaq.uires.configs.CommonUiConfigs;
-
-import io.reactivex.plugins.RxJavaPlugins;
+import com.pandaq.uires.configs.UiConfigs;
 
 /**
  * Created by huxinyu on 2018/12/25.
@@ -32,14 +30,11 @@ public class AppLifeCycle implements IAppLifeCycle {
     @Override
     public void onCreate(@NonNull Application application) {
         initNet();
-        CommonUiConfigs.Companion.snacker()
+        UiConfigs.Companion.snackbar()
                 .setMsgColor(Color.parseColor("#ff00ff"))
                 .setActionColor(Color.parseColor("#0000ff"))
                 .setBackgroundColor(Color.parseColor("#ffff00"));
-
-        CommonUiConfigs.Companion.toast();
-
-        PLogger.d("AppInit", "----APPModule");
+//        UiConfigs.Companion.toast();
     }
 
     @Override

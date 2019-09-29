@@ -11,8 +11,11 @@
         <activity
             android:name=".ui.launch.FlashActivity">
         </activity>
-        <activity android:name=".ui.home.HomeActivity"/>
+        <activity
+            android:name=".ui.home.HomeActivity"
+            android:label="主页"/>
         <activity android:name=".ui.widgets.GalleryActivity"/>
+        <activity android:name=".ui.home.Home1Activity"/>
     </application>
 
 </manifest>
