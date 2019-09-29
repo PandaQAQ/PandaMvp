@@ -41,6 +41,8 @@
     <color name="res_colorTextWarning">#ff9900</color>
     <!--格式错误提示、格式匹配强调色-->
     <color name="res_colorTextError">#F66C6C</color>
+    <!--格式错误提示、格式匹配强调色-->
+    <color name="res_colorTextSuccess">#80e006</color>
     <!--正文颜色，标题颜色-->
     <color name="res_colorTextMain">#1F2F3E</color>
     <!--次要文字、辅助说明文字-->

@@ -4,9 +4,11 @@ import android.content.Context;
 import android.net.Uri;
 import android.widget.ImageView;
 
+import com.pandaq.appcore.imageloader.PicLoaderConfig;
 import com.pandaq.appcore.imageloader.glide.GlideLoader;
 
 import java.io.File;
+
 
 /**
  * Created by huxinyu on 2018/7/4.
@@ -24,6 +26,9 @@ public class Request {
     private File file;
     private Uri uri;
 
+    // 以圆形图片加载
+    private boolean asCircle;
+    private int radius;
     //对应图片显示的 Type
     private ScaleType mScaleType;
     //对应 override
@@ -142,6 +147,22 @@ public class Request {
         return mCallBack;
     }
 
+    public boolean isAsCircle() {
+        return asCircle;
+    }
+
+    public void setAsCircle(boolean asCircle) {
+        this.asCircle = asCircle;
+    }
+
+    public int getRadius() {
+        return radius;
+    }
+
+    public void setRadius(int radius) {
+        this.radius = radius;
+    }
+
     public static class Builder {
         private Context context;
         private IExecutor executor;
@@ -150,16 +171,18 @@ public class Request {
         private int res;
         private File file;
         private Uri uri;
-
+        // 以圆形图片加载
+        private boolean asCircle;
+        private int radius;
         //对应图片显示的 Type
         private ScaleType mScaleType;
         //对应 override
         private int mWidth;
         private int mHeight;
         //对应 placeHolder
-        private int holderRes;
+        private int holderRes = PicLoaderConfig.get().getPlaceHolder();
         //对应 error;
-        private int errorRes;
+        private int errorRes = PicLoaderConfig.get().getError();
         //显示目标 ImageView
         private ImageView targetView;
         //加载回调接口
@@ -229,6 +252,16 @@ public class Request {
             return this;
         }
 
+        public Builder asCircle(int radius) {
+            this.radius = radius;
+            return this;
+        }
+
+        public Builder asCircle() {
+            asCircle = true;
+            return this;
+        }
+
         public Builder holder(int holderRes) {
             this.holderRes = holderRes;
             return this;
@@ -237,6 +270,14 @@ public class Request {
         public Builder error(int errorRes) {
             this.errorRes = errorRes;
             return this;
+        }
+
+        public boolean isAsCircle() {
+            return asCircle;
+        }
+
+        public int getRadius() {
+            return radius;
         }
 
         private Request build() {
@@ -255,6 +296,13 @@ public class Request {
             request.setScaleType(this.mScaleType);
             request.setTargetView(this.targetView);
             request.setCallBack(this.mCallBack);
+            if (asCircle) {
+                request.setAsCircle(true);
+            }
+            if (radius != 0) {
+                request.setAsCircle(false);
+                request.setRadius(radius);
+            }
             return request;
         }
 

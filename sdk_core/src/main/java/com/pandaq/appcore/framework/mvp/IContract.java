@@ -9,7 +9,6 @@ import io.reactivex.disposables.Disposable;
  * Description :基础中介接口类
  */
 public interface IContract {
-
     /**
      * <p>
      * Description :V 层基础接口实现
@@ -21,6 +20,16 @@ public interface IContract {
          * 显示加载 Loading
          */
         void showLoading(String msg);
+
+        /**
+         * 显示加载 Loading
+         */
+        void showLoading();
+
+        /**
+         * 显示加载 Loading.是否可取消
+         */
+        void showLoading(boolean cancelAble);
 
         /**
          * 隐藏加载 Loading
@@ -39,7 +48,7 @@ public interface IContract {
          * 结束回调
          * 一次请求完成回调不管是错误还是成都将调用
          */
-        void onLoadFinish();
+        void onLoadFinish(boolean success);
     }
 
     /**

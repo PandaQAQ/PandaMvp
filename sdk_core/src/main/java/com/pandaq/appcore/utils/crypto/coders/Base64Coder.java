@@ -88,7 +88,7 @@ public class Base64Coder {
             byte[] buffer = new byte[(int) file.length()];
             inputFile.read(buffer);
             inputFile.close();
-            return Base64.encodeToString(buffer, flag).toLowerCase();
+            return Base64.encodeToString(buffer, flag);
         } catch (Exception e) {
             e.printStackTrace();
             return null;
@@ -102,7 +102,7 @@ public class Base64Coder {
      * @return 编码后的字符串
      */
     public String encodeFile(@NonNull File file) {
-        return encodeFile(file, Base64.DEFAULT);
+        return encodeFile(file, Base64.NO_WRAP);
     }
 
     /**

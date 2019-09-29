@@ -12,17 +12,15 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.pandaq.app_launcher.R
-import com.pandaq.app_launcher.net.ApiService
 import com.pandaq.app_launcher.ui.framework.AppBaseActivity
+import com.pandaq.app_launcher.ui.framework.AppBasePresenter
 import com.pandaq.app_launcher.ui.widgets.GalleryActivity
-import com.pandaq.appcore.framework.mvp.BasePresenter
+import com.pandaq.appcore.framework.annotation.LocalAdapt
 import com.pandaq.appcore.imageloader.core.PicLoader
 import com.pandaq.appcore.permission.RtPermission
-import com.pandaq.router.routers.RouterPath
-import com.pandaq.rxpanda.RxPanda
-import com.pandaq.uires.msgwindow.Snacker
-import com.pandaq.uires.msgwindow.Toaster
 import com.pandaq.appcore.utils.system.DisplayUtils
+import com.pandaq.router.routers.RouterPath
+import com.pandaq.uires.msgwindow.Toaster
 import com.pandaq.uires.widget.recyclerview.decoration.ItemDecoration
 import io.reactivex.Observable
 import io.reactivex.ObservableEmitter
@@ -39,10 +37,7 @@ import java.io.File
  * Description :
  */
 @Route(path = RouterPath.LAUNCH_ACTIVITY_HOME)
-class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
-    private val service = RxPanda
-            .retrofit()
-            .create(ApiService::class.java)
+class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
 
     private val adapter: BaseQuickAdapter<String, BaseViewHolder> by lazy {
         return@lazy object : BaseQuickAdapter<String, BaseViewHolder>(R.layout.launcher_item_homepage) {
@@ -63,7 +58,7 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
 
     private lateinit var iconList: MutableList<Int>
 
-    override fun injectPresenter(): BasePresenter<*>? {
+    override fun injectPresenter(): AppBasePresenter<*>? {
         return null
     }
 
@@ -107,18 +102,15 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
                                     .absolutePath + File.separator + "panda.apk")
                             .onDenied {
                                 Toaster.msg("无应用安装权限！")
-                                        .show()
+                                        .showWarning()
                             }
                             .start()
                 }
                 2 -> {
-                    testRxJava()
+                    Toaster.msg("警告消息").showWarning()
                 }
                 3 -> {
-                    Snacker.with(refreshList)
-                            .action("确定")
-                            .msg("我说消息")
-                            .show()
+                    Toaster.msg("正常消息").showSuccess()
                 }
 
                 4 -> {
@@ -153,7 +145,7 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
                 }
 
                 5 -> {
-
+                    Toaster.msg("错误消息测试错误消息测试错误消息测试错误消息测试错误消息测试错误消息测试").showError()
                 }
 
                 6 -> {
@@ -168,7 +160,7 @@ class HomeActivity : AppBaseActivity<BasePresenter<*>>() {
                 }
                 else -> {
                     Toaster.msg(adapter.data[position] as String)
-                            .show()
+                            .showError()
                 }
             }
         }

@@ -153,7 +153,7 @@ public class DisplayUtils {
     private static float sSystemScaledDensity;
 
     /**
-     * 才有今日头条方案，适配 UI
+     * 采用今日头条方案，适配 UI
      *
      * @param activity    被适配的 Activity
      * @param designWidth 设计稿宽度尺寸（单位为 dp)

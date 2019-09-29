@@ -1,12 +1,8 @@
 package com.pandaq.uires.widget.gallery;
 
+import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.view.View;
-import android.widget.TextView;
-
-import com.pandaq.uires.R;
-
-import android.support.annotation.NonNull;
 
 /**
  * Created by huxinyu on 2019/4/3.
@@ -16,7 +12,7 @@ import android.support.annotation.NonNull;
 public class GalleryPageTransformer implements ViewPager.PageTransformer {
 
     private float maxScale = 1.0f;
-    private float minScale = 0.8f;
+    private float minScale = 1.0f;
 
     public GalleryPageTransformer() {
     }
@@ -28,8 +24,6 @@ public class GalleryPageTransformer implements ViewPager.PageTransformer {
 
     @Override
     public void transformPage(@NonNull View page, float position) {
-        TextView textView = page.findViewById(R.id.tv_position);
-        System.out.println(textView.getText() + "********" + position);
         if (position < -1) {
             page.setScaleX(minScale);
             page.setScaleY(minScale);

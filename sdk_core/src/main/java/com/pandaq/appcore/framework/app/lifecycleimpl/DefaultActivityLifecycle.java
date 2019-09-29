@@ -5,8 +5,9 @@ import android.app.Application;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
-import android.view.Display;
 
+import com.pandaq.appcore.framework.annotation.IgnoreAdapt;
+import com.pandaq.appcore.framework.annotation.LocalAdapt;
 import com.pandaq.appcore.framework.app.ActivityTask;
 import com.pandaq.appcore.utils.system.DisplayUtils;
 
@@ -28,9 +29,16 @@ public class DefaultActivityLifecycle implements Application.ActivityLifecycleCa
 
     @Override
     public void onActivityCreated(Activity activity, Bundle savedInstanceState) {
-
-        DisplayUtils.adaptDensity(activity, 360f);
-
+        // 未添加忽略注解的页面默认都进行适配
+        IgnoreAdapt ignoreAdapt = activity.getClass().getAnnotation(IgnoreAdapt.class);
+        LocalAdapt localAdapt = activity.getClass().getAnnotation(LocalAdapt.class);
+        if (ignoreAdapt == null) {
+            if (localAdapt != null) {
+                DisplayUtils.adaptDensity(activity, localAdapt.designWidth());
+            } else {
+                DisplayUtils.adaptDensity(activity, 360f);
+            }
+        }
         ActivityTask.getInstance().addActivity(activity);
         registerFragmentCallbacks(activity);
     }
