@@ -1,9 +1,9 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
-    defaultConfig{
+    defaultConfig {
         compileSdkVersion rootProject.ext.android["compileSdkVersion"]
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
@@ -44,10 +44,10 @@ dependencies {
     //磁盘缓存
     api rootProject.ext.dependencies["disklrucache"]
     //图片框架，如果需要使用，编译依赖即可
-    api (rootProject.ext.dependencies["glide"]){
+    api(rootProject.ext.dependencies["glide"]) {
         exclude group: 'com.android.support'
     }
-    annotationProcessor (rootProject.ext.dependencies["glide-annotation"]){
+    annotationProcessor(rootProject.ext.dependencies["glide-annotation"]) {
         exclude group: 'com.android.support'
     }
     implementation rootProject.ext.dependencies["annotation"]
