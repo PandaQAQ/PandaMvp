@@ -54,6 +54,7 @@ dependencies {
     api (rootProject.ext.dependencies["colorpicker"]){
         exclude group: 'com.android.support'
     }
+    api rootProject.ext.dependencies["material-dialogs"]
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
 repositories {
