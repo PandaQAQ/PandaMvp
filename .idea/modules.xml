@@ -3,11 +3,21 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/PandaMvp.iml" filepath="$PROJECT_DIR$/PandaMvp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/PandaMvp-app.iml" filepath="$PROJECT_DIR$/app/PandaMvp-app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app_amodule/PandaMvp-app_amodule.iml" filepath="$PROJECT_DIR$/app_amodule/PandaMvp-app_amodule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app_bmodule/PandaMvp-app_bmodule.iml" filepath="$PROJECT_DIR$/app_bmodule/PandaMvp-app_bmodule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app_launcher/PandaMvp-app_launcher.iml" filepath="$PROJECT_DIR$/app_launcher/PandaMvp-app_launcher.iml" />
+      <module fileurl="file://$PROJECT_DIR$/functionlibs/PandaMvp-functionlibs.iml" filepath="$PROJECT_DIR$/functionlibs/PandaMvp-functionlibs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/router/PandaMvp-router.iml" filepath="$PROJECT_DIR$/router/PandaMvp-router.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sdk_core/PandaMvp-sdk_core.iml" filepath="$PROJECT_DIR$/sdk_core/PandaMvp-sdk_core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uires/PandaMvp-uires.iml" filepath="$PROJECT_DIR$/uires/PandaMvp-uires.iml" />
+      <module fileurl="file://$PROJECT_DIR$/PandaQ-PandaMvp.iml" filepath="$PROJECT_DIR$/PandaQ-PandaMvp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/app_amodule/app_amodule.iml" filepath="$PROJECT_DIR$/app_amodule/app_amodule.iml" />
       <module fileurl="file://$PROJECT_DIR$/app_bmodule/app_bmodule.iml" filepath="$PROJECT_DIR$/app_bmodule/app_bmodule.iml" />
       <module fileurl="file://$PROJECT_DIR$/app_launcher/app_launcher.iml" filepath="$PROJECT_DIR$/app_launcher/app_launcher.iml" />
       <module fileurl="file://$PROJECT_DIR$/functionlibs/functionlibs.iml" filepath="$PROJECT_DIR$/functionlibs/functionlibs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/functionlibs/pay/functionlibs-pay.iml" filepath="$PROJECT_DIR$/functionlibs/pay/functionlibs-pay.iml" />
       <module fileurl="file://$PROJECT_DIR$/functionlibs/pay/pay.iml" filepath="$PROJECT_DIR$/functionlibs/pay/pay.iml" />
       <module fileurl="file://$PROJECT_DIR$/router/router.iml" filepath="$PROJECT_DIR$/router/router.iml" />
       <module fileurl="file://$PROJECT_DIR$/sdk_core/sdk_core.iml" filepath="$PROJECT_DIR$/sdk_core/sdk_core.iml" />
