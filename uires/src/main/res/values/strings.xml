@@ -3,4 +3,17 @@
     <string name="res_text_net_error">网络在开小差，稍后再试</string>
     <string name="res_text_empty">暂无数据，稍后再试</string>
     <string name="loading">加载中···</string>
+    
+    <string name="text_pickYear">年</string>
+    <string name="text_pickMonth">月</string>
+    <string name="text_confirm">确定</string>
+    <string name="text_submit">提交</string>
+    <string name="text_pickDay">日</string>
+    <string name="text_pickHour">时</string>
+    <string name="text_pickMinute">分</string>
+    <string name="text_pickSecond">秒</string>
+    <string name="mediaDay">日</string>
+    <string name="text_cancel">取消</string>
+    <string name="mediaHour">时</string>
+    <string name="mediaMinute">分</string>
 </resources>
