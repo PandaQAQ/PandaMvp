@@ -223,12 +223,16 @@ public class LoadingDialogUtil {
      * 置空，避免引用activity导致内存泄露
      */
     public static void releaseDialog() {
+
         if (sLoadingDialog != null) {
-            if (sLoadingDialog.isShowing()) {
-                sLoadingDialog.dismiss();
+            Activity ownerActivity = sLoadingDialog.getOwnerActivity();
+            if (ownerActivity!=null){
+                if (sLoadingDialog.isShowing()&&!ownerActivity.isDestroyed()) {
+                    sLoadingDialog.dismiss();
+                }
+                sLoadingDialog.removeLoadingView();
+                sLoadingDialog = null;
             }
-            sLoadingDialog.removeLoadingView();
-            sLoadingDialog = null;
         }
     }
 
