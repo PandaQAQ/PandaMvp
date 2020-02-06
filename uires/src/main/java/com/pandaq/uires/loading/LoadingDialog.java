@@ -1,5 +1,6 @@
 package com.pandaq.uires.loading;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -30,9 +31,10 @@ public class LoadingDialog extends Dialog {
      *
      * @param context 上下文
      */
-    public LoadingDialog(@NonNull Context context) {
+    public LoadingDialog(@NonNull Activity context) {
         super(context, R.style.loading_dialog);
         this.mContext = context;
+        setOwnerActivity(context);
         rootView = LayoutInflater.from(context).inflate(R.layout.dialog_loading, null);
         textView = rootView.findViewById(R.id.tv_msg);
         mLoadingLayout = rootView.findViewById(R.id.fl_main);

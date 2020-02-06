@@ -230,9 +230,9 @@ public class LoadingDialogUtil {
                 if (sLoadingDialog.isShowing()&&!ownerActivity.isDestroyed()) {
                     sLoadingDialog.dismiss();
                 }
-                sLoadingDialog.removeLoadingView();
-                sLoadingDialog = null;
             }
+            sLoadingDialog.removeLoadingView();
+            sLoadingDialog = null;
         }
     }
 
