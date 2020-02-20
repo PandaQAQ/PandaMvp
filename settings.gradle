@@ -2,7 +2,7 @@ include ':app', ':app_launcher',
         ':app_amodule',
         ':app_bmodule',
         ':functionlibs:pay',
-        ':uires',
         ':router',
-        ':sdk_core'
+        ':sdk_core',
+        ':uires'
 

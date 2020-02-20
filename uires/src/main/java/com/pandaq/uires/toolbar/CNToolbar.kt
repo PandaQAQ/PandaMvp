@@ -1,15 +1,15 @@
-package com.pandaq.uires.widget.toolbar
+package com.pandaq.uires.toolbar
 
 import android.content.Context
-import android.support.annotation.AttrRes
-import android.support.annotation.ColorInt
-import android.support.annotation.DrawableRes
-import android.support.annotation.StringRes
 import android.util.AttributeSet
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.annotation.AttrRes
+import androidx.annotation.ColorInt
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import com.pandaq.uires.R
 
 /**
@@ -46,6 +46,18 @@ class CNToolbar : FrameLayout {
         titleView = findViewById(R.id.tv_title)
         menuText = findViewById(R.id.tv_menu)
         menuImage = findViewById(R.id.iv_menu)
+    }
+
+    fun setDarkStyle(isDark: Boolean) {
+        if (isDark) {
+            arrowBack?.setImageResource(R.drawable.arrow_back_ios_white)
+            titleView?.setTextColor(resources.getColor(R.color.res_colorWhite))
+            menuText?.setTextColor(resources.getColor(R.color.res_colorWhite))
+        } else {
+            arrowBack?.setImageResource(R.drawable.arrow_back_ios)
+            titleView?.setTextColor(resources.getColor(R.color.res_colorBlack))
+            menuText?.setTextColor(resources.getColor(R.color.res_colorTextMinor))
+        }
     }
 
     fun setTitle(title: String) {
@@ -89,10 +101,10 @@ class CNToolbar : FrameLayout {
         menuImage?.visibility = View.VISIBLE
     }
 
-    fun hideMenuText(hide:Boolean){
-        if (hide){
+    fun hideMenuText(hide: Boolean) {
+        if (hide) {
             menuText?.visibility = View.GONE
-        }else{
+        } else {
             menuText?.visibility = View.VISIBLE
         }
     }

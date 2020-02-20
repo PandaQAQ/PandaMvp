@@ -11,7 +11,7 @@ android {
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         versionCode 1
         versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner rootProject.ext.android["runner"]
 
     }
 
@@ -40,18 +40,15 @@ greendao {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    compileOnly rootProject.ext.dependencies["appcompat-v7"]
+    compileOnly rootProject.ext.dependencies["appcompat"]
     testCompileOnly rootProject.ext.dependencies["junit"]
-    androidTestCompileOnly rootProject.ext.dependencies["test-runner"]
     androidTestCompileOnly rootProject.ext.dependencies["espresso-core"]
 
-    api (rootProject.ext.dependencies["arouter"]){
+    api(rootProject.ext.dependencies["arouter"]) {
         exclude group: 'com.android.support'
     }
 
-    api(project(':sdk_core')) {
-        exclude group: 'com.android.support'
-    }
+    api project(':sdk_core')
     //GreenDao 3.0
     implementation rootProject.ext.dependencies["greendao"]
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

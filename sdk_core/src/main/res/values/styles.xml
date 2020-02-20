@@ -10,6 +10,7 @@
         <item name="actionBarStyle">@style/customActionBar</item>
         <item name="colorButtonNormal">@color/colorAccent</item>
         <item name="editTextColor">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/colorBackground</item>
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="21">true</item>
         <item name="android:configChanges">screenLayout|navigation|screenSize</item>
@@ -26,6 +27,7 @@
         <item name="actionBarStyle">@style/customActionBar</item>
         <item name="colorButtonNormal">@color/colorAccent</item>
         <item name="actionMenuTextColor">@color/colorWhite</item>
+        <item name="android:windowBackground">@color/colorBackground</item>
         <item name="android:configChanges">screenLayout|navigation|screenSize</item>
     </style>
 
@@ -34,8 +36,7 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
-    <style name="ThemePermissionActivity" parent="@android:style/Theme.Translucent.NoTitleBar"
-        tools:ignore="ResourceName">
+    <style name="ThemePermissionActivity" parent="@android:style/Theme.Translucent.NoTitleBar" tools:ignore="ResourceName">
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
         <!--<item name="android:windowFullscreen">true</item>-->
@@ -45,10 +46,10 @@
 
     <style name="FitSystemWindow" parent="BaseAppTheme" tools:ignore="ResourceName">
         <item name="android:fitsSystemWindows">true</item>
+        <item name="android:statusBarColor">@color/colorPrimaryDark</item>
     </style>
 
-    <style name="AnimationSettingDialog" parent="@android:style/Animation"
-        tools:ignore="ResourceName">
+    <style name="AnimationSettingDialog" parent="@android:style/Animation" tools:ignore="ResourceName">
         <item name="android:windowEnterAnimation">@anim/core_setting_dialog_appear</item>
         <item name="android:windowExitAnimation">@anim/core_setting_dialog_disappear</item>
     </style>
@@ -64,8 +65,13 @@
     </style>
 
     <style name="customActionBar" parent="Widget.AppCompat.ActionBar">
-        <item name="background">@color/colorTrans</item>
+        <item name="background">@color/colorAccent</item>
         <item name="contentInsetStart">0dp</item><!-- 设置该属性解决空白部分-->
         <item name="contentInsetEnd">0dp</item>
+    </style>
+
+    <style name="DefaultCheckbox" parent="Theme.AppCompat.Light">
+        <item name="colorControlNormal">@color/colorNegative</item>
+        <item name="colorControlActivated">@color/colorPrimary</item>
     </style>
 </resources>

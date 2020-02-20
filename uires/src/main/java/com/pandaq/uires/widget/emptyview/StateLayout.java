@@ -1,12 +1,14 @@
 package com.pandaq.uires.widget.emptyview;
 
 import android.content.Context;
-import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.annotation.StringRes;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.ColorRes;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.StringRes;
+
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.widget.ImageView;
@@ -23,9 +25,9 @@ import com.pandaq.uires.R;
  */
 public class StateLayout extends LinearLayout {
     public enum Mode {
-        // show emptyView
+        // showInit emptyView
         EMPTY,
-        // show errorView
+        // showInit errorView
         ERROR
     }
 

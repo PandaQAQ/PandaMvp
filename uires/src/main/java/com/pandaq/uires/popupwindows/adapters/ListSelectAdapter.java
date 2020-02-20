@@ -2,6 +2,8 @@ package com.pandaq.uires.popupwindows.adapters;
 
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.pandaq.uires.R;
@@ -9,7 +11,7 @@ import com.pandaq.uires.popupwindows.ItemData;
 
 import java.util.List;
 
-import android.support.annotation.Nullable;
+import static com.pandaq.appcore.utils.system.AppUtils.getContext;
 
 /**
  * Created by huxinyu on 2018/6/13.
@@ -30,11 +32,11 @@ public class ListSelectAdapter extends BaseQuickAdapter<ItemData, BaseViewHolder
         TextView textView = helper.getView(R.id.tv_item);
         textView.setText(item.getKey());
         if (item.isChecked()) {
-            textView.setTextColor(mContext.getResources().getColor(R.color.res_colorPrimary));
+            textView.setTextColor(getContext().getResources().getColor(R.color.colorPrimary));
         } else {
-            textView.setTextColor(mContext.getResources().getColor(R.color.res_colorTextMain));
+            textView.setTextColor(getContext().getResources().getColor(R.color.res_colorTextMain));
         }
-        helper.addOnClickListener(R.id.tv_item);
+
     }
 
     public void setSelected(int index) {

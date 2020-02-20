@@ -8,7 +8,8 @@ import com.pandaq.mobilepay.alipay.AliPayData;
 import com.pandaq.mobilepay.wechatpay.WeChatPay;
 import com.pandaq.mobilepay.wechatpay.WeChatPayData;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
+
 
 /**
  * Created by huxinyu on 2018/7/16.

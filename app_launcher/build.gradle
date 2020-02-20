@@ -1,6 +1,6 @@
 apply from: "../components_app_build.gradle"
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 boolean isLaunchApp = project.getName() == launchApp
 
@@ -33,25 +33,19 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
 
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
     implementation rootProject.ext.dependencies["design"]
-    implementation rootProject.ext.dependencies["appcompat-v7"]
+    implementation rootProject.ext.dependencies["appcompat"]
     testCompileOnly rootProject.ext.dependencies["junit"]
-    androidTestCompileOnly rootProject.ext.dependencies["test-runner"]
     androidTestCompileOnly rootProject.ext.dependencies["espresso-core"]
 
     //Picasso
     implementation rootProject.ext.dependencies["picasso"]
 
-    implementation(project(':uires')) {
-        exclude group: 'com.android.support'
-    }
+    implementation project(':uires')
 
-    implementation(project(':functionlibs:pay')) {
-        exclude group: 'com.android.support'
-        exclude module: 'appcompat-v7'
-        exclude module: 'support-v4'
-    }
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation project(':functionlibs:pay')
 }
 repositories {
     mavenCentral()

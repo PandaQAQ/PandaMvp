@@ -1,8 +1,9 @@
 package com.pandaq.uires.widget.emptyview;
 
-import android.support.annotation.ColorRes;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.StringRes;
+
+import androidx.annotation.ColorRes;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.StringRes;
 
 import com.pandaq.uires.R;
 

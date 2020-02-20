@@ -3,8 +3,9 @@ package com.pandaq.appcore.framework.app.lifecycleimpl;
 import android.app.Activity;
 import android.app.Application;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentManager;
+
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
 
 import com.pandaq.appcore.framework.annotation.IgnoreAdapt;
 import com.pandaq.appcore.framework.annotation.LocalAdapt;

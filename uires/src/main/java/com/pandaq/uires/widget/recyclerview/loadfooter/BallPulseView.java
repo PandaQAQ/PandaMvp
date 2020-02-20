@@ -8,6 +8,8 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
+import androidx.annotation.ColorInt;
+
 import com.pandaq.uires.R;
 import com.scwang.smartrefresh.layout.util.DensityUtil;
 
@@ -15,7 +17,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import android.support.annotation.ColorInt;
 
 /**
  * 脉冲球动画

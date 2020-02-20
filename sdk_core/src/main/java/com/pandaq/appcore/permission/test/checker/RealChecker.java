@@ -27,8 +27,10 @@ import com.pandaq.appcore.permission.test.StorageWriteTest;
 
 import java.util.List;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by huxinyu on 2018/12/18.
@@ -44,7 +46,7 @@ public final class RealChecker implements PermissionChecker {
 
     @SuppressLint("ObsoleteSdkInt")
     @Override
-    public boolean hasPermission(@NonNull Context context, @NonNull String... permissions) {
+    public boolean hasPermission(@NotNull @NonNull Context context, @NotNull @NonNull String... permissions) {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.KITKAT) return true;
         for (String permission : permissions) {
             if (!hasPermission(context, permission)) {

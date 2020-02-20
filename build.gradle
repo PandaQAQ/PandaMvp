@@ -3,6 +3,9 @@ apply from: "config.gradle"
 buildscript {
     ext.kotlin_version = '1.3.61'
     repositories {
+        maven {
+            url 'https://mirrors.huaweicloud.com/repository/maven/'
+        }
         mavenCentral()
         google()
         jcenter()
@@ -20,6 +23,7 @@ buildscript {
 
 allprojects {
     repositories {
+        maven { url 'https://mirrors.huaweicloud.com/repository/maven/' }
         google()
         jcenter()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }

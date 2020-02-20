@@ -1,15 +1,17 @@
 package com.pandaq.appcore.framework.mvp;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 
 /**
  * Created by huxinyu on 2018/5/19.
@@ -19,6 +21,10 @@ import android.support.annotation.Nullable;
  * 也可完全自己写基类绑定 UI
  */
 public abstract class BaseFragment<P extends BasePresenter> extends Fragment implements IContract.IMvpView {
+
+    @Nullable
+    protected View contentView;
+
     protected P mPresenter;
 
     protected abstract P injectPresenter();
@@ -35,13 +41,12 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View view;
         if (bindContentRes() == 0) {
             throw new RuntimeException("must binContentRes first !!!");
         }
-        view = inflater.inflate(bindContentRes(), container, false);
-        initView(view);
-        return view;
+        contentView = inflater.inflate(bindContentRes(), container, false);
+        initView(contentView);
+        return contentView;
     }
 
     @Override

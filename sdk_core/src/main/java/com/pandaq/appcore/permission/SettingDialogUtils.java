@@ -2,8 +2,9 @@ package com.pandaq.appcore.permission;
 
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.support.v4.content.ContextCompat;
 import android.view.Window;
+
+import androidx.core.content.ContextCompat;
 
 import com.pandaq.appcore.R;
 

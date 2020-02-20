@@ -1,10 +1,11 @@
 package com.pandaq.appcore.permission.install;
 
+import androidx.annotation.NonNull;
+
 import com.pandaq.appcore.permission.source.Source;
 
 import java.io.File;
 
-import android.support.annotation.NonNull;
 
 /**
  * Created by huxinyu on 2018/12/20.

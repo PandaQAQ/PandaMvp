@@ -8,9 +8,9 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Bundle;
 
-import java.util.List;
+import androidx.annotation.RequiresPermission;
 
-import android.support.annotation.RequiresPermission;
+import java.util.List;
 
 /**
  * Created by huxinyu on 2018/12/20.

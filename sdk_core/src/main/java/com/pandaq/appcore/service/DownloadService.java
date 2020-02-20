@@ -12,9 +12,11 @@ import android.net.Uri;
 import android.os.Binder;
 import android.os.Environment;
 import android.os.IBinder;
-import android.support.annotation.Nullable;
 import android.util.LongSparseArray;
 import android.widget.Toast;
+
+import androidx.annotation.Nullable;
+
 import com.pandaq.appcore.R;
 import com.pandaq.appcore.permission.RtPermission;
 import com.pandaq.appcore.utils.IOUtils;

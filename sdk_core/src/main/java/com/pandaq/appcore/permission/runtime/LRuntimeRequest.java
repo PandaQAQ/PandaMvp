@@ -1,6 +1,8 @@
 
 package com.pandaq.appcore.permission.runtime;
 
+import androidx.annotation.NonNull;
+
 import com.pandaq.appcore.permission.Action;
 import com.pandaq.appcore.permission.Rationale;
 import com.pandaq.appcore.permission.RtPermission;
@@ -12,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import android.support.annotation.NonNull;
+import org.jetbrains.annotations.NotNull;
 
 import static java.util.Arrays.asList;
 
@@ -59,6 +61,7 @@ public class LRuntimeRequest extends BaseRuntimeRequest implements RuntimeReques
         return this;
     }
 
+    @NotNull
     @NonNull
     @Override
     public final RuntimeRequest onGranted(Action<List<String>> granted) {
@@ -73,6 +76,7 @@ public class LRuntimeRequest extends BaseRuntimeRequest implements RuntimeReques
         return this;
     }
 
+    @NotNull
     @NonNull
     @Override
     public RuntimeRequest onAlwaysDenied(Action<List<String>> denied) {

@@ -2,9 +2,8 @@ package com.pandaq.uires.configs
 
 import android.graphics.Color
 import android.graphics.drawable.Drawable
-import android.support.annotation.ColorInt
-import android.support.annotation.DrawableRes
 import android.view.Gravity
+import androidx.annotation.ColorInt
 import com.pandaq.appcore.utils.system.AppUtils
 import com.pandaq.uires.R
 

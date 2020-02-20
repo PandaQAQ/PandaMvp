@@ -5,13 +5,14 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 
+import androidx.annotation.NonNull;
+
 import com.pandaq.appcore.permission.Action;
 import com.pandaq.appcore.permission.Executor;
 import com.pandaq.appcore.permission.source.Source;
 
 import java.io.File;
 
-import android.support.annotation.NonNull;
 
 /**
  * Created by huxinyu on 2018/12/21.

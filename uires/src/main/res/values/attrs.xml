@@ -12,4 +12,7 @@
         <attr name="ratio" format="float"/>
     </declare-styleable>
 
+    <declare-styleable name="RefreshRecyclerView" tools:ignore="ResourceName">
+        <attr name="showEmpty" format="boolean"/>
+    </declare-styleable>
 </resources>
