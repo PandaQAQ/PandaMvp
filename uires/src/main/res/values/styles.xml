@@ -13,7 +13,7 @@
 
     <style name="CommonTipsTextView" tools:ignore="ResourceName">
         <item name="android:textSize">@dimen/res_sp_14</item>
-        <item name="android:textColor">@color/res_colorPrimary</item>
+        <item name="android:textColor">@color/colorPrimary</item>
     </style>
 
     <style name="DialogAnim" parent="@android:style/Animation" tools:ignore="ResourceName">

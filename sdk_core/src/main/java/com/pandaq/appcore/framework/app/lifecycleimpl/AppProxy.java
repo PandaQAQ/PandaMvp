@@ -2,8 +2,9 @@ package com.pandaq.appcore.framework.app.lifecycleimpl;
 
 import android.app.Application;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v4.app.FragmentManager;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.FragmentManager;
 
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
 import com.pandaq.appcore.framework.app.lifecycle.ILifecycleInjector;

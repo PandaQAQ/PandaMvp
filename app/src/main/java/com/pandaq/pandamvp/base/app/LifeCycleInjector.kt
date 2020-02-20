@@ -1,7 +1,7 @@
 package com.pandaq.pandamvp.base.app
 
 import android.app.Application
-import android.support.v4.app.FragmentManager
+import androidx.fragment.app.FragmentManager
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle
 import com.pandaq.appcore.framework.app.lifecycle.ILifecycleInjector
 

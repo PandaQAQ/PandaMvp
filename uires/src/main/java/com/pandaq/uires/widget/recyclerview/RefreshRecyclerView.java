@@ -1,12 +1,14 @@
 package com.pandaq.uires.widget.recyclerview;
 
 import android.content.Context;
-import android.support.annotation.ColorRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v7.widget.RecyclerView;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.widget.FrameLayout;
+
+import androidx.annotation.ColorRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.pandaq.uires.R;
@@ -28,26 +30,30 @@ public class RefreshRecyclerView extends FrameLayout {
 
     private SmartRefreshLayout mRefreshLayout;
     private RecyclerView mRecyclerView;
+    private boolean showEmpty;
 
     public RefreshRecyclerView(@NonNull Context context) {
         super(context);
-        init();
+        init(null);
     }
 
     public RefreshRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        init();
+        init(attrs);
     }
 
     public RefreshRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        init();
+        init(attrs);
     }
 
-    private void init() {
+    private void init(AttributeSet attrs) {
+        TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.RefreshRecyclerView);
+        showEmpty = ta.getBoolean(R.styleable.ProportionImageView_ratio, true);
+        ta.recycle();
         inflate(getContext(), R.layout.res_refresh_recyclerview, this);
         mRefreshLayout = findViewById(R.id.srl_refresh);
-        mRecyclerView = findViewById(R.id.rv_list);
+        mRecyclerView = findViewById(R.id.rv_recycle_list);
 
         MaterialHeader header = new MaterialHeader(getContext());
         header.setColorSchemeColors(
@@ -112,8 +118,17 @@ public class RefreshRecyclerView extends FrameLayout {
         mRecyclerView.setItemAnimator(animator);
     }
 
-    public void setAdapter(@NonNull BaseQuickAdapter adapter) {
+    public void setAdapter(@NonNull BaseQuickAdapter adapter, boolean showEmpty) {
+        this.showEmpty = showEmpty;
         mRecyclerView.setAdapter(adapter);
+        if (this.showEmpty) {
+            adapter.bindToRecyclerView(mRecyclerView);
+            adapter.setEmptyView(R.layout.res_empty_view);
+        }
+    }
+
+    public void setAdapter(@NonNull BaseQuickAdapter adapter) {
+        setAdapter(adapter,true);
     }
 
     public void addItemDecoration(RecyclerView.ItemDecoration itemDecoration) {
@@ -138,6 +153,10 @@ public class RefreshRecyclerView extends FrameLayout {
 
     public void setEnableLoadMore(boolean enable) {
         mRefreshLayout.setEnableLoadMore(enable);
+    }
+
+    public void setCanRefresh(boolean enable) {
+        mRefreshLayout.setEnableRefresh(enable);
     }
 
 }

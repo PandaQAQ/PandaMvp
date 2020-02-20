@@ -2,10 +2,11 @@ package com.pandaq.appcore.imageloader.core;
 
 import android.content.Context;
 import android.net.Uri;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 import java.io.File;
 
@@ -17,6 +18,9 @@ import java.io.File;
  * 切换图片加载框架时只需要新的框架加载器实现 IExecutor 接口并设置进来即可
  */
 public class PicLoader {
+
+    @DrawableRes
+    public static int PLACEHOLDER = -1;
 
     public static Requester with(@NonNull Context context) {
         return new Requester(context);

@@ -1,12 +1,13 @@
 package com.pandaq.app_launcher.app;
 
 import android.app.Application;
-import android.support.v4.app.FragmentManager;
 
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
 import com.pandaq.appcore.framework.app.lifecycle.ILifecycleInjector;
 
 import java.util.List;
+
+import androidx.fragment.app.FragmentManager;
 
 /**
  * Created by huxinyu on 2018/12/25.

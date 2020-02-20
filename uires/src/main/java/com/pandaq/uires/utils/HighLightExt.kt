@@ -1,13 +1,13 @@
 package com.pandaq.uires.utils
 
 import android.graphics.Color
-import android.support.annotation.ColorInt
 import android.text.Spannable
 import android.text.SpannableString
 import android.text.SpannableStringBuilder
 import android.text.Spanned
 import android.text.style.CharacterStyle
 import android.text.style.ForegroundColorSpan
+import androidx.annotation.ColorInt
 import com.pandaq.appcore.utils.regex.RegexUtils.isNeedTransform
 import java.util.regex.Pattern
 

@@ -4,6 +4,9 @@ package com.pandaq.appcore.permission;
 import android.app.Activity;
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+
 import com.pandaq.appcore.permission.runtime.RuntimeRequest;
 import com.pandaq.appcore.permission.source.ContextSource;
 import com.pandaq.appcore.permission.source.Source;
@@ -12,8 +15,6 @@ import com.pandaq.appcore.utils.system.AppUtils;
 import java.util.ArrayList;
 import java.util.List;
 
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
 
 /**
  * Created by huxinyu on 2018/12/18.

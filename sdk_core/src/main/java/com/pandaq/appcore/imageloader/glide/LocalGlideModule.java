@@ -2,12 +2,13 @@ package com.pandaq.appcore.imageloader.glide;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.annotation.GlideModule;
 import com.bumptech.glide.load.engine.cache.LruResourceCache;
 import com.bumptech.glide.module.AppGlideModule;
 
-import android.support.annotation.NonNull;
 
 /**
  * Created by huxinyu on 2018/6/8.

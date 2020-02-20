@@ -1,11 +1,12 @@
 
+
 package com.pandaq.appcore.permission.test.checker;
 
 import android.content.Context;
 
-import java.util.List;
+import androidx.annotation.NonNull;
 
-import android.support.annotation.NonNull;
+import java.util.List;
 
 /**
  * Created by huxinyu on 2018/12/18.

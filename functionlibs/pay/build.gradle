@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android{
     defaultConfig{
@@ -21,9 +21,8 @@ android{
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     compileOnly rootProject.ext.dependencies["design"]
-    compileOnly rootProject.ext.dependencies["appcompat-v7"]
+    compileOnly rootProject.ext.dependencies["appcompat"]
     testCompileOnly rootProject.ext.dependencies["junit"]
-    androidTestCompileOnly rootProject.ext.dependencies["test-runner"]
     androidTestCompileOnly rootProject.ext.dependencies["espresso-core"]
     api(project(':uires')){
         exclude group: 'com.android.support'

@@ -1,6 +1,7 @@
 package com.pandaq.appcore.imageloader;
 
-import android.support.annotation.DrawableRes;
+
+import androidx.annotation.DrawableRes;
 
 /**
  * Created by huxinyu on 2019/9/29.

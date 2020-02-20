@@ -2,11 +2,11 @@ package com.pandaq.app_launcher.ui.home
 
 import android.content.Intent
 import android.os.Environment
-import android.support.constraint.ConstraintLayout
-import android.support.v7.widget.RecyclerView
-import android.support.v7.widget.StaggeredGridLayoutManager
 import android.util.Log
 import android.widget.ImageView
+import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -15,7 +15,6 @@ import com.pandaq.app_launcher.R
 import com.pandaq.app_launcher.ui.framework.AppBaseActivity
 import com.pandaq.app_launcher.ui.framework.AppBasePresenter
 import com.pandaq.app_launcher.ui.widgets.GalleryActivity
-import com.pandaq.appcore.framework.annotation.LocalAdapt
 import com.pandaq.appcore.imageloader.core.PicLoader
 import com.pandaq.appcore.permission.RtPermission
 import com.pandaq.appcore.utils.system.DisplayUtils
@@ -41,8 +40,8 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
 
     private val adapter: BaseQuickAdapter<String, BaseViewHolder> by lazy {
         return@lazy object : BaseQuickAdapter<String, BaseViewHolder>(R.layout.launcher_item_homepage) {
-            override fun convert(helper: BaseViewHolder?, item: String?) {
-                helper?.let {
+            override fun convert(helper: BaseViewHolder, item: String?) {
+                helper.let {
                     val itemView = it.getView<ConstraintLayout>(R.id.cl_container)
                     val icon = it.getView<ImageView>(R.id.iv_icon)
                     itemView.layoutParams.width = DisplayUtils.getScreenWidth() / 3

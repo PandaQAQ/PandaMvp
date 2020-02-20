@@ -2,12 +2,12 @@
 package com.pandaq.appcore.permission.runtime;
 
 
+import androidx.annotation.NonNull;
+
 import com.pandaq.appcore.permission.Action;
 import com.pandaq.appcore.permission.Rationale;
 
 import java.util.List;
-
-import android.support.annotation.NonNull;
 
 /**
  * Created by huxinyu on 2018/12/20.

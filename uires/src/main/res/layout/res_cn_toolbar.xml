@@ -5,10 +5,10 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:id="@+id/cn_toolbar"
-        android:background="@color/res_colorWhite"
-        android:layout_height="50dp">
+        android:background="@color/res_toolbar_background"
+        android:layout_height="match_parent">
 
-    <android.support.constraint.ConstraintLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
@@ -73,6 +73,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="@color/res_dividing"/>
-    </android.support.constraint.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

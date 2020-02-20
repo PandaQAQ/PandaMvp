@@ -1,6 +1,8 @@
 package com.pandaq.appcore.framework.app;
 
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.content.Context;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +39,19 @@ public class ActivityTask {
     }
 
     /**
+     * 判断指定activity是否存在
+     */
+    public boolean isExistSpecifiedActivity(Class<?> cls) {
+        for (int i = 0, size = mActivityStack.size(); i < size; i++) {
+            if (null != mActivityStack.get(i) && mActivityStack.get(i).getClass() == cls) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    /**
      * 添加Activity到堆栈
      *
      * @param activity 入栈的 activity
@@ -59,7 +74,7 @@ public class ActivityTask {
     /**
      * 获取栈顶Activity（堆栈中最后一个压入的）
      */
-    public Activity getTopActivity() {
+    public Activity currentActivity() {
         if (mActivityStack == null || mActivityStack.empty()) {
             return null;
         }
@@ -69,7 +84,7 @@ public class ActivityTask {
     /**
      * 获取前一个Activity（堆栈中最后一个压入的）
      */
-    public Activity getLastActivity() {
+    public Activity getSecondLastActivity() {
         if (mActivityStack == null || mActivityStack.size() < 2) {
             return null;
         }
@@ -80,7 +95,6 @@ public class ActivityTask {
      * 结束栈顶Activity（堆栈中最后一个压入的）
      */
     public void killTopActivity() {
-        mActivityStack.remove(mActivityStack.lastElement());
         mActivityStack.lastElement().finish();
     }
 
@@ -88,7 +102,6 @@ public class ActivityTask {
      * 结束指定 BaseActivity
      */
     public void killActivity(Activity activity) {
-        mActivityStack.remove(activity);
         activity.finish();
     }
 
@@ -113,6 +126,20 @@ public class ActivityTask {
     }
 
     /**
+     * 结束指定类名的Activity
+     */
+    public void finishActivityStartsWith(String str) {
+
+        for (int i = mActivityStack.size() - 1; i >= 0; i--) {
+            Activity activity = mActivityStack.get(i);
+            if (null != activity && activity.getClass().getSimpleName().startsWith(str)) {
+                mActivityStack.remove(i);
+                activity.finish();
+            }
+        }
+    }
+
+    /**
      * 结束所有Activity
      */
     public void killAllActivity() {
@@ -125,6 +152,22 @@ public class ActivityTask {
             }
         }
         mActivityStack.clear();
+    }
+
+    /**
+     * 退出应用程序
+     */
+    @SuppressWarnings("deprecation")
+    public void appExit(Context context) {
+        try {
+            killAllActivity();
+            ActivityManager activityMgr = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+            activityMgr.restartPackage(context.getPackageName());
+            System.exit(0);
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
 
     /**
@@ -146,9 +189,31 @@ public class ActivityTask {
     }
 
     /**
+     * 结束除了当前的其他所有Activity
+     *
+     * @param activityClass 保留的 Activity 类名
+     */
+    public void killOthersActivity(Class<?> activityClass) {
+        if (activityClass == null) {
+            return;
+        }
+        Activity keep = null;
+        for (Activity activity : mActivityStack) {
+            if (!activity.getClass().equals(activityClass)) {
+                activity.finish();
+            } else {
+                keep = activity;
+            }
+        }
+        mActivityStack.clear();
+        // 将保留的 activity 重新入栈
+        mActivityStack.add(keep);
+    }
+
+    /**
      * 退出应用程序
      */
-    public void AppExit() {
+    public void appExit() {
         try {
             killAllActivity();
             System.exit(0);

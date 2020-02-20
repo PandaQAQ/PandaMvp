@@ -152,7 +152,7 @@ public class CountChangeView extends RelativeLayout implements View.OnClickListe
         if (count <= maxValue && count >= minValue) {
             etCount.setText(String.valueOf(count));
         } else {
-//            Toast.makeText(getContext(), "maxValue " + maxValue + " minValue " + minValue, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(getContext(), "maxValue " + maxValue + " minValue " + minValue, Toast.LENGTH_SHORT).showInit();
             return;
         }
         int changeCount = count - this.count;

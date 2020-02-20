@@ -1,10 +1,20 @@
 package com.pandaq.appcore.utils.system;
 
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
+import android.provider.Settings;
+import android.telephony.TelephonyManager;
+import android.util.Log;
+
+import androidx.core.app.ActivityCompat;
+
+import com.pandaq.appcore.framework.app.ActivityTask;
 
 /**
  * Created by huxinyu on 2019/1/7.
@@ -80,5 +90,29 @@ public class AppUtils {
             e.printStackTrace();
         }
         return "1.0.0";
+    }
+
+    /**
+     * 获取 deviceId
+     *
+     * @return deviceId
+     */
+    @SuppressLint("HardwareIds")
+    public static String getDeviceId() {
+        String deviceId = "";
+        TelephonyManager tm = (TelephonyManager) instance.appContext.getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
+        if (null != tm) {
+            if (ActivityCompat.checkSelfPermission(ActivityTask.getInstance().currentActivity(), Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(ActivityTask.getInstance().currentActivity(), new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
+            } else {
+                if (tm.getDeviceId() != null) {
+                    deviceId = tm.getDeviceId();
+                } else {
+                    deviceId = Settings.Secure.getString(instance.appContext.getApplicationContext().getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
+                }
+            }
+            Log.d("deviceId--->", deviceId);
+        }
+        return deviceId;
     }
 }

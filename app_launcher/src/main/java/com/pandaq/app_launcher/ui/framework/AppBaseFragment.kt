@@ -13,7 +13,7 @@ import com.pandaq.uires.msgwindow.Toaster
  */
 abstract class AppBaseFragment<P : AppBasePresenter<*>> : BaseFragment<P>() {
     override fun showLoading(msg: String?) {
-        LoadingDialogUtil.show(ActivityTask.getInstance().topActivity, msg)
+        LoadingDialogUtil.show(ActivityTask.getInstance().currentActivity(), msg)
     }
 
     override fun showLoading() {
@@ -21,7 +21,7 @@ abstract class AppBaseFragment<P : AppBasePresenter<*>> : BaseFragment<P>() {
     }
 
     override fun showLoading(cancelAble: Boolean) {
-        LoadingDialogUtil.show(ActivityTask.getInstance().topActivity, cancelAble)
+        LoadingDialogUtil.show(ActivityTask.getInstance().currentActivity(), cancelAble)
     }
 
     override fun hideLoading() {

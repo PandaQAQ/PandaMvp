@@ -6,7 +6,7 @@ import android.content.Context;
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
 import com.pandaq.appcore.utils.log.PLogger;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Created by huxinyu on 2018/12/25.
@@ -23,7 +23,7 @@ public class AppLifeCycle implements IAppLifeCycle {
 
     @Override
     public void onCreate(@NonNull Application application) {
-        PLogger.d("AppInit","----AModule");
+        PLogger.d("AppInit", "----AModule");
     }
 
     @Override

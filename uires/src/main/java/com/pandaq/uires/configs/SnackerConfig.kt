@@ -1,6 +1,6 @@
 package com.pandaq.uires.configs
 
-import android.support.annotation.ColorInt
+import androidx.annotation.ColorInt
 
 /**
  * Created by huxinyu on 2019/8/8.

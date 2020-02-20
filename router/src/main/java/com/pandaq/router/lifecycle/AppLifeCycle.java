@@ -8,7 +8,7 @@ import com.pandaq.appcore.BuildConfig;
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
 import com.pandaq.appcore.utils.log.PLogger;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Created by huxinyu on 2018/12/25.

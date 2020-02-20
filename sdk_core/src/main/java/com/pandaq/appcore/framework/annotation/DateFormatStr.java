@@ -1,6 +1,6 @@
 package com.pandaq.appcore.framework.annotation;
 
-import android.support.annotation.StringDef;
+import androidx.annotation.StringDef;
 
 import com.pandaq.appcore.utils.format.formaters.DateFormatter;
 

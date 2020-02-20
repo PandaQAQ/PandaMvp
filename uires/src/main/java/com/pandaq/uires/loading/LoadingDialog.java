@@ -3,8 +3,9 @@ package com.pandaq.uires.loading;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -49,13 +50,12 @@ public class LoadingDialog extends Dialog {
      * @param listener   取消监听
      * @return Dialog
      */
-    public Dialog show(CharSequence message, boolean cancelable, OnCancelListener listener) {
+    public void showInit(CharSequence message, boolean cancelable, OnCancelListener listener) {
         textView.setText(message);
         setCancelable(cancelable);
         setCanceledOnTouchOutside(cancelable);
         setOnCancelListener(listener);
         setContentView(rootView);
-        return this;
     }
 
     /**

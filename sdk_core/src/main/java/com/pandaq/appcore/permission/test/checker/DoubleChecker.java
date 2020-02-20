@@ -5,7 +5,9 @@ import android.content.Context;
 
 import java.util.List;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
+
+import org.jetbrains.annotations.NotNull;
 
 /**
  * Created by huxinyu on 2018/12/20.
@@ -19,7 +21,7 @@ public final class DoubleChecker implements PermissionChecker {
     private static final PermissionChecker STRICT_CHECKER = new RealChecker();
 
     @Override
-    public boolean hasPermission(@NonNull Context context, @NonNull String... permissions) {
+    public boolean hasPermission(@NotNull @NonNull Context context, @NotNull @NonNull String... permissions) {
         return STANDARD_CHECKER.hasPermission(context, permissions)
                 && STRICT_CHECKER.hasPermission(context, permissions);
     }

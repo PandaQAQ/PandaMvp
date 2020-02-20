@@ -10,9 +10,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.CalendarContract;
 
-import java.util.TimeZone;
+import androidx.annotation.RequiresApi;
 
-import android.support.annotation.RequiresApi;
+import java.util.TimeZone;
 
 /**
  * Created by huxinyu on 2018/12/20.
