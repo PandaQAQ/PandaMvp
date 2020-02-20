@@ -106,35 +106,33 @@ public class LoadingDialogUtil {
      */
     public static void showProgress(CharSequence message, boolean cancelable, Activity activity, DialogInterface.OnCancelListener listener) {
         WeakReference<Activity> reference = new WeakReference<>(activity);
-        Activity context = reference.get();
+        Activity ownerActivity = reference.get();
         //如果时当前页面正在显示
-        if (isShowing() && contextIsSame(sLoadingDialog, context)) {
+        if (isShowing() && contextIsSame(sLoadingDialog, ownerActivity)) {
             if (sLoadingDialog != null) {
                 sLoadingDialog.setMessage(message);
             }
             return;
         }
-        if (!contextIsSame(sLoadingDialog, context)) {
+        if (!contextIsSame(sLoadingDialog, ownerActivity)) {
             releaseDialog();
         }
         if (sLoadingDialog == null) {
-            sLoadingDialog = new LoadingDialog(context);
+            sLoadingDialog = new LoadingDialog(ownerActivity);
         }
         if (sLoadingView != null) {
             sLoadingDialog.setLoadingView(sLoadingView);
-        }else {
+        } else {
             sLoadingDialog.hideLodingView();
         }
-        sLoadingDialog.show(message, cancelable, listener);
-        if (!context.isFinishing()) {
+        sLoadingDialog.showInit(message, cancelable, listener);
+        if (!ownerActivity.isDestroyed() && !ownerActivity.isFinishing()) {
             try {
                 sLoadingDialog.show();
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
-
-
     }
 
 
@@ -158,9 +156,9 @@ public class LoadingDialogUtil {
             LoadingView logoView = sLoadingDialog.getLoadingView();
             if (logoView != null) {
                 logoView.finish();
-                ((View) logoView).postDelayed(LoadingDialogUtil::dissmissDialog, 600);
+                ((View) logoView).postDelayed(LoadingDialogUtil::dismissDialog, 600);
             } else {
-                dissmissDialog();
+                dismissDialog();
             }
 
 
@@ -187,9 +185,9 @@ public class LoadingDialogUtil {
                 } else {
                     logoView.finish();
                 }
-                dissmissDialog();
+                dismissDialog();
             } else {
-                dissmissDialog();
+                dismissDialog();
             }
         } catch (Exception e) {
             Log.e("LoadingDialogUtil", "异常" + e.getMessage());
@@ -201,7 +199,7 @@ public class LoadingDialogUtil {
     /**
      * 关闭dialog
      */
-    private static void dissmissDialog() {
+    private static void dismissDialog() {
         try {
             releaseDialog();
         } catch (Exception e) {
@@ -215,7 +213,7 @@ public class LoadingDialogUtil {
      */
     public static void hideProgressQuick() {
         if (sLoadingDialog != null) {
-            dissmissDialog();
+            dismissDialog();
         }
     }
 
@@ -223,11 +221,10 @@ public class LoadingDialogUtil {
      * 置空，避免引用activity导致内存泄露
      */
     public static void releaseDialog() {
-
         if (sLoadingDialog != null) {
             Activity ownerActivity = sLoadingDialog.getOwnerActivity();
-            if (ownerActivity!=null){
-                if (sLoadingDialog.isShowing()&&!ownerActivity.isDestroyed()) {
+            if (ownerActivity != null) {
+                if (sLoadingDialog.isShowing() && !ownerActivity.isDestroyed()) {
                     sLoadingDialog.dismiss();
                 }
             }

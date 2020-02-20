@@ -2,9 +2,10 @@ package com.pandaq.uires.msgwindow;
 
 import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
-import android.support.annotation.Dimension;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.NonNull;
+
+import androidx.annotation.Dimension;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.widget.ImageView;
