@@ -25,11 +25,6 @@ public interface IMvpView {
     void showLoading(boolean cancelAble);
 
     /**
-     * 隐藏加载 Loading
-     */
-    void hideLoading();
-
-    /**
      * 出错回调
      *
      * @param errCode 错误码
@@ -38,7 +33,7 @@ public interface IMvpView {
     void onError(long errCode, String errMsg);
 
     /**
-     * 结束回调
+     * 结束回调 会自动调用 hideLoading
      * 一次请求完成回调不管是错误还是成都将调用
      */
     void onFinish(boolean success);

@@ -16,9 +16,12 @@ class RouterPath {
 
         const val LAUNCH_ACTIVITY_FLASH = "$GROUP_LAUNCH/launch/FlashActivity"
         const val LAUNCH_ACTIVITY_HOME = "$GROUP_LAUNCH/home/HomeActivity"
+        const val LAUNCH_ACTIVITY_TEST = "$GROUP_LAUNCH/TestListActivity"
 
         const val A_ACTIVITY_MAIN = "$GROUP_A/MainActivity"
+
         const val A_SERVICE = "$GROUP_A/$SERVICE/AModuleService"
+
 
         const val B_ACTIVITY_MAIN = "$GROUP_B/MainActivity"
         const val B_SERVICE = "$GROUP_B/$SERVICE/BModuleService"
