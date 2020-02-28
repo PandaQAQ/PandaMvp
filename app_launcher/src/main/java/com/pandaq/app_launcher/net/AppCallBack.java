@@ -18,7 +18,7 @@ public abstract class AppCallBack<T> extends ApiObserver<T> {
     @Override
     protected void onError(ApiException e) {
         handleException(e);
-        fail(e.getCode(), e.getMessage());
+        fail(e);
     }
 
     @Override
@@ -34,7 +34,7 @@ public abstract class AppCallBack<T> extends ApiObserver<T> {
 
     protected abstract void success(T data);
 
-    protected abstract void fail(Long code, String msg);
+    protected abstract void fail(ApiException e);
 
     protected abstract void finish(boolean success);
 }

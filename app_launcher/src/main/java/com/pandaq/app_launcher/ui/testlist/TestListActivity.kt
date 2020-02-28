@@ -1,7 +1,10 @@
 package com.pandaq.app_launcher.ui.testlist
 
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.pandaq.app_launcher.R
 import com.pandaq.app_launcher.framework.AppBaseRefreshActivity
+import com.pandaq.router.routers.RouterPath
 import com.pandaq.uires.widget.recyclerview.RefreshRecyclerView
 import kotlinx.android.synthetic.main.launcher_activity_list_test.*
 
@@ -10,6 +13,7 @@ import kotlinx.android.synthetic.main.launcher_activity_list_test.*
  * Email : panda.h@foxmail.com
  * Description :
  */
+@Route(path = RouterPath.LAUNCH_ACTIVITY_TEST)
 class TestListActivity : AppBaseRefreshActivity<TestListPresenter>(), ITestView {
 
 
@@ -22,11 +26,13 @@ class TestListActivity : AppBaseRefreshActivity<TestListPresenter>(), ITestView 
     }
 
     override fun initView() {
-
+        rrv_data.setLayoutManager(LinearLayoutManager(this))
+        rrv_data.setAdapter(mPresenter.adapter)
+        rrv_data.setOnRefreshLoadMoreListener(mPresenter.refreshLoadMoreListener)
     }
 
     override fun loadData() {
-
+        mPresenter.loadData()
     }
 
     override fun bindRefresh(): RefreshRecyclerView? = rrv_data

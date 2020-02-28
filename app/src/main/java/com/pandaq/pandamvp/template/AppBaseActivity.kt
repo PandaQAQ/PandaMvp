@@ -50,7 +50,7 @@ abstract class AppBaseActivity<P : AppBasePresenter<*>> : BaseActivity<P>() {
         LoadingDialogUtil.show(ActivityTask.getInstance().currentActivity(), true)
     }
 
-    override fun hideLoading() {
+    open fun hideLoading() {
         LoadingDialogUtil.hideProgressQuick()
     }
 

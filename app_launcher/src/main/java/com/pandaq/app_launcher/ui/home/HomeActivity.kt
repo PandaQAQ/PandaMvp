@@ -113,34 +113,9 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
                 }
 
                 4 -> {
-
-                    Observable.create<String>(object : ObservableOnSubscribe<String> {
-                        override fun subscribe(emitter: ObservableEmitter<String>) {
-                            emitter.onNext("ssss")
-                        }
-
-                    })
-                            .observeOn(Schedulers.io())
-                            .subscribe(object : Observer<String> {
-                                override fun onComplete() {
-
-                                }
-
-                                override fun onSubscribe(d: Disposable) {
-
-                                }
-
-                                override fun onNext(t: String) {
-                                    Log.d("result::", t)
-                                    throw RuntimeException("run llllll")
-                                }
-
-                                override fun onError(e: Throwable) {
-                                    Log.e("sss", "sss", e)
-                                }
-
-                            })
-
+                    ARouter.getInstance()
+                            .build(RouterPath.LAUNCH_ACTIVITY_TEST)
+                            .navigation(this)
                 }
 
                 5 -> {

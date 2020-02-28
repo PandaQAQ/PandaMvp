@@ -24,7 +24,7 @@ abstract class AppBaseFragment<P : AppBasePresenter<*>> : BaseFragment<P>() {
         LoadingDialogUtil.show(ActivityTask.getInstance().currentActivity(), cancelAble)
     }
 
-    override fun hideLoading() {
+    open fun hideLoading() {
         LoadingDialogUtil.hideProgressQuick()
     }
 

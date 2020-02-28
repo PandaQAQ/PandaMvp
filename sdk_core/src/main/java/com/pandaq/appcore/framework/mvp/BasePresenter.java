@@ -2,6 +2,7 @@ package com.pandaq.appcore.framework.mvp;
 
 import android.util.Log;
 
+import androidx.annotation.Nullable;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
@@ -16,11 +17,12 @@ import io.reactivex.disposables.Disposable;
  */
 public abstract class BasePresenter<V extends IMvpView> implements LifecycleObserver {
 
+    @Nullable
     protected V mView;
     //将所有正在处理的Subscription都添加到CompositeSubscription中。统一退出的时候注销观察
     private CompositeDisposable mCompositeDisposable;
 
-    public BasePresenter(V mvpView) {
+    public BasePresenter(@Nullable V mvpView) {
         if (mvpView != null) {
             mView = mvpView;
         } else {
