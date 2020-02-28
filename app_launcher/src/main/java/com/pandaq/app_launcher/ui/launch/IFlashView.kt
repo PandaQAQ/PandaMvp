@@ -1,12 +1,12 @@
 package com.pandaq.app_launcher.ui.launch
 
-import com.pandaq.app_launcher.framework.AppBasePresenter
+import com.pandaq.appcore.framework.mvp.IMvpView
 
 /**
  * Created by huxinyu on 2019/3/25.
  * Email : panda.h@foxmail.com
  * Description :
  */
-class FlashPresenter(view: IFlashView) : AppBasePresenter<IFlashView>(view) {
+interface IFlashView:IMvpView {
 
 }

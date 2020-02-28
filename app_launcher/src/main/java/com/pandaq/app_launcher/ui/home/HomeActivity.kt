@@ -12,8 +12,8 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.pandaq.app_launcher.R
-import com.pandaq.app_launcher.ui.framework.AppBaseActivity
-import com.pandaq.app_launcher.ui.framework.AppBasePresenter
+import com.pandaq.app_launcher.framework.AppBaseActivity
+import com.pandaq.app_launcher.framework.AppBasePresenter
 import com.pandaq.app_launcher.ui.widgets.GalleryActivity
 import com.pandaq.appcore.imageloader.core.PicLoader
 import com.pandaq.appcore.permission.RtPermission

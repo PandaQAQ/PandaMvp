@@ -2,8 +2,8 @@ package com.pandaq.app_launcher.ui.widgets
 
 import android.annotation.SuppressLint
 import com.pandaq.app_launcher.R
-import com.pandaq.app_launcher.ui.framework.AppBaseActivity
-import com.pandaq.app_launcher.ui.framework.AppBasePresenter
+import com.pandaq.app_launcher.framework.AppBaseActivity
+import com.pandaq.app_launcher.framework.AppBasePresenter
 import com.pandaq.appcore.utils.system.DisplayUtils
 import com.pandaq.uires.widget.gallery.GalleryPageAdapter
 import com.pandaq.uires.widget.gallery.IPagerItem

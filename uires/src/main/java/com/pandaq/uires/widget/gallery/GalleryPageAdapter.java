@@ -60,7 +60,7 @@ public class GalleryPageAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         View page = LayoutInflater.from(container.getContext()).inflate(R.layout.res_item_gallery, null);
         ImageView target = page.findViewById(R.id.iv_icon);
-        TextView title = page.findViewById(R.id.tv_title);
+        TextView title = page.findViewById(R.id.tv_position);
         String url = pageData.get(position).getUrl().trim();
         title.setText(pageData.get(position).getTitleStr().trim());
         PicLoader.with(container.getContext())

@@ -1,7 +1,8 @@
 <resources>
     <string name="res_app_name">CommonUI</string>
     <string name="res_text_net_error">网络在开小差，稍后再试</string>
-    <string name="res_text_empty">暂无数据</string>
+    <string name="res_text_empty">这里什么都没有</string>
+    <string name="res_text_error">哎呀，出错了</string>
     <string name="loading">加载中···</string>
 
     <string name="text_pickYear">年</string>

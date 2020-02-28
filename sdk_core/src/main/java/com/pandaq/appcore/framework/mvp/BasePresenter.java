@@ -14,7 +14,7 @@ import io.reactivex.disposables.Disposable;
  * Email : panda.h@foxmail.com
  * Description :BasePresenter 实现类基类模板,可直接 module 中继承重写生命周期函数
  */
-public abstract class BasePresenter<V extends IContract.IMvpView> implements IContract.IPresenter, LifecycleObserver {
+public abstract class BasePresenter<V extends IMvpView> implements LifecycleObserver {
 
     protected V mView;
     //将所有正在处理的Subscription都添加到CompositeSubscription中。统一退出的时候注销观察
@@ -28,7 +28,6 @@ public abstract class BasePresenter<V extends IContract.IMvpView> implements ICo
         }
     }
 
-    @Override
     public void addDisposable(Disposable disposable) {
         if (mCompositeDisposable == null || mCompositeDisposable.isDisposed()) { //csb 如果解绑了的话添加 sb 需要新的实例否则绑定时无效的
             mCompositeDisposable = new CompositeDisposable();
@@ -36,7 +35,6 @@ public abstract class BasePresenter<V extends IContract.IMvpView> implements ICo
         mCompositeDisposable.add(disposable);
     }
 
-    @Override
     public void dispose() {
         if (mCompositeDisposable != null) {
             mCompositeDisposable.dispose();

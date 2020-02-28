@@ -5,8 +5,7 @@ import android.view.animation.Animation
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.pandaq.app_launcher.R
-import com.pandaq.app_launcher.ui.framework.AppBaseActivity
-import com.pandaq.app_launcher.ui.framework.AppBasePresenter
+import com.pandaq.app_launcher.framework.AppBaseActivity
 import com.pandaq.router.routers.RouterPath
 import kotlinx.android.synthetic.main.launcher_activity_flash.*
 
@@ -16,7 +15,7 @@ import kotlinx.android.synthetic.main.launcher_activity_flash.*
  * Description :
  */
 @Route(path = RouterPath.LAUNCH_ACTIVITY_FLASH)
-class FlashActivity : AppBaseActivity<FlashPresenter>(), FlashContract.View {
+class FlashActivity : AppBaseActivity<FlashPresenter>(), IFlashView {
     override fun injectPresenter(): FlashPresenter {
         return FlashPresenter(this)
     }

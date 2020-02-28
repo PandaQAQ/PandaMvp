@@ -1,4 +1,4 @@
-package com.pandaq.app_launcher.ui.framework
+package com.pandaq.pandamvp.template
 
 import android.os.Bundle
 import android.view.View
@@ -64,12 +64,12 @@ abstract class AppBaseActivity<P : AppBasePresenter<*>> : BaseActivity<P>() {
         }
     }
 
-    override fun onLoadFinish(success: Boolean) {
+    override fun onFinish(success: Boolean) {
         hideLoading()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState?.putParcelable("android:support:fragments", null)
+        outState.putParcelable("android:support:fragments", null)
     }
 }
