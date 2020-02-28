@@ -127,7 +127,11 @@ public class RefreshRecyclerView extends FrameLayout {
     }
 
     public void finishLoadMore(boolean noMore) {
-        mRefreshLayout.finishLoadMore(500, true, noMore);
+        if (noMore) {
+            mRefreshLayout.finishLoadMoreWithNoMoreData();
+        } else {
+            mRefreshLayout.finishLoadMore(500);
+        }
     }
 
     public SmartRefreshLayout getRefreshLayout() {
