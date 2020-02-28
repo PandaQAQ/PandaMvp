@@ -3,12 +3,9 @@ package com.pandaq.uires.widget.recyclerview;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.FrameLayout;
-
-import androidx.annotation.ColorRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.pandaq.uires.R;
@@ -21,6 +18,11 @@ import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
 
+import androidx.annotation.ColorRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
+
 /**
  * Created by huxinyu on 2019/3/25.
  * Email : panda.h@foxmail.com
@@ -30,7 +32,11 @@ public class RefreshRecyclerView extends FrameLayout {
 
     private SmartRefreshLayout mRefreshLayout;
     private RecyclerView mRecyclerView;
-    private boolean showEmpty;
+    private boolean showHolderView; // 是否在加载失败后显示占位视图
+    private View emptyView;
+    private View errorView;
+
+    private BaseQuickAdapter mQuickAdapter;
 
     public RefreshRecyclerView(@NonNull Context context) {
         super(context);
@@ -49,7 +55,9 @@ public class RefreshRecyclerView extends FrameLayout {
 
     private void init(AttributeSet attrs) {
         TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.RefreshRecyclerView);
-        showEmpty = ta.getBoolean(R.styleable.ProportionImageView_ratio, true);
+        showHolderView = ta.getBoolean(R.styleable.RefreshRecyclerView_showHolder, true);
+        int emptyLayout = ta.getResourceId(R.styleable.RefreshRecyclerView_emptyLayout, R.layout.res_empty_view);
+        int errorLayout = ta.getResourceId(R.styleable.RefreshRecyclerView_emptyLayout, R.layout.res_error_view);
         ta.recycle();
         inflate(getContext(), R.layout.res_refresh_recyclerview, this);
         mRefreshLayout = findViewById(R.id.srl_refresh);
@@ -65,6 +73,9 @@ public class RefreshRecyclerView extends FrameLayout {
         mRefreshLayout.setRefreshFooter(footer);
         //禁用 smartrefreshlayout 的自动加载，交给外部监听处理
         mRefreshLayout.setEnableAutoLoadMore(false);
+
+        emptyView = LayoutInflater.from(getContext()).inflate(emptyLayout, null);
+        errorView = LayoutInflater.from(getContext()).inflate(errorLayout, null);
     }
 
     public void setOnRefreshListener(OnRefreshListener refreshListener) {
@@ -82,8 +93,21 @@ public class RefreshRecyclerView extends FrameLayout {
     /**
      * after refresh finish the EmptyView will be visiable
      */
-    public void finishRefresh(boolean isError) {
+    public void finishRefresh(boolean success) {
         mRefreshLayout.finishRefresh(500);
+        if (this.showHolderView) {
+            mQuickAdapter.bindToRecyclerView(mRecyclerView);
+            if (success) {
+                mQuickAdapter.setEmptyView(emptyView);
+            } else {
+                mQuickAdapter.setEmptyView(errorView);
+            }
+        }
+    }
+
+    @Nullable
+    public View getEmptyView() {
+        return emptyView;
     }
 
     public void autoRefresh() {
@@ -119,16 +143,14 @@ public class RefreshRecyclerView extends FrameLayout {
     }
 
     public void setAdapter(@NonNull BaseQuickAdapter adapter, boolean showEmpty) {
-        this.showEmpty = showEmpty;
-        mRecyclerView.setAdapter(adapter);
-        if (this.showEmpty) {
-            adapter.bindToRecyclerView(mRecyclerView);
-            adapter.setEmptyView(R.layout.res_empty_view);
-        }
+        this.showHolderView = showEmpty;
+        mQuickAdapter = adapter;
+        mRecyclerView.setAdapter(mQuickAdapter);
     }
 
+
     public void setAdapter(@NonNull BaseQuickAdapter adapter) {
-        setAdapter(adapter,true);
+        setAdapter(adapter, true);
     }
 
     public void addItemDecoration(RecyclerView.ItemDecoration itemDecoration) {

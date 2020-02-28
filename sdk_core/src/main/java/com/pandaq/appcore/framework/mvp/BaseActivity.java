@@ -18,7 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
  * Description :给出的模板基类
  * 也可完全自己写基类绑定 UI
  */
-public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements IContract.IMvpView {
+public abstract class BaseActivity<P extends BasePresenter> extends AppCompatActivity implements IMvpView {
 
     protected P mPresenter;
 

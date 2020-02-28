@@ -1,4 +1,4 @@
-package com.pandaq.app_launcher.ui.framework
+package com.pandaq.app_launcher.framework
 
 import com.pandaq.appcore.framework.app.ActivityTask
 import com.pandaq.appcore.framework.mvp.BaseFragment
@@ -34,7 +34,7 @@ abstract class AppBaseFragment<P : AppBasePresenter<*>> : BaseFragment<P>() {
         }
     }
 
-    override fun onLoadFinish(success: Boolean) {
+    override fun onFinish(success: Boolean) {
         hideLoading()
     }
 }

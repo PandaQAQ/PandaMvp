@@ -1,18 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <declare-styleable name="CountChangeView" tools:ignore="ResourceName">
-        <attr name="countColor" format="color"/>
-        <attr name="countTextSize" format="dimension"/>
-        <attr name="maxCount" format="integer"/>
-        <attr name="minCount" format="integer"/>
-        <attr name="focusable" format="boolean"/>
+        <attr name="countColor" format="color" />
+        <attr name="countTextSize" format="dimension" />
+        <attr name="maxCount" format="integer" />
+        <attr name="minCount" format="integer" />
+        <attr name="focusable" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="ProportionImageView" tools:ignore="ResourceName">
-        <attr name="ratio" format="float"/>
+        <attr name="ratio" format="float" />
     </declare-styleable>
 
     <declare-styleable name="RefreshRecyclerView" tools:ignore="ResourceName">
-        <attr name="showEmpty" format="boolean"/>
+        <attr name="showHolder" format="boolean" />
+        <attr name="emptyLayout" format="reference" />
+        <attr name="errorLayout" format="reference" />
     </declare-styleable>
 </resources>
