@@ -16,6 +16,17 @@ import com.pandaq.appcore.R;
  * Description : ues SettingDialogUtils showSetting() open default style dialog
  */
 public class SettingDialogUtils {
+
+    /**
+     * 显示设置Dialog
+     *
+     * @param context 上下文
+     * @return AlertDialog
+     */
+    public static AlertDialog showSetting(final Activity context) {
+        return showSetting(context, "警告", "为了应用程序正常运行，请授予必要权限", "去设置", "退出", true);
+    }
+
     /**
      * 显示设置Dialog
      *

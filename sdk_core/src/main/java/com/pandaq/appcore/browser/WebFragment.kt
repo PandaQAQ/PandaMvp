@@ -1,14 +1,19 @@
 package com.pandaq.appcore.browser
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
+import android.webkit.JavascriptInterface
 import android.webkit.WebSettings
 import androidx.fragment.app.Fragment
+import com.pandaq.appcore.browser.bridge.BridgeData
+import com.pandaq.appcore.browser.bridge.JavaScriptApis
+import com.pandaq.appcore.utils.CameraUtils
 import com.pandaq.appcore.utils.system.AppUtils
 
 
@@ -58,6 +63,17 @@ class WebFragment : Fragment() {
         this.url = url
         headers?.let {
             this.headers.putAll(it)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        when(requestCode){
+            JavaScriptApis.CALLBACK_CODE_TAKE_PHOTO ->{
+                val bridgeData = BridgeData(JavaScriptApis.jsMethodsNames[JavaScriptApis.CALLBACK_CODE_TAKE_PHOTO],CameraUtils.getPhotoPath())
+                webView?.sendDataToH5(bridgeData)
+                JavaScriptApis.jsMethodsNames.remove(JavaScriptApis.CALLBACK_CODE_TAKE_PHOTO)
+            }
         }
     }
 
