@@ -8,4 +8,5 @@
     <color name="colorTrans">#00FFFFFF</color>
     <color name="colorNegative">#b9b9b9</color>
     <color name="colorBackground">#F6F5FA</color>
+    <color name="colorCover">#a6000000</color>
 </resources>

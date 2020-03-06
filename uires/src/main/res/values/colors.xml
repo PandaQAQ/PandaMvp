@@ -2,7 +2,6 @@
 <resources>
 
     <!--以下颜色为公共 ui 组件颜色，如果想替换颜色风格可在 app color.xml 内覆盖赋值-->
-    <color name="res_colorCover">#a6000000</color>
     <color name="res_colorTrans">#00ffffff</color>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
