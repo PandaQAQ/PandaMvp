@@ -17,7 +17,7 @@ import com.pandaq.appcore.guide.GuideCoverView
  * Description :给出的模板基类
  * 也可完全自己写基类绑定 UI
  */
-abstract class BaseActivity<P : BasePresenter<*>?> : AppCompatActivity(), IMvpView {
+abstract class BaseActivity<P : BasePresenter<*>> : AppCompatActivity(), IMvpView {
 
     private var mParentView: FrameLayout? = null
     /**
@@ -27,7 +27,7 @@ abstract class BaseActivity<P : BasePresenter<*>?> : AppCompatActivity(), IMvpVi
 
     protected var mPresenter: P? = null
 
-    protected abstract fun injectPresenter(): P
+    protected abstract fun injectPresenter(): P?
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

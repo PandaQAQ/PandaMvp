@@ -1,5 +1,7 @@
 package com.pandaq.app_launcher.ui.home
 
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
 import android.os.Environment
 import android.util.Log
@@ -22,13 +24,12 @@ import com.pandaq.router.routers.RouterPath
 import com.pandaq.uires.msgwindow.Toaster
 import com.pandaq.uires.widget.recyclerview.decoration.ItemDecoration
 import io.reactivex.Observable
-import io.reactivex.ObservableEmitter
-import io.reactivex.ObservableOnSubscribe
 import io.reactivex.Observer
 import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.launcher_activity_home.*
 import java.io.File
+import java.lang.Exception
 
 /**
  * Created by huxinyu on 2019/3/25.
@@ -37,6 +38,14 @@ import java.io.File
  */
 @Route(path = RouterPath.LAUNCH_ACTIVITY_HOME)
 class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
+
+    val receiver by lazy {
+        object : BroadcastReceiver() {
+            override fun onReceive(context: Context?, intent: Intent?) {
+                Log.d("receiver", "收到广播消息")
+            }
+        }
+    }
 
     private val adapter: BaseQuickAdapter<String, BaseViewHolder> by lazy {
         return@lazy object : BaseQuickAdapter<String, BaseViewHolder>(R.layout.launcher_item_homepage) {
@@ -92,8 +101,12 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
         adapter.setOnItemChildClickListener { adapter, _, position ->
             when (position) {
                 0 -> {
-                    val intent = Intent(this, GalleryActivity::class.java)
-                    startActivity(intent)
+                    //        registerReceiver()
+                    try {
+                        unregisterReceiver(receiver)
+                    } catch (e: Exception) {
+                        e.printStackTrace()
+                    }
                 }
                 1 -> {
                     RtPermission.with(this)

@@ -27,12 +27,14 @@ class TestListActivity : AppBaseRefreshActivity<TestListPresenter>(), ITestView 
 
     override fun initView() {
         rrv_data.setLayoutManager(LinearLayoutManager(this))
-        rrv_data.setAdapter(mPresenter.adapter)
-        rrv_data.setOnRefreshLoadMoreListener(mPresenter.refreshLoadMoreListener)
+        mPresenter?.let {
+            rrv_data.setAdapter(it.adapter)
+            rrv_data.setOnRefreshLoadMoreListener(it.refreshLoadMoreListener)
+        }
     }
 
     override fun loadData() {
-        mPresenter.loadData()
+        mPresenter?.loadData()
     }
 
     override fun bindRefresh(): RefreshRecyclerView? = rrv_data
