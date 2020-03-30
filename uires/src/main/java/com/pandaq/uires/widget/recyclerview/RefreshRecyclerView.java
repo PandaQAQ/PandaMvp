@@ -95,7 +95,7 @@ public class RefreshRecyclerView extends FrameLayout {
      */
     public void finishRefresh(boolean success) {
         mRefreshLayout.finishRefresh(500);
-        if (this.showHolderView) {
+        if (this.showHolderView && mQuickAdapter != null) {
             mQuickAdapter.bindToRecyclerView(mRecyclerView);
             if (success) {
                 mQuickAdapter.setEmptyView(emptyView);

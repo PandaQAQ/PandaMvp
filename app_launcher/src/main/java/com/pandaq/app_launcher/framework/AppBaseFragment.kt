@@ -30,7 +30,7 @@ abstract class AppBaseFragment<P : AppBasePresenter<*>> : BaseFragment<P>() {
 
     override fun onError(errCode: Long, errMsg: String?) {
         errMsg?.let {
-            Toaster.msg(errMsg).showError()
+            Toaster.showError(errMsg)
         }
     }
 

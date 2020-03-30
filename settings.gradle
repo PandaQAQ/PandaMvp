@@ -1,5 +1,5 @@
 include ':app', ':app_launcher',
-        ':app_amodule',
+        ':app_jetpack',
         ':app_bmodule',
         ':functionlibs:pay',
         ':router',

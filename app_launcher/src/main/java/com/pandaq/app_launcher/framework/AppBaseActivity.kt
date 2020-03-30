@@ -60,7 +60,7 @@ abstract class AppBaseActivity<P : AppBasePresenter<*>> : BaseActivity<P>() {
 
     override fun onError(errCode: Long, errMsg: String?) {
         errMsg?.let {
-            Toaster.msg(errMsg).showError()
+            Toaster.showError(errMsg)
         }
     }
 

@@ -52,6 +52,22 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies["annotation"]
     api rootProject.ext.dependencies['rxpanda']
     api rootProject.ext.dependencies['x5browser']
+
+    //jetpack
+    // ViewModel
+    api rootProject.ext.dependencies['viewmodel']
+    // LiveData
+    api rootProject.ext.dependencies['livedata']
+    // Lifecycles only (without ViewModel or LiveData)
+    api rootProject.ext.dependencies['lifecycle-runtime']
+    // Saved state module for ViewModel
+    api rootProject.ext.dependencies['viewmodel-savedstate']
+    // alternately - if using Java8, use the following instead of lifecycle-compiler
+    api rootProject.ext.dependencies['lifecycle-common-java8']
+    // optional - ReactiveStreams support for LiveData
+    api rootProject.ext.dependencies['lifecycle-reactivestreams']
+    // optional - Test helpers for LiveData
+    testApi rootProject.ext.dependencies['core-testing']
 }
 repositories {
     mavenCentral()

@@ -2,10 +2,6 @@ package com.pandaq.uires.msgwindow;
 
 import android.annotation.SuppressLint;
 import android.graphics.drawable.Drawable;
-
-import androidx.annotation.Dimension;
-import androidx.annotation.DrawableRes;
-import androidx.annotation.NonNull;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.widget.ImageView;
@@ -16,6 +12,11 @@ import android.widget.Toast;
 import com.pandaq.appcore.utils.system.AppUtils;
 import com.pandaq.appcore.utils.system.DisplayUtils;
 import com.pandaq.uires.configs.ToastConfig;
+
+import androidx.annotation.ColorInt;
+import androidx.annotation.Dimension;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.NonNull;
 
 
 /**
@@ -44,18 +45,98 @@ public class Toaster {
     private static void cancelToast() {
         if (mToast != null) {
             mToast.cancel();
-        }
-    }
-
-    public static ToastBuilder msg(String msg) {
-        if (mToast != null) {
-            cancelToast();
             mToast = null;
         }
-        return new ToastBuilder(msg);
     }
 
-    public static class ToastBuilder {
+
+    public static void showSuccess(String msg) {
+        show(msg, SUCCESS);
+    }
+
+    public static void showError(String msg) {
+        show(msg, ERROR);
+    }
+
+    public static void showWarning(String msg) {
+        show(msg, WARNING);
+    }
+
+
+    /**
+     * Toast 常规的显示
+     *
+     * @param msg   消息内容
+     * @param state 消息状态
+     */
+    @SuppressLint("ShowToast")
+    private static void show(String msg, int state) {
+        if (TextUtils.isEmpty(msg)) {
+            return;
+        }
+        if (mToast != null) {
+            cancelToast();
+        }
+        int msgColor = ToastConfig.Companion.get().getNormalTextColor();
+        Drawable backgroundDrawable = ToastConfig.Companion.get().getNormalBackground();
+        Drawable icon = ToastConfig.Companion.get().getNormalIcon();
+        switch (state) {
+            case SUCCESS:
+                break;
+            case WARNING:
+                msgColor = ToastConfig.Companion.get().getWarningTextColor();
+                backgroundDrawable = ToastConfig.Companion.get().getWarningBackground();
+                icon = ToastConfig.Companion.get().getWarningIcon();
+                break;
+            case ERROR:
+                msgColor = ToastConfig.Companion.get().getErrorTextColor();
+                backgroundDrawable = ToastConfig.Companion.get().getErrorBackground();
+                icon = ToastConfig.Companion.get().getErrorIcon();
+                break;
+            default:
+        }
+        if (mToast == null) {
+            mToast = Toast.makeText(AppUtils.getContext(), msg, Toast.LENGTH_SHORT);
+            // 新建时为显示 ToastMsg 的 textview 设置 tag
+            LinearLayout toastView = (LinearLayout) mToast.getView();
+            toastView.getChildAt(0).setTag(TEXT_TAG);
+        }
+        TextView textView = mToast.getView().findViewWithTag(TEXT_TAG);
+        if (textView != null) {
+            if (msgColor != 0) {
+                textView.setTextColor(msgColor);
+            }
+        }
+        if (backgroundDrawable != null) {
+            mToast.getView().setBackground(backgroundDrawable);
+        }
+        ImageView iconView = mToast.getView().findViewWithTag(ICON_TAG);
+        LinearLayout toastView = (LinearLayout) mToast.getView();
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.gravity = Gravity.CENTER_VERTICAL;
+        toastView.setLayoutParams(params);
+        if (iconView != null) { //先将之前的 icon 移除
+            toastView.removeView(iconView);
+        }
+        LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams(DisplayUtils.dp2px(24), DisplayUtils.dp2px(24));
+        iconView = new ImageView(AppUtils.getContext());
+        iconView.setLayoutParams(iconParams);
+        iconView.setImageDrawable(icon);
+        iconParams.rightMargin = DisplayUtils.dp2px(8);
+        toastView.setOrientation(LinearLayout.HORIZONTAL);
+        toastView.addView(iconView, 0);
+        mToast.show();
+    }
+
+    public static ToastHelper newHelper(String msg) {
+        if (mToast != null) {
+            cancelToast();
+        }
+        return new ToastHelper(msg);
+    }
+
+    public static class ToastHelper {
         private CharSequence msg;
         private int msgFont;
         private int msgColor;
@@ -65,33 +146,38 @@ public class Toaster {
         private int mIconGravity = ToastConfig.Companion.get().getIconGravity();
         private int duration = Toast.LENGTH_SHORT;
 
-        private ToastBuilder(String msg) {
+        private ToastHelper(String msg) {
             this.msg = msg;
         }
 
-        public ToastBuilder msgFont(@Dimension int msgFont) {
+        public ToastHelper msgFont(@Dimension int msgFont) {
             this.msgFont = msgFont;
             return this;
         }
 
-        public ToastBuilder backgroundDrawable(@NonNull Drawable drawable) {
+        public ToastHelper msgColor(@ColorInt int msgColor) {
+            this.msgColor = msgColor;
+            return this;
+        }
+
+        public ToastHelper backgroundDrawable(@NonNull Drawable drawable) {
             this.backgroundDrawable = drawable;
             return this;
         }
 
-        public ToastBuilder icon(@NonNull Drawable icon, int gravity) {
+        public ToastHelper icon(@NonNull Drawable icon, int gravity) {
             this.icon = icon;
             this.mIconGravity = gravity;
             return this;
         }
 
-        public ToastBuilder icon(@DrawableRes int icon, int gravity) {
+        public ToastHelper icon(@DrawableRes int icon, int gravity) {
             this.icon = AppUtils.getResource().getDrawable(icon);
             this.mIconGravity = gravity;
             return this;
         }
 
-        public ToastBuilder iconSize(int sizePx) {
+        public ToastHelper iconSize(int sizePx) {
             this.iconSize = sizePx;
             return this;
         }
@@ -102,56 +188,15 @@ public class Toaster {
          * @param duration 显示时长
          * @return 构造器
          */
-        public ToastBuilder duration(int duration) {
+        public ToastHelper duration(int duration) {
             this.duration = duration;
             return this;
         }
 
-        public void showSuccess() {
-            show(SUCCESS);
-        }
-
-        public void showError() {
-            show(ERROR);
-        }
-
-        public void showWarning() {
-            show(WARNING);
-        }
-
         @SuppressLint("ShowToast")
-        private void show(int state) {
+        public void show() {
             if (TextUtils.isEmpty(msg)) {
                 return;
-            }
-            switch (state) {
-                case SUCCESS:
-                    msgColor = ToastConfig.Companion.get().getNormalTextColor();
-                    if (backgroundDrawable == null) {
-                        backgroundDrawable = ToastConfig.Companion.get().getNormalBackground();
-                    }
-                    if (icon == null) {
-                        icon = ToastConfig.Companion.get().getNormalIcon();
-                    }
-                    break;
-                case WARNING:
-                    msgColor = ToastConfig.Companion.get().getWarningTextColor();
-                    if (backgroundDrawable == null) {
-                        backgroundDrawable = ToastConfig.Companion.get().getWarningBackground();
-                    }
-                    if (icon == null) {
-                        icon = ToastConfig.Companion.get().getWarningIcon();
-                    }
-                    break;
-                case ERROR:
-                    msgColor = ToastConfig.Companion.get().getErrorTextColor();
-                    if (backgroundDrawable == null) {
-                        backgroundDrawable = ToastConfig.Companion.get().getErrorBackground();
-                    }
-                    if (icon == null) {
-                        icon = ToastConfig.Companion.get().getErrorIcon();
-                    }
-                    break;
             }
             if (mToast == null) {
                 mToast = Toast.makeText(AppUtils.getContext(), msg, duration);
@@ -205,7 +250,6 @@ public class Toaster {
                     toastView.addView(iconView, toastView.getChildCount());
                 }
             }
-
             mToast.setDuration(duration);
             mToast.show();
         }
