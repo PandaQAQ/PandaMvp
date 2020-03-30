@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.pandaq.app_jetpack">
+
+    <application>
+        <activity android:name="com.pandaq.app_jetpack.MainActivity">
+        </activity>
+        <activity android:name=".app.mvp.zhihu.ZhihuListActivity" />
+
+        <meta-data
+            android:name="com.pandaq.app_jetpack.app.lifecycle.LifeCycleInjector"
+            android:value="@string/lifecycle_proxy"/>
+    </application>
+
+</manifest>

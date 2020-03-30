@@ -1,8 +1,5 @@
 package com.pandaq.app_launcher.ui.home
 
-import android.content.BroadcastReceiver
-import android.content.Context
-import android.content.Intent
 import android.os.Environment
 import android.util.Log
 import android.widget.ImageView
@@ -16,7 +13,6 @@ import com.chad.library.adapter.base.BaseViewHolder
 import com.pandaq.app_launcher.R
 import com.pandaq.app_launcher.framework.AppBaseActivity
 import com.pandaq.app_launcher.framework.AppBasePresenter
-import com.pandaq.app_launcher.ui.widgets.GalleryActivity
 import com.pandaq.appcore.imageloader.core.PicLoader
 import com.pandaq.appcore.permission.RtPermission
 import com.pandaq.appcore.utils.system.DisplayUtils
@@ -29,7 +25,6 @@ import io.reactivex.disposables.Disposable
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.launcher_activity_home.*
 import java.io.File
-import java.lang.Exception
 
 /**
  * Created by huxinyu on 2019/3/25.
@@ -38,14 +33,6 @@ import java.lang.Exception
  */
 @Route(path = RouterPath.LAUNCH_ACTIVITY_HOME)
 class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
-
-    val receiver by lazy {
-        object : BroadcastReceiver() {
-            override fun onReceive(context: Context?, intent: Intent?) {
-                Log.d("receiver", "收到广播消息")
-            }
-        }
-    }
 
     private val adapter: BaseQuickAdapter<String, BaseViewHolder> by lazy {
         return@lazy object : BaseQuickAdapter<String, BaseViewHolder>(R.layout.launcher_item_homepage) {
@@ -101,28 +88,22 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
         adapter.setOnItemChildClickListener { adapter, _, position ->
             when (position) {
                 0 -> {
-                    //        registerReceiver()
-                    try {
-                        unregisterReceiver(receiver)
-                    } catch (e: Exception) {
-                        e.printStackTrace()
-                    }
+
                 }
                 1 -> {
                     RtPermission.with(this)
                             .install(Environment.getExternalStoragePublicDirectory("panda")
                                     .absolutePath + File.separator + "panda.apk")
                             .onDenied {
-                                Toaster.msg("无应用安装权限！")
-                                        .showWarning()
+                                Toaster.showWarning("无应用安装权限！")
                             }
                             .start()
                 }
                 2 -> {
-                    Toaster.msg("警告消息").showWarning()
+                    Toaster.showWarning("警告消息")
                 }
                 3 -> {
-                    Toaster.msg("正常消息").showSuccess()
+                    Toaster.showSuccess("正常消息")
                 }
 
                 4 -> {
@@ -132,7 +113,7 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
                 }
 
                 5 -> {
-                    Toaster.msg("错误消息测试错误消息测试错误消息测试错误消息测试错误消息测试错误消息测试").showError()
+                    Toaster.showError("错误消息测试错误消息测试错误消息测试错误消息测试错误消息测试错误消息测试")
                 }
 
                 6 -> {
@@ -146,8 +127,8 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
                             .navigation(this)
                 }
                 else -> {
-                    Toaster.msg(adapter.data[position] as String)
-                            .showError()
+                    Toaster.showError(adapter.data[position] as String)
+
                 }
             }
         }
