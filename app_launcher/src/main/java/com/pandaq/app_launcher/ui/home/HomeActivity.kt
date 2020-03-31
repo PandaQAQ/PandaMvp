@@ -88,7 +88,7 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
         adapter.setOnItemChildClickListener { adapter, _, position ->
             when (position) {
                 0 -> {
-
+                    testRxJava()
                 }
                 1 -> {
                     RtPermission.with(this)
@@ -136,38 +136,44 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
 
     private fun testRxJava() {
         Observable.just("Data")
-                .doOnSubscribe {
-                    Log.d("doOnSubscribe1", Thread.currentThread().name)
-                }
                 .map {
-                    Log.d("Subscribe1", Thread.currentThread().name)
+                    Log.d("Map 1", Thread.currentThread().name)
                     return@map it
                 }
-//                .observeOn()
+                .doOnSubscribe {
+                    Log.d("doOnSubscribe 2-1 ", Thread.currentThread().name)
+                }
                 .subscribeOn(Schedulers.io())
-                .doOnSubscribe {
-                    Log.d("doOnSubscribe0", Thread.currentThread().name)
-                }
                 .map {
-                    Log.d("Subscribe0 ", Thread.currentThread().name)
+                    Log.d("Map 2 ", Thread.currentThread().name)
                     return@map it
                 }
-                .subscribeOn(Schedulers.computation())
+                .doOnSubscribe {
+                    Log.d("doOnSubscribe 3-1 ", Thread.currentThread().name)
+                }
+                .subscribeOn(Schedulers.newThread())
+                .doOnSubscribe {
+                    Log.d("doOnSubscribe 3", Thread.currentThread().name)
+                }
+                .map {
+                    Log.d("Map 3 ", Thread.currentThread().name)
+                    return@map it
+                }
                 .subscribe(object : Observer<String> {
                     override fun onComplete() {
 
                     }
 
                     override fun onSubscribe(d: Disposable) {
-                        Log.d("doOnSubscribe-1", Thread.currentThread().name)
+                        Log.d("onSubscribe", Thread.currentThread().name)
                     }
 
                     override fun onNext(t: String) {
-
+                        Log.d("onNext", Thread.currentThread().name)
                     }
 
                     override fun onError(e: Throwable) {
-
+                        e.printStackTrace()
                     }
 
                 })
@@ -175,7 +181,7 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
 
     override fun loadData() {
         val list = arrayListOf<String>()
-        list.add("提示控件")
+        list.add("RxJava2 Test")
         list.add("运行时权限")
         list.add("图片加载")
         list.add("网络请求")
