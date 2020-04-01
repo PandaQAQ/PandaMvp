@@ -1,21 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.pandaq.app_launcher">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.pandaq.app_launcher">
 
     <application>
         <!--配置 Application-->
         <meta-data
             android:name="com.pandaq.app_launcher.app.LifeCycleInjector"
-            android:value="@string/lifecycle_proxy"/>
+            android:value="@string/lifecycle_proxy" />
 
         <activity
-            android:name=".ui.launch.FlashActivity">
-        </activity>
+            android:name=".ui.launch.FlashActivity"
+            android:theme="@style/FullScreenNoTitleTheme" />
+
         <activity
             android:name=".ui.home.HomeActivity"
-            android:label="主页"/>
+            android:label="主页" />
 
-        <activity android:name=".ui.widgets.GalleryActivity"/>
+        <activity android:name=".ui.widgets.GalleryActivity" />
         <activity android:name=".ui.testlist.TestListActivity" />
     </application>
 

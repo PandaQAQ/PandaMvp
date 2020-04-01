@@ -1,5 +1,7 @@
 package com.pandaq.app_launcher.framework
 
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.ActionBar
@@ -31,6 +33,7 @@ abstract class AppBaseActivity<P : AppBasePresenter<*>> : BaseActivity<P>() {
         mToolbar?.let {
             it.setOnBackPressed(View.OnClickListener { onBackPressed() })
             it.setTitle(title)
+            it.setDarkStyle(true)
         }
         val actionBar = supportActionBar
         if (actionBar != null) {

@@ -30,9 +30,9 @@ class WebFragment : Fragment() {
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater,
+            container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         webView = ProcessWebView(AppUtils.getContext(), null)
         webView?.scrollBarStyle = View.SCROLLBARS_INSIDE_OVERLAY
@@ -68,13 +68,25 @@ class WebFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        when(requestCode){
-            JavaScriptApis.CALLBACK_CODE_TAKE_PHOTO ->{
-                val bridgeData = BridgeData(JavaScriptApis.jsMethodsNames[JavaScriptApis.CALLBACK_CODE_TAKE_PHOTO],CameraUtils.getPhotoPath())
+        when (requestCode) {
+            JavaScriptApis.CALLBACK_CODE_TAKE_PHOTO -> {
+                val bridgeData = BridgeData(JavaScriptApis.jsMethodsNames[JavaScriptApis.CALLBACK_CODE_TAKE_PHOTO], CameraUtils.getPhotoPath())
                 webView?.sendDataToH5(bridgeData)
                 JavaScriptApis.jsMethodsNames.remove(JavaScriptApis.CALLBACK_CODE_TAKE_PHOTO)
             }
         }
+    }
+
+    fun canGoBack(): Boolean {
+        return if (webView == null) {
+            false
+        } else {
+            webView!!.canGoBack()
+        }
+    }
+
+    fun goBack(){
+        webView?.goBack()
     }
 
 }

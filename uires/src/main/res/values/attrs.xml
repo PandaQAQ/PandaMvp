@@ -17,4 +17,10 @@
         <attr name="emptyLayout" format="reference" />
         <attr name="errorLayout" format="reference" />
     </declare-styleable>
+
+    <declare-styleable name="CNToolbar" tools:ignore="ResourceName">
+        <attr name="darkStyle" format="boolean" />
+        <attr name="showDivider" format="boolean" />
+        <attr name="dividerColor" format="color" />
+    </declare-styleable>
 </resources>
