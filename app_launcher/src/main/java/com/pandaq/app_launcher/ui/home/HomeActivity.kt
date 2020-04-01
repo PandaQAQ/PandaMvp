@@ -17,6 +17,7 @@ import com.pandaq.appcore.imageloader.core.PicLoader
 import com.pandaq.appcore.permission.RtPermission
 import com.pandaq.appcore.utils.system.DisplayUtils
 import com.pandaq.router.routers.RouterPath
+import com.pandaq.uires.html.HtmlActivity
 import com.pandaq.uires.msgwindow.Toaster
 import com.pandaq.uires.widget.recyclerview.decoration.ItemDecoration
 import io.reactivex.Observable
@@ -107,9 +108,7 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
                 }
 
                 4 -> {
-                    ARouter.getInstance()
-                            .build(RouterPath.LAUNCH_ACTIVITY_TEST)
-                            .navigation(this)
+                    HtmlActivity.start("Vue Page", url = "http://192.168.0.73:8080/#/")
                 }
 
                 5 -> {

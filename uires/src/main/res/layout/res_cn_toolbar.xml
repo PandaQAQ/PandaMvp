@@ -1,78 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:id="@+id/cn_toolbar"
-        android:background="@color/res_toolbar_background"
-        android:layout_height="match_parent">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cn_toolbar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/res_toolbar_background">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
         <ImageView
-                android:id="@+id/iv_back"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="wrap_content"
-                android:padding="@dimen/res_dp_8"
-                android:layout_marginStart="@dimen/res_dp_8"
-                android:src="@drawable/arrow_back_ios"
-                android:scaleType="fitCenter"
-                android:layout_height="wrap_content"/>
+            android:id="@+id/iv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/res_dp_8"
+            android:padding="@dimen/res_dp_8"
+            android:scaleType="fitCenter"
+            android:src="@drawable/arrow_back_ios"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-                android:id="@+id/tv_title"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="我是标题"
-                android:gravity="center"
-                android:textColor="#000000"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+            android:id="@+id/tv_title"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="我是标题" />
 
         <ImageView
-                android:id="@+id/iv_menu"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:padding="@dimen/res_dp_8"
-                android:layout_marginEnd="@dimen/res_dp_8"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="wrap_content"
-                tools:src="@drawable/arrow_back_ios"
-                android:visibility="gone"
-                android:scaleType="fitCenter"
-                android:layout_height="wrap_content"/>
+            android:id="@+id/iv_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/res_dp_8"
+            android:padding="@dimen/res_dp_8"
+            android:scaleType="fitCenter"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@drawable/arrow_back_ios" />
 
         <TextView
-                android:id="@+id/tv_menu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                tools:text="下一步"
-                android:paddingStart="@dimen/res_dp_8"
-                android:paddingEnd="@dimen/res_dp_8"
-                android:paddingTop="@dimen/dp_4"
-                android:paddingBottom="@dimen/dp_4"
-                android:visibility="gone"
-                android:gravity="center"
-                android:textColor="@color/res_colorTextMinor"
-                android:textSize="16sp"
-                android:layout_marginEnd="@dimen/res_dp_16"
-                app:layout_constraintEnd_toEndOf="parent"/>
+            android:id="@+id/tv_menu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/res_dp_16"
+            android:gravity="center"
+            android:paddingStart="@dimen/res_dp_8"
+            android:paddingTop="@dimen/dp_4"
+            android:paddingEnd="@dimen/res_dp_8"
+            android:paddingBottom="@dimen/dp_4"
+            android:textColor="@color/res_colorTextMinor"
+            android:textSize="16sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="下一步" />
 
         <View
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/res_dividing"/>
+            android:id="@+id/view_divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/res_dividing"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/fl_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_debug"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#4D88F4FD"
+        android:padding="@dimen/res_dp_16">
+
+        <EditText
+            android:id="@+id/et_url_debug"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="http://192.168.0.73:8080/#/"
+            app:layout_constraintEnd_toStartOf="@id/tv_load"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_load"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/res_stateful_ripple_primary_round_4"
+            android:gravity="center"
+            android:padding="@dimen/res_dp_8"
+            android:text="Load"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>

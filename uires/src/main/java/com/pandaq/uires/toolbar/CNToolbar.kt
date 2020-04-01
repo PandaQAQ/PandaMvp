@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.annotation.AttrRes
 import androidx.annotation.ColorInt
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -18,34 +17,37 @@ import com.pandaq.uires.R
  * Description :
  */
 
-class CNToolbar : FrameLayout {
-
-    companion object {
-        const val MENU_TEXT = 0
-        const val MENU_IMAGE = 1
-    }
-
-    constructor(context: Context) : super(context)
-
-    constructor(context: Context, attrs: AttributeSet) : super(context, attrs)
-
-    constructor(context: Context, attrs: AttributeSet, @AttrRes defStyleAttr: Int) : super(
-        context,
-        attrs,
-        defStyleAttr
-    )
+class CNToolbar @JvmOverloads constructor(
+        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+) : FrameLayout(context, attrs, defStyleAttr) {
 
     private var arrowBack: ImageView? = null
     private var titleView: TextView? = null
     private var menuText: TextView? = null
+    private var divider: View? = null
     private var menuImage: ImageView? = null
+    private var isDark = false
+    private var showDivider = false
+    private var dividerColor = context.resources.getColor(R.color.res_dividing)
 
     init {
+        val ta = context.obtainStyledAttributes(attrs, R.styleable.CNToolbar)
         addView(inflate(context, R.layout.res_cn_toolbar, null))
         arrowBack = findViewById(R.id.iv_back)
         titleView = findViewById(R.id.tv_title)
         menuText = findViewById(R.id.tv_menu)
         menuImage = findViewById(R.id.iv_menu)
+        isDark = ta.getBoolean(R.styleable.CNToolbar_darkStyle, false)
+        showDivider = ta.getBoolean(R.styleable.CNToolbar_showDivider, false)
+        dividerColor = ta.getColor(R.styleable.CNToolbar_dividerColor, dividerColor)
+        setDarkStyle(isDark)
+        divider?.visibility =
+                if (showDivider) {
+                    View.VISIBLE
+                } else {
+                    View.GONE
+                }
+        ta.recycle()
     }
 
     fun setDarkStyle(isDark: Boolean) {
@@ -125,5 +127,9 @@ class CNToolbar : FrameLayout {
 
     fun setOnBackPressed(listener: OnClickListener) {
         arrowBack?.setOnClickListener(listener)
+    }
+
+    fun setDividerColor(@ColorInt color: Int) {
+        divider?.setBackgroundColor(color)
     }
 }
