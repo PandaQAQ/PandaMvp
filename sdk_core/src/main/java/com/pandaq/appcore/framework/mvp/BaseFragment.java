@@ -22,7 +22,7 @@ import androidx.fragment.app.FragmentTransaction;
 public abstract class BaseFragment<P extends BasePresenter> extends Fragment implements IMvpView {
 
     @Nullable
-    protected View contentView;
+    private View contentView;
 
     protected P mPresenter;
 
@@ -44,13 +44,13 @@ public abstract class BaseFragment<P extends BasePresenter> extends Fragment imp
             throw new RuntimeException("must binContentRes first !!!");
         }
         contentView = inflater.inflate(bindContentRes(), container, false);
-        initView(contentView);
         return contentView;
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initView(contentView);
         loadData();
     }
 
