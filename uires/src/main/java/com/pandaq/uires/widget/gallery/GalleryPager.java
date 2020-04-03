@@ -1,22 +1,19 @@
 package com.pandaq.uires.widget.gallery;
 
 import android.content.Context;
+import android.util.AttributeSet;
+import android.view.MotionEvent;
+
+import java.lang.reflect.Field;
+import java.util.concurrent.TimeUnit;
+import java.util.concurrent.atomic.AtomicBoolean;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Lifecycle;
 import androidx.lifecycle.LifecycleObserver;
 import androidx.lifecycle.OnLifecycleEvent;
 import androidx.viewpager.widget.ViewPager;
-
-import android.util.AttributeSet;
-import android.view.MotionEvent;
-
-import com.pandaq.appcore.utils.log.PLogger;
-
-import java.lang.reflect.Field;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.atomic.AtomicBoolean;
-
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -101,7 +98,6 @@ public class GalleryPager extends ViewPager implements LifecycleObserver {
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 if (positionOffset == 0) {
                     currentPosition = position;
-                    PLogger.d("currentPosition:: "+currentPosition);
                     if (!canRecycle) return; // 不需要循环则不做处理
                     if (currentPosition == mPageAdapter.getPages().size() - 2) {
                         // 倒数第二页，页面重置为第0页

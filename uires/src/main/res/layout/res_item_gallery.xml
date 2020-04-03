@@ -1,44 +1,54 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cl_container"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginStart="@dimen/res_dp_16"
-    android:layout_marginEnd="@dimen/res_dp_16"
-    android:background="@drawable/res_stateful_ripple_white"
-    android:elevation="@dimen/res_dp_8"
-    android:padding="@dimen/dp_4"
-    app:cardBackgroundColor="#F8CEF8"
-    tools:ignore="ResourceName">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingStart="5dp"
+    android:paddingTop="10dp"
+    android:paddingEnd="5dp">
 
-    <ImageView
-        android:id="@+id/iv_icon"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cl_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:scaleType="fitXY"
-        android:src="@drawable/pic_flash"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed"/>
+        android:layout_marginBottom="@dimen/dp_10"
+        android:background="@drawable/res_stateful_ripple_white"
+        android:elevation="4dp"
+        app:cardCornerRadius="@dimen/res_dp_8"
+        tools:ignore="ResourceName">
 
-    <LinearLayout
+        <ImageView
+            android:id="@+id/iv_icon"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_chainStyle="packed" />
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/tv_title"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center">
-
-        <TextView
-            android:id="@+id/tv_position"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="Position"
-            android:textColor="#39C0E2"
-            android:textSize="@dimen/res_sp_16"
-            android:textStyle="bold"/>
-    </LinearLayout>
-</androidx.cardview.widget.CardView>
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@id/cl_container"
+        android:layout_alignEnd="@id/cl_container"
+        android:layout_alignBottom="@id/cl_container"
+        android:background="@drawable/bg_banner_title_cover"
+        android:elevation="4dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:paddingStart="@dimen/dp_10"
+        android:paddingTop="100dp"
+        android:paddingEnd="@dimen/dp_10"
+        android:paddingBottom="@dimen/dp_10"
+        android:textColor="@color/res_colorWhite"
+        android:textSize="@dimen/res_sp_16"
+        android:textStyle="bold"
+        tools:text="标题标题标题标题标题标题标题标题标题标题标题标题标题" />
+</RelativeLayout>
