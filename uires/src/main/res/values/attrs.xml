@@ -8,7 +8,7 @@
         <attr name="focusable" format="boolean" />
     </declare-styleable>
 
-    <declare-styleable name="ProportionImageView" tools:ignore="ResourceName">
+    <declare-styleable name="RatioImageView" tools:ignore="ResourceName">
         <attr name="ratio" format="float" />
     </declare-styleable>
 
@@ -22,5 +22,18 @@
         <attr name="darkStyle" format="boolean" />
         <attr name="showDivider" format="boolean" />
         <attr name="dividerColor" format="color" />
+    </declare-styleable>
+
+    <declare-styleable name="AbsRoundImageView">
+        <attr name="borderWidths" format="dimension|reference" />
+        <attr name="borderColor" format="color|reference" />
+        <attr name="isSquare" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="RoundImageView">
+        <attr name="leftTopRadius" format="dimension|reference" />
+        <attr name="rightTopRadius" format="dimension|reference" />
+        <attr name="rightBottomRadius" format="dimension|reference" />
+        <attr name="leftBottomRadius" format="dimension|reference" />
     </declare-styleable>
 </resources>

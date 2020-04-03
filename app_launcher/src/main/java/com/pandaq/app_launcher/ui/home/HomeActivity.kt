@@ -140,20 +140,19 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
                     return@map it
                 }
                 .doOnSubscribe {
-                    Log.d("doOnSubscribe 2-1 ", Thread.currentThread().name)
+                    Log.d("doOnSubscribe 1 ", Thread.currentThread().name)
                 }
                 .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.newThread())
                 .map {
                     Log.d("Map 2 ", Thread.currentThread().name)
                     return@map it
                 }
                 .doOnSubscribe {
-                    Log.d("doOnSubscribe 3-1 ", Thread.currentThread().name)
+                    Log.d("doOnSubscribe 2 ", Thread.currentThread().name)
                 }
                 .subscribeOn(Schedulers.newThread())
-                .doOnSubscribe {
-                    Log.d("doOnSubscribe 3", Thread.currentThread().name)
-                }
+                .observeOn(Schedulers.newThread())
                 .map {
                     Log.d("Map 3 ", Thread.currentThread().name)
                     return@map it
