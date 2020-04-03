@@ -32,7 +32,9 @@ abstract class BaseActivity<P : BasePresenter<*>> : AppCompatActivity(), IMvpVie
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        if (isTransStatus()){
+            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        }
         mPresenter = injectPresenter()
         mPresenter?.let {
             lifecycle.addObserver(it as LifecycleObserver)
@@ -58,6 +60,13 @@ abstract class BaseActivity<P : BasePresenter<*>> : AppCompatActivity(), IMvpVie
     }
 
     protected open fun showGuideCoverView(): Boolean {
+        return false
+    }
+
+    /**
+     * 是否为透明状态栏界面
+     */
+    protected open fun isTransStatus(): Boolean {
         return false
     }
 

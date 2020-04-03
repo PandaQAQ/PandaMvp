@@ -15,6 +15,7 @@
 
         <activity
             android:name=".ui.home.HomeActivity"
+            android:theme="@style/NoActionBarTheme"
             android:label="主页" />
 
         <activity android:name=".ui.widgets.GalleryActivity" />
