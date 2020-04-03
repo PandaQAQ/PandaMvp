@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <color name="res_colorCover">#41000000</color>
     <!--以下颜色为公共 ui 组件颜色，如果想替换颜色风格可在 app color.xml 内覆盖赋值-->
     <color name="res_colorTrans">#00ffffff</color>
     <color name="colorPrimary">#3F51B5</color>

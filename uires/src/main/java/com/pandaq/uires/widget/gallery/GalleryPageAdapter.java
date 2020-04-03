@@ -1,8 +1,5 @@
 package com.pandaq.uires.widget.gallery;
 
-import androidx.annotation.NonNull;
-import androidx.viewpager.widget.PagerAdapter;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +13,9 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.PagerAdapter;
 
 /**
  * Created by huxinyu on 2019/4/3.
@@ -60,7 +60,7 @@ public class GalleryPageAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         View page = LayoutInflater.from(container.getContext()).inflate(R.layout.res_item_gallery, null);
         ImageView target = page.findViewById(R.id.iv_icon);
-        TextView title = page.findViewById(R.id.tv_position);
+        TextView title = page.findViewById(R.id.tv_title);
         String url = pageData.get(position).getUrl().trim();
         title.setText(pageData.get(position).getTitleStr().trim());
         PicLoader.with(container.getContext())

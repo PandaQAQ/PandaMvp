@@ -8,8 +8,13 @@
         <attr name="focusable" format="boolean" />
     </declare-styleable>
 
+    <attr name="ratio" format="float" />
+
     <declare-styleable name="RatioImageView" tools:ignore="ResourceName">
-        <attr name="ratio" format="float" />
+        <attr name="ratio" />
+    </declare-styleable>
+    <declare-styleable name="RationFrameLayout" tools:ignore="ResourceName">
+        <attr name="ratio" />
     </declare-styleable>
 
     <declare-styleable name="RefreshRecyclerView" tools:ignore="ResourceName">

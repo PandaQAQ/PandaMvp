@@ -1,9 +1,10 @@
 package com.pandaq.uires.widget.gallery;
 
-import androidx.annotation.NonNull;
-import androidx.viewpager.widget.ViewPager;
 
 import android.view.View;
+
+import androidx.annotation.NonNull;
+import androidx.viewpager.widget.ViewPager;
 
 /**
  * Created by huxinyu on 2019/4/3.
