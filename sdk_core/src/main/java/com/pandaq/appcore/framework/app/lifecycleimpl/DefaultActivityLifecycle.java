@@ -51,7 +51,7 @@ public class DefaultActivityLifecycle implements Application.ActivityLifecycleCa
 
     @Override
     public void onActivityResumed(Activity activity) {
-//        DisplayUtils.adaptDensity(activity, activity.getApplication());
+
     }
 
     @Override

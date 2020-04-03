@@ -3,6 +3,7 @@ package com.pandaq.appcore.framework.mvp
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.WindowManager
 import android.widget.FrameLayout
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -31,6 +32,7 @@ abstract class BaseActivity<P : BasePresenter<*>> : AppCompatActivity(), IMvpVie
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         mPresenter = injectPresenter()
         mPresenter?.let {
             lifecycle.addObserver(it as LifecycleObserver)
