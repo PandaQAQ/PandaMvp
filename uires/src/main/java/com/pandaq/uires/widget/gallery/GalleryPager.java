@@ -1,8 +1,11 @@
 package com.pandaq.uires.widget.gallery;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+
+import com.pandaq.uires.R;
 
 import java.lang.reflect.Field;
 import java.util.concurrent.TimeUnit;
@@ -26,29 +29,24 @@ import io.reactivex.disposables.Disposable;
  */
 public class GalleryPager extends ViewPager implements LifecycleObserver {
 
-    private boolean canRecycle = false;
+    private boolean autoPlay = false;
+    private boolean loop = false;
     private GalleryPageAdapter mPageAdapter;
     private int currentPosition = 0;
 
     public GalleryPager(@NonNull Context context) {
-        super(context);
-        init();
+        this(context, null);
     }
 
     public GalleryPager(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        init();
+        init(attrs);
     }
 
-    public boolean isCanRecycle() {
-        return canRecycle;
-    }
-
-    public void setCanRecycle(boolean canRecycle) {
-        this.canRecycle = canRecycle;
-    }
-
-    private void init() {
+    private void init(AttributeSet attrs) {
+        TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.GalleryPager);
+        autoPlay = ta.getBoolean(R.styleable.GalleryPager_autoPlay, false);
+        ta.recycle();
         try {
             Field field = ViewPager.class.getDeclaredField("mScroller");
             field.setAccessible(true);
@@ -71,9 +69,11 @@ public class GalleryPager extends ViewPager implements LifecycleObserver {
 
                     @Override
                     public void onNext(Long aLong) {
-                        if (shouldContinue.get()) {
-                            currentPosition++;
-                            setCurrentItem(currentPosition, true);
+                        if (shouldContinue.get() && autoPlay) {
+                            if (mPageAdapter != null && mPageAdapter.pageData.size() > 1) {
+                                currentPosition++;
+                                setCurrentItem(currentPosition, true);
+                            }
                         }
                     }
 
@@ -89,16 +89,20 @@ public class GalleryPager extends ViewPager implements LifecycleObserver {
                 });
     }
 
+    public void setLoop(boolean loop) {
+        this.loop = loop;
+    }
+
     private void initAfterSetData() {
         if (mPageAdapter == null || mPageAdapter.getPages() == null) {
             throw new RuntimeException("make sure adapter.getPages() is not null");
         }
-        setOnPageChangeListener(new OnPageChangeListener() {
+        addOnPageChangeListener(new OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
                 if (positionOffset == 0) {
                     currentPosition = position;
-                    if (!canRecycle) return; // 不需要循环则不做处理
+                    if (!loop) return; // 不需要循环则不做处理
                     if (currentPosition == mPageAdapter.getPages().size() - 2) {
                         // 倒数第二页，页面重置为第0页
                         setCurrentItem(2, false);

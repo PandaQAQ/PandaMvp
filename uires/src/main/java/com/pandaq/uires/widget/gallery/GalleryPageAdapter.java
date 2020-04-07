@@ -19,10 +19,17 @@ import androidx.viewpager.widget.PagerAdapter;
 public abstract class GalleryPageAdapter extends PagerAdapter {
 
     protected List<IPagerItem> pageData = new ArrayList<>();
-    private boolean recycle;
+    private boolean loop;
 
-    public GalleryPageAdapter(List<IPagerItem> pageData, boolean recycle) {
-        if (recycle && pageData.size() > 1) {
+    /**
+     * @param pageData 显示的数据
+     * @param loop     是否循环
+     */
+    public GalleryPageAdapter(List<IPagerItem> pageData, boolean loop) {
+        if (pageData.size() <= 1) { // 循环且数据大于一条时才可以循环
+            loop = false;
+        }
+        if (loop) {
             // 制造循环的假数据
             IPagerItem first = pageData.get(0);
             IPagerItem second = pageData.get(1);
@@ -35,7 +42,7 @@ public abstract class GalleryPageAdapter extends PagerAdapter {
             pageData.add(0, secondLast);
         }
         this.pageData.addAll(pageData);
-        this.recycle = recycle;
+        this.loop = loop;
     }
 
     @Override
@@ -64,7 +71,7 @@ public abstract class GalleryPageAdapter extends PagerAdapter {
     public void bindPager(GalleryPager pager) {
         pager.setOffscreenPageLimit(pageData.size());
         pager.setGalleryAdapter(this);
-        pager.setCanRecycle(recycle);
+        pager.setLoop(loop);
         pager.setCurrentItem(2);
         pager.startPlay();
     }
