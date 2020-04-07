@@ -5,8 +5,8 @@ import com.pandaq.app_launcher.R
 import com.pandaq.app_launcher.framework.AppBaseActivity
 import com.pandaq.app_launcher.framework.AppBasePresenter
 import com.pandaq.appcore.utils.system.DisplayUtils
-import com.pandaq.uires.widget.gallery.GalleryPageAdapter
 import com.pandaq.uires.widget.gallery.IPagerItem
+import com.pandaq.uires.widget.gallery.NormalBannerAdapter
 import kotlinx.android.synthetic.main.launcher_activity_gallery.*
 
 
@@ -45,7 +45,7 @@ class GalleryActivity : AppBaseActivity<AppBasePresenter<*>>() {
 
             })
         }
-        val adapter = GalleryPageAdapter(mList, true)
+        val adapter = NormalBannerAdapter(mList, true)
         adapter.bindPager(vp_gallery)
         vp_gallery.offscreenPageLimit = 2
         vp_gallery.pageMargin = DisplayUtils.dp2px(20f)

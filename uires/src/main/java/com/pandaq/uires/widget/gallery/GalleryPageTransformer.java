@@ -1,6 +1,5 @@
 package com.pandaq.uires.widget.gallery;
 
-
 import android.view.View;
 
 import androidx.annotation.NonNull;
