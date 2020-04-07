@@ -41,4 +41,8 @@
         <attr name="rightBottomRadius" format="dimension|reference" />
         <attr name="leftBottomRadius" format="dimension|reference" />
     </declare-styleable>
+
+    <declare-styleable name="GalleryPager">
+        <attr name="autoPlay" format="boolean" />
+    </declare-styleable>
 </resources>
