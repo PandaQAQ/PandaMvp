@@ -4,12 +4,11 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Rect;
+import android.view.View;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.view.View;
 
 /**
  * Created by huxinyu on 2018/5/18.
@@ -27,6 +26,7 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
     private int color;
     private int startOffset;
     private int endOffset;
+    private int ignoreCount;
 
     /**
      * item之间的间距
@@ -36,13 +36,14 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
     private ItemDecoration(int space, int spanCount,
                            int color, boolean showBottom,
                            boolean showTop, int startOffset,
-                           int endOffset) {
+                           int endOffset, int ignoreCount) {
         this.spanCount = spanCount;
-        if (space / 2 < 1f) {
+        if (space / 2f < 1f) {
             this.halfSpace = 1;
         } else {
             this.halfSpace = space / 2;
         }
+        this.ignoreCount = ignoreCount;
         this.showBottom = showBottom;
         this.showTop = showTop;
         this.color = color;
@@ -60,16 +61,16 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
         int topSpace = 0;
         int rightSpace = 0;
         int bottomSpace = 0;
-        if (parent.getChildLayoutPosition(view) % spanCount == 0) {
+        if (parent.getChildLayoutPosition(view) - ignoreCount % spanCount == 0) {
             rightSpace = halfSpace;
-        } else if (parent.getChildLayoutPosition(view) % spanCount == spanCount - 1) {
+        } else if (parent.getChildLayoutPosition(view) - ignoreCount % spanCount == spanCount - 1) {
             leftSpace = halfSpace;
         } else {
             leftSpace = halfSpace;
             rightSpace = halfSpace;
         }
         if (showTop) {
-            if (parent.getChildLayoutPosition(view) < spanCount) {
+            if (parent.getChildLayoutPosition(view) - ignoreCount < spanCount) {
                 topSpace = 2 * halfSpace;
             }
         }
@@ -84,7 +85,10 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
     public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         super.onDraw(c, parent, state);
         int childCount = parent.getChildCount();
-        for (int i = 0; i < childCount; i++) {
+        if (ignoreCount >= childCount) {
+            ignoreCount = 0;
+        }
+        for (int i = ignoreCount; i < childCount; i++) {
             View view = parent.getChildAt(i);
             drawHorizontal(childCount, i, view, c);
             drawVertical(i, view, c);
@@ -96,6 +100,7 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
      * 绘制横向分割线
      */
     private void drawHorizontal(int childCount, int index, View view, Canvas c) {
+        index = index - ignoreCount;
         if (spanCount == 1) {
             if (showTop) {
                 if (index == 0) {
@@ -156,6 +161,7 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
     }
 
     private void drawVertical(int index, View view, Canvas c) {
+        index = index - ignoreCount;
         if (index % spanCount == 0) { //第一列
             c.drawRect(view.getRight(), view.getTop(), view.getRight() + halfSpace, view.getBottom(), mPaint);
         } else if (index % spanCount == spanCount - 1) { //最后一列
@@ -186,6 +192,7 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
         private boolean showBottom;
         private int startOffset = 0;
         private int endOffset = 0;
+        private int ignoreCount = 0;
 
 
         public Builder space(int space) {
@@ -227,8 +234,13 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
             return this;
         }
 
+        public Builder ignoreCount(int ignoreCount) {
+            this.ignoreCount = ignoreCount;
+            return this;
+        }
+
         public ItemDecoration build() {
-            return new ItemDecoration(space, spanCount, color, showBottom, showTop, startOffset, endOffset);
+            return new ItemDecoration(space, spanCount, color, showBottom, showTop, startOffset, endOffset, ignoreCount);
         }
     }
 
