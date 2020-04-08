@@ -16,6 +16,8 @@ import androidx.core.app.ActivityCompat;
 
 import com.pandaq.appcore.framework.app.ActivityTask;
 
+import java.util.List;
+
 /**
  * Created by huxinyu on 2019/1/7.
  * Email : panda.h@foxmail.com
@@ -114,5 +116,23 @@ public class AppUtils {
             Log.d("deviceId--->", deviceId);
         }
         return deviceId;
+    }
+
+    /**
+     * 根据包名判断某个应用是否安装
+     *
+     * @param context     上下文
+     * @param packageName 包名
+     * @return 检查结果
+     */
+    public static boolean hasInstall(Context context, String packageName) {
+        final PackageManager packageManager = context.getPackageManager();
+        // 获取所有已安装程序的包信息
+        List<PackageInfo> pinfo = packageManager.getInstalledPackages(0);
+        for (int i = 0; i < pinfo.size(); i++) {
+            if (pinfo.get(i).packageName.equalsIgnoreCase(packageName))
+                return true;
+        }
+        return false;
     }
 }
