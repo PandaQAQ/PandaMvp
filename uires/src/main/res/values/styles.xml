@@ -36,4 +36,25 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:backgroundDimEnabled">false</item>
     </style>
+
+    <style name="Panda" parent="Matisse.Zhihu">
+        <item name="colorPrimary">@color/colorAccent</item>
+        <item name="colorPrimaryDark">@color/colorAccent</item>
+        <item name="bottomToolbar.bg">@color/colorAccent</item>
+        <item name="preview.bottomToolbar.apply.textColor">@android:color/white</item>
+        <item name="item.checkCircle.backgroundColor">@color/colorAccent</item>
+        <item name="capture.textColor">@android:color/white</item>
+        <item name="item.placeholder">#8899A9</item>
+        <item name="bottomToolbar.preview.textColor">@color/colorWhite</item>
+        <item name="bottomToolbar.apply.textColor">@color/colorWhite</item>
+        <item name="album.element.color">@color/colorWhite</item>
+        <item name="album.dropdown.title.color">@color/res_colorTextMinor</item>
+        <item name="album.dropdown.count.color">@color/res_colorTextMain</item>
+        <item name="android:navigationIcon">@drawable/arrow_back_ios_white</item>
+        <item name="toolbar">@style/PandaToolbar</item>
+    </style>
+
+    <style name="PandaToolbar" parent="Toolbar.Zhihu">
+        <item name="android:navigationIcon">@drawable/arrow_back_ios_white</item>
+    </style>
 </resources>
