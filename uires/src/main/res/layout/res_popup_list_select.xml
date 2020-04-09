@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/res_colorWhite"
+    android:maxHeight="400dp"
     android:orientation="vertical">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -11,5 +12,5 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@color/res_dividing"
-        android:dividerHeight="@dimen/res_dp_half"/>
+        android:dividerHeight="@dimen/res_dp_half" />
 </LinearLayout>
