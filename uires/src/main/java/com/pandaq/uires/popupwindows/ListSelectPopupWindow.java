@@ -5,15 +5,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.PopupWindow;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.BaseViewHolder;
+import com.pandaq.uires.R;
+import com.pandaq.uires.popupwindows.adapters.AbsPopupSelectAdapter;
+import com.pandaq.uires.popupwindows.adapters.ListSelectAdapter;
+
+import java.util.ArrayList;
+
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.pandaq.uires.R;
-import com.pandaq.uires.popupwindows.adapters.ListSelectAdapter;
-
-import java.util.List;
 
 
 /**
@@ -26,11 +28,11 @@ public class ListSelectPopupWindow extends PopupWindow implements BaseQuickAdapt
 
     private RecyclerView dataList;
 
-    private List<ItemData> itemData;
+    private ArrayList<ItemData> itemData;
 
     private Context mContext;
 
-    private ListSelectAdapter mAdapter;
+    private AbsPopupSelectAdapter<ItemData, BaseViewHolder> mAdapter;
 
     private OnItemClickListener mItemClickListener;
 
@@ -45,8 +47,15 @@ public class ListSelectPopupWindow extends PopupWindow implements BaseQuickAdapt
      *
      * @param itemData 数据源
      */
-    public void setItemData(List<ItemData> itemData) {
+    public void setItemData(ArrayList<ItemData> itemData) {
         setItemData(itemData, 0);
+    }
+
+    /**
+     * 设置数据
+     */
+    public void setItemData(AbsPopupSelectAdapter<ItemData, BaseViewHolder> adapter, RecyclerView.LayoutManager manager) {
+        setItemData(0, adapter, manager);
     }
 
     /**
@@ -55,7 +64,7 @@ public class ListSelectPopupWindow extends PopupWindow implements BaseQuickAdapt
      * @param itemData 数据源
      * @param index    默认选中 index
      */
-    public void setItemData(List<ItemData> itemData, int index) {
+    public void setItemData(ArrayList<ItemData> itemData, int index) {
         this.itemData = itemData;
         if (mAdapter != null) {
             mAdapter.setNewData(itemData);
@@ -63,21 +72,37 @@ public class ListSelectPopupWindow extends PopupWindow implements BaseQuickAdapt
             mAdapter = new ListSelectAdapter(this.itemData);
             mAdapter.setOnItemChildClickListener(this);
         }
-        if (index >= 0) {
-            mAdapter.setSelected(index);
-        } else {
-            mAdapter.setSelected(0);
-        }
         dataList.setLayoutManager(new LinearLayoutManager(this.mContext));
         DividerItemDecoration divider = new DividerItemDecoration(mContext, DividerItemDecoration.VERTICAL);
         divider.setDrawable(mContext.getResources().getDrawable(R.drawable.res_dividing_drawable));
         dataList.addItemDecoration(divider);
         dataList.setAdapter(mAdapter);
+        if (!mAdapter.getData().isEmpty()) {
+            mAdapter.setSelected(Math.max(index, 0));
+        }
+    }
+
+    /**
+     * 设置数据
+     *
+     * @param index 默认选中 index
+     */
+    public void setItemData(int index, AbsPopupSelectAdapter<ItemData,
+            BaseViewHolder> adapter, RecyclerView.LayoutManager manager) {
+        this.itemData = (ArrayList<ItemData>) adapter.getData();
+        mAdapter = adapter;
+        mAdapter.setOnItemChildClickListener(this);
+        dataList.setLayoutManager(manager);
+        dataList.setAdapter(mAdapter);
+        if (!mAdapter.getData().isEmpty()) {
+            mAdapter.setSelected(Math.max(index, 0));
+        }
     }
 
     private void init() {
         View contentView = LayoutInflater.from(mContext).inflate(R.layout.res_popup_list_select, null);
         setContentView(contentView);
+        setOutsideTouchable(true);
         dataList = contentView.findViewById(R.id.lv_item);
     }
 
@@ -90,7 +115,7 @@ public class ListSelectPopupWindow extends PopupWindow implements BaseQuickAdapt
     }
 
     public interface OnItemClickListener {
-        void itemClicked(int position, ItemData itemString);
+        void itemClicked(int position, ItemData item);
     }
 
     public void addOnItemClickListener(OnItemClickListener listener) {

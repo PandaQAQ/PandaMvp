@@ -5,10 +5,8 @@ package com.pandaq.uires.popupwindows;
  * Email : panda.h@foxmail.com
  * Description :列表 popupwindow 的 Item 数据对象
  */
-public class ItemData<T> {
+public abstract class ItemData {
     private boolean isChecked;
-    private String key; // 列表显示项
-    private T value; // 附属值
 
     public boolean isChecked() {
         return isChecked;
@@ -18,19 +16,7 @@ public class ItemData<T> {
         isChecked = checked;
     }
 
-    public String getKey() {
-        return key;
-    }
+    public abstract String getTitleStr();
 
-    public void setKey(String key) {
-        this.key = key;
-    }
-
-    public T getValue() {
-        return value;
-    }
-
-    public void setValue(T value) {
-        this.value = value;
-    }
+    public abstract int getDrawableRes();
 }
