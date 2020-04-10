@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.BaseViewHolder
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.pandaq.app_launcher.R
 import com.pandaq.app_launcher.framework.AppBaseActivity
 import com.pandaq.app_launcher.framework.AppBasePresenter
@@ -36,20 +36,21 @@ import java.io.File
 class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
 
     private val adapter: BaseQuickAdapter<String, BaseViewHolder> by lazy {
-        return@lazy object : BaseQuickAdapter<String, BaseViewHolder>(R.layout.launcher_item_homepage) {
-            override fun convert(helper: BaseViewHolder, item: String?) {
-                helper.let {
+        val adp = object : BaseQuickAdapter<String, BaseViewHolder>(R.layout.launcher_item_homepage) {
+            override fun convert(holder: BaseViewHolder, item: String) {
+                holder.let {
                     val itemView = it.getView<ConstraintLayout>(R.id.cl_container)
                     val icon = it.getView<ImageView>(R.id.iv_icon)
                     itemView.layoutParams.width = DisplayUtils.getScreenWidth() / 3
                     it.setText(R.id.tv_name, item)
-                    it.addOnClickListener(R.id.cl_container)
                     PicLoader.with(this@HomeActivity)
                             .load(iconList[it.adapterPosition])
                             .into(icon)
                 }
             }
         }
+        adp.addChildClickViewIds(R.id.cl_container)
+        return@lazy adp
     }
 
     private lateinit var iconList: MutableList<Int>

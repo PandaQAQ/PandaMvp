@@ -6,7 +6,8 @@ import android.view.View;
 import android.widget.PopupWindow;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+import com.chad.library.adapter.base.listener.OnItemChildClickListener;
+import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.pandaq.uires.R;
 import com.pandaq.uires.popupwindows.adapters.AbsPopupSelectAdapter;
 import com.pandaq.uires.popupwindows.adapters.ListSelectAdapter;
@@ -24,7 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
  * Description : 列表单选 PopupWindow
  */
 
-public class ListSelectPopupWindow extends PopupWindow implements BaseQuickAdapter.OnItemChildClickListener {
+public class ListSelectPopupWindow extends PopupWindow implements OnItemChildClickListener {
 
     private RecyclerView dataList;
 
