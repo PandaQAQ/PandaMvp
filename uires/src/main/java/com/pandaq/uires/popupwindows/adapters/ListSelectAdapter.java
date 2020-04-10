@@ -4,16 +4,13 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
+import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.pandaq.uires.R;
 import com.pandaq.uires.popupwindows.ItemData;
 
 import java.util.List;
 
-import static com.pandaq.appcore.utils.system.AppUtils.getContext;
+import androidx.annotation.Nullable;
 
 /**
  * Created by huxinyu on 2018/6/13.
@@ -25,6 +22,7 @@ public class ListSelectAdapter extends AbsPopupSelectAdapter<ItemData, BaseViewH
 
     public ListSelectAdapter(@Nullable List<ItemData> data) {
         super(R.layout.res_item_list_select_popup, data);
+        addChildClickViewIds(R.id.ll_item);
     }
 
     @Override
@@ -40,10 +38,9 @@ public class ListSelectAdapter extends AbsPopupSelectAdapter<ItemData, BaseViewH
         if (item.getDrawableRes() > 0) {
             icon.setVisibility(View.VISIBLE);
             icon.setImageResource(item.getDrawableRes());
-        }else {
+        } else {
             icon.setVisibility(View.GONE);
         }
-        helper.addOnClickListener(R.id.ll_item);
     }
 
 }

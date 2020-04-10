@@ -1,7 +1,7 @@
 package com.pandaq.app_launcher.ui.testlist
 
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.BaseViewHolder
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.pandaq.app_launcher.R
 import com.pandaq.app_launcher.framework.AppBasePresenter
 import com.pandaq.app_launcher.net.AppCallBack
@@ -37,8 +37,8 @@ class TestListPresenter(view: ITestView) : AppBasePresenter<ITestView>(view) {
 
     val adapter by lazy {
         object : BaseQuickAdapter<String, BaseViewHolder>(R.layout.res_item_list_select_popup) {
-            override fun convert(helper: BaseViewHolder, item: String?) {
-                helper.setText(R.id.tv_item, item.toString())
+            override fun convert(holder: BaseViewHolder, item: String) {
+                holder.setText(R.id.tv_item, item)
             }
         }
     }
@@ -55,8 +55,8 @@ class TestListPresenter(view: ITestView) : AppBasePresenter<ITestView>(view) {
                 .delay(3, TimeUnit.SECONDS)
                 .compose(RxScheduler.sync())
                 .doOnSubscribe(this::addDisposable)
-                .subscribe(object : AppCallBack<List<String>>() {
-                    override fun success(data: List<String>) {
+                .subscribe(object : AppCallBack<MutableList<String>>() {
+                    override fun success(data: MutableList<String>) {
                         if (page == 0) {
                             adapter.setNewData(data)
                         } else {

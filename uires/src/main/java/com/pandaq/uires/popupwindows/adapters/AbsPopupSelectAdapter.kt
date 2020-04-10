@@ -3,7 +3,7 @@ package com.pandaq.uires.popupwindows.adapters
 import androidx.annotation.LayoutRes
 import androidx.annotation.Nullable
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.BaseViewHolder
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.pandaq.uires.popupwindows.ItemData
 
 /**
@@ -15,9 +15,9 @@ abstract class AbsPopupSelectAdapter<T : ItemData, K : BaseViewHolder> : BaseQui
 
     constructor(@LayoutRes res: Int) : this(res, null)
 
-    constructor(@Nullable data: List<T>) : this(0, data)
+    constructor(@Nullable data: MutableList<T>) : this(0, data)
 
-    constructor(@LayoutRes layoutResId: Int, @Nullable data: List<T>?) : super(layoutResId, data)
+    constructor(@LayoutRes layoutResId: Int, @Nullable data: MutableList<T>?) : super(layoutResId, data)
 
     private var lastCheck = -1
 

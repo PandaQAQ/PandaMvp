@@ -32,7 +32,6 @@ public class RefreshRecyclerView extends FrameLayout {
 
     private SmartRefreshLayout mRefreshLayout;
     private RecyclerView mRecyclerView;
-    private boolean hasBindRecyclerView;
     private boolean showHolderView; // 是否在加载失败后显示占位视图
     private View emptyView;
     private View errorView;
@@ -97,10 +96,6 @@ public class RefreshRecyclerView extends FrameLayout {
     public void finishRefresh(boolean success) {
         mRefreshLayout.finishRefresh(500);
         if (this.showHolderView && mQuickAdapter != null) {
-            if (!hasBindRecyclerView) {
-                mQuickAdapter.bindToRecyclerView(mRecyclerView);
-                hasBindRecyclerView = true;
-            }
             if (success) {
                 mQuickAdapter.setEmptyView(emptyView);
             } else {
