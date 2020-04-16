@@ -179,6 +179,7 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
         builder.showTop = showTop;
         builder.space = 2 * halfSpace;
         builder.spanCount = spanCount;
+        builder.ignoreCount = ignoreCount;
         return builder;
     }
 
