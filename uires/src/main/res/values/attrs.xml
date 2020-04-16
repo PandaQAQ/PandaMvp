@@ -45,4 +45,12 @@
     <declare-styleable name="GalleryPager">
         <attr name="autoPlay" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="ShadowCircleImageView">
+        <attr name="shadowWidth" format="dimension" />
+        <attr name="shadowColor" format="color" />
+        <attr name="borderColor" format="color" />
+        <attr name="bgColor" format="color" />
+        <attr name="borderWidth" format="dimension" />
+    </declare-styleable>
 </resources>
