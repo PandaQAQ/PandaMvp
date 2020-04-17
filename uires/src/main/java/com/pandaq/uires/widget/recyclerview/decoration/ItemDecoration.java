@@ -8,7 +8,10 @@ import android.view.View;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 /**
  * Created by huxinyu on 2018/5/18.
@@ -27,6 +30,9 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
     private int startOffset;
     private int endOffset;
     private int ignoreCount;
+    // 使用分割线给 item 第一列和最后一列加边距，达到 header 占满，item 有边距的效果
+    private int paddingStart;
+    private int paddingEnd;
 
     /**
      * item之间的间距
@@ -34,9 +40,10 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
      * @param space item 各个方向的间距
      */
     private ItemDecoration(int space, int spanCount,
-                           int color, boolean showBottom,
-                           boolean showTop, int startOffset,
-                           int endOffset, int ignoreCount) {
+                               int color, boolean showBottom,
+                               boolean showTop, int startOffset,
+                               int endOffset, int ignoreCount,
+                               int paddingStart, int paddingEnd) {
         this.spanCount = spanCount;
         if (space / 2f < 1f) {
             this.halfSpace = 1;
@@ -49,6 +56,8 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
         this.color = color;
         this.startOffset = startOffset;
         this.endOffset = endOffset;
+        this.paddingStart = paddingStart;
+        this.paddingEnd = paddingEnd;
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mPaint.setStyle(Paint.Style.FILL);
         mPaint.setStrokeWidth(space);
@@ -57,24 +66,50 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
 
     @Override
     public void getItemOffsets(Rect outRect, View view, RecyclerView parent, RecyclerView.State state) {
-        int leftSpace = 0;
-        int topSpace = 0;
-        int rightSpace = 0;
-        int bottomSpace = 0;
-        if (parent.getChildLayoutPosition(view) - ignoreCount % spanCount == 0) {
-            rightSpace = halfSpace;
-        } else if (parent.getChildLayoutPosition(view) - ignoreCount % spanCount == spanCount - 1) {
-            leftSpace = halfSpace;
-        } else {
-            leftSpace = halfSpace;
-            rightSpace = halfSpace;
-        }
-        if (showTop) {
-            if (parent.getChildLayoutPosition(view) - ignoreCount < spanCount) {
-                topSpace = 2 * halfSpace;
+        // adapter position 位置
+        int adapterPosition = parent.getChildAdapterPosition(view);
+        if (adapterPosition < ignoreCount) return; //小于忽略 count 的 item 不做处理
+        int leftSpace = 0; // 左边空出距离
+        int topSpace = 0; // 上边空出距离
+        int rightSpace = 0; // 右边空出距离
+        int bottomSpace = 0; // 下边空出距离
+        if (parent.getLayoutManager() instanceof LinearLayoutManager) {
+            topSpace = halfSpace;
+            bottomSpace = halfSpace;
+            leftSpace = paddingStart;
+            rightSpace = paddingEnd;
+        } else if (parent.getLayoutManager() instanceof GridLayoutManager) {
+            GridLayoutManager.LayoutParams params = (GridLayoutManager.LayoutParams) view.getLayoutParams();
+            int spanIndex = params.getSpanIndex();
+            if (spanIndex == 0) {
+                rightSpace = halfSpace;
+                leftSpace = paddingStart;
+            } else if (spanIndex == spanCount - 1) {
+                leftSpace = halfSpace;
+                rightSpace = paddingEnd;
+            } else {
+                leftSpace = halfSpace;
+                rightSpace = halfSpace;
             }
+            topSpace = halfSpace;
+            bottomSpace = halfSpace;
+        } else if (parent.getLayoutManager() instanceof StaggeredGridLayoutManager) {
+            StaggeredGridLayoutManager.LayoutParams params = (StaggeredGridLayoutManager.LayoutParams) view.getLayoutParams();
+            int spanIndex = params.getSpanIndex();
+            if (spanIndex == 0) {
+                rightSpace = halfSpace;
+                leftSpace = paddingStart;
+            } else if (spanIndex == spanCount - 1) {
+                leftSpace = halfSpace;
+                rightSpace = paddingEnd;
+            } else {
+                leftSpace = halfSpace;
+                rightSpace = halfSpace;
+            }
+            topSpace = halfSpace;
+            bottomSpace = halfSpace;
         }
-        bottomSpace = 2 * halfSpace;
+        // 设置间距
         outRect.top = topSpace;
         outRect.left = leftSpace;
         outRect.right = rightSpace;
@@ -84,87 +119,57 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
     @Override
     public void onDraw(@NonNull Canvas c, @NonNull RecyclerView parent, @NonNull RecyclerView.State state) {
         super.onDraw(c, parent, state);
+        if (parent.getAdapter() == null) return;
         int childCount = parent.getChildCount();
-        if (ignoreCount >= childCount) {
-            ignoreCount = 0;
-        }
-        for (int i = ignoreCount; i < childCount; i++) {
+        for (int i = 0; i < childCount; i++) {
             View view = parent.getChildAt(i);
-            drawHorizontal(childCount, i, view, c);
-            drawVertical(i, view, c);
+            if (parent.getLayoutManager() instanceof LinearLayoutManager) {
+                drawLinearLayout(view, c);
+            } else if (parent.getLayoutManager() instanceof GridLayoutManager) {
+                GridLayoutManager.LayoutParams params = (GridLayoutManager.LayoutParams) view.getLayoutParams();
+                int spanIndex = params.getSpanIndex();
+                drawHorizontal(spanIndex, view, c);
+                drawVertical(spanIndex, view, c);
+            } else if (parent.getLayoutManager() instanceof StaggeredGridLayoutManager) {
+                StaggeredGridLayoutManager.LayoutParams params = (StaggeredGridLayoutManager.LayoutParams) view.getLayoutParams();
+                int spanIndex = params.getSpanIndex();
+                drawHorizontal(spanIndex, view, c);
+                drawVertical(spanIndex, view, c);
+            }
         }
     }
 
+    /**
+     * LinearLayoutManager 分割线绘制
+     */
+    private void drawLinearLayout(View view, Canvas c) {
+        // 上分割线
+        c.drawRect(view.getLeft() + startOffset, view.getTop() - halfSpace, view.getRight() - endOffset, view.getTop(), mPaint);
+        // 下分割线
+        c.drawRect(view.getLeft() + startOffset, view.getBottom(), view.getRight() - endOffset, view.getBottom() + halfSpace, mPaint);
+    }
 
     /**
      * 绘制横向分割线
      */
-    private void drawHorizontal(int childCount, int index, View view, Canvas c) {
-        index = index - ignoreCount;
-        if (spanCount == 1) {
-            if (showTop) {
-                if (index == 0) {
-                    c.drawRect(view.getLeft() + startOffset, view.getTop() - 2 * halfSpace, view.getRight() - endOffset, view.getTop(), mPaint);
-                }
-            }
-            if (showBottom) {
-                c.drawRect(view.getLeft() + startOffset, view.getBottom(), view.getRight() - endOffset, view.getBottom() + 2 * halfSpace, mPaint);
-            } else {
-                if (index < childCount - spanCount) {
-                    c.drawRect(view.getLeft() + startOffset, view.getBottom(), view.getRight() - endOffset, view.getBottom() + 2 * halfSpace, mPaint);
-                }
-            }
-            return;
-        }
+    private void drawHorizontal(int spanIndex, View view, Canvas c) {
         // 第一列绘制跟  itemView 一样宽，右边其他向左填充一个分割线宽
-        if (index % spanCount == 0) { //第一列
-            if (showTop) {
-                if (index < spanCount) {
-                    c.drawRect(view.getLeft() + startOffset, view.getTop() - 2 * halfSpace, view.getRight(), view.getTop(), mPaint);
-                }
-            }
-            if (showBottom) {
-                c.drawRect(view.getLeft() + startOffset, view.getBottom(), view.getRight(), view.getBottom() + 2 * halfSpace, mPaint);
-            } else {
-                if (index < childCount - spanCount) {
-                    c.drawRect(view.getLeft() + startOffset, view.getBottom(), view.getRight(), view.getBottom() + 2 * halfSpace, mPaint);
-                }
-            }
-        } else if (index % spanCount == spanCount - 1) {
-            if (showTop) {
-                if (index < spanCount) {
-                    c.drawRect(view.getLeft() - 2 * halfSpace, view.getTop() - 2 * halfSpace, view.getRight() - endOffset, view.getTop(), mPaint);
-                }
-            }
-            if (showBottom) {
-                c.drawRect(view.getLeft() - 2 * halfSpace, view.getBottom(), view.getRight() - endOffset, view.getBottom() + 2 * halfSpace, mPaint);
-            } else {
-                if (index < childCount - spanCount) {
-                    c.drawRect(view.getLeft() - 2 * halfSpace, view.getBottom(), view.getRight() - endOffset, view.getBottom() + 2 * halfSpace, mPaint);
-                }
-            }
+        if (spanIndex == 0) { //第一列
+            c.drawRect(view.getLeft() + startOffset, view.getTop() - halfSpace, view.getRight() + halfSpace, view.getTop(), mPaint);
+            c.drawRect(view.getLeft() + startOffset, view.getBottom(), view.getRight() + halfSpace, view.getBottom() + halfSpace, mPaint);
+        } else if (spanIndex == spanCount - 1) { // 最后一列
+            c.drawRect(view.getLeft() - halfSpace, view.getTop() - halfSpace, view.getRight() - endOffset, view.getTop(), mPaint);
+            c.drawRect(view.getLeft() - halfSpace, view.getBottom(), view.getRight() - endOffset, view.getBottom() + halfSpace, mPaint);
         } else {
-            if (showTop) {
-                if (index < spanCount) {
-                    c.drawRect(view.getLeft() - 2 * halfSpace, view.getTop() - 2 * halfSpace, view.getRight(), view.getTop(), mPaint);
-                }
-            }
-            if (showBottom) {
-                c.drawRect(view.getLeft() - 2 * halfSpace, view.getBottom(), view.getRight(), view.getBottom() + 2 * halfSpace, mPaint);
-            } else {
-                if (index < childCount - spanCount) {
-                    c.drawRect(view.getLeft() - 2 * halfSpace, view.getBottom(), view.getRight(), view.getBottom() + 2 * halfSpace, mPaint);
-                }
-            }
+            c.drawRect(view.getLeft() - halfSpace, view.getTop() - halfSpace, view.getRight() + halfSpace, view.getTop(), mPaint);
+            c.drawRect(view.getLeft() - halfSpace, view.getBottom(), view.getRight() + halfSpace, view.getBottom() + halfSpace, mPaint);
         }
-
     }
 
-    private void drawVertical(int index, View view, Canvas c) {
-        index = index - ignoreCount;
-        if (index % spanCount == 0) { //第一列
+    private void drawVertical(int spanIndex, View view, Canvas c) {
+        if (spanIndex == 0) { //第一列
             c.drawRect(view.getRight(), view.getTop(), view.getRight() + halfSpace, view.getBottom(), mPaint);
-        } else if (index % spanCount == spanCount - 1) { //最后一列
+        } else if (spanIndex == spanCount - 1) { //最后一列
             c.drawRect(view.getLeft() - halfSpace, view.getTop(), view.getLeft(), view.getBottom(), mPaint);
         } else { // 中间
             c.drawRect(view.getRight(), view.getTop(), view.getRight() + halfSpace, view.getBottom(), mPaint);
@@ -194,6 +199,9 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
         private int startOffset = 0;
         private int endOffset = 0;
         private int ignoreCount = 0;
+
+        private int paddingStart = 0;
+        private int paddingEnd = 0;
 
 
         public Builder space(int space) {
@@ -240,8 +248,18 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
             return this;
         }
 
+        public Builder startPadding(int paddingStart) {
+            this.paddingStart = paddingStart;
+            return this;
+        }
+
+        public Builder endPadding(int paddingEnd) {
+            this.paddingEnd = paddingEnd;
+            return this;
+        }
+
         public ItemDecoration build() {
-            return new ItemDecoration(space, spanCount, color, showBottom, showTop, startOffset, endOffset, ignoreCount);
+            return new ItemDecoration(space, spanCount, color, showBottom, showTop, startOffset, endOffset, ignoreCount, paddingStart, paddingEnd);
         }
     }
 
