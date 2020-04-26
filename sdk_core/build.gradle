@@ -67,7 +67,7 @@ dependencies {
     // optional - ReactiveStreams support for LiveData
     api rootProject.ext.dependencies['lifecycle-reactivestreams']
     // optional - Test helpers for LiveData
-    testApi rootProject.ext.dependencies['core-testing']
+    testImplementation rootProject.ext.dependencies['core-testing']
 }
 repositories {
     mavenCentral()

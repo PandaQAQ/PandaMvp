@@ -1,6 +1,7 @@
 package com.pandaq.appcore.browser
 
 import android.content.Context
+import android.os.Build
 import android.util.AttributeSet
 import android.view.View
 import android.webkit.WebChromeClient
@@ -51,8 +52,12 @@ class ProcessWebView @JvmOverloads constructor(context: Context, attrs: Attribut
 
     private inner class MyWebClient : WebViewClient() {
         override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
-            view.loadUrl(request.url.toString())
-            return true
+            return if(Build.VERSION.SDK_INT < 26) {
+                view.loadUrl(request.url.toString())
+                true
+            } else {
+                false
+            }
         }
 
         override fun onPageFinished(view: WebView, url: String) {
