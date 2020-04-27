@@ -7,8 +7,8 @@ package com.pandaq.app_jetpack.app.entity
  */
 data class ZhihuData(
         val date: String?,
-        val stories: List<Story?>?,
-        val top_stories: List<TopStory?>?
+        val stories: MutableList<Story>,
+        val top_stories: MutableList<TopStory>
 )
 
 data class Story(
@@ -16,7 +16,7 @@ data class Story(
         val hint: String?,
         val id: Int?,
         val image_hue: String?,
-        val images: List<String?>?,
+        val images: List<String>,
         val title: String?,
         val type: Int?,
         val url: String?

@@ -8,9 +8,10 @@ package com.pandaq.router.routers
  */
 class RouterPath {
     companion object {
+        private const val GROUP_LAUNCH = "/app_launcher"
+        private const val GROUP_JETPACK = "/app_jetpack"
         private const val GROUP_A = "/app_a"
         private const val GROUP_B = "/app_b"
-        private const val GROUP_LAUNCH = "/app_launcher"
 
         const val SERVICE = "/service"
 
@@ -18,8 +19,10 @@ class RouterPath {
         const val LAUNCH_ACTIVITY_HOME = "$GROUP_LAUNCH/home/HomeActivity"
         const val LAUNCH_ACTIVITY_TEST = "$GROUP_LAUNCH/TestListActivity"
 
-        const val A_ACTIVITY_MAIN = "$GROUP_A/MainActivity"
+        const val JETPACK_MAIN = "$GROUP_JETPACK/MainActivity"
+        const val JETPACK_ZHIHU_LIST = "$GROUP_JETPACK/mvp/zhihu/ZhihuListActivity"
 
+        const val A_ACTIVITY_MAIN = "$GROUP_A/MainActivity"
         const val A_SERVICE = "$GROUP_A/$SERVICE/AModuleService"
 
 

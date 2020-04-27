@@ -90,7 +90,9 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
         adapter.setOnItemChildClickListener { adapter, _, position ->
             when (position) {
                 0 -> {
-                    testRxJava()
+                    ARouter.getInstance()
+                            .build(RouterPath.JETPACK_ZHIHU_LIST)
+                            .navigation(this)
                 }
                 1 -> {
                     RtPermission.with(this)
@@ -101,91 +103,33 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
                             }
                             .start()
                 }
-                2 -> {
-                    Toaster.showWarning("警告消息")
-                }
-                3 -> {
-                    Toaster.showSuccess("正常消息")
-                }
 
-                4 -> {
+                2 -> {
                     HtmlActivity.start("Vue Page", url = "http://192.168.0.73:8080/#/")
                 }
 
-                5 -> {
-                    Toaster.showError("错误消息测试错误消息测试错误消息测试错误消息测试错误消息测试错误消息测试")
-                }
-
-                6 -> {
+                3 -> {
                     ARouter.getInstance()
                             .build(RouterPath.A_ACTIVITY_MAIN)
                             .navigation(this)
                 }
-                7 -> {
+                4 -> {
                     ARouter.getInstance()
                             .build(RouterPath.B_ACTIVITY_MAIN)
                             .navigation(this)
                 }
                 else -> {
                     Toaster.showError(adapter.data[position] as String)
-
                 }
             }
         }
     }
 
-    private fun testRxJava() {
-        Observable.just("Data")
-                .map {
-                    Log.d("Map 1", Thread.currentThread().name)
-                    return@map it
-                }
-                .doOnSubscribe {
-                    Log.d("doOnSubscribe 1 ", Thread.currentThread().name)
-                }
-                .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.newThread())
-                .map {
-                    Log.d("Map 2 ", Thread.currentThread().name)
-                    return@map it
-                }
-                .doOnSubscribe {
-                    Log.d("doOnSubscribe 2 ", Thread.currentThread().name)
-                }
-                .subscribeOn(Schedulers.newThread())
-                .observeOn(Schedulers.newThread())
-                .map {
-                    Log.d("Map 3 ", Thread.currentThread().name)
-                    return@map it
-                }
-                .subscribe(object : Observer<String> {
-                    override fun onComplete() {
-
-                    }
-
-                    override fun onSubscribe(d: Disposable) {
-                        Log.d("onSubscribe", Thread.currentThread().name)
-                    }
-
-                    override fun onNext(t: String) {
-                        Log.d("onNext", Thread.currentThread().name)
-                    }
-
-                    override fun onError(e: Throwable) {
-                        e.printStackTrace()
-                    }
-
-                })
-    }
-
     override fun loadData() {
         val list = arrayListOf<String>()
-        list.add("RxJava2 Test")
+        list.add("JetPack")
         list.add("运行时权限")
-        list.add("图片加载")
-        list.add("网络请求")
         list.add("WebView")
-        list.add("Dialogs")
         list.add("跳转 A Module ")
         list.add("跳转 B Module")
         adapter.setNewData(list)
