@@ -1,18 +1,11 @@
-package com.pandaq.appcore.service.helper
+package com.pandaq.appcore.service
 
 import android.app.Activity
 import android.content.ComponentName
 import android.content.Intent
 import android.content.ServiceConnection
 import android.os.IBinder
-import com.pandaq.appcore.service.DownloadService
 
-/**
- * Created by ZhaoShulin on 2018/6/9 下午2:47.
- * <br>
- * Desc:
- * <br>
- */
 class DownLoadServiceHelper(var context: Activity, iDownloadService: IDownloadService?) {
     var mDownloadBinder: DownloadService.DownloadBinder? = null
     private var isBind = false

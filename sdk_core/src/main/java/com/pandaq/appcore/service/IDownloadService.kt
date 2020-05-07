@@ -1,4 +1,4 @@
-package com.pandaq.appcore.service.helper
+package com.pandaq.appcore.service
 
 /**
  * Created by ZhaoShulin on 2018/6/10 下午12:35.

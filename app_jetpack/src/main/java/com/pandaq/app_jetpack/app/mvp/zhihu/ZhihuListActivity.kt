@@ -13,6 +13,7 @@ import com.pandaq.router.routers.RouterPath
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
 import kotlinx.android.synthetic.main.a_activity_zhihu_list.*
+import okhttp3.OkHttpClient
 
 /**
  * Created by huxinyu on 2020/3/30.
@@ -23,6 +24,7 @@ import kotlinx.android.synthetic.main.a_activity_zhihu_list.*
 class ZhihuListActivity : AppCompatActivity() {
 
     private val viewModel by lazy {
+        val http:OkHttpClient
         ViewModelProvider(this).get(ZhihuViewModel::class.java)
     }
 
