@@ -66,6 +66,16 @@ class WebFragment : Fragment() {
         }
     }
 
+    fun loadHtml(html:String){
+        webView?.loadDataWithBaseURL(
+                HtmlMaker.BASE_URL,
+                html,
+                HtmlMaker.MIME_TYPE,
+                HtmlMaker.ENCODING,
+                HtmlMaker.FAIL_URL
+        )
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         when (requestCode) {
@@ -88,5 +98,4 @@ class WebFragment : Fragment() {
     fun goBack(){
         webView?.goBack()
     }
-
 }
