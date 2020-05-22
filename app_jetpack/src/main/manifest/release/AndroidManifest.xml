@@ -5,7 +5,7 @@
     <application>
         <activity android:name="com.pandaq.app_jetpack.MainActivity">
         </activity>
-        <activity android:name=".app.mvp.zhihu.ZhihuListActivity" />
+        <activity android:name=".app.ui.zhihu.ZhihuListActivity" />
 
         <meta-data
             android:name="com.pandaq.app_jetpack.app.lifecycle.LifeCycleInjector"

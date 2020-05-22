@@ -1,4 +1,4 @@
-package com.pandaq.app_jetpack.app.mvp.adapters
+package com.pandaq.app_jetpack.app.ui.adapters
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder

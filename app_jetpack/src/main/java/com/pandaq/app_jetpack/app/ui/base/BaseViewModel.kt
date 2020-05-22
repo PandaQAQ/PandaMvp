@@ -1,4 +1,4 @@
-package com.pandaq.app_jetpack.app.mvp.base
+package com.pandaq.app_jetpack.app.ui.base
 
 import androidx.lifecycle.ViewModel
 import com.pandaq.app_jetpack.app.net.ApiService
