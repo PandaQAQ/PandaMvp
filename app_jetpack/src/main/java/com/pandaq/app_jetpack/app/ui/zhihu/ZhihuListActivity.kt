@@ -1,4 +1,4 @@
-package com.pandaq.app_jetpack.app.mvp.zhihu
+package com.pandaq.app_jetpack.app.ui.zhihu
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -7,8 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.pandaq.app_jetpack.R
-import com.pandaq.app_jetpack.app.entity.ZhihuData
-import com.pandaq.app_jetpack.app.mvp.adapters.ZhihuNewsAdapter
+import com.pandaq.app_jetpack.app.ui.adapters.ZhihuNewsAdapter
 import com.pandaq.router.routers.RouterPath
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
@@ -24,7 +23,6 @@ import okhttp3.OkHttpClient
 class ZhihuListActivity : AppCompatActivity() {
 
     private val viewModel by lazy {
-        val http:OkHttpClient
         ViewModelProvider(this).get(ZhihuViewModel::class.java)
     }
 
