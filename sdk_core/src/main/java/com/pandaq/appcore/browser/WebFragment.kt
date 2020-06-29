@@ -41,6 +41,7 @@ class WebFragment : Fragment() {
         webView?.settings?.useWideViewPort = true
         webView?.settings?.loadWithOverviewMode = true
         webView?.settings?.javaScriptEnabled = true
+        webView?.settings?.domStorageEnabled = true
         webView?.settings?.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
         webView?.isVerticalScrollBarEnabled = false
         webView?.isHorizontalScrollBarEnabled = false

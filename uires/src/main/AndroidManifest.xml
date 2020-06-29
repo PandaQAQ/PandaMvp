@@ -6,5 +6,9 @@
         <activity
             android:name=".html.HtmlActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".html.HtmlNoTitleActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/NoActionBarTheme" />
     </application>
 </manifest>
