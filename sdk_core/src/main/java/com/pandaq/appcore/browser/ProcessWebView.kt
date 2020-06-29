@@ -52,7 +52,7 @@ class ProcessWebView @JvmOverloads constructor(context: Context, attrs: Attribut
 
     private inner class MyWebClient : WebViewClient() {
         override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
-            return if(Build.VERSION.SDK_INT < 26) {
+            return if (Build.VERSION.SDK_INT < 26) {
                 view.loadUrl(request.url.toString())
                 true
             } else {
@@ -77,6 +77,10 @@ class ProcessWebView @JvmOverloads constructor(context: Context, attrs: Attribut
     fun sendDataToH5(data: BridgeData) {
         val script = "javascript:${data.methodName}(${GsonUtil.gson().toJson(data.data)})"
         loadUrl(script)
+    }
+
+    override fun canGoBack(): Boolean {
+        return super.canGoBack() && !url.contains("homepage")
     }
 
 }
