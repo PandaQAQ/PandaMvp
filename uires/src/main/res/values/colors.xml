@@ -3,35 +3,15 @@
     <color name="res_colorCover">#41000000</color>
     <!--以下颜色为公共 ui 组件颜色，如果想替换颜色风格可在 app color.xml 内覆盖赋值-->
     <color name="res_colorTrans">#00ffffff</color>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
     <color name="res_colorWhite">#FFFFFF</color>
     <color name="res_colorBlack">#333333</color>
 
     <color name="res_dividing">#f0f0f0</color>
-    <color name="colorBackground">#F7F7F7</color>
     <string name="dialog_title_notice">提示</string>
 
     <!--描边-->
     <color name="res_colorBorder">#C1C7D4</color>
     <color name="res_ripple">#FBFBFB</color>
-
-    <!--#########################按钮控件背景颜色######################-->
-    <color name="btn_primary_normal">#4894E9</color>
-    <color name="btn_primary_disable">#9b4894e9</color>
-    <color name="btn_primary_pressed">#b44894e9</color>
-
-    <color name="btn_red_normal">#F66C6C</color>
-    <color name="btn_red_disable">#9bF66C6C</color>
-    <color name="btn_red_pressed">#b4F66C6C</color>
-
-    <color name="btn_white_normal">#F7F7F7</color>
-    <color name="btn_white_disable">#9BF7F7F7</color>
-    <color name="btn_white_pressed">#ECF4FC</color>
-
-    <color name="cb_checked_color">#4894E9</color>
-    <color name="cb_unchecked_stoke">#4894E9</color>
 
     <!--#########################刷新布局刷新头颜色######################-->
     <color name="res_color_refresh_header1">#3F51B5</color>
@@ -40,26 +20,7 @@
     <color name="res_color_load_footer1">#00FFFFFF</color>
     <color name="res_color_load_footer2">#3F51B5</color>
 
-    <!--#########################文字颜色######################-->
-    <color name="res_colorTextPrimary">@color/colorPrimary</color>
-    <!--警告信息文本颜色-->
-    <color name="res_colorTextWarning">#ff9900</color>
-    <!--格式错误提示、格式匹配强调色-->
-    <color name="res_colorTextError">#F66C6C</color>
-    <!--格式错误提示、格式匹配强调色-->
-    <color name="res_colorTextSuccess">#80e006</color>
-    <!--正文颜色，标题颜色-->
-    <color name="res_colorTextMain">#1F2F3E</color>
-    <!--次要文字、辅助说明文字-->
-    <color name="res_colorTextMinor">#A1A7AD</color>
-    <!--缺省页文字、已读文字-->
-    <color name="res_colorTextEmpty">#C1C7D4</color>
-    <!--可点击文字颜色-->
-    <color name="res_colorTextLink">#4894E9</color>
-    <!--Tips 提示文字-->
-    <color name="res_colorTextTip">#525252</color>
-
-    <color name="res_toolbar_background">@color/colorPrimary</color>
-
     <color name="res_holder_gray">#DADADB</color>
+    <color name="colorNegative">#b9b9b9</color>
+    <color name="colorCover">#a6000000</color>
 </resources>

@@ -1,6 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
+    <!--    Theme 主题相关-->
+    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.DarkActionBar" tools:ignore="ResourceName">
+        <item name="android:windowEnableSplitTouch">false</item>
+        <item name="android:splitMotionEvents">false</item>
+        <item name="android:screenOrientation">portrait</item>
+        <item name="actionOverflowMenuStyle">@style/PopupTheme</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="actionBarStyle">@style/customActionBar</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="21">true</item>
+        <item name="android:configChanges">screenLayout|navigation|screenSize</item>
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+
+    <style name="NoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar" tools:ignore="ResourceName">
+        <!-- Customize your theme here. -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowEnableSplitTouch">false</item>
+        <item name="android:splitMotionEvents">false</item>
+        <item name="android:screenOrientation">portrait</item>
+        <item name="actionOverflowMenuStyle">@style/PopupTheme</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="colorButtonNormal">@color/colorAccent</item>
+        <item name="actionMenuTextColor">@color/res_colorWhite</item>
+        <item name="android:windowBackground">@color/colorBackgroundDay</item>
+        <item name="android:configChanges">screenLayout|navigation|screenSize</item>
+    </style>
+
+    <style name="customActionBar" parent="Widget.AppCompat.ActionBar">
+        <item name="background">?attr/colorAccent</item>
+        <item name="contentInsetStart">0dp</item><!-- 设置该属性解决空白部分-->
+        <item name="contentInsetEnd">0dp</item>
+    </style>
+    <!-- ToolBar菜单样式.-->
+    <style name="PopupTheme" parent="@style/Widget.AppCompat.PopupMenu.Overflow" tools:ignore="ResourceName">
+        <!--设置不覆盖锚点-->
+        <item name="overlapAnchor">false</item>
+        <!-- 弹出层垂直方向上的偏移，即在竖直方向上距离Toolbar的距离，值为负则会盖住Toolbar -->
+        <item name="android:dropDownVerticalOffset">2dp</item>
+        <!-- 弹出层水平方向上的偏移，即距离屏幕左边的距离，负值会导致右边出现空隙 -->
+        <!--<item name="android:dropDownHorizontalOffset">10dp</item>-->
+    </style>
+
+    <style name="DefaultCheckbox" parent="BaseAppTheme">
+        <item name="colorControlNormal">@color/colorNegative</item>
+        <item name="colorControlActivated">?attr/colorPrimary</item>
+    </style>
+    <!--全屏无标题-->
+    <style name="FullScreenNoTitleTheme" parent="NoActionBarTheme" tools:ignore="ResourceName">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!--    Dialog弹窗相关-->
     <style name="LoadingDialog" parent="android:Theme.Dialog" tools:ignore="ResourceName">
         <item name="android:windowFrame">@null</item>
         <item name="android:windowBackground">@color/res_colorTrans</item>
@@ -13,7 +66,7 @@
 
     <style name="CommonTipsTextView" tools:ignore="ResourceName">
         <item name="android:textSize">@dimen/res_sp_14</item>
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColor">?attr/colorPrimary</item>
     </style>
 
     <style name="DialogAnim" parent="@android:style/Animation" tools:ignore="ResourceName">
@@ -38,16 +91,16 @@
     </style>
 
     <style name="Panda" parent="Matisse.Zhihu">
-        <item name="colorPrimary">@color/colorAccent</item>
-        <item name="colorPrimaryDark">@color/colorAccent</item>
-        <item name="bottomToolbar.bg">@color/colorAccent</item>
+        <item name="colorPrimary">?attr/colorAccent</item>
+        <item name="colorPrimaryDark">?attr/colorAccent</item>
+        <item name="bottomToolbar.bg">?attr/colorAccent</item>
         <item name="preview.bottomToolbar.apply.textColor">@android:color/white</item>
-        <item name="item.checkCircle.backgroundColor">@color/colorAccent</item>
+        <item name="item.checkCircle.backgroundColor">?attr/colorAccent</item>
         <item name="capture.textColor">@android:color/white</item>
         <item name="item.placeholder">#8899A9</item>
-        <item name="bottomToolbar.preview.textColor">@color/colorWhite</item>
-        <item name="bottomToolbar.apply.textColor">@color/colorWhite</item>
-        <item name="album.element.color">@color/colorWhite</item>
+        <item name="bottomToolbar.preview.textColor">@color/res_colorWhite</item>
+        <item name="bottomToolbar.apply.textColor">@color/res_colorWhite</item>
+        <item name="album.element.color">@color/res_colorWhite</item>
         <item name="album.dropdown.title.color">@color/res_colorTextMinor</item>
         <item name="album.dropdown.count.color">@color/res_colorTextMain</item>
         <item name="android:navigationIcon">@drawable/arrow_back_ios_white</item>
@@ -57,4 +110,5 @@
     <style name="PandaToolbar" parent="Toolbar.Zhihu">
         <item name="android:navigationIcon">@drawable/arrow_back_ios_white</item>
     </style>
+
 </resources>

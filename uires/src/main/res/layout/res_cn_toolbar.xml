@@ -6,7 +6,7 @@
     android:id="@+id/cn_toolbar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/res_toolbar_background">
+    android:background="?attr/toolbarBackground">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
