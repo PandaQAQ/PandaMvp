@@ -1,7 +1,5 @@
 package com.pandaq.app_launcher.framework
 
-import android.graphics.Color
-import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.ActionBar
@@ -28,15 +26,15 @@ abstract class AppBaseActivity<P : AppBasePresenter<*>> : BaseActivity<P>() {
     }
 
     override fun initToolbar() {
-        val view = layoutInflater.inflate(R.layout.res_cn_title, null)
-        mToolbar = view.findViewById(R.id.toolbar)
-        mToolbar?.let {
-            it.setOnBackPressed(View.OnClickListener { onBackPressed() })
-            it.setTitle(title)
-            it.setDarkStyle(true)
-        }
         val actionBar = supportActionBar
         if (actionBar != null) {
+            val view = layoutInflater.inflate(R.layout.res_cn_title, null)
+            mToolbar = view.findViewById(R.id.toolbar)
+            mToolbar?.let {
+                it.setOnBackPressed(View.OnClickListener { onBackPressed() })
+                it.setTitle(title)
+                it.setDarkStyle(true)
+            }
             actionBar.title = ""
             actionBar.setDisplayShowHomeEnabled(false)
             actionBar.setDisplayShowCustomEnabled(true)

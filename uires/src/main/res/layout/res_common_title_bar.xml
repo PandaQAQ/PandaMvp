@@ -25,6 +25,6 @@
         android:background="@color/colorPrimary"
         app:navigationIcon="@drawable/ic_arrow_back"
         app:popupTheme="@style/PopupTheme"
-        app:titleTextColor="@color/colorWhite"/>
+        app:titleTextColor="@color/res_colorWhite"/>
 
 </com.google.android.material.appbar.AppBarLayout>
