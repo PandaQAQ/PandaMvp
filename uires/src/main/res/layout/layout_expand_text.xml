@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="end"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/contentText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingMultiplier="1.5"
+        android:textColor="#1A1A1A"
+        android:textSize="14sp"
+        tools:text="玩的开心玩的开心玩的开心玩的开心玩的开心玩的开心玩的开心玩的开心玩的开心玩的开心玩的开心玩的开心玩的开心" />
+
+    <TextView
+        android:id="@+id/textPlus"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/icon_blue_expand"
+        android:drawablePadding="5dp"
+        android:gravity="end"
+        android:minWidth="80dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:textColor="#216EC6"
+        android:textSize="14sp"
+        tools:text="全文" />
+
+</LinearLayout>
