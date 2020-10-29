@@ -3,7 +3,8 @@
           package="com.pandaq.app_jetpack">
 
     <application>
-        <activity android:name="com.pandaq.app_jetpack.MainActivity">
+        <activity android:name="com.pandaq.app_jetpack.MainActivity"
+            android:taskAffinity="com.pandaq.task.zhihu">
         </activity>
         <activity android:name=".app.ui.zhihu.ZhihuListActivity" />
 

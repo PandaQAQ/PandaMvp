@@ -4,6 +4,7 @@ import com.pandaq.app_jetpack.app.entity.ZhihuData;
 import com.pandaq.rxpanda.annotation.RealEntity;
 
 import io.reactivex.Observable;
+import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
@@ -16,7 +17,7 @@ public interface ApiService {
 
     @RealEntity
     @GET("news/latest")
-    Observable<ZhihuData> test();
+    Call<ZhihuData> test();
 
     @RealEntity
     @GET("news/before/{date}")

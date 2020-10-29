@@ -11,12 +11,14 @@
 
         <activity
             android:name=".ui.launch.FlashActivity"
+            android:taskAffinity="com.pandaq.task.flash"
             android:theme="@style/FullScreenNoTitleTheme" />
 
         <activity
             android:name=".ui.home.HomeActivity"
-            android:theme="@style/BaseAppTheme.Night"
-            android:label="主页" />
+            android:label="主页"
+            android:taskAffinity="com.pandaq.task.app"
+            android:theme="@style/BaseAppTheme.Night" />
 
         <activity android:name=".ui.widgets.GalleryActivity" />
         <activity android:name=".ui.testlist.TestListActivity" />
