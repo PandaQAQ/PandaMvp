@@ -2,13 +2,15 @@ package com.pandaq.app_jetpack.app.ui.zhihu
 
 import androidx.lifecycle.MutableLiveData
 import com.pandaq.app_jetpack.app.entity.ZhihuData
-import com.pandaq.app_jetpack.app.ui.base.BaseViewModel
 import com.pandaq.app_jetpack.app.net.AppCallBack
+import com.pandaq.app_jetpack.app.ui.base.BaseViewModel
 import com.pandaq.rxpanda.transformer.RxScheduler
+import com.pandaq.rxpanda.utils.GsonUtil
 import com.pandaq.uires.msgwindow.Toaster
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.async
+import kotlinx.coroutines.launch
 
 /**
  * Created by huxinyu on 2020/3/30.
@@ -20,18 +22,7 @@ class ZhihuViewModel : BaseViewModel() {
     var zhihuLiveData: MutableLiveData<ZhihuData> = MutableLiveData()
 
     fun getDataList() {
-        api.test().enqueue(object : Callback<ZhihuData> {
-            override fun onFailure(call: Call<ZhihuData>, t: Throwable) {
-
-            }
-
-            override fun onResponse(call: Call<ZhihuData>, response: Response<ZhihuData>) {
-                println(Thread.currentThread().name)
-                zhihuLiveData.postValue(response.body())
-            }
-
-        })
-
+//        api.test()
 //                .doOnSubscribe {
 //                    addDisposable(it)
 //                }
@@ -50,6 +41,19 @@ class ZhihuViewModel : BaseViewModel() {
 //                    }
 //
 //                })
+        GlobalScope.launch(Dispatchers.Main) {
+            val data = async {
+                api.test()
+            }
+            zhihuLiveData.postValue(data.await())
+        }
+
+        GlobalScope.launch(Dispatchers.Main) {
+            val data = async {
+                api.wanAndroid()
+            }
+            println(GsonUtil.gson().toJson(data.await()))
+        }
     }
 
     fun getHistory(date: String) {
