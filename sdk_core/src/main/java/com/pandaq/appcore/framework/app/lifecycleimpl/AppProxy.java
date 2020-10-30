@@ -11,6 +11,7 @@ import com.pandaq.appcore.framework.app.lifecycle.ILifecycleInjector;
 import com.pandaq.appcore.framework.app.lifecycle.ManifestParser;
 import com.pandaq.appcore.utils.log.PLogger;
 import com.pandaq.appcore.utils.system.AppUtils;
+import com.pandaq.rxpanda.RxPanda;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,6 +47,9 @@ public class AppProxy implements IAppLifeCycle {
         // it will never use in the future
         // 全局捕获 RxJava 的异常，避免因取消订阅，未捕获异常等导致的闪退
         RxJavaPlugins.setErrorHandler(PLogger::e);
+
+        RxPanda.globalConfig()
+                .trustAllHost(true);
     }
 
     @Override
