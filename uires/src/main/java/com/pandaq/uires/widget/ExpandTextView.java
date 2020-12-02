@@ -135,5 +135,4 @@ public class ExpandTextView extends LinearLayout {
 
         void statusChange(boolean isExpand);
     }
-
 }

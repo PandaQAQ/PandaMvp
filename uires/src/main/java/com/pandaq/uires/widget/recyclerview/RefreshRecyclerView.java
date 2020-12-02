@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.pandaq.uires.R;
 import com.pandaq.uires.widget.recyclerview.loadfooter.PandaFooter;
 import com.scwang.smartrefresh.header.MaterialHeader;
@@ -36,7 +37,7 @@ public class RefreshRecyclerView extends FrameLayout {
     private View emptyView;
     private View errorView;
 
-    private BaseQuickAdapter mQuickAdapter;
+    private BaseQuickAdapter<?, ? extends BaseViewHolder> mQuickAdapter;
 
     public RefreshRecyclerView(@NonNull Context context) {
         super(context);

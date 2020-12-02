@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager;
 import com.pandaq.appcore.framework.annotation.IgnoreAdapt;
 import com.pandaq.appcore.framework.annotation.LocalAdapt;
 import com.pandaq.appcore.framework.app.ActivityTask;
+import com.pandaq.appcore.utils.log.PLogger;
 import com.pandaq.appcore.utils.system.DisplayUtils;
 
 import java.util.List;
@@ -61,7 +62,7 @@ public class DefaultActivityLifecycle implements Application.ActivityLifecycleCa
 
     @Override
     public void onActivityStopped(Activity activity) {
-
+        PLogger.d(activity.getLocalClassName()+" is onActivityStopped");
     }
 
     @Override

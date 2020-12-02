@@ -7,10 +7,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
-import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
-import android.webkit.JavascriptInterface
 import android.webkit.WebSettings
+import android.widget.LinearLayout
 import androidx.fragment.app.Fragment
+import com.pandaq.appcore.R
 import com.pandaq.appcore.browser.bridge.BridgeData
 import com.pandaq.appcore.browser.bridge.JavaScriptApis
 import com.pandaq.appcore.utils.CameraUtils
@@ -67,7 +67,7 @@ class WebFragment : Fragment() {
         }
     }
 
-    fun loadHtml(html:String){
+    fun loadHtml(html: String) {
         webView?.loadDataWithBaseURL(
                 HtmlMaker.BASE_URL,
                 html,
@@ -96,7 +96,7 @@ class WebFragment : Fragment() {
         }
     }
 
-    fun goBack(){
+    fun goBack() {
         webView?.goBack()
     }
 }
