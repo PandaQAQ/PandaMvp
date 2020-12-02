@@ -1,10 +1,13 @@
 package com.pandaq.appcore.browser;
 
 import android.util.Log;
+
 import com.pandaq.appcore.utils.system.AppUtils;
 import com.pandaq.appcore.utils.system.DisplayUtils;
 
 import java.util.ArrayList;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,7 +31,7 @@ public class HtmlMaker {
             "\t<style type=\"text/css\">\n" +
             "body{\n" +
             " width:100%;\n" +
-            " height:100%\n"+
+            " height:100%\n" +
             " word-wrap:break-word;\n" +
             " }\n" +
             "\n" +
@@ -38,7 +41,7 @@ public class HtmlMaker {
             " color:rgb(105, 105, 105) !important;\n" +
             " font-family:Microsoft YaHei !important;\n" +
             " width:100% !important;\n" +
-            " height:100% !important;\n"+
+            " height:100% !important;\n" +
             " }\n" +
             "\n" +
             " div{\n" +
@@ -47,7 +50,7 @@ public class HtmlMaker {
             " color:rgb(105, 105, 105) !important;\n" +
             " font-family:Microsoft YaHei !important;\n" +
             " width:100% !important;\n" +
-            " height:100% !important;\n"+
+            " height:100% !important;\n" +
             " }\n" +
             "\n" +
             " a{\n" +
@@ -56,7 +59,7 @@ public class HtmlMaker {
             " color:rgb(105, 105, 105) !important;\n" +
             " font-family:Microsoft YaHei !important;\n" +
             " width:100% !important;\n" +
-            " height:100% !important;\n"+
+            " height:100% !important;\n" +
             " }\n" +
             "\n" +
             " span{\n" +
@@ -65,7 +68,7 @@ public class HtmlMaker {
             " color:rgb(105, 105, 105) !important;\n" +
             " font-family:Microsoft YaHei !important;\n" +
             " width:100% !important;\n" +
-            " height:100% !important;\n"+
+            " height:100% !important;\n" +
             " }\n" +
             "\n" +
             " body{\n" +
@@ -74,7 +77,7 @@ public class HtmlMaker {
             " color:rgb(105, 105, 105) !important;\n" +
             " font-family:Microsoft YaHei !important;\n" +
             " width:100% !important;\n" +
-            " height:100% !important;\n"+
+            " height:100% !important;\n" +
             " }\n" +
             " img{\n" +
             " line-height: " + lineHeigh + " !important;\n" +
@@ -82,7 +85,7 @@ public class HtmlMaker {
             " color:rgb(105, 105, 105) !important;\n" +
             " font-family:Microsoft YaHei !important;\n" +
             " width:100% !important;\n" +
-            " height:100% !important;\n"+
+            " height:100% !important;\n" +
             " }\n" +
             "\t</style>\n" +
             "</head>\n" +
@@ -121,5 +124,12 @@ public class HtmlMaker {
             return null;
         }
         return imageSrcList;
+    }
+
+    public void test() {
+        ReentrantLock lock = new ReentrantLock();
+        lock.lock(); // 占用许可通道
+        // do something,访问需要单线程访问的数据源
+        lock.unlock(); // 释放许可通道
     }
 }
