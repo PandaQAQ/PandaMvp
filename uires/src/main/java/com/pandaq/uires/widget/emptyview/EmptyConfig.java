@@ -27,16 +27,24 @@ public class EmptyConfig {
     @DrawableRes
     private int errorIconRes = R.drawable.icon_default_error;
     @DrawableRes
-    private int emptyIconRes = R.drawable.icon_default_error;
-    private float msgSize = 14f;// size of msg text, typedValue is sp
+    private int emptyIconRes = R.drawable.res_icon_empty;
+    @DrawableRes
+    private int netErrorIconRes = R.drawable.icon_default_disable_internet;
+
     @ColorRes
     private int errorMsgColor = R.color.res_colorTextError;
+    @ColorRes
+    private int netErrorMsgColor = R.color.res_colorTextError;
     @ColorRes
     private int emptyMsgColor = R.color.res_colorTextEmpty;
     @StringRes
     private int emptyMsg = R.string.res_text_empty;
     @StringRes
-    private int errorMsg = R.string.res_text_net_error;
+    private int errorMsg = R.string.res_text_error;
+    @StringRes
+    private int netErrorMsg = R.string.res_text_net_error;
+
+    private float msgSize = 14f;// size of msg text, typedValue is sp
 
     public int getErrorIconRes() {
         return errorIconRes;
@@ -92,5 +100,29 @@ public class EmptyConfig {
 
     public void setErrorMsg(int errorMsg) {
         this.errorMsg = errorMsg;
+    }
+
+    public int getNetErrorIconRes() {
+        return netErrorIconRes;
+    }
+
+    public void setNetErrorIconRes(int netErrorIconRes) {
+        this.netErrorIconRes = netErrorIconRes;
+    }
+
+    public int getNetErrorMsg() {
+        return netErrorMsg;
+    }
+
+    public void setNetErrorMsg(int netErrorMsg) {
+        this.netErrorMsg = netErrorMsg;
+    }
+
+    public int getNetErrorMsgColor() {
+        return netErrorMsgColor;
+    }
+
+    public void setNetErrorMsgColor(int netErrorMsgColor) {
+        this.netErrorMsgColor = netErrorMsgColor;
     }
 }
