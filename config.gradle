@@ -24,6 +24,7 @@ ext {
     ]
 
     dependencies = [
+            "multidex"                 : "androidx.multidex:multidex:2.0.1",
             //test
             "junit"                    : "junit:junit:4.12",
             "androix-junit"            : "androidx.test.ext:junit:1.1.1",
