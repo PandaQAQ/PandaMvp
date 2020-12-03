@@ -8,13 +8,15 @@ import android.content.pm.PackageManager;
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
 import com.pandaq.appcore.framework.app.lifecycleimpl.AppProxy;
 
+import androidx.multidex.MultiDexApplication;
+
 /**
  * Created by huxinyu on 2018/9/7.
  * Email : panda.h@foxmail.com
  * <p>
  * Description :基础 Application
  */
-public class BaseApp extends Application {
+public class BaseApp extends MultiDexApplication {
 
     private IAppLifeCycle appProxy;
 
