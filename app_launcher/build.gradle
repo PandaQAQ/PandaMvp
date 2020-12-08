@@ -32,14 +32,6 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     testImplementation 'junit:junit:4.12'
-
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-
-    implementation rootProject.ext.dependencies["design"]
-    implementation rootProject.ext.dependencies["appcompat"]
-    testCompileOnly rootProject.ext.dependencies["junit"]
-    androidTestCompileOnly rootProject.ext.dependencies["espresso-core"]
-
     //Picasso
     implementation rootProject.ext.dependencies["picasso"]
 

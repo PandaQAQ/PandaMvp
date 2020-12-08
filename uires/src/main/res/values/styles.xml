@@ -13,6 +13,8 @@
         <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="21">true</item>
         <item name="android:configChanges">screenLayout|navigation|screenSize</item>
         <item name="android:fitsSystemWindows">true</item>
+        <item name="toolbarBackground">@color/colorPrimary</item>
+        <item name="colorBackground">@color/white</item>
     </style>
 
     <style name="NoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar" tools:ignore="ResourceName">
@@ -27,6 +29,7 @@
         <item name="actionMenuTextColor">@color/res_colorWhite</item>
         <item name="android:windowBackground">@color/colorBackgroundDay</item>
         <item name="android:configChanges">screenLayout|navigation|screenSize</item>
+        <item name="colorBackground">@color/white</item>
     </style>
 
     <style name="customActionBar" parent="Widget.AppCompat.ActionBar">
@@ -109,6 +112,10 @@
 
     <style name="PandaToolbar" parent="Toolbar.Zhihu">
         <item name="android:navigationIcon">@drawable/arrow_back_ios_white</item>
+    </style>
+
+    <style name="FitSystemWindow" parent="BaseAppTheme" tools:ignore="ResourceName">
+        <item name="android:fitsSystemWindows">true</item>
     </style>
 
 </resources>
