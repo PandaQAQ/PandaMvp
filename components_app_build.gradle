@@ -81,6 +81,14 @@ dependencies {
     api (rootProject.ext.dependencies["arouter"]){
         exclude group: 'com.android.support'
     }
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation rootProject.ext.dependencies["design"]
+    implementation rootProject.ext.dependencies["appcompat"]
+    testCompileOnly rootProject.ext.dependencies["junit"]
+    androidTestImplementation rootProject.ext.dependencies["androix-junit"]
+    androidTestCompileOnly rootProject.ext.dependencies["espresso-core"]
+
     kapt rootProject.ext.dependencies["arouter_compiler"]
     implementation rootProject.ext.dependencies["annotation"]
     annotationProcessor rootProject.ext.dependencies["annotation"]
