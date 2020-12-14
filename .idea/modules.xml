@@ -2,16 +2,16 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/PandaMvp.iml" filepath="$PROJECT_DIR$/.idea/PandaMvp.iml" group="PandaMvp" />
-      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="PandaMvp/app" />
-      <module fileurl="file://$PROJECT_DIR$/app_bmodule/app_bmodule.iml" filepath="$PROJECT_DIR$/app_bmodule/app_bmodule.iml" group="PandaMvp/app_bmodule" />
-      <module fileurl="file://$PROJECT_DIR$/app_jetpack/app_jetpack.iml" filepath="$PROJECT_DIR$/app_jetpack/app_jetpack.iml" group="PandaMvp/app_jetpack" />
-      <module fileurl="file://$PROJECT_DIR$/app_launcher/app_launcher.iml" filepath="$PROJECT_DIR$/app_launcher/app_launcher.iml" group="PandaMvp/app_launcher" />
-      <module fileurl="file://$PROJECT_DIR$/functionlibs/functionlibs.iml" filepath="$PROJECT_DIR$/functionlibs/functionlibs.iml" group="PandaMvp/functionlibs" />
-      <module fileurl="file://$PROJECT_DIR$/functionlibs/pay/pay.iml" filepath="$PROJECT_DIR$/functionlibs/pay/pay.iml" group="PandaMvp/functionlibs/pay" />
-      <module fileurl="file://$PROJECT_DIR$/router/router.iml" filepath="$PROJECT_DIR$/router/router.iml" group="PandaMvp/router" />
-      <module fileurl="file://$PROJECT_DIR$/sdk_core/sdk_core.iml" filepath="$PROJECT_DIR$/sdk_core/sdk_core.iml" group="PandaMvp/sdk_core" />
-      <module fileurl="file://$PROJECT_DIR$/uires/uires.iml" filepath="$PROJECT_DIR$/uires/uires.iml" group="PandaMvp/uires" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/PandaMvp.iml" filepath="$PROJECT_DIR$/.idea/PandaMvp.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/PandaMvp.app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/PandaMvp.app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app_bmodule/PandaMvp.app_bmodule.iml" filepath="$PROJECT_DIR$/.idea/modules/app_bmodule/PandaMvp.app_bmodule.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app_jetpack/PandaMvp.app_jetpack.iml" filepath="$PROJECT_DIR$/.idea/modules/app_jetpack/PandaMvp.app_jetpack.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app_launcher/PandaMvp.app_launcher.iml" filepath="$PROJECT_DIR$/.idea/modules/app_launcher/PandaMvp.app_launcher.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/functionlibs/PandaMvp.functionlibs.iml" filepath="$PROJECT_DIR$/.idea/modules/functionlibs/PandaMvp.functionlibs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/functionlibs/pay/PandaMvp.functionlibs.pay.iml" filepath="$PROJECT_DIR$/.idea/modules/functionlibs/pay/PandaMvp.functionlibs.pay.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/router/PandaMvp.router.iml" filepath="$PROJECT_DIR$/.idea/modules/router/PandaMvp.router.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/sdk_core/PandaMvp.sdk_core.iml" filepath="$PROJECT_DIR$/.idea/modules/sdk_core/PandaMvp.sdk_core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/uires/PandaMvp.uires.iml" filepath="$PROJECT_DIR$/.idea/modules/uires/PandaMvp.uires.iml" />
     </modules>
   </component>
 </project>

@@ -238,17 +238,32 @@ public final class PickerUtils {
 
     /**
      * @param context   上下文
-     * @param datas     显示的内容列表
+     * @param data      显示的内容列表
+     * @param mListener 选择回调
+     * @return pickerview
+     */
+    public static <T extends IPickerViewData> OptionsPickerView<T> makeDialogPicker(final Context context, List<T> data,
+                                                                                    OnOptionsSelectListener mListener) {
+        OptionsPickerView<T> customPicker = new OptionsPickerBuilder(context, mListener)
+                .isDialog(true)
+                .setOutSideCancelable(true)
+                .build();
+        customPicker.setPicker(data);
+        return customPicker;
+    }
+
+    /**
+     * @param context   上下文
+     * @param data      显示的内容列表
      * @param mListener 选择回调
      * @param listener  取消确定回调
      * @return pickerview
      */
-    @SuppressWarnings("unchecked")
-    public static OptionsPickerView makePicker(final Context context, List<IPickerViewData> datas,
-                                               OnOptionsSelectListener mListener,
-                                               OptionsPickerListener listener) {
+    public static <T extends IPickerViewData> OptionsPickerView<T> makePicker(final Context context, List<T> data,
+                                                                              OnOptionsSelectListener mListener,
+                                                                              OptionsPickerListener listener) {
 
-        OptionsPickerView customPicker = new OptionsPickerBuilder(context, mListener)
+        OptionsPickerView<T> customPicker = new OptionsPickerBuilder(context, mListener)
                 .setLayoutRes(R.layout.pickerview_layout, v -> {
                     final TextView tvSubmit = v.findViewById(R.id.tv_finish);
                     final TextView tvCancel = v.findViewById(R.id.tv_cancel);
@@ -259,7 +274,7 @@ public final class PickerUtils {
                 .isDialog(false)
                 .setOutSideCancelable(true)
                 .build();
-        customPicker.setPicker(datas);
+        customPicker.setPicker(data);
         return customPicker;
     }
 
