@@ -1,11 +1,11 @@
 package com.pandaq.app_launcher.ui.home
 
 import android.os.Environment
-import android.util.Log
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.afollestad.materialdialogs.MaterialDialog
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
@@ -13,20 +13,18 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.pandaq.app_launcher.R
 import com.pandaq.app_launcher.framework.AppBaseActivity
 import com.pandaq.app_launcher.framework.AppBasePresenter
+import com.pandaq.appcore.framework.app.ActivityTask
 import com.pandaq.appcore.imageloader.core.PicLoader
 import com.pandaq.appcore.permission.RtPermission
 import com.pandaq.appcore.utils.system.DisplayUtils
 import com.pandaq.router.routers.RouterPath
-import com.pandaq.uires.html.HtmlActivity
 import com.pandaq.uires.html.HtmlNoTitleActivity
 import com.pandaq.uires.msgwindow.Toaster
+import com.pandaq.uires.utils.compileSize
 import com.pandaq.uires.widget.recyclerview.decoration.ItemDecoration
-import io.reactivex.Observable
-import io.reactivex.Observer
-import io.reactivex.disposables.Disposable
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.launcher_activity_home.*
 import java.io.File
+import kotlin.system.exitProcess
 
 /**
  * Created by huxinyu on 2019/3/25.
@@ -135,5 +133,28 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
         list.add("跳转 B Module")
         adapter.setNewData(list)
         refreshList.finishRefresh(true)
+    }
+
+    // 退出应用模板
+    override fun onBackPressed() {
+        MaterialDialog.Builder(this)
+                .title(R.string.dialog_title_notice)
+                .content("是否结束应用？")
+                .positiveText("结束")
+                .negativeText(R.string.text_cancel)
+                .positiveColor(resources.getColor(R.color.colorAccent))
+                .negativeColor(resources.getColor(R.color.colorAccent))
+                .onNegative { dialog, _ -> dialog.dismiss() }
+                .onPositive { dialog, _ ->
+                    dialog.dismiss()
+                    // 情况 activity 和 task 避免 exit 后创建新栈
+                    ActivityTask.getInstance().killAllActivity()
+                    finishAffinity()
+                    // 延迟退出避免动画未结束闪屏
+                    cl_container.postDelayed({ exitProcess(0) }, 500)
+                }
+                .build()
+                .compileSize()
+                .show()
     }
 }
