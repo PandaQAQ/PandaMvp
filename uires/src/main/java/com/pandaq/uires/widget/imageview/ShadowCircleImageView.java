@@ -95,8 +95,8 @@ public class ShadowCircleImageView extends AppCompatImageView {
         loadBitmap();
         // init shader
         if (image != null) {
-            BitmapShader shader = new BitmapShader(Bitmap.createScaledBitmap(image, canvas.getWidth(),
-                    canvas.getHeight(), false), Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
+            BitmapShader shader = new BitmapShader(Bitmap.createScaledBitmap(image, getWidth(),
+                    getHeight(), false), Shader.TileMode.CLAMP, Shader.TileMode.CLAMP);
             paint.setShader(shader);
             int circleCenter = viewWidth / 2;
 

@@ -32,7 +32,7 @@
 
     <declare-styleable name="AbsRoundImageView">
         <attr name="borderWidths" format="dimension|reference" />
-        <attr name="borderColor"/>
+        <attr name="borderColor" />
         <attr name="isSquare" format="boolean" />
     </declare-styleable>
 
@@ -47,12 +47,26 @@
         <attr name="autoPlay" format="boolean" />
     </declare-styleable>
 
+    <attr name="shadowColor" format="color" />
+    <attr name="shadowWidth" format="dimension" />
+
     <declare-styleable name="ShadowCircleImageView">
-        <attr name="shadowWidth" format="dimension" />
-        <attr name="shadowColor" format="color" />
-        <attr name="borderColor"/>
+        <attr name="shadowWidth" />
+        <attr name="shadowColor" />
+        <attr name="borderColor" />
         <attr name="bgColor" format="color" />
         <attr name="borderWidth" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="ShadowLayout" tools:ignore="ResourceName">
+        <attr name="shadowRadius" format="dimension" />
+        <attr name="shadowColor" />
+        <attr name="shadowWidth" />
+        <attr name="shadowDx" format="dimension" />
+        <attr name="shadowDy" format="dimension" />
+        <attr name="showHorizontal" format="boolean" />
+        <attr name="showTop" format="boolean" />
+        <attr name="showBottom" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="ExpandTextView">
