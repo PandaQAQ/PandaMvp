@@ -101,7 +101,7 @@ ext {
             "x5browser"                : "com.tencent.tbs.tbssdk:sdk:43697",
 
             // 网络库
-            "rxpanda"                  : "com.pandaq:rxpanda:1.0.1",
+            "rxpanda"                  : "com.pandaq:rxpanda:1.0.2",
 
             // 图片选择
             "matisse"                  : "com.zhihu.android:matisse:0.5.2-beta3",
