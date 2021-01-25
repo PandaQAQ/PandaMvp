@@ -7,7 +7,7 @@ package com.pandaq.app_jetpack.app.entity
  */
 data class ZhihuData(
         val date: String?,
-        val stories: MutableList<Story>,
+        var stories: MutableList<Story>,
         val top_stories: MutableList<TopStory>
 )
 

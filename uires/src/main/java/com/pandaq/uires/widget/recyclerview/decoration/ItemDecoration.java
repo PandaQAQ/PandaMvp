@@ -40,10 +40,10 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
      * @param space item 各个方向的间距
      */
     private ItemDecoration(int space, int spanCount,
-                               int color, boolean showBottom,
-                               boolean showTop, int startOffset,
-                               int endOffset, int ignoreCount,
-                               int paddingStart, int paddingEnd) {
+                           int color, boolean showBottom,
+                           boolean showTop, int startOffset,
+                           int endOffset, int ignoreCount,
+                           int paddingStart, int paddingEnd) {
         this.spanCount = spanCount;
         if (space / 2f < 1f) {
             this.halfSpace = 1;
@@ -73,12 +73,7 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
         int topSpace = 0; // 上边空出距离
         int rightSpace = 0; // 右边空出距离
         int bottomSpace = 0; // 下边空出距离
-        if (parent.getLayoutManager() instanceof LinearLayoutManager) {
-            topSpace = halfSpace;
-            bottomSpace = halfSpace;
-            leftSpace = paddingStart;
-            rightSpace = paddingEnd;
-        } else if (parent.getLayoutManager() instanceof GridLayoutManager) {
+        if (parent.getLayoutManager() instanceof GridLayoutManager) {
             GridLayoutManager.LayoutParams params = (GridLayoutManager.LayoutParams) view.getLayoutParams();
             int spanIndex = params.getSpanIndex();
             if (spanIndex == 0) {
@@ -108,6 +103,11 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
             }
             topSpace = halfSpace;
             bottomSpace = halfSpace;
+        } else if (parent.getLayoutManager() instanceof LinearLayoutManager) {
+            topSpace = halfSpace;
+            bottomSpace = halfSpace;
+            leftSpace = paddingStart;
+            rightSpace = paddingEnd;
         }
         // 设置间距
         outRect.top = topSpace;
@@ -123,9 +123,7 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
         int childCount = parent.getChildCount();
         for (int i = 0; i < childCount; i++) {
             View view = parent.getChildAt(i);
-            if (parent.getLayoutManager() instanceof LinearLayoutManager) {
-                drawLinearLayout(view, c);
-            } else if (parent.getLayoutManager() instanceof GridLayoutManager) {
+            if (parent.getLayoutManager() instanceof GridLayoutManager) {
                 GridLayoutManager.LayoutParams params = (GridLayoutManager.LayoutParams) view.getLayoutParams();
                 int spanIndex = params.getSpanIndex();
                 drawHorizontal(spanIndex, view, c);
@@ -135,6 +133,8 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
                 int spanIndex = params.getSpanIndex();
                 drawHorizontal(spanIndex, view, c);
                 drawVertical(spanIndex, view, c);
+            } else if (parent.getLayoutManager() instanceof LinearLayoutManager) {
+                drawLinearLayout(view, c);
             }
         }
     }
@@ -166,6 +166,9 @@ public class ItemDecoration extends RecyclerView.ItemDecoration {
         }
     }
 
+    /**
+     * 绘制纵向分割线
+     */
     private void drawVertical(int spanIndex, View view, Canvas c) {
         if (spanIndex == 0) { //第一列
             c.drawRect(view.getRight(), view.getTop(), view.getRight() + halfSpace, view.getBottom(), mPaint);

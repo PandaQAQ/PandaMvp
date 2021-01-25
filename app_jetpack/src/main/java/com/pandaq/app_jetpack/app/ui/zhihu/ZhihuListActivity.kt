@@ -1,6 +1,7 @@
 package com.pandaq.app_jetpack.app.ui.zhihu
 
 import android.os.Bundle
+import android.util.SparseArray
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -47,6 +48,11 @@ class ZhihuListActivity : AppCompatActivity() {
                 adapter.addData(it.stories)
             }
         })
+
+       val data =  viewModel.zhihuLiveData.value
+        data?.stories = mutableListOf()
+        viewModel.zhihuLiveData.postValue(data)
+
         rrv_data.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
             override fun onLoadMore(refreshLayout: RefreshLayout) {
                 isRefresh = false
