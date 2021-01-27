@@ -1,6 +1,7 @@
 package com.pandaq.uires.msgwindow;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -79,9 +80,10 @@ public class Toaster {
         }
         int msgColor = ToastConfig.Companion.get().getNormalTextColor();
         Drawable backgroundDrawable = ToastConfig.Companion.get().getNormalBackground();
-        Drawable icon = ToastConfig.Companion.get().getNormalIcon();
+        Drawable icon = null;
         switch (state) {
             case SUCCESS:
+                icon = ToastConfig.Companion.get().getNormalIcon();
                 break;
             case WARNING:
                 msgColor = ToastConfig.Companion.get().getWarningTextColor();
@@ -101,31 +103,26 @@ public class Toaster {
             LinearLayout toastView = (LinearLayout) mToast.getView();
             toastView.getChildAt(0).setTag(TEXT_TAG);
         }
-        TextView textView = mToast.getView().findViewWithTag(TEXT_TAG);
-        if (textView != null) {
-            if (msgColor != 0) {
-                textView.setTextColor(msgColor);
-            }
-        }
         if (backgroundDrawable != null) {
             mToast.getView().setBackground(backgroundDrawable);
         }
-        ImageView iconView = mToast.getView().findViewWithTag(ICON_TAG);
         LinearLayout toastView = (LinearLayout) mToast.getView();
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-        params.gravity = Gravity.CENTER_VERTICAL;
-        toastView.setLayoutParams(params);
-        if (iconView != null) { //先将之前的 icon 移除
-            toastView.removeView(iconView);
-        }
-        LinearLayout.LayoutParams iconParams = new LinearLayout.LayoutParams(DisplayUtils.dp2px(24), DisplayUtils.dp2px(24));
-        iconView = new ImageView(AppUtils.getContext());
-        iconView.setLayoutParams(iconParams);
-        iconView.setImageDrawable(icon);
-        iconParams.rightMargin = DisplayUtils.dp2px(8);
+        toastView.removeAllViews();
+        toastView.setGravity(Gravity.CENTER_VERTICAL);
+        toastView.setPadding(DisplayUtils.dp2px(10f), DisplayUtils.dp2px(6f), DisplayUtils.dp2px(10f), DisplayUtils.dp2px(6f));
         toastView.setOrientation(LinearLayout.HORIZONTAL);
-        toastView.addView(iconView, 0);
+        TextView textView = new TextView(AppUtils.getContext());
+        if (msgColor != 0) {
+            textView.setTextColor(msgColor);
+        }
+        textView.setGravity(Gravity.CENTER_VERTICAL);
+        textView.setText(msg);
+        if (icon != null) {
+            icon.setBounds(0, 0, DisplayUtils.dp2px(24), DisplayUtils.dp2px(24));
+            textView.setCompoundDrawables(icon, null, null, null);
+            textView.setCompoundDrawablePadding(DisplayUtils.dp2px(8f));
+        }
+        toastView.addView(textView);
         mToast.show();
     }
 
