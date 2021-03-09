@@ -110,6 +110,16 @@ ext {
             "luban"                    : "top.zibin:Luban:1.1.3",
 
             /*tablayout*/
-            "tablayout"                : "com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar"
+            "tablayout"                : "com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar",
+
+            /* TinyPinyin核心包，约80KB*/
+            "pinyin"                   : 'com.github.promeg:tinypinyin:2.0.3',
+
+            /* 可选，适用于Android的中国地区词典*/
+            "pinyin_android"           : 'com.github.promeg:tinypinyin-lexicons-android-cncity:2.0.3',
+
+            /*可选，适用于Java的中国地区词典*/
+            "pinyin_java"              : 'com.github.promeg:tinypinyin-lexicons-java-cncity:2.0.3',
+
     ]
 }
