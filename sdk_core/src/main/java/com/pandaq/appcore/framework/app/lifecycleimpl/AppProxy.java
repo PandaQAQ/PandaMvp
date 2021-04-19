@@ -50,7 +50,6 @@ public class AppProxy implements IAppLifeCycle {
         RxJavaPlugins.setErrorHandler(PLogger::e);
 
         RxPanda.globalConfig()
-                .interceptor(new TestInterceptor())
                 .trustAllHost(true);
     }
 
