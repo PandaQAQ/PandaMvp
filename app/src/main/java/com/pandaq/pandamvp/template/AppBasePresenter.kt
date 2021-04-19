@@ -1,9 +1,7 @@
 package com.pandaq.pandamvp.template
 
-import com.pandaq.app_launcher.net.ApiService
 import com.pandaq.appcore.framework.mvp.BasePresenter
 import com.pandaq.appcore.framework.mvp.IMvpView
-import com.pandaq.rxpanda.RxPanda
 import com.pandaq.rxpanda.exception.ApiException
 
 /**
@@ -13,11 +11,6 @@ import com.pandaq.rxpanda.exception.ApiException
  * Description :
  */
 open class AppBasePresenter<V : IMvpView>(view: V) : BasePresenter<V>(view) {
-
-    val api: ApiService by lazy {
-        return@lazy RxPanda.retrofit().create(ApiService::class.java)
-    }
-
 
     protected fun handelError(e: ApiException?) {
         e?.let {

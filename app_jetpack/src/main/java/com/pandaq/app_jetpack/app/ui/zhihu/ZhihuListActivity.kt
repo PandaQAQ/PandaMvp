@@ -39,13 +39,15 @@ class ZhihuListActivity : AppCompatActivity() {
         viewModel.getDataList()
 
         viewModel.zhihuLiveData.observe(this, Observer {
-            date = it.date.toString()
-            if (isRefresh) {
-                rrv_data.finishRefresh(true)
-                adapter.setNewInstance(it.stories)
-            } else {
-                rrv_data.finishLoadMore(false)
-                adapter.addData(it.stories)
+            it?.let {
+                date = it.date.toString()
+                if (isRefresh) {
+                    rrv_data.finishRefresh(true)
+                    adapter.setNewInstance(it.stories)
+                } else {
+                    rrv_data.finishLoadMore(false)
+                    adapter.addData(it.stories)
+                }
             }
         })
 

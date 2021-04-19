@@ -2,29 +2,15 @@ apply from: "../components_app_build.gradle"
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-boolean isLaunchApp = project.getName() == launchApp
 android {
     compileSdkVersion 28
 
     resourcePrefix "b_"
 
-    defaultConfig {
-        if (isLaunchApp) {
-            applicationId "com.pandaq.app_bmodule"
-            versionCode 1
-            versionName "1.0"
-            testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        }
-    }
-
     buildTypes {
         release {
             minifyEnabled false
-            if (launchApp) {
-                consumerProguardFiles 'proguard-rules.pro'
-            } else {
-                proguardFiles 'proguard-rules.pro'
-            }
+            consumerProguardFiles 'proguard-rules.pro'
         }
     }
 

@@ -108,9 +108,7 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
                 }
 
                 3 -> {
-                    ARouter.getInstance()
-                            .build(RouterPath.A_ACTIVITY_MAIN)
-                            .navigation(this)
+
                 }
                 4 -> {
                     ARouter.getInstance()

@@ -2,28 +2,18 @@ apply from: "../components_app_build.gradle"
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-boolean isLaunchApp = project.getName() == launchApp
-
 android {
     compileSdkVersion 28
     resourcePrefix "launcher_"
 
     defaultConfig {
-        if (isLaunchApp) {
-            applicationId "com.pandaq.app_jetpack"
-            versionCode 1
-            versionName "1.0"
-        }
+
     }
 
     buildTypes {
         release {
             minifyEnabled false
-            if (isLaunchApp) {
-                consumerProguardFiles 'proguard-rules.pro'
-            } else {
-                proguardFiles 'proguard-rules.pro'
-            }
+            consumerProguardFiles 'proguard-rules.pro'
         }
     }
 

@@ -1,7 +1,5 @@
 apply from: "../components_app_build.gradle"
 
-boolean isLaunchApp = project.getName() == launchApp
-
 android {
 
     compileOptions {
@@ -10,14 +8,12 @@ android {
     }
 
     defaultConfig {
-        if (isLaunchApp) {
-            applicationId "com.pandaq.pandamvp"
-            compileSdkVersion rootProject.ext.android["compileSdkVersion"]
-            minSdkVersion rootProject.ext.android["minSdkVersion"]
-            targetSdkVersion rootProject.ext.android["targetSdkVersion"]
-            versionCode rootProject.ext.android["versionCode"]
-            versionName rootProject.ext.android["versionName"]
-        }
+        applicationId "com.pandaq.pandamvp"
+        compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+        minSdkVersion rootProject.ext.android["minSdkVersion"]
+        targetSdkVersion rootProject.ext.android["targetSdkVersion"]
+        versionCode rootProject.ext.android["versionCode"]
+        versionName rootProject.ext.android["versionName"]
 
         testInstrumentationRunner rootProject.ext.android["runner"]
         multiDexEnabled true
@@ -33,13 +29,11 @@ android {
     buildTypes {
 
         release {
-            if (isLaunchApp) {
-                minifyEnabled true
-                shrinkResources true
-                zipAlignEnabled true
-                minifyEnabled true
-                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            }
+            minifyEnabled true
+            shrinkResources true
+            zipAlignEnabled true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         debug {
