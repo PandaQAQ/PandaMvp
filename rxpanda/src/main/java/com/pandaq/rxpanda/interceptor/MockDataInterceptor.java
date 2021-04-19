@@ -7,7 +7,6 @@ import com.pandaq.rxpanda.constants.MediaTypes;
 
 import java.io.IOException;
 import java.lang.reflect.Method;
-import java.util.logging.Logger;
 
 import okhttp3.Interceptor;
 import okhttp3.Protocol;
