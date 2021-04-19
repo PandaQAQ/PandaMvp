@@ -1,3 +1,4 @@
+include ':rxpanda'
 include ':app', ':app_launcher',
         ':app_jetpack',
         ':app_bmodule',

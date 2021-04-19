@@ -51,9 +51,9 @@ dependencies {
     annotationProcessor(rootProject.ext.dependencies["glide-annotation"])
     api rootProject.ext.dependencies["annotation"]
     annotationProcessor rootProject.ext.dependencies["annotation"]
-    api rootProject.ext.dependencies['rxpanda']
+//    api rootProject.ext.dependencies['rxpanda']
     api rootProject.ext.dependencies['x5browser']
-
+    api project(':rxpanda')
     //jetpack
     // ViewModel
     api rootProject.ext.dependencies['viewmodel']

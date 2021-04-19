@@ -15,3 +15,9 @@
 使用到的各种版本信息及依赖库信息统一管理配置文件
 ## gradle.properties
 自定义 gradle 参数
+
+# 接入步骤
+1、导入 sdk_code、uires、router、functionlibs 几个基础库
+2、复制项目级别的 build.gradle、components_app_build.gradle 到新项目
+3、复制 gradle.properties 配置内容到项目
+4、业务组件增加 apply from: "../components_app_build.gradle" 

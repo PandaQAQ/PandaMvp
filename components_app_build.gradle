@@ -1,6 +1,5 @@
 boolean isShellApp = project.getName() == shellApp
-boolean isLaunchApp = project.getName() == launchApp
-if (isLaunchApp) { // 壳 APP 始终以 application 模式运行，其他业务组件以依赖库模式根据配置拔插
+if (isShellApp) { // 壳 APP 始终以 application 模式运行，其他业务组件以依赖库模式根据配置拔插
     apply plugin: 'com.android.application'
 } else {
     apply plugin: 'com.android.library'
@@ -36,11 +35,7 @@ android {
             buildConfigField "boolean", "LOG_DEBUG", "true"
             buildConfigField "boolean", "USE_CANARY", "true"
             minifyEnabled false
-            if (isLaunchApp) {
-                consumerProguardFiles 'proguard-rules.pro'
-            } else {
-                proguardFiles 'proguard-rules.pro'
-            }
+            consumerProguardFiles 'proguard-rules.pro'
         }
 
         release {
@@ -48,11 +43,7 @@ android {
             buildConfigField "boolean", "USE_CANARY", "false"
             minifyEnabled true
             zipAlignEnabled true
-            if (isLaunchApp) {
-                consumerProguardFiles 'proguard-rules.pro'
-            } else {
-                proguardFiles 'proguard-rules.pro'
-            }
+            consumerProguardFiles 'proguard-rules.pro'
         }
     }
 
@@ -65,15 +56,7 @@ android {
     sourceSets {
         main {
             jniLibs.srcDirs = ['libs']
-            if (isShellApp) {
-                manifest.srcFile 'src/main/AndroidManifest.xml'
-            } else {
-                if (isLaunchApp) {
-                    manifest.srcFile 'src/main/manifest/component/AndroidManifest.xml'
-                } else {
-                    manifest.srcFile 'src/main/manifest/release/AndroidManifest.xml'
-                }
-            }
+            manifest.srcFile 'src/main/AndroidManifest.xml'
         }
     }
 }
@@ -94,5 +77,5 @@ dependencies {
     annotationProcessor rootProject.ext.dependencies["annotation"]
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     api project(':uires')
-    api(project(':router'))
+    api project(':router')
 }
