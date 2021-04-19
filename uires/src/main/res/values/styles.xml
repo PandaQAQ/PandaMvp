@@ -2,7 +2,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
 
     <!--    Theme 主题相关-->
-    <style name="BaseAppTheme" parent="Theme.AppCompat.Light.DarkActionBar" tools:ignore="ResourceName">
+    <style name="BaseAppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar" tools:ignore="ResourceName">
         <item name="android:windowEnableSplitTouch">false</item>
         <item name="android:splitMotionEvents">false</item>
         <item name="android:screenOrientation">portrait</item>
@@ -13,6 +13,7 @@
         <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="21">true</item>
         <item name="android:configChanges">screenLayout|navigation|screenSize</item>
         <item name="android:fitsSystemWindows">true</item>
+        <!--        自定义颜色-->
         <item name="toolbarBackground">@color/colorPrimary</item>
         <item name="colorBackground">@color/white</item>
     </style>
