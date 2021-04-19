@@ -12,6 +12,7 @@ import com.pandaq.appcore.framework.app.lifecycle.ManifestParser;
 import com.pandaq.appcore.utils.log.PLogger;
 import com.pandaq.appcore.utils.system.AppUtils;
 import com.pandaq.rxpanda.RxPanda;
+import com.pandaq.rxpanda.interceptor.ParamsInterceptor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +50,7 @@ public class AppProxy implements IAppLifeCycle {
         RxJavaPlugins.setErrorHandler(PLogger::e);
 
         RxPanda.globalConfig()
+                .interceptor(new TestInterceptor())
                 .trustAllHost(true);
     }
 

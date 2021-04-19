@@ -47,12 +47,12 @@ class ZhihuViewModel : BaseViewModel() {
 //            zhihuLiveData.postValue(data.await())
 //        }
 //        方式2，launch 切换线程
-        zhihuScop.launch(Dispatchers.IO) {
-            val data = async { api.test() }
-            launch(Dispatchers.IO) {
-                zhihuLiveData.postValue(data.await())
-            }
-        }
+//        zhihuScop.launch(Dispatchers.IO) {
+//            val data = async { api.test() }
+//            launch(Dispatchers.IO) {
+//                zhihuLiveData.postValue(data.await())
+//            }
+//        }
 
         // 通过 withContext() 指定线程，完成后会自动切回原来的线程
         zhihuScop.launch(Dispatchers.Main) {
