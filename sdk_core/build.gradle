@@ -29,6 +29,11 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
+
+repositories {
+    mavenCentral()
+}
+
 /**
  * 依赖规则，module 组件化开发。网路库、事件总线库等以 api 方式提供。
  * 上层 module 不在单独依赖对应的库，统一使用基础 module 中的依赖库，以保证版本一致
@@ -51,9 +56,9 @@ dependencies {
     annotationProcessor(rootProject.ext.dependencies["glide-annotation"])
     api rootProject.ext.dependencies["annotation"]
     annotationProcessor rootProject.ext.dependencies["annotation"]
-//    api rootProject.ext.dependencies['rxpanda']
+    api rootProject.ext.dependencies['rxpanda']
     api rootProject.ext.dependencies['x5browser']
-    api project(':rxpanda')
+//    api project(':rxpanda')
     //jetpack
     // ViewModel
     api rootProject.ext.dependencies['viewmodel']
@@ -69,7 +74,4 @@ dependencies {
     api rootProject.ext.dependencies['lifecycle-reactivestreams']
     // optional - Test helpers for LiveData
     testImplementation rootProject.ext.dependencies['core-testing']
-}
-repositories {
-    mavenCentral()
 }
