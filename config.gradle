@@ -101,7 +101,7 @@ ext {
             "x5browser"                : "com.tencent.tbs.tbssdk:sdk:43697",
 
             // 网络库
-            "rxpanda"                  : "com.pandaq:rxpanda:1.0.3",
+            "rxpanda"                  : "com.pandaq:rxpanda:1.0.4",
 
             // 图片选择
             "matisse"                  : "com.zhihu.android:matisse:0.5.2-beta3",
@@ -120,6 +120,9 @@ ext {
 
             /*可选，适用于Java的中国地区词典*/
             "pinyin_java"              : 'com.github.promeg:tinypinyin-lexicons-java-cncity:2.0.3',
+
+            /* popupwindow */
+            "xpopup"                   : 'com.lxj:xpopup:2.2.23'
 
     ]
 }
