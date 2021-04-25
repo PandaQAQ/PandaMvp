@@ -2,6 +2,7 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'org.greenrobot.greendao'
+apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion rootProject.ext.android["compileSdkVersion"]
@@ -28,6 +29,12 @@ android {
     }
 }
 
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", "project.getName()")
+    }
+}
+
 //GreenDao 配置
 greendao {
     //数据库的schema版本，也可以理解为数据库版本号
@@ -39,19 +46,19 @@ greendao {
 }
 
 dependencies {
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     compileOnly rootProject.ext.dependencies["appcompat"]
     testCompileOnly rootProject.ext.dependencies["junit"]
     androidTestCompileOnly rootProject.ext.dependencies["espresso-core"]
-
-    api(rootProject.ext.dependencies["arouter"]) {
-        exclude group: 'com.android.support'
-    }
-
     api project(':sdk_core')
     //GreenDao 3.0
     implementation rootProject.ext.dependencies["greendao"]
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation(rootProject.ext.dependencies["constraint-layout"])
+
+
+    api rootProject.ext.dependencies["arouter"]
+    kapt rootProject.ext.dependencies["arouter_compiler"]
 }
 repositories {
     mavenCentral()

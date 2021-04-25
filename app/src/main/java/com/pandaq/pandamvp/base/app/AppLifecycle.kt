@@ -2,6 +2,8 @@ package com.pandaq.pandamvp.base.app
 
 import android.app.Application
 import android.content.Context
+import com.alibaba.android.arouter.launcher.ARouter
+import com.pandaq.appcore.BuildConfig
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle
 
 /**
@@ -16,18 +18,6 @@ class AppLifecycle : IAppLifeCycle {
     }
 
     override fun onCreate(application: Application) {
-//        EmptyConfig.DEFAULT_EMPTY_ICON = R.drawable.icon_empty
-//        PicLoader.PLACEHOLDER = R.color.holder_gray
-//        RxPanda.globalConfig()
-//            .baseUrl("https://hgyqdj.safely365.com/mobile/app/")
-//            .apiSuccessCode(0L)
-//            .retryCount(3)
-//            .apiDataClazz(ApiData::class.java)
-//            .netInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-//            .debug(BuildConfig.DEBUG)
-//        if (UserUtils.getUser() != null) {
-//            RxPanda.globalConfig().addGlobalHeader("token", UserUtils.getUser()?.token)
-//        }
 
     }
 

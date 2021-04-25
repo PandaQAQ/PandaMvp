@@ -21,12 +21,10 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13.2'
     //Picasso
     implementation rootProject.ext.dependencies["picasso"]
-
     implementation project(':uires')
-
     implementation project(':functionlibs:pay')
 }
 repositories {

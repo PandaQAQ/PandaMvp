@@ -4,7 +4,7 @@
     <string name="res_text_empty">这里什么都没有</string>
     <string name="res_text_error">哎呀，出错了</string>
     <string name="loading">加载中···</string>
-
+    <string name="dialog_title_notice">提示</string>
     <string name="text_pickYear">年</string>
     <string name="text_pickMonth">月</string>
     <string name="text_confirm">确定</string>

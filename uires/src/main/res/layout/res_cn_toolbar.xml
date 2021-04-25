@@ -19,7 +19,7 @@
             android:layout_marginStart="@dimen/res_dp_8"
             android:padding="@dimen/res_dp_8"
             android:scaleType="fitCenter"
-            android:src="@drawable/arrow_back_ios"
+            android:src="@drawable/ic_arrow_back_ios"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -48,7 +48,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:src="@drawable/arrow_back_ios" />
+            tools:src="@drawable/ic_arrow_back_ios" />
 
         <TextView
             android:id="@+id/tv_menu"

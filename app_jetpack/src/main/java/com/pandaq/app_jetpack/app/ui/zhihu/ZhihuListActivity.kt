@@ -1,7 +1,6 @@
 package com.pandaq.app_jetpack.app.ui.zhihu
 
 import android.os.Bundle
-import android.util.SparseArray
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider

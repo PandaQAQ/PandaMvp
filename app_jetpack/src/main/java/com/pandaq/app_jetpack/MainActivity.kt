@@ -14,7 +14,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.a_activity_main)
-
         val intent = Intent()
         intent.putExtra("data", "MainActivity")
         setResult(Activity.RESULT_OK, intent)

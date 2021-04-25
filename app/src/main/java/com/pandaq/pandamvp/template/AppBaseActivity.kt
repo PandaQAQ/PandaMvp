@@ -31,7 +31,7 @@ abstract class AppBaseActivity<P : AppBasePresenter<*>> : BaseActivity<P>() {
         mToolbar?.let {
             it.setOnBackPressed(View.OnClickListener { onBackPressed() })
             it.setTitle(title)
-            it.setDarkStyle(true)
+            it.setLightStyle(true)
         }
         val actionBar = supportActionBar
         if (actionBar != null) {

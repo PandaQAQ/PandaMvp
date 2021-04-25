@@ -1,9 +1,4 @@
-boolean isShellApp = project.getName() == shellApp
-if (isShellApp) { // 壳 APP 始终以 application 模式运行，其他业务组件以依赖库模式根据配置拔插
-    apply plugin: 'com.android.application'
-} else {
-    apply plugin: 'com.android.library'
-}
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
@@ -61,22 +56,21 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 }
-dependencies {
-    api (rootProject.ext.dependencies["arouter"]){
-        exclude group: 'com.android.support'
-    }
 
+dependencies {
+
+    println project.getName()+"========name"
+
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation rootProject.ext.dependencies["design"]
     implementation rootProject.ext.dependencies["appcompat"]
     testCompileOnly rootProject.ext.dependencies["junit"]
     androidTestImplementation rootProject.ext.dependencies["androix-junit"]
     androidTestCompileOnly rootProject.ext.dependencies["espresso-core"]
-
-    kapt rootProject.ext.dependencies["arouter_compiler"]
-    implementation rootProject.ext.dependencies["annotation"]
-    annotationProcessor rootProject.ext.dependencies["annotation"]
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    kapt rootProject.ext.dependencies["annotation"]
     api project(':uires')
     api project(':router')
+
+    kapt rootProject.ext.dependencies["arouter_compiler"]
 }

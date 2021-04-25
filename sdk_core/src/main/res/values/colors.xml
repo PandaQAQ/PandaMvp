@@ -6,4 +6,7 @@
     <color name="colorAccent" tools:ignore="ResourceName">#FF4081</color>
     <color name="colorTrans">#00FFFFFF</color>
     <color name="colorNegative">#b9b9b9</color>
+
+    <color name="toolbarBackground">@color/colorPrimary</color>
+    <color name="colorBackground">#F6F5FA</color>
 </resources>

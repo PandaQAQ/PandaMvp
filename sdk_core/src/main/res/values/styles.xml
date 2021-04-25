@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <style name="ThemePermissionActivity" parent="@android:style/Theme.Translucent.NoTitleBar" tools:ignore="ResourceName">
         <item name="android:windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
@@ -11,5 +12,53 @@
     <style name="AnimationSettingDialog" parent="@android:style/Animation" tools:ignore="ResourceName">
         <item name="android:windowEnterAnimation">@anim/core_setting_dialog_appear</item>
         <item name="android:windowExitAnimation">@anim/core_setting_dialog_disappear</item>
+    </style>
+
+    <!-- ToolBar菜单样式.-->
+    <style name="PopupTheme" parent="@style/Widget.AppCompat.PopupMenu.Overflow" tools:ignore="ResourceName">
+        <!--设置不覆盖锚点-->
+        <item name="overlapAnchor">false</item>
+        <!-- 弹出层垂直方向上的偏移，即在竖直方向上距离Toolbar的距离，值为负则会盖住Toolbar -->
+        <item name="android:dropDownVerticalOffset">2dp</item>
+        <!-- 弹出层水平方向上的偏移，即距离屏幕左边的距离，负值会导致右边出现空隙 -->
+        <!--<item name="android:dropDownHorizontalOffset">10dp</item>-->
+    </style>
+
+    <style name="customActionBar" parent="Widget.AppCompat.ActionBar">
+        <item name="background">?attr/colorAccent</item>
+        <item name="contentInsetStart">0dp</item><!-- 设置该属性解决空白部分-->
+        <item name="contentInsetEnd">0dp</item>
+    </style>
+    <!--    Theme 主题相关-->
+    <style name="BaseAppTheme" parent="Theme.AppCompat.DayNight.DarkActionBar" tools:ignore="ResourceName">
+        <item name="android:windowEnableSplitTouch">false</item>
+        <item name="android:splitMotionEvents">false</item>
+        <item name="android:screenOrientation">portrait</item>
+        <item name="actionOverflowMenuStyle">@style/PopupTheme</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="actionBarStyle">@style/customActionBar</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowDrawsSystemBarBackgrounds" tools:targetApi="21">true</item>
+        <item name="android:configChanges">screenLayout|navigation|screenSize</item>
+        <item name="android:fitsSystemWindows">true</item>
+        <!--        自定义颜色-->
+        <item name="toolbarBackground">@color/colorPrimary</item>
+        <item name="colorBackground">#ffffff</item>
+    </style>
+
+    <style name="NoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar" tools:ignore="ResourceName">
+        <!-- Customize your theme here. -->
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowEnableSplitTouch">false</item>
+        <item name="android:splitMotionEvents">false</item>
+        <item name="android:screenOrientation">portrait</item>
+        <item name="actionOverflowMenuStyle">@style/PopupTheme</item>
+        <item name="android:windowDisablePreview">true</item>
+        <item name="colorButtonNormal">@color/colorAccent</item>
+        <item name="actionMenuTextColor">#ffffff</item>
+        <item name="android:windowBackground">@color/colorBackground</item>
+        <item name="android:configChanges">screenLayout|navigation|screenSize</item>
+        <item name="toolbarBackground">@color/colorPrimary</item>
+        <item name="colorBackground">#ffffff</item>
     </style>
 </resources>
