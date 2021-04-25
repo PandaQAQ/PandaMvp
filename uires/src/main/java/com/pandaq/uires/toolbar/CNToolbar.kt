@@ -1,5 +1,6 @@
 package com.pandaq.uires.toolbar
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
@@ -26,8 +27,9 @@ class CNToolbar @JvmOverloads constructor(
     private var menuText: TextView? = null
     private var divider: View? = null
     private var menuImage: ImageView? = null
-    private var isDark = false
+    private var isLight = false
     private var showDivider = false
+    private var menuEnable = true
     private var dividerColor = context.resources.getColor(R.color.res_dividing)
 
     init {
@@ -37,10 +39,10 @@ class CNToolbar @JvmOverloads constructor(
         titleView = findViewById(R.id.tv_title)
         menuText = findViewById(R.id.tv_menu)
         menuImage = findViewById(R.id.iv_menu)
-        isDark = ta.getBoolean(R.styleable.CNToolbar_darkStyle, false)
+        isLight = ta.getBoolean(R.styleable.CNToolbar_lightStyle, false)
         showDivider = ta.getBoolean(R.styleable.CNToolbar_showDivider, false)
         dividerColor = ta.getColor(R.styleable.CNToolbar_dividerColor, dividerColor)
-        setDarkStyle(isDark)
+        setLightStyle(isLight)
         divider?.visibility =
                 if (showDivider) {
                     View.VISIBLE
@@ -50,16 +52,20 @@ class CNToolbar @JvmOverloads constructor(
         ta.recycle()
     }
 
-    fun setDarkStyle(isDark: Boolean) {
-        if (isDark) {
-            arrowBack?.setImageResource(R.drawable.arrow_back_ios_white)
+    @SuppressLint("UseCompatLoadingForColorStateLists")
+    fun setLightStyle(isLight: Boolean) {
+        this.isLight = isLight
+        if (isLight) {
+            arrowBack?.setImageResource(R.drawable.ic_arrow_back_ios)
+            titleView?.setTextColor(resources.getColor(R.color.res_colorBlack))
+            menuText?.setTextColor(resources.getColorStateList(R.color.res_clickable_text_color_light))
+        } else {
+            arrowBack?.setImageResource(R.drawable.ic_arrow_back_ios_white)
             titleView?.setTextColor(resources.getColor(R.color.res_colorWhite))
             menuText?.setTextColor(resources.getColor(R.color.res_colorWhite))
-        } else {
-            arrowBack?.setImageResource(R.drawable.arrow_back_ios)
-            titleView?.setTextColor(resources.getColor(R.color.res_colorBlack))
-            menuText?.setTextColor(resources.getColor(R.color.res_colorTextMinor))
+            menuText?.setTextColor(resources.getColorStateList(R.color.res_clickable_text_color_deep))
         }
+
     }
 
     fun setTitle(title: String) {
@@ -112,8 +118,13 @@ class CNToolbar @JvmOverloads constructor(
     }
 
     fun setMenuEnable(enable: Boolean) {
-        menuText?.isEnabled = enable
-        menuImage?.isEnabled = enable
+        this.menuEnable = enable
+        menuText?.isEnabled = this.menuEnable
+        menuImage?.isEnabled = this.menuEnable
+    }
+
+    fun getMenuEnable(): Boolean {
+        return this.menuEnable
     }
 
     fun setMenuClickListener(listener: OnClickListener) {

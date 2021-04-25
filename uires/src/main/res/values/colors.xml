@@ -7,7 +7,6 @@
     <color name="res_colorBlack">#333333</color>
 
     <color name="res_dividing">#f0f0f0</color>
-    <string name="dialog_title_notice">提示</string>
 
     <!--描边-->
     <color name="res_colorBorder">#C1C7D4</color>

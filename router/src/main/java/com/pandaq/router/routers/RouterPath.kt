@@ -8,7 +8,8 @@ package com.pandaq.router.routers
  */
 class RouterPath {
     companion object {
-        private const val GROUP_LAUNCH = "/app_launcher"
+        private const val GROUP_ROUTE = "/router/aa"
+        private const val GROUP_LAUNCH = "/app_launcher/bb"
         private const val GROUP_JETPACK = "/app_jetpack"
         private const val GROUP_B = "/app_b"
 
@@ -23,5 +24,7 @@ class RouterPath {
 
         const val B_ACTIVITY_MAIN = "$GROUP_B/MainActivity"
         const val B_SERVICE = "$GROUP_B/$SERVICE/BModuleService"
+
+        const val ROUTE_404 = "$GROUP_ROUTE/NotFoundPage"
     }
 }

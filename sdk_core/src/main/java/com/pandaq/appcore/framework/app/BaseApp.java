@@ -32,7 +32,6 @@ public class BaseApp extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-
         appProxy.onCreate(this);
     }
 

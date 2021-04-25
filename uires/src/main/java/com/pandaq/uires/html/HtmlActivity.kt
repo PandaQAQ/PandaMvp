@@ -56,7 +56,7 @@ class HtmlActivity : BaseActivity<BasePresenter<*>>() {
         mToolbar?.let {
             it.setOnBackPressed(View.OnClickListener { onBackPressed() })
             it.setTitle(title)
-            it.setDarkStyle(true)
+            it.setLightStyle(true)
         }
         val actionBar = supportActionBar
         actionBar?.elevation = 0f

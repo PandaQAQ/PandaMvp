@@ -1,6 +1,7 @@
 package com.pandaq.app_launcher.ui.home
 
 import android.os.Environment
+import android.view.View
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
@@ -75,6 +76,10 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
     }
 
     override fun initView() {
+
+        mToolbar?.showMenu("测试")
+        mToolbar?.setMenuClickListener(View.OnClickListener { Toaster.showSuccess("MenuClicked!") })
+
         refreshList.setLayoutManager(StaggeredGridLayoutManager(3, RecyclerView.VERTICAL))
         refreshList.setAdapter(adapter)
         refreshList.setOnRefreshListener {
@@ -108,12 +113,19 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
                 }
 
                 3 -> {
-
+                    ARouter.getInstance()
+                            .build(RouterPath.ROUTE_404)
+                            .navigation()
                 }
                 4 -> {
                     ARouter.getInstance()
                             .build(RouterPath.B_ACTIVITY_MAIN)
                             .navigation(this)
+                }
+                5 -> {
+                    mToolbar?.let {
+                        it.setMenuEnable(!it.getMenuEnable())
+                    }
                 }
                 else -> {
                     Toaster.showError(adapter.data[position] as String)
@@ -129,6 +141,7 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
         list.add("WebView")
         list.add("跳转 A Module ")
         list.add("跳转 B Module")
+        list.add("测试按钮")
         adapter.setNewData(list)
         refreshList.finishRefresh(true)
     }

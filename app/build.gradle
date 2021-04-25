@@ -1,5 +1,13 @@
-apply from: "../components_app_build.gradle"
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 
+kapt {
+    arguments {
+        arg("AROUTER_MODULE_NAME", project.getName())
+    }
+}
 android {
 
     compileOptions {
@@ -43,20 +51,19 @@ android {
             minifyEnabled false
         }
     }
+
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+            manifest.srcFile 'src/main/AndroidManifest.xml'
+        }
+    }
 }
-//
-//configurations.all {
-//    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
-//        def requested = details.requested
-//        if (requested.group == 'com.android.support') {
-//            if (!requested.name.startsWith("multidex")) {
-//                details.useVersion '28.0.0'
-//            }
-//        }
-//    }
-//}
 
 dependencies {
+
+    println project.getName()+"========name"
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //noinspection GradleCompatible
@@ -65,6 +72,8 @@ dependencies {
     androidTestImplementation rootProject.ext.dependencies["androix-junit"]
     androidTestImplementation rootProject.ext.dependencies["espresso-core"]
     implementation rootProject.ext.dependencies["design"]
+
+    kapt rootProject.ext.dependencies["arouter_compiler"]
 
     // 支付模块
     implementation(project(':functionlibs:pay'))

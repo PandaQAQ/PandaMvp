@@ -13,9 +13,15 @@ import com.pandaq.router.routers.RouterPath
 class EmptyLauncherActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_launcher)
         ARouter.getInstance()
                 .build(RouterPath.LAUNCH_ACTIVITY_FLASH)
                 .navigation()
         this.finish()
+//        btn_jump.setOnClickListener {
+//            ARouter.getInstance()
+//                    .build(RouterPath.ROUTE_404)
+//                    .navigation()
+//        }
     }
 }
