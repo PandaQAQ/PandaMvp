@@ -122,7 +122,10 @@ ext {
             "pinyin_java"              : 'com.github.promeg:tinypinyin-lexicons-java-cncity:2.0.3',
 
             /* popupwindow */
-            "xpopup"                   : 'com.lxj:xpopup:2.2.23'
-
+            "xpopup"                   : 'com.lxj:xpopup:2.2.23',
+            /*图片裁剪*/
+            "ucrop"                    : 'com.github.yalantis:ucrop:2.2.6',
+            /*屏幕适配*/
+            "autosize"                 : "me.jessyan:autosize:1.1.2"
     ]
 }
