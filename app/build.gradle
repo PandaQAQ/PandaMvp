@@ -1,3 +1,4 @@
+
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
@@ -34,21 +35,36 @@ android {
             abiFilters "x86_64"
         }
     }
+
+    signingConfigs {
+        release {
+            storeFile file("../system.jks")
+            storePassword "123456"
+            keyAlias "system"
+            keyPassword "123456"
+        }
+
+        debug {
+            storeFile file("../system.jks")
+            storePassword "123456"
+            keyAlias "system"
+            keyPassword "123456"
+        }
+    }
+
     buildTypes {
 
         release {
-            minifyEnabled true
-            shrinkResources true
-            zipAlignEnabled true
-            minifyEnabled true
+//            minifyEnabled true
+//            shrinkResources true
+//            zipAlignEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         debug {
-            minifyEnabled false
-            shrinkResources false
-            zipAlignEnabled false
-            minifyEnabled false
+//            minifyEnabled false
+//            shrinkResources false
+//            zipAlignEnabled false
         }
     }
 

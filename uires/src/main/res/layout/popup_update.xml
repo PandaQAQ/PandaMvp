@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/res_shape_white_round_12"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="32dp">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="版本更新"
+        android:textColor="@color/res_colorTextMain"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.pandaq.uires.update.ProgressButton
+        android:id="@+id/btn_download"
+        android:layout_width="200dp"
+        android:layout_height="@dimen/dp_40"
+        android:layout_marginTop="@dimen/res_dp_16"
+        android:background="@drawable/res_stateful_ripple_primary_round_4"
+        android:gravity="center"
+        android:text="立即下载"
+        android:textColor="@color/res_colorWhite"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/nsv_content" />
+
+
+    <com.pandaq.uires.widget.MaxHeightScrollView
+        android:id="@+id/nsv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/res_dp_16"
+        app:layout_constraintBottom_toTopOf="@id/btn_download"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        app:maxHeight="200dp">
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:letterSpacing="0.1"
+            android:lineSpacingMultiplier="1.1"
+            android:paddingBottom="@dimen/res_dp_16"
+            android:text="更新内容更新内容更新内容更新内\n更新内容更新内容更新内容更新内容更新内容更新内容"
+            android:textColor="@color/res_colorTextMain"
+            android:textSize="@dimen/res_sp_16" />
+
+    </com.pandaq.uires.widget.MaxHeightScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

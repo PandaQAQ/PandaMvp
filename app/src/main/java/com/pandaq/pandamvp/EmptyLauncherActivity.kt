@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Bundle
 import com.alibaba.android.arouter.launcher.ARouter
 import com.pandaq.router.routers.RouterPath
+import com.zhihu.matisse.Matisse
 
 /**
  * Created by huxinyu on 2019/6/3.
@@ -18,10 +19,5 @@ class EmptyLauncherActivity : Activity() {
                 .build(RouterPath.LAUNCH_ACTIVITY_FLASH)
                 .navigation()
         this.finish()
-//        btn_jump.setOnClickListener {
-//            ARouter.getInstance()
-//                    .build(RouterPath.ROUTE_404)
-//                    .navigation()
-//        }
     }
 }

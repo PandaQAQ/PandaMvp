@@ -8,6 +8,7 @@
     tools:context=".MainActivity">
 
     <TextView
+        android:id="@+id/tv_content"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="I AM B MODULE ACTIVITY"
@@ -16,5 +17,19 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <com.pandaq.uires.update.ProgressButton
+        android:id="@+id/pb_progress"
+        android:layout_width="200dp"
+        android:layout_height="@dimen/res_dp_48"
+        android:layout_marginTop="@dimen/dp_40"
+        android:background="@drawable/res_stateful_ripple_primary_round_4"
+        android:gravity="center"
+        android:text="立即下载"
+        android:textColor="@color/res_colorWhite"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_content" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

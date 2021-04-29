@@ -1,75 +1,117 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <declare-styleable name="CountChangeView" tools:ignore="ResourceName">
-        <attr name="countColor" format="color" />
-        <attr name="countTextSize" format="dimension" />
-        <attr name="maxCount" format="integer" />
-        <attr name="minCount" format="integer" />
-        <attr name="focusable" format="boolean" />
+    <attr name="ratio"
+        format="float" />
+
+    <attr name="borderColor"
+        format="color|reference" />
+    <attr name="shadowColor"
+        format="color" />
+
+    <attr name="shadowWidth"
+        format="dimension" />
+    <declare-styleable name="CountChangeView"
+        tools:ignore="ResourceName">
+        <attr name="countColor"
+            format="color" />
+        <attr name="countTextSize"
+            format="dimension" />
+        <attr name="maxCount"
+            format="integer" />
+        <attr name="minCount"
+            format="integer" />
+        <attr name="focusable"
+            format="boolean" />
     </declare-styleable>
 
-    <attr name="ratio" format="float" />
-    <attr name="borderColor" format="color|reference" />
-
-    <declare-styleable name="RatioImageView" tools:ignore="ResourceName">
+    <declare-styleable name="RatioImageView"
+        tools:ignore="ResourceName">
         <attr name="ratio" />
     </declare-styleable>
-    <declare-styleable name="RationFrameLayout" tools:ignore="ResourceName">
+
+    <declare-styleable name="RationFrameLayout"
+        tools:ignore="ResourceName">
         <attr name="ratio" />
     </declare-styleable>
 
-    <declare-styleable name="RefreshRecyclerView" tools:ignore="ResourceName">
-        <attr name="showHolder" format="boolean" />
-        <attr name="emptyLayout" format="reference" />
-        <attr name="errorLayout" format="reference" />
+    <declare-styleable name="RefreshRecyclerView"
+        tools:ignore="ResourceName">
+        <attr name="showHolder"
+            format="boolean" />
+        <attr name="emptyLayout"
+            format="reference" />
+        <attr name="errorLayout"
+            format="reference" />
     </declare-styleable>
 
-    <declare-styleable name="CNToolbar" tools:ignore="ResourceName">
-        <attr name="lightStyle" format="boolean" />
-        <attr name="showDivider" format="boolean" />
-        <attr name="dividerColor" format="color" />
+    <declare-styleable name="MaxHeightScrollView">
+        <attr name="maxHeight"
+            format="dimension|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="CNToolbar"
+        tools:ignore="ResourceName">
+        <attr name="lightStyle"
+            format="boolean" />
+        <attr name="showDivider"
+            format="boolean" />
+        <attr name="dividerColor"
+            format="color" />
     </declare-styleable>
 
     <declare-styleable name="AbsRoundImageView">
-        <attr name="borderWidths" format="dimension|reference" />
+        <attr name="borderWidths"
+            format="dimension|reference" />
         <attr name="borderColor" />
-        <attr name="isSquare" format="boolean" />
+        <attr name="isSquare"
+            format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="RoundImageView">
-        <attr name="leftTopRadius" format="dimension|reference" />
-        <attr name="rightTopRadius" format="dimension|reference" />
-        <attr name="rightBottomRadius" format="dimension|reference" />
-        <attr name="leftBottomRadius" format="dimension|reference" />
+        <attr name="leftTopRadius"
+            format="dimension|reference" />
+        <attr name="rightTopRadius"
+            format="dimension|reference" />
+        <attr name="rightBottomRadius"
+            format="dimension|reference" />
+        <attr name="leftBottomRadius"
+            format="dimension|reference" />
     </declare-styleable>
-
     <declare-styleable name="GalleryPager">
-        <attr name="autoPlay" format="boolean" />
+        <attr name="autoPlay"
+            format="boolean" />
     </declare-styleable>
-
-    <attr name="shadowColor" format="color" />
-    <attr name="shadowWidth" format="dimension" />
 
     <declare-styleable name="ShadowCircleImageView">
         <attr name="shadowWidth" />
         <attr name="shadowColor" />
         <attr name="borderColor" />
-        <attr name="bgColor" format="color" />
-        <attr name="borderWidth" format="dimension" />
+        <attr name="bgColor"
+            format="color" />
+        <attr name="borderWidth"
+            format="dimension" />
     </declare-styleable>
 
-    <declare-styleable name="ShadowLayout" tools:ignore="ResourceName">
-        <attr name="shadowRadius" format="dimension" />
+    <declare-styleable name="ShadowLayout"
+        tools:ignore="ResourceName">
+        <attr name="shadowRadius"
+            format="dimension" />
         <attr name="shadowColor" />
         <attr name="shadowWidth" />
-        <attr name="shadowDx" format="dimension" />
-        <attr name="shadowDy" format="dimension" />
-        <attr name="showHorizontal" format="boolean" />
-        <attr name="showTop" format="boolean" />
-        <attr name="showBottom" format="boolean" />
+        <attr name="shadowDx"
+            format="dimension" />
+        <attr name="shadowDy"
+            format="dimension" />
+        <attr name="showHorizontal"
+            format="boolean" />
+        <attr name="showTop"
+            format="boolean" />
+        <attr name="showBottom"
+            format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="ExpandTextView">
-        <attr name="showLines" format="integer" />
+        <attr name="showLines"
+            format="integer" />
     </declare-styleable>
 </resources>
