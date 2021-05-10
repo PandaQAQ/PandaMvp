@@ -14,7 +14,7 @@ import kotlinx.android.synthetic.main.launcher_activity_list_test.*
  * Description :
  */
 @Route(path = RouterPath.LAUNCH_ACTIVITY_TEST)
-class TestListActivityCore : AppBaseRefreshActivity<TestListPresenter>(), ITestView {
+class TestListActivity : AppBaseRefreshActivity<TestListPresenter>(), ITestView {
 
 
     override fun injectPresenter(): TestListPresenter = TestListPresenter(this)
