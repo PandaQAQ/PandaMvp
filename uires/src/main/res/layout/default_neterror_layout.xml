@@ -23,7 +23,7 @@
         android:gravity="center"
         android:lineSpacingMultiplier="1.1"
         android:maxWidth="220dp"
-        android:text="连接失败，请检查网络连接"
+        android:text="请检查网络连接"
         android:textColor="@color/res_colorTextMinor"
         android:textSize="@dimen/res_sp_16" />
 </LinearLayout>
