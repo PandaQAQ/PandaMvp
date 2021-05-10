@@ -14,7 +14,6 @@ import com.zhihu.matisse.Matisse
 class EmptyLauncherActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_launcher)
         ARouter.getInstance()
                 .build(RouterPath.LAUNCH_ACTIVITY_FLASH)
                 .navigation()

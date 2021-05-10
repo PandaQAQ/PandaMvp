@@ -1,6 +1,7 @@
-package com.pandaq.app_launcher.framework
+package com.pandaq.uires.mvp
 
 import com.pandaq.appcore.framework.app.ActivityTask
+import com.pandaq.appcore.framework.mvp.BasePresenter
 import com.pandaq.appcore.framework.mvp.CoreBaseFragment
 import com.pandaq.uires.loading.LoadingDialogUtil
 import com.pandaq.uires.msgwindow.Toaster
@@ -11,7 +12,7 @@ import com.pandaq.uires.msgwindow.Toaster
  * <p>
  * Description :
  */
-abstract class AppBaseFragment<P : AppBasePresenter<*>> : CoreBaseFragment<P>() {
+abstract class BaseFragment<P : BasePresenter<*>> : CoreBaseFragment<P>() {
     override fun showLoading(msg: String?) {
         LoadingDialogUtil.show(ActivityTask.getInstance().currentActivity(), msg)
     }

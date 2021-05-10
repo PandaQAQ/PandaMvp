@@ -40,4 +40,5 @@ dependencies {
     api(rootProject.ext.dependencies["tablayout"])
     api rootProject.ext.dependencies["material-dialogs"]
     api rootProject.ext.dependencies["xpopup"]
+    api rootProject.ext.dependencies["gifdrawable"]
 }

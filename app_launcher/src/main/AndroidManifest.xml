@@ -10,16 +10,16 @@
             android:value="@string/lifecycle_proxy" />
 
         <activity
-            android:name=".ui.launch.FlashActivity"
+            android:name=".ui.launch.FlashActivityCore"
             android:theme="@style/FullScreenNoTitleTheme" />
 
         <activity
-            android:name=".ui.home.HomeActivity"
+            android:name=".ui.home.HomeActivityCore"
             android:label="主页"
             android:theme="@style/BaseAppTheme" />
 
-        <activity android:name=".ui.widgets.GalleryActivity" />
-        <activity android:name=".ui.testlist.TestListActivity" />
+        <activity android:name=".ui.widgets.GalleryActivityCore" />
+        <activity android:name=".ui.testlist.TestListActivityCore" />
     </application>
 
 </manifest>

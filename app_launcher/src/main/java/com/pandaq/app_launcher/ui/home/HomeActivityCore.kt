@@ -19,6 +19,9 @@ import com.pandaq.appcore.imageloader.core.PicLoader
 import com.pandaq.appcore.permission.RtPermission
 import com.pandaq.appcore.utils.system.DisplayUtils
 import com.pandaq.router.routers.RouterPath
+import com.pandaq.rxpanda.RxPanda
+import com.pandaq.rxpanda.exception.ApiException
+import com.pandaq.rxpanda.observer.ApiObserver
 import com.pandaq.uires.html.HtmlNoTitleActivity
 import com.pandaq.uires.msgwindow.Toaster
 import com.pandaq.uires.utils.compileSize
@@ -33,7 +36,7 @@ import kotlin.system.exitProcess
  * Description :
  */
 @Route(path = RouterPath.LAUNCH_ACTIVITY_HOME)
-class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
+class HomeActivityCore : AppBaseActivity<AppBasePresenter<*>>() {
 
     private val adapter: BaseQuickAdapter<String, BaseViewHolder> by lazy {
         val adp = object : BaseQuickAdapter<String, BaseViewHolder>(R.layout.launcher_item_homepage) {
@@ -43,7 +46,7 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
                     val icon = it.getView<ImageView>(R.id.iv_icon)
                     itemView.layoutParams.width = DisplayUtils.getScreenWidth() / 3
                     it.setText(R.id.tv_name, item)
-                    PicLoader.with(this@HomeActivity)
+                    PicLoader.with(this@HomeActivityCore)
                             .load(iconList[it.adapterPosition])
                             .into(icon)
                 }
@@ -123,9 +126,21 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
                             .navigation(this)
                 }
                 5 -> {
-                    mToolbar?.let {
-                        it.setMenuEnable(!it.getMenuEnable())
-                    }
+                   RxPanda.get("http://192.168.128.250:14444/sso-api/ext/app/https/appconfig/query?appId=1")
+                           .request(object : ApiObserver<Any>() {
+                               override fun onSuccess(p0: Any) {
+
+                               }
+
+                               override fun finished(p0: Boolean) {
+
+                               }
+
+                               override fun onError(p0: ApiException?) {
+
+                               }
+
+                           })
                 }
                 else -> {
                     Toaster.showError(adapter.data[position] as String)

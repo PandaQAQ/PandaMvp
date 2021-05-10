@@ -36,11 +36,9 @@
 
     <declare-styleable name="RefreshRecyclerView"
         tools:ignore="ResourceName">
-        <attr name="showHolder"
-            format="boolean" />
-        <attr name="emptyLayout"
+        <attr name="emptyView"
             format="reference" />
-        <attr name="errorLayout"
+        <attr name="errorView"
             format="reference" />
     </declare-styleable>
 
@@ -113,5 +111,16 @@
     <declare-styleable name="ExpandTextView">
         <attr name="showLines"
             format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="StateLayout">
+        <attr name="noNetLayout"
+            format="reference" />
+        <attr name="emptyLayout"
+            format="reference" />
+        <attr name="errorLayout"
+            format="reference" />
+        <attr name="loadingLayout"
+            format="reference" />
     </declare-styleable>
 </resources>

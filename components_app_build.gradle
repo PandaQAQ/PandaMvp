@@ -59,8 +59,6 @@ android {
 
 dependencies {
 
-    println project.getName()+"========name"
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation rootProject.ext.dependencies["design"]

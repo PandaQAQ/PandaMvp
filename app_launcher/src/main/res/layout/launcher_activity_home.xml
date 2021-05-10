@@ -5,11 +5,17 @@
     android:id="@+id/cl_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.pandaq.app_launcher.ui.home.HomeActivity">
+    tools:context="com.pandaq.app_launcher.ui.home.HomeActivityCore">
 
-    <com.pandaq.uires.widget.recyclerview.RefreshRecyclerView
-        android:id="@+id/refreshList"
+    <com.pandaq.uires.stateview.StateLayout
+        android:id="@+id/state"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <com.pandaq.uires.widget.recyclerview.RefreshRecyclerView
+            android:id="@+id/refreshList"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.pandaq.uires.stateview.StateLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

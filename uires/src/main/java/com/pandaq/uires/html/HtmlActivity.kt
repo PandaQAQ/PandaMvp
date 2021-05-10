@@ -5,11 +5,10 @@ import android.view.View
 import androidx.appcompat.app.ActionBar
 import com.pandaq.appcore.browser.WebFragment
 import com.pandaq.appcore.framework.app.ActivityTask
-import com.pandaq.appcore.framework.mvp.BaseActivity
 import com.pandaq.appcore.framework.mvp.BasePresenter
 import com.pandaq.uires.BuildConfig
 import com.pandaq.uires.R
-import com.pandaq.uires.toolbar.CNToolbar
+import com.pandaq.uires.mvp.BaseActivity
 import kotlinx.android.synthetic.main.activity_html.*
 
 /**
@@ -32,8 +31,6 @@ class HtmlActivity : BaseActivity<BasePresenter<*>>() {
         }
     }
 
-    private var mToolbar: CNToolbar? = null
-    private var title: String? = null
     private lateinit var url: String
 
 
@@ -86,26 +83,6 @@ class HtmlActivity : BaseActivity<BasePresenter<*>>() {
 
     override fun loadData() {
         webFragment.loadUrl(url)
-    }
-
-    override fun onFinish(success: Boolean) {
-
-    }
-
-    override fun showLoading(msg: String?) {
-
-    }
-
-    override fun showLoading() {
-
-    }
-
-    override fun showLoading(cancelAble: Boolean) {
-
-    }
-
-    override fun onError(errCode: Long, errMsg: String?) {
-
     }
 
     override fun onBackPressed() {
