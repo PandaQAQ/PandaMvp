@@ -36,7 +36,7 @@ import kotlin.system.exitProcess
  * Description :
  */
 @Route(path = RouterPath.LAUNCH_ACTIVITY_HOME)
-class HomeActivityCore : AppBaseActivity<AppBasePresenter<*>>() {
+class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
 
     private val adapter: BaseQuickAdapter<String, BaseViewHolder> by lazy {
         val adp = object : BaseQuickAdapter<String, BaseViewHolder>(R.layout.launcher_item_homepage) {
@@ -46,7 +46,7 @@ class HomeActivityCore : AppBaseActivity<AppBasePresenter<*>>() {
                     val icon = it.getView<ImageView>(R.id.iv_icon)
                     itemView.layoutParams.width = DisplayUtils.getScreenWidth() / 3
                     it.setText(R.id.tv_name, item)
-                    PicLoader.with(this@HomeActivityCore)
+                    PicLoader.with(this@HomeActivity)
                             .load(iconList[it.adapterPosition])
                             .into(icon)
                 }

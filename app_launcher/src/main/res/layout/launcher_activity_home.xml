@@ -5,7 +5,7 @@
     android:id="@+id/cl_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.pandaq.app_launcher.ui.home.HomeActivityCore">
+    tools:context="com.pandaq.app_launcher.ui.home.HomeActivity">
 
     <com.pandaq.uires.stateview.StateLayout
         android:id="@+id/state"
