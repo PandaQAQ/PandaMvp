@@ -17,7 +17,7 @@
         android:layout_marginEnd="@dimen/res_dp_8"
         android:layout_marginBottom="@dimen/res_dp_8"
         android:scaleType="fitCenter"
-        android:src="@drawable/res_icon_empty"
+        android:src="@drawable/icon_default_error"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

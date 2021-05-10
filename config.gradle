@@ -126,6 +126,8 @@ ext {
             /*图片裁剪*/
             "ucrop"                    : 'com.github.yalantis:ucrop:2.2.6',
             /*屏幕适配*/
-            "autosize"                 : "me.jessyan:autosize:1.1.2"
+            "autosize"                 : "me.jessyan:autosize:1.1.2",
+            /*gif 图片控件*/
+            "gifdrawable"              : 'pl.droidsonroids.gif:android-gif-drawable:1.2.22'
     ]
 }

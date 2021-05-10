@@ -18,7 +18,7 @@ import com.pandaq.appcore.guide.GuideCoverView
  * Description :给出的模板基类
  * 也可完全自己写基类绑定 UI
  */
-abstract class BaseActivity<P : BasePresenter<*>> : AppCompatActivity(), IMvpView {
+abstract class CoreBaseActivity<P : BasePresenter<*>> : AppCompatActivity(), IMvpView {
 
     private var mParentView: FrameLayout? = null
     /**

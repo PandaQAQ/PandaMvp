@@ -1,7 +1,6 @@
 package com.pandaq.uires.configs
 
 import com.pandaq.appcore.imageloader.PicLoaderConfig
-import com.pandaq.uires.widget.emptyview.EmptyConfig
 
 /**
  * Created by huxinyu on 2019/8/8.
@@ -26,11 +25,6 @@ class UiConfigs {
          * 图片加载的全局配置
          */
         fun imageLoader() = PicLoaderConfig.get()
-
-        /**
-         * 列表状态页全局配置
-         */
-        fun stateLayout() = EmptyConfig.get()
 
     }
 

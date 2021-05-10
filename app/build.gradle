@@ -38,16 +38,16 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("../system.jks")
+            storeFile file("../keystore.jks")
             storePassword "123456"
-            keyAlias "system"
+            keyAlias "pandaq"
             keyPassword "123456"
         }
 
         debug {
-            storeFile file("../system.jks")
+            storeFile file("../keystore.jks")
             storePassword "123456"
-            keyAlias "system"
+            keyAlias "pandaq"
             keyPassword "123456"
         }
     }

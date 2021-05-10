@@ -33,7 +33,6 @@ public class RefreshRecyclerView extends FrameLayout {
 
     private SmartRefreshLayout mRefreshLayout;
     private RecyclerView mRecyclerView;
-    private boolean showHolderView; // 是否在加载失败后显示占位视图
     private View emptyView;
     private View errorView;
 
@@ -56,9 +55,8 @@ public class RefreshRecyclerView extends FrameLayout {
 
     private void init(AttributeSet attrs) {
         TypedArray ta = getContext().obtainStyledAttributes(attrs, R.styleable.RefreshRecyclerView);
-        showHolderView = ta.getBoolean(R.styleable.RefreshRecyclerView_showHolder, true);
-        int emptyLayout = ta.getResourceId(R.styleable.RefreshRecyclerView_emptyLayout, R.layout.res_empty_view);
-        int errorLayout = ta.getResourceId(R.styleable.RefreshRecyclerView_emptyLayout, R.layout.res_error_view);
+        int emptyLayout = ta.getResourceId(R.styleable.RefreshRecyclerView_emptyView, R.layout.res_empty_view);
+        int errorLayout = ta.getResourceId(R.styleable.RefreshRecyclerView_errorView, R.layout.res_error_view);
         ta.recycle();
         inflate(getContext(), R.layout.res_refresh_recyclerview, this);
         mRefreshLayout = findViewById(R.id.srl_refresh);
@@ -96,7 +94,7 @@ public class RefreshRecyclerView extends FrameLayout {
      */
     public void finishRefresh(boolean success) {
         mRefreshLayout.finishRefresh(500);
-        if (this.showHolderView && mQuickAdapter != null) {
+        if (mQuickAdapter != null) {
             if (success) {
                 mQuickAdapter.setEmptyView(emptyView);
             } else {
@@ -146,15 +144,9 @@ public class RefreshRecyclerView extends FrameLayout {
         mRecyclerView.setItemAnimator(animator);
     }
 
-    public void setAdapter(@NonNull BaseQuickAdapter adapter, boolean showEmpty) {
-        this.showHolderView = showEmpty;
+    public void setAdapter(@NonNull BaseQuickAdapter adapter) {
         mQuickAdapter = adapter;
         mRecyclerView.setAdapter(mQuickAdapter);
-    }
-
-
-    public void setAdapter(@NonNull BaseQuickAdapter adapter) {
-        setAdapter(adapter, true);
     }
 
     public void addItemDecoration(RecyclerView.ItemDecoration itemDecoration) {

@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.launcher_activity_gallery.*
  * Email : panda.h@foxmail.com
  * Description :
  */
-class GalleryActivity : AppBaseActivity<AppBasePresenter<*>>() {
+class GalleryActivityCore : AppBaseActivity<AppBasePresenter<*>>() {
 
 
     private val mList = ArrayList<IPagerItem>()

@@ -4,10 +4,10 @@ import android.content.Intent
 import android.view.View
 import com.pandaq.appcore.browser.WebFragment
 import com.pandaq.appcore.framework.app.ActivityTask
-import com.pandaq.appcore.framework.mvp.BaseActivity
 import com.pandaq.appcore.framework.mvp.BasePresenter
 import com.pandaq.uires.BuildConfig
 import com.pandaq.uires.R
+import com.pandaq.uires.mvp.BaseActivity
 import kotlinx.android.synthetic.main.activity_html.*
 
 /**
@@ -36,7 +36,6 @@ class HtmlNoTitleActivity : BaseActivity<BasePresenter<*>>() {
     }
 
 
-
     override fun injectPresenter(): BasePresenter<*>? = null
 
     override fun bindContentRes(): Int = R.layout.activity_html
@@ -47,11 +46,11 @@ class HtmlNoTitleActivity : BaseActivity<BasePresenter<*>>() {
 
 
     override fun initView() {
-//        if (BuildConfig.DEBUG) {
-//            cl_debug.visibility = View.VISIBLE
-//        } else {
+        if (BuildConfig.DEBUG) {
+            cl_debug.visibility = View.VISIBLE
+        } else {
             cl_debug.visibility = View.GONE
-//        }
+        }
         tv_load.setOnClickListener {
             webFragment.loadUrl(et_url_debug.text.toString())
         }
