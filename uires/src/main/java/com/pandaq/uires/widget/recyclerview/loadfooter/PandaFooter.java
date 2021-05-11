@@ -125,7 +125,7 @@ public class PandaFooter extends ViewGroup implements RefreshFooter {
 
     @Override
     public boolean setNoMoreData(boolean noMoreData) {
-        return false;
+        return noMoreData;
     }
 
     @Override

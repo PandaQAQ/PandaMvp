@@ -2,13 +2,18 @@ package com.pandaq.uires.mvp
 
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.ActionBar
 import com.pandaq.appcore.framework.app.ActivityTask
-import com.pandaq.appcore.framework.mvp.CoreBaseActivity
 import com.pandaq.appcore.framework.mvp.BasePresenter
+import com.pandaq.appcore.framework.mvp.CoreBaseActivity
+import com.pandaq.appcore.utils.NetWorkUtils
+import com.pandaq.uires.BuildConfig
 import com.pandaq.uires.R
 import com.pandaq.uires.loading.LoadingDialogUtil
 import com.pandaq.uires.msgwindow.Toaster
+import com.pandaq.uires.stateview.DefaultStateClickListener
+import com.pandaq.uires.stateview.StateLayout
 import com.pandaq.uires.toolbar.CNToolbar
 
 
@@ -22,8 +27,70 @@ abstract class BaseActivity<P : BasePresenter<*>> : CoreBaseActivity<P>() {
 
     protected var mToolbar: CNToolbar? = null
 
+    // 状态页
+    protected var mStateLayout: StateLayout? = null
+
+    /**
+     * 使用全页面添加状态 View，返回 true 的时候页面布局文件不要再添加 StateLayout
+     */
+    protected open fun showState(): Boolean {
+        return false
+    }
+
     fun setTitle(title: String) {
         mToolbar?.setTitle(title)
+    }
+
+    @LayoutRes
+    abstract fun bindContentRes(): Int
+
+
+    override fun getContentRes(): Int {
+        return if (showState()) {
+            R.layout.res_state_layout
+        } else {
+            bindContentRes()
+        }
+    }
+
+    private fun initStateLayout() {
+        mStateLayout = findViewById(R.id.res_state_layout)
+        mStateLayout?.let {
+            it.removeAllViews()
+            it.addView(layoutInflater.inflate(bindContentRes(), null, false))
+            initStateLayout(it)
+        }
+    }
+
+    protected  fun initStateLayout(stateLayout: StateLayout) {
+        if (mStateLayout != null && stateLayout != mStateLayout) {
+            if (BuildConfig.DEBUG) {
+                throw IllegalStateException("StateLayout 初始化多次，检查是否布局文件使用 StateLayout 且，showState() 返回 true")
+            }
+        } else {
+            mStateLayout = stateLayout
+        }
+        mStateLayout?.setOnStateClickListener(object : DefaultStateClickListener {
+            override fun onEmptyClick() {
+                refreshWhenError()
+            }
+
+            override fun onErrorClick() {
+                refreshWhenError()
+            }
+
+            override fun onNetErrorClick() {
+                refreshWhenError()
+            }
+        })
+    }
+
+    /**
+     * 错误、无数据点击重试，默认实现为重新 load 界面数据
+     */
+    open fun refreshWhenError() {
+        showLoading()
+        loadData()
     }
 
     override fun initToolbar() {
@@ -42,32 +109,55 @@ abstract class BaseActivity<P : BasePresenter<*>> : CoreBaseActivity<P>() {
             val alp = ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT)
             actionBar.setCustomView(view, alp)
         }
+        initStateLayout()
     }
 
-    override fun showLoading(msg: String?) {
+    override fun dialogLoading(msg: String?) {
         LoadingDialogUtil.show(ActivityTask.getInstance().currentActivity(), msg, true)
     }
 
-    override fun showLoading() {
-        LoadingDialogUtil.show(ActivityTask.getInstance().currentActivity(), true)
-    }
-
-    open fun hideLoading() {
-        LoadingDialogUtil.hideProgressQuick()
-    }
-
-    override fun showLoading(cancelAble: Boolean) {
+    override fun dialogLoading(cancelAble: Boolean) {
         LoadingDialogUtil.show(ActivityTask.getInstance().currentActivity(), cancelAble)
     }
 
-    override fun onError(errCode: Long, errMsg: String?) {
-        errMsg?.let {
-            Toaster.showError(errMsg)
+    override fun showError(showErrorPage: Boolean, errMsg: String?) {
+
+        if (LoadingDialogUtil.isShowing()) {
+            LoadingDialogUtil.hideProgressQuick()
+        }
+
+        if (showErrorPage) {
+            if (NetWorkUtils.isNetworkConnected()) {
+                mStateLayout?.showError()
+            } else {
+                mStateLayout?.showNetError()
+            }
+        } else {
+            errMsg?.let {
+                Toaster.showError(errMsg)
+            }
         }
     }
 
-    override fun onFinish(success: Boolean) {
-        hideLoading()
+    override fun showEmpty(msg: String?) {
+        if (LoadingDialogUtil.isShowing()) {
+            LoadingDialogUtil.hideProgressQuick()
+        }
+        mStateLayout?.showEmpty(msg)
+    }
+
+    override fun showLoading() {
+        if (LoadingDialogUtil.isShowing()) {
+            LoadingDialogUtil.hideProgressQuick()
+        }
+        mStateLayout?.showLoading()
+    }
+
+    override fun showContent() {
+        if (LoadingDialogUtil.isShowing()) {
+            LoadingDialogUtil.hideProgressQuick()
+        }
+        mStateLayout?.showContent()
     }
 
     override fun onSaveInstanceState(outState: Bundle) {

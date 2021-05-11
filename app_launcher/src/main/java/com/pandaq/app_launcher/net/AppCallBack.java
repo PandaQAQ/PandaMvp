@@ -4,14 +4,17 @@ import com.pandaq.appcore.utils.log.PLogger;
 import com.pandaq.rxpanda.exception.ApiException;
 import com.pandaq.rxpanda.observer.ApiObserver;
 
+import org.jetbrains.annotations.NotNull;
+
 /**
  * Created by huxinyu on 2019/3/8.
  * Email : panda.h@foxmail.com
  * Description :自定义的处理类
  */
 public abstract class AppCallBack<T> extends ApiObserver<T> {
+
     @Override
-    protected void onSuccess(T data) {
+    protected void onSuccess(@NotNull T data) {
         success(data);
     }
 
@@ -32,7 +35,7 @@ public abstract class AppCallBack<T> extends ApiObserver<T> {
         }
     }
 
-    protected abstract void success(T data);
+    protected abstract void success(@NotNull T data);
 
     protected abstract void fail(ApiException e);
 

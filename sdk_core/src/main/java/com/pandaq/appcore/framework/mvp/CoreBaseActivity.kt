@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
 import android.widget.FrameLayout
+import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleObserver
@@ -18,7 +19,7 @@ import com.pandaq.appcore.guide.GuideCoverView
  * Description :给出的模板基类
  * 也可完全自己写基类绑定 UI
  */
-abstract class CoreBaseActivity<P : BasePresenter<*>> : AppCompatActivity(), IMvpView {
+abstract class CoreBaseActivity<P : BasePresenter<*>> : AppCompatActivity(), IView,LifecycleObserver {
 
     private var mParentView: FrameLayout? = null
     /**
@@ -40,8 +41,8 @@ abstract class CoreBaseActivity<P : BasePresenter<*>> : AppCompatActivity(), IMv
             lifecycle.addObserver(it as LifecycleObserver)
         }
         initVariable()
-        if (bindContentRes() != 0) {
-            setContentView(bindContentRes())
+        if (getContentRes() != 0) {
+            setContentView(getContentRes())
         } else {
             throw RuntimeException("must bindContentRes first!!!")
         }
@@ -94,7 +95,8 @@ abstract class CoreBaseActivity<P : BasePresenter<*>> : AppCompatActivity(), IMv
      *
      * @return layout 资源 id
      */
-    protected abstract fun bindContentRes(): Int
+    @LayoutRes
+    protected abstract fun getContentRes(): Int
 
     /**
      * 初始化属性参数值

@@ -15,6 +15,7 @@ import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshFooter;
 import com.scwang.smartrefresh.layout.api.RefreshHeader;
+import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
@@ -68,7 +69,7 @@ public class RefreshRecyclerView extends FrameLayout {
                 getResources().getColor(R.color.res_color_refresh_header2),
                 getResources().getColor(R.color.res_color_refresh_header3));
         mRefreshLayout.setRefreshHeader(header);
-        PandaFooter footer = new PandaFooter(getContext());
+        ClassicsFooter footer = new ClassicsFooter(getContext());
         mRefreshLayout.setRefreshFooter(footer);
         //禁用 smartrefreshlayout 的自动加载，交给外部监听处理
         mRefreshLayout.setEnableAutoLoadMore(false);

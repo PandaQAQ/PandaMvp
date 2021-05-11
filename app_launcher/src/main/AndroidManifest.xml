@@ -19,7 +19,7 @@
             android:theme="@style/BaseAppTheme" />
 
         <activity android:name=".ui.widgets.GalleryActivity" />
-        <activity android:name=".ui.testlist.TestListActivity" />
+        <activity android:name=".ui.zhihu.ZhihuListActivity" />
     </application>
 
 </manifest>

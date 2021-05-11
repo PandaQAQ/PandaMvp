@@ -61,25 +61,6 @@ class HtmlNoTitleActivity : BaseActivity<BasePresenter<*>>() {
         webFragment.loadUrl(url)
     }
 
-    override fun onFinish(success: Boolean) {
-
-    }
-
-    override fun showLoading(msg: String?) {
-
-    }
-
-    override fun showLoading() {
-
-    }
-
-    override fun showLoading(cancelAble: Boolean) {
-
-    }
-
-    override fun onError(errCode: Long, errMsg: String?) {
-
-    }
 
     override fun onBackPressed() {
         if (webFragment.canGoBack()) {
@@ -89,7 +70,4 @@ class HtmlNoTitleActivity : BaseActivity<BasePresenter<*>>() {
         }
     }
 
-    override fun initToolbar() {
-
-    }
 }

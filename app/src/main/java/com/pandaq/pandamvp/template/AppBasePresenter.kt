@@ -1,7 +1,7 @@
 package com.pandaq.pandamvp.template
 
 import com.pandaq.appcore.framework.mvp.BasePresenter
-import com.pandaq.appcore.framework.mvp.IMvpView
+import com.pandaq.appcore.framework.mvp.IView
 import com.pandaq.rxpanda.exception.ApiException
 
 /**
@@ -10,12 +10,10 @@ import com.pandaq.rxpanda.exception.ApiException
  * <p>
  * Description :
  */
-open class AppBasePresenter<V : IMvpView>(view: V) : BasePresenter<V>(view) {
+open class AppBasePresenter<V : IView>(view: V) : BasePresenter<V>(view) {
 
-    protected fun handelError(e: ApiException?) {
-        e?.let {
-            mView?.onError(e.code, e.message)
-        }
+    override fun handelError(showErrorPage: Boolean, e: ApiException?) {
+        super.handelError(showErrorPage, e)
     }
 
 }
