@@ -8,8 +8,8 @@ package com.pandaq.app_launcher.entites
  */
 data class Zhihu(
     val date: String?,
-    val stories: List<Story?>?,
-    val top_stories: List<TopStory?>?
+    val stories: MutableList<Story>?,
+    val top_stories: MutableList<TopStory>?
 )
 
 data class TopStory(
@@ -23,7 +23,7 @@ data class TopStory(
 data class Story(
     val ga_prefix: String?,
     val id: Int?,
-    val images: List<String?>?,
+    val images: List<String>?,
     val title: String?,
     val type: Int?
 )

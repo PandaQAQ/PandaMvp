@@ -36,6 +36,10 @@ class StateLayout @JvmOverloads constructor(
     private var defNetErrorText: TextView? = null
     private var defLoadingView: GifImageView? = null
 
+    private var defEmptyString: String? = null
+    private var defErrorString: String? = null
+    private var defNetErrorString: String? = null
+
     init {
         val typeArray = context.obtainStyledAttributes(attrs, R.styleable.StateLayout)
         // emptyView
@@ -43,6 +47,7 @@ class StateLayout @JvmOverloads constructor(
         emptyView = View.inflate(context, emptyId, null)
         defEmptyText = emptyView.findViewById(R.id.state_empty_hint)
         defEmptyImage = emptyView.findViewById(R.id.state_empty_img)
+        defEmptyString = defEmptyText?.text.toString()
         emptyView.visibility = View.GONE
         emptyView.setOnClickListener {
             mOnDefaultStateClickListener?.onEmptyClick()
@@ -52,6 +57,7 @@ class StateLayout @JvmOverloads constructor(
         errorView = View.inflate(context, errorId, null)
         defErrorText = errorView.findViewById(R.id.state_error_hint)
         defErrorImage = errorView.findViewById(R.id.state_error_img)
+        defErrorString = defErrorText?.text.toString()
         errorView.visibility = View.GONE
         errorView.setOnClickListener {
             mOnDefaultStateClickListener?.onErrorClick()
@@ -61,6 +67,7 @@ class StateLayout @JvmOverloads constructor(
         netErrorView = View.inflate(context, netErrorId, null)
         defNetErrorText = netErrorView.findViewById(R.id.state_neterror_hint)
         defNetErrorImage = netErrorView.findViewById(R.id.state_neterror_img)
+        defNetErrorString = defNetErrorText?.text.toString()
         netErrorView.visibility = View.GONE
         netErrorView.setOnClickListener {
             mOnDefaultStateClickListener?.onNetErrorClick()
@@ -97,12 +104,22 @@ class StateLayout @JvmOverloads constructor(
         showWithState()
     }
 
-    fun showError() {
+    fun showError(errMsg: String? = null) {
+        if (errMsg == null) {
+            defErrorText?.text = this.defErrorString
+        } else {
+            defErrorText?.text = errMsg
+        }
         this.mShowState = LoadState.ERROR
         showWithState()
     }
 
-    fun showNetError() {
+    fun showNetError(errMsg: String? = null) {
+        if (errMsg == null) {
+            defNetErrorText?.text = this.defNetErrorString
+        } else {
+            defErrorText?.text = errMsg
+        }
         this.mShowState = LoadState.NO_NET
         showWithState()
     }
@@ -112,9 +129,29 @@ class StateLayout @JvmOverloads constructor(
         showWithState()
     }
 
-    fun showEmpty() {
+    fun showEmpty(errMsg: String? = null) {
+        if (errMsg == null) {
+            defEmptyText?.text = this.defEmptyString
+        } else {
+            defEmptyText?.text = errMsg
+        }
         this.mShowState = LoadState.EMPTY
         showWithState()
+    }
+
+    fun setDefNetErrorText(msg: String) {
+        this.defNetErrorString = msg
+        defNetErrorText?.text = this.defNetErrorString
+    }
+
+    fun setDefEmptyText(msg: String) {
+        this.defEmptyString = msg
+        defEmptyText?.text = this.defEmptyString
+    }
+
+    fun setDefErrorText(msg: String) {
+        this.defErrorString = msg
+        defErrorText?.text = this.defErrorString
     }
 
     override fun addView(child: View?, index: Int, params: ViewGroup.LayoutParams?) {

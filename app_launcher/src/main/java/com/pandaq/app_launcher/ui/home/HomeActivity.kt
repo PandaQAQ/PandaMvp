@@ -19,9 +19,6 @@ import com.pandaq.appcore.imageloader.core.PicLoader
 import com.pandaq.appcore.permission.RtPermission
 import com.pandaq.appcore.utils.system.DisplayUtils
 import com.pandaq.router.routers.RouterPath
-import com.pandaq.rxpanda.RxPanda
-import com.pandaq.rxpanda.exception.ApiException
-import com.pandaq.rxpanda.observer.ApiObserver
 import com.pandaq.uires.html.HtmlNoTitleActivity
 import com.pandaq.uires.msgwindow.Toaster
 import com.pandaq.uires.utils.compileSize
@@ -126,21 +123,9 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
                             .navigation(this)
                 }
                 5 -> {
-                   RxPanda.get("http://192.168.128.250:14444/sso-api/ext/app/https/appconfig/query?appId=1")
-                           .request(object : ApiObserver<Any>() {
-                               override fun onSuccess(p0: Any) {
-
-                               }
-
-                               override fun finished(p0: Boolean) {
-
-                               }
-
-                               override fun onError(p0: ApiException?) {
-
-                               }
-
-                           })
+                    ARouter.getInstance()
+                            .build(RouterPath.LAUNCH_ACTIVITY_ZHIHU)
+                            .navigation(this)
                 }
                 else -> {
                     Toaster.showError(adapter.data[position] as String)

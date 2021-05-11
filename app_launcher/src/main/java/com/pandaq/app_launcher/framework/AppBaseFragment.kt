@@ -1,9 +1,6 @@
 package com.pandaq.app_launcher.framework
 
-import com.pandaq.appcore.framework.app.ActivityTask
-import com.pandaq.appcore.framework.mvp.CoreBaseFragment
-import com.pandaq.uires.loading.LoadingDialogUtil
-import com.pandaq.uires.msgwindow.Toaster
+import com.pandaq.uires.mvp.BaseFragment
 
 /**
  * Created by huxinyu on 2019/7/8.
@@ -11,30 +8,6 @@ import com.pandaq.uires.msgwindow.Toaster
  * <p>
  * Description :
  */
-abstract class AppBaseFragment<P : AppBasePresenter<*>> : CoreBaseFragment<P>() {
-    override fun showLoading(msg: String?) {
-        LoadingDialogUtil.show(ActivityTask.getInstance().currentActivity(), msg)
-    }
+abstract class AppBaseFragment<P : AppBasePresenter<*>> : BaseFragment<P>() {
 
-    override fun showLoading() {
-        showLoading(true)
-    }
-
-    override fun showLoading(cancelAble: Boolean) {
-        LoadingDialogUtil.show(ActivityTask.getInstance().currentActivity(), cancelAble)
-    }
-
-    open fun hideLoading() {
-        LoadingDialogUtil.hideProgressQuick()
-    }
-
-    override fun onError(errCode: Long, errMsg: String?) {
-        errMsg?.let {
-            Toaster.showError(errMsg)
-        }
-    }
-
-    override fun onFinish(success: Boolean) {
-        hideLoading()
-    }
 }

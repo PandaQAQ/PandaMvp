@@ -18,7 +18,7 @@ import java.io.File;
  */
 public class Request {
 
-    private Context context;
+    private final Context context;
     private IExecutor executor;
 
     private String url;

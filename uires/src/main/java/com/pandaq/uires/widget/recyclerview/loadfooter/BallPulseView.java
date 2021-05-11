@@ -26,12 +26,12 @@ public class BallPulseView extends View {
 
     public static final int DEFAULT_SIZE = 40; //dp
 
-    private Paint mPaint;
+    private final Paint mPaint;
 
     private int normalColor = getResources().getColor(R.color.res_color_load_footer1);
     private int animatingColor = getResources().getColor(R.color.res_color_load_footer2);
 
-    private float circleSpacing;
+    private final float circleSpacing;
     private float[] scaleFloats = new float[]{1f, 1f, 1f};
 
 

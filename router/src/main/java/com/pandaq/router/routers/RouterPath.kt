@@ -17,6 +17,7 @@ class RouterPath {
 
         const val LAUNCH_ACTIVITY_FLASH = "$GROUP_LAUNCH/launch/FlashActivity"
         const val LAUNCH_ACTIVITY_HOME = "$GROUP_LAUNCH/home/HomeActivity"
+        const val LAUNCH_ACTIVITY_ZHIHU = "$GROUP_LAUNCH/ZhihuListActivity"
         const val LAUNCH_ACTIVITY_TEST = "$GROUP_LAUNCH/TestListActivity"
 
         const val JETPACK_MAIN = "$GROUP_JETPACK/MainActivity"
