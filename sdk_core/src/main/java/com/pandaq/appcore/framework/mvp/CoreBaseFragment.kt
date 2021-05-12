@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleObserver
+import com.pandaq.rxpanda.utils.CastUtils
+import java.lang.reflect.ParameterizedType
 
 /**
  * Created by huxinyu on 2018/5/19.
@@ -15,13 +17,33 @@ import androidx.lifecycle.LifecycleObserver
  * Description : 给出的模板基类,可选择继承此类实现 bindButterKnife（）方法使用 ButterKnife 绑定 UI
  * 也可完全自己写基类绑定 UI
  */
-abstract class CoreBaseFragment<P : BasePresenter<*>?> : Fragment(), IView,LifecycleObserver {
+abstract class CoreBaseFragment<P : BasePresenter<*>?> : Fragment(), IView {
+
     protected var contentView: View? = null
+
     protected var mPresenter: P? = null
-    protected abstract fun injectPresenter(): P
+
+    init {
+        val type = (this.javaClass.genericSuperclass as ParameterizedType)
+        val typeArray = type.actualTypeArguments
+        var clazzV: Class<*>? = null
+        this.javaClass.genericInterfaces.forEach {
+            val v = it as Class<*>
+            if (IView::class.java.isAssignableFrom(v)) {
+                clazzV = v
+                return@forEach
+            }
+        }
+        mPresenter = if (clazzV != null) {
+            val clazzP: Class<P> = CastUtils.cast(typeArray[0])
+            clazzP.getConstructor(clazzV).newInstance(this)
+        } else {
+            null
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mPresenter = injectPresenter()
         mPresenter?.let {
             lifecycle.addObserver(it as LifecycleObserver)
         }

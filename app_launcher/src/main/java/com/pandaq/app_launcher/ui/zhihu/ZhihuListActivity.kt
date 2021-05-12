@@ -5,7 +5,6 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.pandaq.app_launcher.R
 import com.pandaq.app_launcher.framework.refresh.AppBaseRefreshActivity
 import com.pandaq.router.routers.RouterPath
-import com.pandaq.uires.stateview.StateLayout
 import com.pandaq.uires.widget.recyclerview.RefreshRecyclerView
 import kotlinx.android.synthetic.main.launcher_activity_zhihu_list.*
 
@@ -19,12 +18,9 @@ class ZhihuListActivity : AppBaseRefreshActivity<ZhihuListPresenter>(), IZhihuVi
 
     override fun bindContentRes(): Int = R.layout.launcher_activity_zhihu_list
 
-    override fun injectPresenter(): ZhihuListPresenter = ZhihuListPresenter(this)
-
     override fun initVariable() {
 
     }
-
 
     override fun initView() {
         initStateLayout(state_layout)

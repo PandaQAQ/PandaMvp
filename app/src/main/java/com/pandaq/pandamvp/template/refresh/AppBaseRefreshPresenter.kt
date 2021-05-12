@@ -10,6 +10,4 @@ import com.pandaq.pandamvp.template.AppBasePresenter
  */
 class AppBaseRefreshPresenter<V:IListVIew>(v:V): AppBasePresenter<V>(v) {
 
-
-
 }

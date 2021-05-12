@@ -1,3 +1,4 @@
+import com.google.gson.Gson
 
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
@@ -74,12 +75,20 @@ android {
             manifest.srcFile 'src/main/AndroidManifest.xml'
         }
     }
+
+    applicationVariants.all { variant ->
+        println variant.getPackageApplicationProvider()
+//                .get()
+//                .outputScope
+//                .apkDatas
+//                .forEach {
+//                    apkData ->
+//                        apkData.outputFileName = "app_v${variant.versionName}_${variant.versionCode}.apk"
+//                }
+    }
 }
 
 dependencies {
-
-    println project.getName()+"========name"
-
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     //noinspection GradleCompatible

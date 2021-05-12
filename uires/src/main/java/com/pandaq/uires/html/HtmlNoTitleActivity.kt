@@ -35,9 +35,6 @@ class HtmlNoTitleActivity : BaseActivity<BasePresenter<*>>() {
         WebFragment()
     }
 
-
-    override fun injectPresenter(): BasePresenter<*>? = null
-
     override fun bindContentRes(): Int = R.layout.activity_html
 
     override fun initVariable() {

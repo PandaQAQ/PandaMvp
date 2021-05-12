@@ -17,11 +17,7 @@ import kotlinx.android.synthetic.main.launcher_activity_gallery.*
  */
 class GalleryActivity : AppBaseActivity<AppBasePresenter<*>>() {
 
-
     private val mList = ArrayList<IPagerItem>()
-
-
-    override fun injectPresenter(): AppBasePresenter<*>? = null
 
     override fun bindContentRes(): Int {
         return R.layout.launcher_activity_gallery

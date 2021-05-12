@@ -55,10 +55,6 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
 
     private lateinit var iconList: MutableList<Int>
 
-    override fun injectPresenter(): AppBasePresenter<*>? {
-        return null
-    }
-
     override fun bindContentRes(): Int {
         return R.layout.launcher_activity_home
     }
