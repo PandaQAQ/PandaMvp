@@ -10,6 +10,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleObserver
 import com.pandaq.appcore.guide.GuideCoverView
+import com.pandaq.rxpanda.utils.CastUtils
+import java.lang.reflect.ParameterizedType
 
 /**
  * Created by huxinyu on 2018/5/19.
@@ -19,9 +21,10 @@ import com.pandaq.appcore.guide.GuideCoverView
  * Description :给出的模板基类
  * 也可完全自己写基类绑定 UI
  */
-abstract class CoreBaseActivity<P : BasePresenter<*>> : AppCompatActivity(), IView,LifecycleObserver {
+abstract class CoreBaseActivity<P : BasePresenter<*>> : AppCompatActivity(), IView {
 
     private var mParentView: FrameLayout? = null
+
     /**
      * 遮罩引导载体图层
      */
@@ -29,14 +32,30 @@ abstract class CoreBaseActivity<P : BasePresenter<*>> : AppCompatActivity(), IVi
 
     protected var mPresenter: P? = null
 
-    protected abstract fun injectPresenter(): P?
+    init {
+        val type = (this.javaClass.genericSuperclass as ParameterizedType)
+        val typeArray = type.actualTypeArguments
+        var clazzV: Class<*>? = null
+        this.javaClass.genericInterfaces.forEach {
+            val v = it as Class<*>
+            if (IView::class.java.isAssignableFrom(v)) {
+                clazzV = v
+                return@forEach
+            }
+        }
+        mPresenter = if (clazzV != null) {
+            val clazzP: Class<P> = CastUtils.cast(typeArray[0])
+            clazzP.getConstructor(clazzV).newInstance(this)
+        } else {
+            null
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (isTransStatus()){
+        if (isTransStatus()) {
             window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         }
-        mPresenter = injectPresenter()
         mPresenter?.let {
             lifecycle.addObserver(it as LifecycleObserver)
         }

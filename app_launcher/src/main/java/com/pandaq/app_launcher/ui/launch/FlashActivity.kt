@@ -16,9 +16,6 @@ import kotlinx.android.synthetic.main.launcher_activity_flash.*
  */
 @Route(path = RouterPath.LAUNCH_ACTIVITY_FLASH)
 class FlashActivity : AppBaseActivity<FlashPresenter>(), IFlashView {
-    override fun injectPresenter(): FlashPresenter {
-        return FlashPresenter(this)
-    }
 
     override fun bindContentRes(): Int = R.layout.launcher_activity_flash
 
