@@ -1,9 +1,8 @@
 apply from: "../components_app_build.gradle"
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 
 android {
-    compileSdkVersion 28
+
     resourcePrefix "launcher_"
 
     defaultConfig {
@@ -16,14 +15,9 @@ android {
             consumerProguardFiles 'proguard-rules.pro'
         }
     }
-
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    testImplementation 'junit:junit:4.13.2'
-    //Picasso
-    implementation rootProject.ext.dependencies["picasso"]
     implementation project(':uires')
     implementation project(':functionlibs:pay')
 }

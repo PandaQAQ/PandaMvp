@@ -6,12 +6,11 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.pandaq.app_jetpack.R
 import com.pandaq.app_jetpack.app.ui.adapters.ZhihuNewsAdapter
+import com.pandaq.app_jetpack.databinding.AActivityZhihuListBinding
 import com.pandaq.router.routers.RouterPath
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
-import kotlinx.android.synthetic.main.a_activity_zhihu_list.*
 
 /**
  * Created by huxinyu on 2020/3/30.
@@ -27,13 +26,15 @@ class ZhihuListActivity : AppCompatActivity() {
 
     private var date: String = ""
     private var isRefresh = true
+    private lateinit var binding: AActivityZhihuListBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.a_activity_zhihu_list)
+        binding = AActivityZhihuListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         val adapter = ZhihuNewsAdapter()
-        rrv_data.setLayoutManager(LinearLayoutManager(this))
-        rrv_data.setAdapter(adapter)
+        binding.rrvData.setLayoutManager(LinearLayoutManager(this))
+        binding.rrvData.setAdapter(adapter)
 
         viewModel.getDataList()
 
@@ -41,20 +42,20 @@ class ZhihuListActivity : AppCompatActivity() {
             it?.let {
                 date = it.date.toString()
                 if (isRefresh) {
-                    rrv_data.finishRefresh(true)
+                    binding.rrvData.finishRefresh(true)
                     adapter.setNewInstance(it.stories)
                 } else {
-                    rrv_data.finishLoadMore(false)
+                    binding.rrvData.finishLoadMore(false)
                     adapter.addData(it.stories)
                 }
             }
         })
 
-       val data =  viewModel.zhihuLiveData.value
+        val data = viewModel.zhihuLiveData.value
         data?.stories = mutableListOf()
         viewModel.zhihuLiveData.postValue(data)
 
-        rrv_data.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
+        binding.rrvData.setOnRefreshLoadMoreListener(object : OnRefreshLoadMoreListener {
             override fun onLoadMore(refreshLayout: RefreshLayout) {
                 isRefresh = false
                 viewModel.getHistory(date)

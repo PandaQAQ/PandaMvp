@@ -7,15 +7,15 @@ import com.pandaq.appcore.framework.app.ActivityTask
 import com.pandaq.appcore.framework.mvp.BasePresenter
 import com.pandaq.uires.BuildConfig
 import com.pandaq.uires.R
+import com.pandaq.uires.databinding.ActivityHtmlBinding
 import com.pandaq.uires.mvp.BaseActivity
-import kotlinx.android.synthetic.main.activity_html.*
 
 /**
  * Created by huxinyu on 2020/4/1.
  * Email : panda.h@foxmail.com
  * Description :一个基本的 H5 页面
  */
-class HtmlNoTitleActivity : BaseActivity<BasePresenter<*>>() {
+class HtmlNoTitleActivity : BaseActivity<BasePresenter<*>, ActivityHtmlBinding>() {
 
     companion object {
         fun start(url: String?) {
@@ -35,21 +35,18 @@ class HtmlNoTitleActivity : BaseActivity<BasePresenter<*>>() {
         WebFragment()
     }
 
-    override fun bindContentRes(): Int = R.layout.activity_html
-
     override fun initVariable() {
         url = intent.getStringExtra("URL")
     }
 
-
     override fun initView() {
         if (BuildConfig.DEBUG) {
-            cl_debug.visibility = View.VISIBLE
+            binding.clDebug.visibility = View.VISIBLE
         } else {
-            cl_debug.visibility = View.GONE
+            binding.clDebug.visibility = View.GONE
         }
-        tv_load.setOnClickListener {
-            webFragment.loadUrl(et_url_debug.text.toString())
+        binding.tvLoad.setOnClickListener {
+            webFragment.loadUrl(binding.etUrlDebug.text.toString())
         }
         switchFragment(R.id.fl_container, null, webFragment)
     }

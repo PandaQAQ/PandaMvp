@@ -1,5 +1,6 @@
 package com.pandaq.app_launcher.framework.refresh
 
+import androidx.viewbinding.ViewBinding
 import com.pandaq.app_launcher.framework.AppBaseActivity
 import com.pandaq.app_launcher.framework.AppBasePresenter
 import com.pandaq.appcore.framework.mvp.IListVIew
@@ -12,7 +13,7 @@ import com.pandaq.uires.widget.recyclerview.RefreshRecyclerView
  * <p>
  * Description :模板类
  */
-abstract class AppBaseRefreshActivity<P : AppBasePresenter<*>> : AppBaseActivity<P>(), IListVIew {
+abstract class AppBaseRefreshActivity<P : AppBasePresenter<*>,VB:ViewBinding> : AppBaseActivity<P,VB>(), IListVIew {
 
     abstract fun bindRefresh(): RefreshRecyclerView?
 

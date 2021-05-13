@@ -1,6 +1,6 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'
 
 android {
 
@@ -18,9 +18,9 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-//    buildFeatures{
-//        viewBinding true
-//    }
+    buildFeatures{
+        viewBinding true
+    }
 }
 
 dependencies {

@@ -1,9 +1,11 @@
 package com.pandaq.uires.mvp
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.View
-import androidx.annotation.LayoutRes
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import androidx.appcompat.app.ActionBar
+import androidx.viewbinding.ViewBinding
 import com.pandaq.appcore.framework.app.ActivityTask
 import com.pandaq.appcore.framework.mvp.BasePresenter
 import com.pandaq.appcore.framework.mvp.CoreBaseActivity
@@ -23,7 +25,7 @@ import com.pandaq.uires.toolbar.CNToolbar
  * <p>
  * Description :
  */
-abstract class BaseActivity<P : BasePresenter<*>> : CoreBaseActivity<P>() {
+abstract class BaseActivity<P : BasePresenter<*>,VB:ViewBinding> : CoreBaseActivity<P,VB>() {
 
     protected var mToolbar: CNToolbar? = null
 
@@ -41,28 +43,32 @@ abstract class BaseActivity<P : BasePresenter<*>> : CoreBaseActivity<P>() {
         mToolbar?.setTitle(title)
     }
 
-    @LayoutRes
-    abstract fun bindContentRes(): Int
-
-
-    override fun getContentRes(): Int {
-        return if (showState()) {
-            R.layout.res_state_layout
-        } else {
-            bindContentRes()
+    @SuppressLint("InflateParams")
+    override fun getRootView(): ViewGroup? {
+        if (showState()){
+            return LayoutInflater.from(this).inflate(R.layout.res_state_layout,null) as ViewGroup?
         }
+        return super.getRootView()
     }
 
-    private fun initStateLayout() {
+    override fun initStateLayout() {
         mStateLayout = findViewById(R.id.res_state_layout)
-        mStateLayout?.let {
-            it.removeAllViews()
-            it.addView(layoutInflater.inflate(bindContentRes(), null, false))
-            initStateLayout(it)
-        }
+        mStateLayout?.setOnStateClickListener(object : DefaultStateClickListener {
+            override fun onEmptyClick() {
+                refreshWhenError()
+            }
+
+            override fun onErrorClick() {
+                refreshWhenError()
+            }
+
+            override fun onNetErrorClick() {
+                refreshWhenError()
+            }
+        })
     }
 
-    protected  fun initStateLayout(stateLayout: StateLayout) {
+    protected  fun setStateLayout(stateLayout: StateLayout) {
         if (mStateLayout != null && stateLayout != mStateLayout) {
             if (BuildConfig.DEBUG) {
                 throw IllegalStateException("StateLayout 初始化多次，检查是否布局文件使用 StateLayout 且，showState() 返回 true")
@@ -99,7 +105,7 @@ abstract class BaseActivity<P : BasePresenter<*>> : CoreBaseActivity<P>() {
             val view = layoutInflater.inflate(R.layout.res_cn_title, null)
             mToolbar = view.findViewById(R.id.toolbar)
             mToolbar?.let {
-                it.setOnBackPressed(View.OnClickListener { onBackPressed() })
+                it.setOnBackPressed { onBackPressed() }
                 it.setTitle(title)
                 it.setLightStyle(false)
             }
