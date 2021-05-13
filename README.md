@@ -20,4 +20,5 @@
 1、导入 sdk_code、uires、router、functionlibs 几个基础库
 2、复制项目级别的 build.gradle、components_app_build.gradle、config.gradle 到新项目
 3、复制 gradle.properties 配置内容到项目
-4、业务组件增加 apply from: "../components_app_build.gradle" 
+4、业务组件增加 apply from: "../components_app_build.gradle"
+5、app module build.gradle 和 manifest 文件参考 app module 进行修改 
