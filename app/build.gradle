@@ -16,7 +16,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.pandaq.pandamvp"
+        applicationId rootProject.ext.android["applicationId"]
         compileSdkVersion rootProject.ext.android["compileSdkVersion"]
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
@@ -107,12 +107,10 @@ dependencies {
 
     // 按需加载依赖业务 APP
     if (buildAll.toBoolean()) {
-        println "buildAll---》true"
         for (String name : allComponents.split(",")) {
             implementation(project(":$name"))
         }
     } else {
-        println "buildAll---》false"
         for (String name : loadComponents.split(",")) {
             if (!name.isEmpty()) {
                 implementation(project(":$name"))
