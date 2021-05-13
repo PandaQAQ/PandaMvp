@@ -1,9 +1,7 @@
-import com.google.gson.Gson
-
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'
 
 kapt {
     arguments {
@@ -67,6 +65,10 @@ android {
 //            shrinkResources false
 //            zipAlignEnabled false
         }
+
+        buildFeatures{
+            viewBinding true
+        }
     }
 
     sourceSets {
@@ -105,10 +107,12 @@ dependencies {
 
     // 按需加载依赖业务 APP
     if (buildAll.toBoolean()) {
+        println "buildAll---》true"
         for (String name : allComponents.split(",")) {
             implementation(project(":$name"))
         }
     } else {
+        println "buildAll---》false"
         for (String name : loadComponents.split(",")) {
             if (!name.isEmpty()) {
                 implementation(project(":$name"))

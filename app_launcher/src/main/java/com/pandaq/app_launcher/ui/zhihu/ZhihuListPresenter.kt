@@ -1,8 +1,7 @@
 package com.pandaq.app_launcher.ui.zhihu
 
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.pandaq.app_launcher.R
+import com.pandaq.app_launcher.databinding.LauncherItemZhihuBinding
 import com.pandaq.app_launcher.entites.Story
 import com.pandaq.app_launcher.entites.Zhihu
 import com.pandaq.app_launcher.framework.refresh.AppBaseRefreshPresenter
@@ -10,9 +9,9 @@ import com.pandaq.app_launcher.net.AppCallBack
 import com.pandaq.appcore.imageloader.core.PicLoader
 import com.pandaq.rxpanda.exception.ApiException
 import com.pandaq.rxpanda.transformer.RxScheduler
+import com.pandaq.uires.widget.recyclerview.BindingQuickAdapter
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
-import kotlinx.android.synthetic.main.launcher_item_zhihu.view.*
 
 /**
  * Created by huxinyu on 5/11/21.
@@ -22,18 +21,18 @@ import kotlinx.android.synthetic.main.launcher_item_zhihu.view.*
 class ZhihuListPresenter(view: IZhihuView) : AppBaseRefreshPresenter<IZhihuView>(view) {
 
     val zhihuAdapter by lazy {
-        return@lazy object : BaseQuickAdapter<Story, BaseViewHolder>(R.layout.launcher_item_zhihu) {
+        return@lazy object : BindingQuickAdapter<Story, LauncherItemZhihuBinding>() {
 
             init {
                 addChildClickViewIds(R.id.item_cardview)
             }
 
-            override fun convert(holder: BaseViewHolder, item: Story) {
-                holder.itemView.apply {
+            override fun convert(holder: BindingHolder<LauncherItemZhihuBinding>, item: Story) {
+                holder.binding.let {
                     PicLoader.with(context)
                             .load(item.images!![0])
-                            .into(this.news_image)
-                    this.news_title.text = item.title
+                            .into(it.newsImage)
+                    it.newsTitle.text = item.title
                 }
             }
         }

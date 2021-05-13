@@ -1,6 +1,8 @@
-include ':app', ':app_launcher',
+include ':app',
+        ':app_launcher',
         ':app_jetpack',
         ':app_bmodule',
+
         ':functionlibs:pay',
         ':router',
         ':sdk_core',

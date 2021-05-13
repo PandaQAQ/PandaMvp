@@ -4,10 +4,9 @@ import android.view.animation.AlphaAnimation
 import android.view.animation.Animation
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
-import com.pandaq.app_launcher.R
+import com.pandaq.app_launcher.databinding.LauncherActivityFlashBinding
 import com.pandaq.app_launcher.framework.AppBaseActivity
 import com.pandaq.router.routers.RouterPath
-import kotlinx.android.synthetic.main.launcher_activity_flash.*
 
 /**
  * Created by huxinyu on 2019/3/25.
@@ -15,9 +14,7 @@ import kotlinx.android.synthetic.main.launcher_activity_flash.*
  * Description :
  */
 @Route(path = RouterPath.LAUNCH_ACTIVITY_FLASH)
-class FlashActivity : AppBaseActivity<FlashPresenter>(), IFlashView {
-
-    override fun bindContentRes(): Int = R.layout.launcher_activity_flash
+class FlashActivity : AppBaseActivity<FlashPresenter,LauncherActivityFlashBinding>(), IFlashView {
 
     override fun initVariable() {
 
@@ -43,7 +40,7 @@ class FlashActivity : AppBaseActivity<FlashPresenter>(), IFlashView {
             }
 
         })
-        iv_flash.startAnimation(animator)
+        binding.ivFlash.startAnimation(animator)
     }
 
     override fun loadData() {

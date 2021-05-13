@@ -1,7 +1,6 @@
 package com.pandaq.app_launcher.ui.home
 
 import android.os.Environment
-import android.view.View
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.RecyclerView
@@ -12,6 +11,7 @@ import com.alibaba.android.arouter.launcher.ARouter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.pandaq.app_launcher.R
+import com.pandaq.app_launcher.databinding.LauncherActivityHomeBinding
 import com.pandaq.app_launcher.framework.AppBaseActivity
 import com.pandaq.app_launcher.framework.AppBasePresenter
 import com.pandaq.appcore.framework.app.ActivityTask
@@ -23,7 +23,6 @@ import com.pandaq.uires.html.HtmlNoTitleActivity
 import com.pandaq.uires.msgwindow.Toaster
 import com.pandaq.uires.utils.compileSize
 import com.pandaq.uires.widget.recyclerview.decoration.ItemDecoration
-import kotlinx.android.synthetic.main.launcher_activity_home.*
 import java.io.File
 import kotlin.system.exitProcess
 
@@ -33,7 +32,7 @@ import kotlin.system.exitProcess
  * Description :
  */
 @Route(path = RouterPath.LAUNCH_ACTIVITY_HOME)
-class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
+class HomeActivity : AppBaseActivity<AppBasePresenter<*>,LauncherActivityHomeBinding>() {
 
     private val adapter: BaseQuickAdapter<String, BaseViewHolder> by lazy {
         val adp = object : BaseQuickAdapter<String, BaseViewHolder>(R.layout.launcher_item_homepage) {
@@ -55,10 +54,6 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
 
     private lateinit var iconList: MutableList<Int>
 
-    override fun bindContentRes(): Int {
-        return R.layout.launcher_activity_home
-    }
-
     override fun initVariable() {
         iconList = mutableListOf()
         iconList.add(R.drawable.icon_panda_01)
@@ -71,22 +66,56 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
         iconList.add(R.drawable.icon_panda_08)
     }
 
+    override fun loadData() {
+        val list = arrayListOf<String>()
+        list.add("JetPack")
+        list.add("运行时权限")
+        list.add("WebView")
+        list.add("跳转 A Module ")
+        list.add("跳转 B Module")
+        list.add("测试按钮")
+        adapter.setNewData(list)
+        binding.refreshList.finishRefresh(true)
+    }
+
+    // 退出应用模板
+    override fun onBackPressed() {
+        MaterialDialog.Builder(this)
+                .title(R.string.dialog_title_notice)
+                .content("是否结束应用？")
+                .positiveText("结束")
+                .negativeText(R.string.text_cancel)
+                .positiveColor(resources.getColor(R.color.colorAccent))
+                .negativeColor(resources.getColor(R.color.colorAccent))
+                .onNegative { dialog, _ -> dialog.dismiss() }
+                .onPositive { dialog, _ ->
+                    dialog.dismiss()
+                    // 情况 activity 和 task 避免 exit 后创建新栈
+                    ActivityTask.getInstance().killAllActivity()
+                    finishAffinity()
+                    // 延迟退出避免动画未结束闪屏
+                    binding.clContainer.postDelayed({ exitProcess(0) }, 500)
+                }
+                .build()
+                .compileSize()
+                .show()
+    }
+
     override fun initView() {
-
         mToolbar?.showMenu("测试")
-        mToolbar?.setMenuClickListener(View.OnClickListener { Toaster.showSuccess("MenuClicked!") })
+        mToolbar?.setMenuClickListener { Toaster.showSuccess("MenuClicked!") }
 
-        refreshList.setLayoutManager(StaggeredGridLayoutManager(3, RecyclerView.VERTICAL))
-        refreshList.setAdapter(adapter)
-        refreshList.setOnRefreshListener {
+        binding.refreshList.setLayoutManager(StaggeredGridLayoutManager(3, RecyclerView.VERTICAL))
+        binding.refreshList.setAdapter(adapter)
+        binding.refreshList.setOnRefreshListener {
             loadData()
         }
-        refreshList.setEnableLoadMore(false)
+        binding.refreshList.setEnableLoadMore(false)
         val divider = ItemDecoration.Builder()
                 .space(DisplayUtils.dp2px(8f))
                 .spanCount(3)
                 .build()
-        refreshList.addItemDecoration(divider)
+        binding.refreshList.addItemDecoration(divider)
         adapter.setOnItemChildClickListener { adapter, _, position ->
             when (position) {
                 0 -> {
@@ -128,40 +157,5 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>>() {
                 }
             }
         }
-    }
-
-    override fun loadData() {
-        val list = arrayListOf<String>()
-        list.add("JetPack")
-        list.add("运行时权限")
-        list.add("WebView")
-        list.add("跳转 A Module ")
-        list.add("跳转 B Module")
-        list.add("测试按钮")
-        adapter.setNewData(list)
-        refreshList.finishRefresh(true)
-    }
-
-    // 退出应用模板
-    override fun onBackPressed() {
-        MaterialDialog.Builder(this)
-                .title(R.string.dialog_title_notice)
-                .content("是否结束应用？")
-                .positiveText("结束")
-                .negativeText(R.string.text_cancel)
-                .positiveColor(resources.getColor(R.color.colorAccent))
-                .negativeColor(resources.getColor(R.color.colorAccent))
-                .onNegative { dialog, _ -> dialog.dismiss() }
-                .onPositive { dialog, _ ->
-                    dialog.dismiss()
-                    // 情况 activity 和 task 避免 exit 后创建新栈
-                    ActivityTask.getInstance().killAllActivity()
-                    finishAffinity()
-                    // 延迟退出避免动画未结束闪屏
-                    cl_container.postDelayed({ exitProcess(0) }, 500)
-                }
-                .build()
-                .compileSize()
-                .show()
     }
 }

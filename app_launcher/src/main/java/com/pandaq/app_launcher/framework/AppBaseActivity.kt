@@ -1,5 +1,6 @@
 package com.pandaq.app_launcher.framework
 
+import androidx.viewbinding.ViewBinding
 import com.pandaq.uires.mvp.BaseActivity
 
 
@@ -9,6 +10,6 @@ import com.pandaq.uires.mvp.BaseActivity
  * <p>
  * Description :
  */
-abstract class AppBaseActivity<P : AppBasePresenter<*>> : BaseActivity<P>() {
+abstract class AppBaseActivity<P : AppBasePresenter<*>,VB: ViewBinding> : BaseActivity<P,VB>() {
 
 }

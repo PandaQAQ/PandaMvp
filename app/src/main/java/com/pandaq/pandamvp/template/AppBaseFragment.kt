@@ -1,5 +1,6 @@
 package com.pandaq.pandamvp.template
 
+import androidx.viewbinding.ViewBinding
 import com.pandaq.uires.mvp.BaseFragment
 
 /**
@@ -8,7 +9,7 @@ import com.pandaq.uires.mvp.BaseFragment
  * <p>
  * Description :
  */
-abstract class AppBaseFragment<P : AppBasePresenter<*>> : BaseFragment<P>() {
+abstract class AppBaseFragment<P : AppBasePresenter<*>,VB:ViewBinding> : BaseFragment<P,VB>() {
 
 
 }

@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleObserver
+import androidx.viewbinding.ViewBinding
 import com.pandaq.rxpanda.utils.CastUtils
 import java.lang.reflect.ParameterizedType
 
@@ -17,11 +18,14 @@ import java.lang.reflect.ParameterizedType
  * Description : 给出的模板基类,可选择继承此类实现 bindButterKnife（）方法使用 ButterKnife 绑定 UI
  * 也可完全自己写基类绑定 UI
  */
-abstract class CoreBaseFragment<P : BasePresenter<*>?> : Fragment(), IView {
+abstract class CoreBaseFragment<P : BasePresenter<*>?, VB : ViewBinding> : Fragment(), IView {
 
     protected var contentView: View? = null
 
     protected var mPresenter: P? = null
+
+    private var clazzVB: Class<VB>
+    protected lateinit var binding: VB
 
     init {
         val type = (this.javaClass.genericSuperclass as ParameterizedType)
@@ -40,6 +44,7 @@ abstract class CoreBaseFragment<P : BasePresenter<*>?> : Fragment(), IView {
         } else {
             null
         }
+        clazzVB = CastUtils.cast(typeArray[1])
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,8 +60,21 @@ abstract class CoreBaseFragment<P : BasePresenter<*>?> : Fragment(), IView {
         if (getContentRes() == 0) {
             throw RuntimeException("must binContentRes first !!!")
         }
-        contentView = inflater.inflate(getContentRes(), container, false)
-        return contentView
+        binding = inflateViewBinding(layoutInflater, container)
+        return if (getRootView() != null) {
+            val content = getRootView()
+            content?.addView(binding.root)
+            content
+        } else {
+            binding.root
+        }
+    }
+
+    /**
+     * 如果需要往给界面添加父布局则重写此方法
+     */
+    protected open fun getRootView(): ViewGroup? {
+        return null
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -123,5 +141,13 @@ abstract class CoreBaseFragment<P : BasePresenter<*>?> : Fragment(), IView {
         mPresenter?.let {
             lifecycle.removeObserver(it as LifecycleObserver)
         }
+    }
+
+    /**
+     * inflate
+     */
+    private fun inflateViewBinding(layoutInflater: LayoutInflater, container: ViewGroup?): VB {
+        return CastUtils.cast(clazzVB.getMethod("inflate", LayoutInflater::class.java, ViewGroup::class.java,
+                Boolean::class.java).invoke(null, layoutInflater, container, false))
     }
 }

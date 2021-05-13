@@ -1,29 +1,28 @@
 package com.pandaq.app_jetpack.app.ui.adapters
 
-import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.pandaq.app_jetpack.R
 import com.pandaq.app_jetpack.app.entity.Story
+import com.pandaq.app_jetpack.databinding.AItemZhihuBinding
 import com.pandaq.appcore.imageloader.core.PicLoader
-import kotlinx.android.synthetic.main.a_item_zhihu.view.*
+import com.pandaq.uires.widget.recyclerview.BindingQuickAdapter
 
 /**
  * Created by huxinyu on 2020/4/27.
  * Email : panda.h@foxmail.com
  * Description :
  */
-class ZhihuNewsAdapter : BaseQuickAdapter<Story, BaseViewHolder>(R.layout.a_item_zhihu) {
+class ZhihuNewsAdapter : BindingQuickAdapter<Story, AItemZhihuBinding>() {
 
     init {
         addChildClickViewIds(R.id.item_cardview)
     }
 
-    override fun convert(holder: BaseViewHolder, item: Story) {
-        holder.itemView.apply {
+    override fun convert(holder: BindingHolder<AItemZhihuBinding>, item: Story) {
+        holder.binding.let {
             PicLoader.with(context)
                     .load(item.images[0])
-                    .into(this.news_image)
-            this.news_title.text = item.title
+                    .into(it.newsImage)
+            it.newsTitle.text = item.title
         }
     }
 }

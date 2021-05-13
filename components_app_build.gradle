@@ -1,11 +1,13 @@
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-parcelize'
 
 kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.getName())
+        arg("AROUTER_GENERATE_DOC","enable")
+        includeCompileClasspath = true
     }
 }
 
@@ -21,6 +23,11 @@ android {
         testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
         multiDexEnabled true
     }
+
+    buildFeatures{
+        viewBinding true
+    }
+
     buildTypes {
         debug {
             buildConfigField "boolean", "LOG_DEBUG", "true"

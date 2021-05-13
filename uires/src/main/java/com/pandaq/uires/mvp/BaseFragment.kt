@@ -1,6 +1,10 @@
 package com.pandaq.uires.mvp
 
+import android.annotation.SuppressLint
+import android.view.LayoutInflater
+import android.view.ViewGroup
 import androidx.annotation.LayoutRes
+import androidx.viewbinding.ViewBinding
 import com.pandaq.appcore.framework.app.ActivityTask
 import com.pandaq.appcore.framework.mvp.BasePresenter
 import com.pandaq.appcore.framework.mvp.CoreBaseFragment
@@ -18,7 +22,7 @@ import com.pandaq.uires.stateview.StateLayout
  * <p>
  * Description :
  */
-abstract class BaseFragment<P : BasePresenter<*>> : CoreBaseFragment<P>() {
+abstract class BaseFragment<P : BasePresenter<*>,VB:ViewBinding> : CoreBaseFragment<P,VB>() {
 
     // 状态页
     protected var mStateLayout: StateLayout? = null
@@ -27,34 +31,38 @@ abstract class BaseFragment<P : BasePresenter<*>> : CoreBaseFragment<P>() {
         return false
     }
 
-    @LayoutRes
-    abstract fun bindContentRes(): Int
-
-
-    override fun getContentRes(): Int {
-        return if (showState()) {
-            R.layout.res_state_layout
-        } else {
-            bindContentRes()
+    @SuppressLint("InflateParams")
+    override fun getRootView(): ViewGroup? {
+        if (showState()){
+            return LayoutInflater.from(context).inflate(R.layout.res_state_layout,null) as ViewGroup?
         }
+        return super.getRootView()
     }
 
     override fun initStateLayout() {
         mStateLayout = contentView?.findViewById(R.id.res_state_layout)
-        mStateLayout?.let {
-            it.removeAllViews()
-            it.addView(layoutInflater.inflate(bindContentRes(), null, false))
-            initStateLayout(it)
-        }
+        mStateLayout?.setOnStateClickListener(object : DefaultStateClickListener {
+            override fun onEmptyClick() {
+                refreshWhenError()
+            }
+
+            override fun onErrorClick() {
+                refreshWhenError()
+            }
+
+            override fun onNetErrorClick() {
+                refreshWhenError()
+            }
+        })
     }
 
-    protected fun initStateLayout(stateLayout: StateLayout) {
-        if (mStateLayout == null) {
-            mStateLayout = stateLayout
-        } else {
+    protected  fun setStateLayout(stateLayout: StateLayout) {
+        if (mStateLayout != null && stateLayout != mStateLayout) {
             if (BuildConfig.DEBUG) {
-                throw IllegalStateException("StateLayout init twice")
+                throw IllegalStateException("StateLayout 初始化多次，检查是否布局文件使用 StateLayout 且，showState() 返回 true")
             }
+        } else {
+            mStateLayout = stateLayout
         }
         mStateLayout?.setOnStateClickListener(object : DefaultStateClickListener {
             override fun onEmptyClick() {

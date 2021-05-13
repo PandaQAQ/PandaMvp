@@ -1,15 +1,7 @@
 package com.pandaq.pandamvp.template
 
-import android.os.Bundle
-import android.view.View
-import androidx.appcompat.app.ActionBar
-import com.pandaq.appcore.framework.app.ActivityTask
-import com.pandaq.appcore.framework.mvp.CoreBaseActivity
-import com.pandaq.uires.R
-import com.pandaq.uires.loading.LoadingDialogUtil
-import com.pandaq.uires.msgwindow.Toaster
+import androidx.viewbinding.ViewBinding
 import com.pandaq.uires.mvp.BaseActivity
-import com.pandaq.uires.toolbar.CNToolbar
 
 
 /**
@@ -18,7 +10,7 @@ import com.pandaq.uires.toolbar.CNToolbar
  * <p>
  * Description :
  */
-abstract class AppBaseActivity<P : AppBasePresenter<*>> : BaseActivity<P>() {
+abstract class AppBaseActivity<P : AppBasePresenter<*>,VB: ViewBinding> : BaseActivity<P,VB>() {
 
 
 }

@@ -3,12 +3,17 @@ package com.pandaq.appcore.framework.mvp
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.view.WindowManager
 import android.widget.FrameLayout
 import androidx.annotation.LayoutRes
+import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleObserver
+import androidx.viewbinding.ViewBinding
 import com.pandaq.appcore.guide.GuideCoverView
 import com.pandaq.rxpanda.utils.CastUtils
 import java.lang.reflect.ParameterizedType
@@ -19,9 +24,8 @@ import java.lang.reflect.ParameterizedType
  *
  *
  * Description :给出的模板基类
- * 也可完全自己写基类绑定 UI
  */
-abstract class CoreBaseActivity<P : BasePresenter<*>> : AppCompatActivity(), IView {
+abstract class CoreBaseActivity<P : BasePresenter<*>, VB : ViewBinding> : AppCompatActivity(), IView {
 
     private var mParentView: FrameLayout? = null
 
@@ -31,6 +35,10 @@ abstract class CoreBaseActivity<P : BasePresenter<*>> : AppCompatActivity(), IVi
     protected var mGuideCoverView: GuideCoverView? = null
 
     protected var mPresenter: P? = null
+
+    private var clazzVB: Class<VB>
+
+    protected lateinit var binding: VB
 
     init {
         val type = (this.javaClass.genericSuperclass as ParameterizedType)
@@ -49,6 +57,7 @@ abstract class CoreBaseActivity<P : BasePresenter<*>> : AppCompatActivity(), IVi
         } else {
             null
         }
+        clazzVB = CastUtils.cast(typeArray[1])
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,18 +69,29 @@ abstract class CoreBaseActivity<P : BasePresenter<*>> : AppCompatActivity(), IVi
             lifecycle.addObserver(it as LifecycleObserver)
         }
         initVariable()
-        if (getContentRes() != 0) {
-            setContentView(getContentRes())
+        binding = inflateViewBinding(layoutInflater)
+        if (getRootView() != null) {
+            val content = getRootView()
+            content?.addView(binding.root)
+            setContentView(content)
         } else {
-            throw RuntimeException("must bindContentRes first!!!")
+            setContentView(binding.root)
         }
         // 如果是新手向导页则初始化向导载体图层
         if (showGuideCoverView()) {
             initGuide()
         }
         initToolbar()
+        initStateLayout()
         initView()
         loadData()
+    }
+
+    /**
+     * 如果需要往给界面添加父布局则重写此方法
+     */
+    protected open fun getRootView(): ViewGroup? {
+        return null
     }
 
     override fun onNewIntent(intent: Intent) {
@@ -110,14 +130,6 @@ abstract class CoreBaseActivity<P : BasePresenter<*>> : AppCompatActivity(), IVi
     }
 
     /**
-     * 绑定当前 BaseFragment 的 layout 资源 id
-     *
-     * @return layout 资源 id
-     */
-    @LayoutRes
-    protected abstract fun getContentRes(): Int
-
-    /**
      * 初始化属性参数值
      */
     protected abstract fun initVariable()
@@ -126,6 +138,11 @@ abstract class CoreBaseActivity<P : BasePresenter<*>> : AppCompatActivity(), IVi
      * 初始化 toolbar
      */
     protected abstract fun initToolbar()
+
+    /**
+     * 初始化加载状态 layout
+     */
+    protected abstract fun initStateLayout()
 
     /**
      * 初始化 View 视图
@@ -145,7 +162,8 @@ abstract class CoreBaseActivity<P : BasePresenter<*>> : AppCompatActivity(), IVi
      * @param to          即将显示的 fragment
      * @return 切换后的 currentFragment
      */
-    protected fun switchFragment(containerId: Int, from: Fragment?, to: Fragment): Fragment {
+    protected fun switchFragment(containerId: Int, @Nullable from: Fragment?, to: Fragment):
+            Fragment {
         val manager = supportFragmentManager
         val transaction = manager.beginTransaction()
         if (to.isAdded) {
@@ -168,5 +186,13 @@ abstract class CoreBaseActivity<P : BasePresenter<*>> : AppCompatActivity(), IVi
         mPresenter?.let {
             lifecycle.removeObserver(it as LifecycleObserver)
         }
+    }
+
+    /**
+     * inflate
+     */
+    private fun inflateViewBinding(layoutInflater: LayoutInflater): VB {
+        return CastUtils.cast(clazzVB.getMethod("inflate", LayoutInflater::class.java).invoke(null,
+                layoutInflater))
     }
 }
