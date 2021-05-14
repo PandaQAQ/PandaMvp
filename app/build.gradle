@@ -52,23 +52,22 @@ android {
     }
 
     buildTypes {
-
         release {
-//            minifyEnabled true
-//            shrinkResources true
-//            zipAlignEnabled true
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
-        debug {
-//            minifyEnabled false
-//            shrinkResources false
-//            zipAlignEnabled false
+        appTest {
+            signingConfig signingConfigs.debug
         }
 
-        buildFeatures{
-            viewBinding true
+        debug {
+            signingConfig signingConfigs.debug
         }
+    }
+
+    buildFeatures{
+        viewBinding true
     }
 
     sourceSets {
@@ -79,14 +78,9 @@ android {
     }
 
     applicationVariants.all { variant ->
-        println variant.getPackageApplicationProvider()
-//                .get()
-//                .outputScope
-//                .apkDatas
-//                .forEach {
-//                    apkData ->
-//                        apkData.outputFileName = "app_v${variant.versionName}_${variant.versionCode}.apk"
-//                }
+        variant.outputs.all {
+            output -> outputFileName = "app_v${variant.versionName}_${variant.versionCode}.apk"
+        }
     }
 }
 

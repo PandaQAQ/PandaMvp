@@ -20,9 +20,18 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
-            consumerProguardFiles 'proguard-rules.pro'
-//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("String","API",BASE_URL_RELEASE)
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        appTest {
+            buildConfigField("String","API",BASE_URL_TEST)
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            buildConfigField("String","API",BASE_URL_DEV)
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
     compileOptions {

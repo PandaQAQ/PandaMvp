@@ -6,7 +6,7 @@ apply plugin: 'kotlin-parcelize'
 kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.getName())
-        arg("AROUTER_GENERATE_DOC","enable")
+        arg("AROUTER_GENERATE_DOC", "enable")
         includeCompileClasspath = true
     }
 }
@@ -24,24 +24,21 @@ android {
         multiDexEnabled true
     }
 
-    buildFeatures{
+    buildFeatures {
         viewBinding true
     }
 
     buildTypes {
-        debug {
-            buildConfigField "boolean", "LOG_DEBUG", "true"
-            buildConfigField "boolean", "USE_CANARY", "true"
-            minifyEnabled false
-            consumerProguardFiles 'proguard-rules.pro'
+        release {
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
-        release {
-            buildConfigField "boolean", "LOG_DEBUG", "false"
-            buildConfigField "boolean", "USE_CANARY", "false"
-            minifyEnabled true
-            zipAlignEnabled true
-            consumerProguardFiles 'proguard-rules.pro'
+        appTest {
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 
