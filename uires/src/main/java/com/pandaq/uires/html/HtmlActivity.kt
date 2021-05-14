@@ -40,7 +40,7 @@ class HtmlActivity : BaseActivity<BasePresenter<*>, ActivityHtmlBinding>() {
 
     override fun initVariable() {
         title = intent.getStringExtra("title")
-        url = intent.getStringExtra("URL")
+        url = intent.getStringExtra("URL").toString()
     }
 
     override fun initToolbar() {

@@ -20,7 +20,11 @@ class MainActivity : BaseActivity<BasePresenter<*>, BActivityMainBinding>() {
 
     }
 
-    override fun initView(binding: BActivityMainBinding) {
+    override fun loadData() {
+
+    }
+
+    override fun initView() {
         binding.let {
             it.tvContent.setOnClickListener {
                 val xpopup = XPopup.Builder(this).asCustom(UpdatePopup(this, "a"))
@@ -51,9 +55,5 @@ class MainActivity : BaseActivity<BasePresenter<*>, BActivityMainBinding>() {
                         })
             }
         }
-    }
-
-    override fun loadData() {
-
     }
 }

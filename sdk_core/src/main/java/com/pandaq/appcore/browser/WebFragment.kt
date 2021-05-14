@@ -50,7 +50,9 @@ class WebFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        webView?.loadUrl(url, headers)
+        url?.let {
+            webView?.loadUrl(it, headers)
+        }
     }
 
     override fun onDestroyView() {

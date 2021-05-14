@@ -17,7 +17,7 @@ class NetWorkUtils {
             val networks = manager.allNetworks
             networks.forEach {
                 val info = manager.getNetworkInfo(it)
-                return info.isConnected
+                return info?.isConnected ?: false
             }
             return false
         }

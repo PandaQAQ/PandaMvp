@@ -1,6 +1,7 @@
 package com.pandaq.appcore.framework.mvp
 
 import android.util.Log
+import androidx.annotation.Nullable
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
@@ -13,7 +14,7 @@ import io.reactivex.disposables.Disposable
  * Email : panda.h@foxmail.com
  * Description :BasePresenter 实现类基类模板,可直接 module 中继承重写生命周期函数
  */
-abstract class BasePresenter<V : IView>(protected val mView: V?) : LifecycleObserver {
+abstract class BasePresenter<V : IView?>(@Nullable val mView: V?) : LifecycleObserver {
 
     //将所有正在处理的Subscription都添加到CompositeSubscription中。统一退出的时候注销观察
     private var mCompositeDisposable: CompositeDisposable? = null
