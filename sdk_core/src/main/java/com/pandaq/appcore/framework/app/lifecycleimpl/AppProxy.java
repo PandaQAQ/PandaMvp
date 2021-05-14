@@ -2,10 +2,12 @@ package com.pandaq.appcore.framework.app.lifecycleimpl;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentManager;
 
+import com.pandaq.appcore.BuildConfig;
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
 import com.pandaq.appcore.framework.app.lifecycle.ILifecycleInjector;
 import com.pandaq.appcore.framework.app.lifecycle.ManifestParser;
@@ -13,6 +15,7 @@ import com.pandaq.appcore.utils.log.PLogger;
 import com.pandaq.appcore.utils.system.AppUtils;
 import com.pandaq.rxpanda.RxPanda;
 import com.pandaq.rxpanda.interceptor.ParamsInterceptor;
+import com.pandaq.rxpanda.log.HttpLoggingInterceptor;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +53,8 @@ public class AppProxy implements IAppLifeCycle {
         RxJavaPlugins.setErrorHandler(PLogger::e);
 
         RxPanda.globalConfig()
-                .trustAllHost(true);
+                .interceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .trustAllHost(true).baseUrl(BuildConfig.API);
     }
 
     @Override
