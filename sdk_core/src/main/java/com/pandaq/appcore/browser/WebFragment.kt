@@ -7,14 +7,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
-import android.webkit.WebSettings
-import android.widget.LinearLayout
+import android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
 import androidx.fragment.app.Fragment
-import com.pandaq.appcore.R
 import com.pandaq.appcore.browser.bridge.BridgeData
 import com.pandaq.appcore.browser.bridge.JavaScriptApis
 import com.pandaq.appcore.utils.CameraUtils
 import com.pandaq.appcore.utils.system.AppUtils
+import com.tencent.smtt.sdk.WebSettings
 
 
 /**
@@ -42,7 +41,7 @@ class WebFragment : Fragment() {
         webView?.settings?.loadWithOverviewMode = true
         webView?.settings?.javaScriptEnabled = true
         webView?.settings?.domStorageEnabled = true
-        webView?.settings?.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+        webView?.settings?.mixedContentMode = MIXED_CONTENT_ALWAYS_ALLOW
         webView?.isVerticalScrollBarEnabled = false
         webView?.isHorizontalScrollBarEnabled = false
         return webView

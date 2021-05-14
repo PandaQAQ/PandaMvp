@@ -4,16 +4,16 @@ import android.content.Context
 import android.os.Build
 import android.util.AttributeSet
 import android.view.View
-import android.webkit.WebChromeClient
-import android.webkit.WebResourceRequest
-import android.webkit.WebView
-import android.webkit.WebViewClient
 import android.widget.ProgressBar
 import com.pandaq.appcore.BuildConfig
 import com.pandaq.appcore.R
 import com.pandaq.appcore.browser.bridge.BridgeData
 import com.pandaq.appcore.browser.bridge.JavaScriptApis
 import com.pandaq.rxpanda.utils.GsonUtil
+import com.tencent.smtt.export.external.interfaces.WebResourceRequest
+import com.tencent.smtt.sdk.WebChromeClient
+import com.tencent.smtt.sdk.WebView
+import com.tencent.smtt.sdk.WebViewClient
 
 /**
  * Created by PandaQ on 2017/6/29.
@@ -26,7 +26,7 @@ class ProcessWebView @JvmOverloads constructor(context: Context, attrs: Attribut
     }
 
     init {
-        mProgressBar.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, 10, 0, 0)
+        mProgressBar.layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, 10)
         val drawable = context.resources.getDrawable(R.drawable.core_webview_process_state, null)
         mProgressBar.progressDrawable = drawable
         addView(mProgressBar)
