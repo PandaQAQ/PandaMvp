@@ -36,7 +36,7 @@ class HtmlNoTitleActivity : BaseActivity<BasePresenter<*>, ActivityHtmlBinding>(
     }
 
     override fun initVariable() {
-        url = intent.getStringExtra("URL")
+        url = intent.getStringExtra("URL").toString()
     }
 
     override fun initView() {

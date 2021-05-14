@@ -80,7 +80,7 @@ class ProcessWebView @JvmOverloads constructor(context: Context, attrs: Attribut
     }
 
     override fun canGoBack(): Boolean {
-        return super.canGoBack() && !url.contains("homepage")
+        return super.canGoBack() && !url!!.contains("homepage")
     }
 
 }

@@ -24,7 +24,7 @@ open class TextClickSpan(click: SpanClickListener, spanStr: String = "") : Click
     private var mSpanStr: String = spanStr
 
 
-    override fun onClick(widget: View?) {
+    override fun onClick(widget: View) {
         mClickListener?.onClick(mSpanStr, widget)
     }
 
