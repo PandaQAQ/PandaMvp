@@ -15,6 +15,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleObserver
 import androidx.viewbinding.ViewBinding
 import com.pandaq.appcore.guide.GuideCoverView
+import com.pandaq.appcore.utils.log.PLogger
 import com.pandaq.rxpanda.utils.CastUtils
 import java.lang.reflect.ParameterizedType
 
@@ -25,7 +26,8 @@ import java.lang.reflect.ParameterizedType
  *
  * Description :给出的模板基类
  */
-abstract class CoreBaseActivity<P : BasePresenter<*>, VB : ViewBinding> : AppCompatActivity(), IView {
+abstract class CoreBaseActivity<P : BasePresenter<*>, VB : ViewBinding> : AppCompatActivity(),
+        IView {
 
     private var mParentView: FrameLayout? = null
 
@@ -53,10 +55,15 @@ abstract class CoreBaseActivity<P : BasePresenter<*>, VB : ViewBinding> : AppCom
         }
         mPresenter = if (clazzV != null) {
             val clazzP: Class<P> = CastUtils.cast(typeArray[0])
-            clazzP.getConstructor(clazzV).newInstance(this)
+            clazzP.getConstructor().newInstance()
         } else {
+            PLogger.e(
+                    "MVPCore::",
+                    "${this::class.java.simpleName} 必须实现对应 Presenter<V> 的泛型接口 V！！！"
+            )
             null
         }
+        mPresenter?.attachView(this)
         clazzVB = CastUtils.cast(typeArray[1])
     }
 
@@ -192,7 +199,11 @@ abstract class CoreBaseActivity<P : BasePresenter<*>, VB : ViewBinding> : AppCom
      * inflate
      */
     private fun inflateViewBinding(layoutInflater: LayoutInflater): VB {
-        return CastUtils.cast(clazzVB.getMethod("inflate", LayoutInflater::class.java).invoke(null,
-                layoutInflater))
+        return CastUtils.cast(
+                clazzVB.getMethod("inflate", LayoutInflater::class.java).invoke(
+                        null,
+                        layoutInflater
+                )
+        )
     }
 }

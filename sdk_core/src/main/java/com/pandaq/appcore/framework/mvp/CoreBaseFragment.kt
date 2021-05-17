@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleObserver
 import androidx.viewbinding.ViewBinding
+import com.pandaq.appcore.utils.log.PLogger
 import com.pandaq.rxpanda.utils.CastUtils
 import java.lang.reflect.ParameterizedType
 
@@ -25,6 +26,7 @@ abstract class CoreBaseFragment<P : BasePresenter<*>?, VB : ViewBinding> : Fragm
     protected var mPresenter: P? = null
 
     private var clazzVB: Class<VB>
+
     protected lateinit var binding: VB
 
     init {
@@ -40,10 +42,15 @@ abstract class CoreBaseFragment<P : BasePresenter<*>?, VB : ViewBinding> : Fragm
         }
         mPresenter = if (clazzV != null) {
             val clazzP: Class<P> = CastUtils.cast(typeArray[0])
-            clazzP.getConstructor(clazzV).newInstance(this)
+            clazzP.getConstructor().newInstance()
         } else {
+            PLogger.e(
+                    "MVPCore::",
+                    "${this::class.java.simpleName} 必须实现对应 Presenter<V> 的泛型接口 V！！！"
+            )
             null
         }
+        mPresenter?.attachView(this)
         clazzVB = CastUtils.cast(typeArray[1])
     }
 
@@ -57,9 +64,6 @@ abstract class CoreBaseFragment<P : BasePresenter<*>?, VB : ViewBinding> : Fragm
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View? {
-        if (getContentRes() == 0) {
-            throw RuntimeException("must binContentRes first !!!")
-        }
         binding = inflateViewBinding(layoutInflater, container)
         return if (getRootView() != null) {
             val content = getRootView()
@@ -88,13 +92,6 @@ abstract class CoreBaseFragment<P : BasePresenter<*>?, VB : ViewBinding> : Fragm
      * 初始化加载状态 layout
      */
     protected abstract fun initStateLayout()
-
-    /**
-     * 绑定当前 BaseFragment 的 layout 资源 id
-     *
-     * @return layout 资源 id
-     */
-    protected abstract fun getContentRes(): Int
 
     /**
      * 初始化属性参数值
