@@ -8,6 +8,6 @@ import com.pandaq.pandamvp.template.AppBasePresenter
  * Email : panda.h@foxmail.com
  * Description :
  */
-class AppBaseRefreshPresenter<V:IListVIew>(v:V): AppBasePresenter<V>(v) {
+class AppBaseRefreshPresenter<V:IListVIew>: AppBasePresenter<V>() {
 
 }

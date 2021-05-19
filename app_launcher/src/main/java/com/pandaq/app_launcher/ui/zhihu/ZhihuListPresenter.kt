@@ -18,7 +18,7 @@ import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
  * Email : panda.h@foxmail.com
  * Description :
  */
-class ZhihuListPresenter(view: IZhihuView) : AppBaseRefreshPresenter<IZhihuView>(view) {
+class ZhihuListPresenter : AppBaseRefreshPresenter<IZhihuView>() {
 
     val zhihuAdapter by lazy {
         return@lazy object : BindingQuickAdapter<Story, LauncherItemZhihuBinding>() {

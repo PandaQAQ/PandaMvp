@@ -7,6 +7,6 @@ import com.pandaq.app_launcher.framework.AppBasePresenter
  * Email : panda.h@foxmail.com
  * Description :
  */
-class FlashPresenter(view: IFlashView) : AppBasePresenter<IFlashView>(view) {
+class FlashPresenter : AppBasePresenter<IFlashView>() {
 
 }

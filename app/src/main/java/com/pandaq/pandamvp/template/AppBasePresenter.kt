@@ -10,7 +10,7 @@ import com.pandaq.rxpanda.exception.ApiException
  * <p>
  * Description :
  */
-open class AppBasePresenter<V : IView>(view: V) : BasePresenter<V>(view) {
+open class AppBasePresenter<V : IView> : BasePresenter<V>() {
 
     override fun handelError(showErrorPage: Boolean, e: ApiException?) {
         super.handelError(showErrorPage, e)
