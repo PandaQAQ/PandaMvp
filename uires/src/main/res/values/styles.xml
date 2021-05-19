@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
+
     <style name="DefaultCheckbox" parent="BaseAppTheme">
         <item name="colorControlNormal">@color/colorNegative</item>
         <item name="colorControlActivated">?attr/colorPrimary</item>
@@ -7,6 +8,9 @@
     <!--全屏无标题-->
     <style name="FullScreenNoTitleTheme" parent="NoActionBarTheme" tools:ignore="ResourceName">
         <item name="android:windowFullscreen">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
     </style>
 
     <!--    Dialog弹窗相关-->
