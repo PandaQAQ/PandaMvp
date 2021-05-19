@@ -32,7 +32,7 @@ import kotlin.system.exitProcess
  * Description :
  */
 @Route(path = RouterPath.LAUNCH_ACTIVITY_HOME)
-class HomeActivity : AppBaseActivity<AppBasePresenter<*>,LauncherActivityHomeBinding>() {
+class HomeActivity : AppBaseActivity<AppBasePresenter<*>, LauncherActivityHomeBinding>() {
 
     private val adapter: BaseQuickAdapter<String, BaseViewHolder> by lazy {
         val adp = object : BaseQuickAdapter<String, BaseViewHolder>(R.layout.launcher_item_homepage) {
@@ -75,7 +75,9 @@ class HomeActivity : AppBaseActivity<AppBasePresenter<*>,LauncherActivityHomeBin
         list.add("跳转 B Module")
         list.add("测试按钮")
         adapter.setNewData(list)
-        binding.refreshList.finishRefresh(true)
+        binding.refreshList.postDelayed({
+            binding.refreshList.finishRefresh(true)
+        }, 5000)
     }
 
     // 退出应用模板

@@ -9,5 +9,4 @@ import com.pandaq.appcore.framework.mvp.IListVIew
  */
 interface IZhihuView : IListVIew {
 
-
 }

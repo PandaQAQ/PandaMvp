@@ -17,7 +17,7 @@ import io.reactivex.disposables.Disposable
  */
 abstract class BasePresenter<V : IView> : LifecycleObserver {
 
-    private var mView: V? = null
+    protected var mView: V? = null
 
     //将所有正在处理的Subscription都添加到CompositeSubscription中。统一退出的时候注销观察
     private var mCompositeDisposable: CompositeDisposable? = null

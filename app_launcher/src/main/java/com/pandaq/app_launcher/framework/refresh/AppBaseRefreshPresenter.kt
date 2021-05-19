@@ -8,8 +8,6 @@ import com.pandaq.appcore.framework.mvp.IListVIew
  * Email : panda.h@foxmail.com
  * Description :
  */
-open class AppBaseRefreshPresenter<V:IListVIew>(v:V): AppBasePresenter<V>(v) {
-
-
+open class AppBaseRefreshPresenter<V:IListVIew>: AppBasePresenter<V>() {
 
 }

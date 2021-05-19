@@ -2,6 +2,7 @@ package com.pandaq.uires.widget.recyclerview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.pandaq.uires.R;
 import com.pandaq.uires.widget.recyclerview.loadfooter.PandaFooter;
+import com.pandaq.uires.widget.recyclerview.loadfooter.PandaHeader;
 import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshFooter;
@@ -63,12 +65,12 @@ public class RefreshRecyclerView extends FrameLayout {
         mRefreshLayout = findViewById(R.id.srl_refresh);
         mRecyclerView = findViewById(R.id.rv_recycle_list);
 
-        MaterialHeader header = new MaterialHeader(getContext());
-        header.setColorSchemeColors(
-                getResources().getColor(R.color.res_color_refresh_header1),
-                getResources().getColor(R.color.res_color_refresh_header2),
-                getResources().getColor(R.color.res_color_refresh_header3));
-        mRefreshLayout.setRefreshHeader(header);
+//        MaterialHeader header = new MaterialHeader(getContext());
+//        header.setColorSchemeColors(
+//                getResources().getColor(R.color.res_color_refresh_header1),
+//                getResources().getColor(R.color.res_color_refresh_header2),
+//                getResources().getColor(R.color.res_color_refresh_header3));
+        mRefreshLayout.setRefreshHeader(new PandaHeader(getContext()));
         ClassicsFooter footer = new ClassicsFooter(getContext());
         mRefreshLayout.setRefreshFooter(footer);
         //禁用 smartrefreshlayout 的自动加载，交给外部监听处理
