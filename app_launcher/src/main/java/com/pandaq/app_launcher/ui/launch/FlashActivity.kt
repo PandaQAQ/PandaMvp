@@ -14,10 +14,14 @@ import com.pandaq.router.routers.RouterPath
  * Description :
  */
 @Route(path = RouterPath.LAUNCH_ACTIVITY_FLASH)
-class FlashActivity : AppBaseActivity<FlashPresenter,LauncherActivityFlashBinding>(), IFlashView {
+class FlashActivity : AppBaseActivity<FlashPresenter, LauncherActivityFlashBinding>(), IFlashView {
 
     override fun initVariable() {
 
+    }
+
+    override fun fullScreen(): Boolean {
+        return true
     }
 
     override fun initView() {

@@ -1,19 +1,17 @@
 package com.pandaq.appcore.framework.mvp
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.view.WindowManager
+import android.view.*
 import android.widget.FrameLayout
-import androidx.annotation.LayoutRes
 import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleObserver
 import androidx.viewbinding.ViewBinding
+import com.pandaq.appcore.R
 import com.pandaq.appcore.guide.GuideCoverView
 import com.pandaq.appcore.utils.log.PLogger
 import com.pandaq.rxpanda.utils.CastUtils
@@ -26,8 +24,7 @@ import java.lang.reflect.ParameterizedType
  *
  * Description :给出的模板基类
  */
-abstract class CoreBaseActivity<P : BasePresenter<*>, VB : ViewBinding> : AppCompatActivity(),
-        IView {
+abstract class CoreBaseActivity<P : BasePresenter<*>, VB : ViewBinding> : AppCompatActivity(), IView {
 
     private var mParentView: FrameLayout? = null
 
@@ -69,9 +66,11 @@ abstract class CoreBaseActivity<P : BasePresenter<*>, VB : ViewBinding> : AppCom
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        if (isTransStatus()) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        }
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        // Translucent status bar
+        window.statusBarColor = resources.getColor(R.color.toolbarBackground)
+        // Translucent navigation bar
+        window.navigationBarColor = Color.TRANSPARENT
         mPresenter?.let {
             lifecycle.addObserver(it as LifecycleObserver)
         }
@@ -113,7 +112,7 @@ abstract class CoreBaseActivity<P : BasePresenter<*>, VB : ViewBinding> : AppCom
     /**
      * 是否为透明状态栏界面
      */
-    protected open fun isTransStatus(): Boolean {
+    protected open fun fullScreen(): Boolean {
         return false
     }
 

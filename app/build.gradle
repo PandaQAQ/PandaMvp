@@ -58,6 +58,7 @@ android {
         }
 
         appTest {
+            debuggable true
             signingConfig signingConfigs.debug
         }
 
