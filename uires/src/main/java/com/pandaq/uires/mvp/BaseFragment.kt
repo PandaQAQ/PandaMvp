@@ -9,6 +9,7 @@ import com.pandaq.appcore.framework.app.ActivityTask
 import com.pandaq.appcore.framework.mvp.BasePresenter
 import com.pandaq.appcore.framework.mvp.CoreBaseFragment
 import com.pandaq.appcore.utils.NetWorkUtils
+import com.pandaq.appcore.utils.log.PLogger
 import com.pandaq.uires.BuildConfig
 import com.pandaq.uires.R
 import com.pandaq.uires.loading.LoadingDialogUtil
@@ -22,7 +23,7 @@ import com.pandaq.uires.stateview.StateLayout
  * <p>
  * Description :
  */
-abstract class BaseFragment<P : BasePresenter<*>,VB:ViewBinding> : CoreBaseFragment<P,VB>() {
+abstract class BaseFragment<P : BasePresenter<*>, VB : ViewBinding> : CoreBaseFragment<P, VB>() {
 
     // 状态页
     protected var mStateLayout: StateLayout? = null
@@ -33,8 +34,8 @@ abstract class BaseFragment<P : BasePresenter<*>,VB:ViewBinding> : CoreBaseFragm
 
     @SuppressLint("InflateParams")
     override fun getRootView(): ViewGroup? {
-        if (showState()){
-            return LayoutInflater.from(context).inflate(R.layout.res_state_layout,null) as ViewGroup?
+        if (showState()) {
+            return LayoutInflater.from(context).inflate(R.layout.res_state_layout, null) as ViewGroup?
         }
         return super.getRootView()
     }
@@ -56,7 +57,7 @@ abstract class BaseFragment<P : BasePresenter<*>,VB:ViewBinding> : CoreBaseFragm
         })
     }
 
-    protected  fun setStateLayout(stateLayout: StateLayout) {
+    protected fun setStateLayout(stateLayout: StateLayout) {
         if (mStateLayout != null && stateLayout != mStateLayout) {
             if (BuildConfig.DEBUG) {
                 throw IllegalStateException("StateLayout 初始化多次，检查是否布局文件使用 StateLayout 且，showState() 返回 true")
@@ -100,9 +101,9 @@ abstract class BaseFragment<P : BasePresenter<*>,VB:ViewBinding> : CoreBaseFragm
             LoadingDialogUtil.hideProgressQuick()
         }
         if (showErrorPage) {
-            if (NetWorkUtils.isNetworkConnected()){
+            if (NetWorkUtils.isNetworkConnected()) {
                 mStateLayout?.showNetError()
-            }else{
+            } else {
                 mStateLayout?.showError()
             }
         } else {
@@ -131,5 +132,14 @@ abstract class BaseFragment<P : BasePresenter<*>,VB:ViewBinding> : CoreBaseFragm
             LoadingDialogUtil.hideProgressQuick()
         }
         mStateLayout?.showContent()
+    }
+
+    fun finish() {
+        if (activity is FragmentStackActivity<*, *>) {
+            val parentActivity = activity as FragmentStackActivity<*, *>
+            parentActivity.popFragment(this)
+        } else {
+            PLogger.w("Activity not support finish Fragment")
+        }
     }
 }
