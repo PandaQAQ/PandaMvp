@@ -25,6 +25,21 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/core_permission_file_path"/>
         </provider>
+
+        <provider
+            android:authorities="${applicationId}.provider"
+            android:name="com.tencent.smtt.utils.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/core_permission_file_path" />
+        </provider>
+
+        <service
+            android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"
+            android:label="dexopt"
+            android:process=":dexopt" />
     </application>
 </manifest>
 
