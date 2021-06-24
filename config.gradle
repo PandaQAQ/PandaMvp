@@ -98,7 +98,7 @@ ext {
             "material-dialogs-common"  : 'com.afollestad.material-dialogs:commons:0.9.1.0',
 
             // x5 浏览服务
-            "x5browser"                : "com.tencent.tbs.tbssdk:sdk:43697",
+            "x5browser"                : "com.tencent.tbs.tbssdk:sdk:43939",
 
             // 网络库
             "rxpanda"                  : "com.pandaq:rxpanda:1.0.4",
