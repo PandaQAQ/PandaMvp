@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/res_colorTrans"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp">
+
+    <TextView
+        android:id="@+id/tv_marquee_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:background="@drawable/res_stoke_red_round_4"
+        android:gravity="center"
+        android:minWidth="@dimen/res_dp_48"
+        android:textColor="@color/btn_red_normal" />
+
+    <TextView
+        android:id="@+id/tv_marquee_item"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:gravity="center_vertical"
+        android:singleLine="true"
+        android:textColor="@color/res_colorWhite"
+        android:textSize="14sp" />
+</LinearLayout>

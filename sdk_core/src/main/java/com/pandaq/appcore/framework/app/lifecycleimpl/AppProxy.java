@@ -73,7 +73,9 @@ public class AppProxy implements IAppLifeCycle {
         // 配置网络
         RxPanda.globalConfig()
                 .interceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                .trustAllHost(true).baseUrl(BuildConfig.API);
+                .trustAllHost(true)
+                .baseUrl(BuildConfig.API)
+                .debug(BuildConfig.DEBUG);
         //配置 X5 浏览服务
         // tbs 配置
         QbSdk.setDownloadWithoutWifi(true);
@@ -90,10 +92,10 @@ public class AppProxy implements IAppLifeCycle {
 
             @Override
             public void onDownloadProgress(int i) {
-                PLogger.d("QbSdk","下载 "+i+ " %");
+                PLogger.d("QbSdk", "下载 " + i + " %");
             }
         });
-        QbSdk.initX5Environment(AppUtils.getContext(),null);
+        QbSdk.initX5Environment(AppUtils.getContext(), null);
         HashMap<String, Object> setting = new HashMap<>();
         setting.put(TbsCoreSettings.TBS_SETTINGS_USE_SPEEDY_CLASSLOADER, true);
         setting.put(TbsCoreSettings.TBS_SETTINGS_USE_DEXLOADER_SERVICE, true);
