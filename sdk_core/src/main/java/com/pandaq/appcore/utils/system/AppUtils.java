@@ -2,9 +2,9 @@ package com.pandaq.appcore.utils.system;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
-import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -30,18 +30,26 @@ public class AppUtils {
         // private constructor
     }
 
-    public static AppUtils instance;
+    private AppUtils(Application context) {
+        preferences = AppUtils.getContext().getSharedPreferences(
+                AppUtils.getContext().getPackageName(),
+                Context.MODE_PRIVATE
+        );
+        this.appContext = context;
+    }
+
+    public static SharedPreferences preferences;
+    private static AppUtils instance;
     private Application appContext;
 
     public static void init(Application appContext) {
         synchronized (AppUtils.class) {
             if (instance == null) {
                 synchronized (AppUtils.class) {
-                    instance = new AppUtils();
+                    instance = new AppUtils(appContext);
                 }
             }
         }
-        instance.setApplicationContext(appContext);
     }
 
     /**
@@ -50,10 +58,6 @@ public class AppUtils {
     public static void release() {
         instance.appContext = null;
         instance = null;
-    }
-
-    private void setApplicationContext(Application applicationContext) {
-        this.appContext = applicationContext;
     }
 
     public static Context getContext() {
