@@ -97,8 +97,8 @@ dependencies {
 
     kapt rootProject.ext.dependencies["arouter_compiler"]
 
-    // 支付模块
-    implementation(project(':functionlibs:pay'))
+    // 二维码模块
+    implementation(project(':functionlibs:lib-zxing'))
 
     // 按需加载依赖业务 APP
     if (buildAll.toBoolean()) {
