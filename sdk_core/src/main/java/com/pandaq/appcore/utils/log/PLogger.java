@@ -70,7 +70,7 @@ public class PLogger {
     public static void e(String tag, String message) {
         // Throwable instance must be created before any methods
         getMethodNames(new Throwable().getStackTrace());
-        logErr(tag, createLog(message));
+        logErr(tag, message);
     }
 
     private static void logErr(String tag, String message) {
@@ -85,7 +85,7 @@ public class PLogger {
 
     public static void i(String tag, String message) {
         getMethodNames(new Throwable().getStackTrace());
-        logI(tag, createLog(message));
+        logI(tag, message);
     }
 
     private static void logI(String tag, String message) {
@@ -100,7 +100,7 @@ public class PLogger {
 
     public static void d(String tag, String message) {
         getMethodNames(new Throwable().getStackTrace());
-        logD(tag, createLog(message));
+        logD(tag, message);
     }
 
     private static void logD(String tag, String message) {
@@ -115,7 +115,7 @@ public class PLogger {
 
     public static void v(String tag, String message) {
         getMethodNames(new Throwable().getStackTrace());
-        logV(tag, createLog(message));
+        logV(tag, message);
     }
 
     private static void logV(String tag, String message) {
@@ -130,7 +130,7 @@ public class PLogger {
 
     public static void w(String tag, String message) {
         getMethodNames(new Throwable().getStackTrace());
-        logW(tag, createLog(message));
+        logW(tag, message);
     }
 
     private static void logW(String tag, String message) {
@@ -145,7 +145,7 @@ public class PLogger {
 
     public static void wtf(String tag, String message) {
         getMethodNames(new Throwable().getStackTrace());
-        logWtf(tag, createLog(message));
+        logWtf(tag, message);
     }
 
     private static void logWtf(String tag, String message) {

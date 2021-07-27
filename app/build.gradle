@@ -99,6 +99,7 @@ dependencies {
 
     // 二维码模块
     implementation(project(':functionlibs:lib-zxing'))
+    implementation(project(':functionlibs:pay'))
 
     // 按需加载依赖业务 APP
     if (buildAll.toBoolean()) {

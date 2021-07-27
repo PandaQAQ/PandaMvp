@@ -8,8 +8,6 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Vibrator;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
@@ -27,6 +25,9 @@ import com.uuzuche.lib_zxing.view.ViewfinderView;
 
 import java.io.IOException;
 import java.util.Vector;
+
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 
 /**
  * 自定义实现的扫描Fragment
