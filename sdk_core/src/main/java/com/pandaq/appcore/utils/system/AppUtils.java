@@ -12,11 +12,11 @@ import android.provider.Settings;
 import android.telephony.TelephonyManager;
 import android.util.Log;
 
-import androidx.core.app.ActivityCompat;
-
 import com.pandaq.appcore.framework.app.ActivityTask;
 
 import java.util.List;
+
+import androidx.core.app.ActivityCompat;
 
 /**
  * Created by huxinyu on 2019/1/7.
@@ -31,10 +31,7 @@ public class AppUtils {
     }
 
     private AppUtils(Application context) {
-        preferences = AppUtils.getContext().getSharedPreferences(
-                AppUtils.getContext().getPackageName(),
-                Context.MODE_PRIVATE
-        );
+        preferences = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
         this.appContext = context;
     }
 
