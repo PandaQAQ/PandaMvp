@@ -1,14 +1,12 @@
 package com.pandaq.appcore.framework.app;
 
-import android.app.Application;
 import android.content.Context;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
+
+import androidx.multidex.MultiDexApplication;
 
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
 import com.pandaq.appcore.framework.app.lifecycleimpl.AppProxy;
-
-import androidx.multidex.MultiDexApplication;
+import com.pandaq.appcore.utils.system.AppUtils;
 
 /**
  * Created by huxinyu on 2018/9/7.
@@ -23,21 +21,30 @@ public class BaseApp extends MultiDexApplication {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        if (appProxy == null) {
-            appProxy = new AppProxy(this);
+        boolean isSelfProcess = AppUtils.getProcessName(base, android.os.Process.myPid()).equals(base.getPackageName());
+        if (isSelfProcess) {
+            if (appProxy == null) {
+                appProxy = new AppProxy(this);
+            }
+            appProxy.attachBaseContext(base);
         }
-        appProxy.attachBaseContext(base);
     }
 
     @Override
     public void onCreate() {
         super.onCreate();
-        appProxy.onCreate(this);
+        boolean isSelfProcess = AppUtils.getProcessName(this, android.os.Process.myPid()).equals(this.getPackageName());
+        if (isSelfProcess) {
+            appProxy.onCreate(this);
+        }
     }
 
     @Override
     public void onTerminate() {
         super.onTerminate();
-        appProxy.onTerminate(this);
+        boolean isSelfProcess = AppUtils.getProcessName(this, android.os.Process.myPid()).equals(this.getPackageName());
+        if (isSelfProcess) {
+            appProxy.onTerminate(this);
+        }
     }
 }

@@ -2,9 +2,9 @@ package com.pandaq.appcore.utils.system;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
+import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -13,7 +13,11 @@ import android.telephony.TelephonyManager;
 import android.util.Log;
 
 import com.pandaq.appcore.framework.app.ActivityTask;
+import com.pandaq.appcore.utils.sharepreference.PreferenceUtil;
 
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
 import java.util.List;
 
 import androidx.core.app.ActivityCompat;
@@ -31,11 +35,11 @@ public class AppUtils {
     }
 
     private AppUtils(Application context) {
-        preferences = context.getSharedPreferences(context.getPackageName(), Context.MODE_PRIVATE);
+        preferenceUtil = new PreferenceUtil(context);
         this.appContext = context;
     }
 
-    public static SharedPreferences preferences;
+    public static PreferenceUtil preferenceUtil;
     private static AppUtils instance;
     private Application appContext;
 
@@ -70,7 +74,7 @@ public class AppUtils {
      *
      * @return 应用版本号
      */
-    public static int versionCode() {
+    public static long versionCode() {
         try {
             PackageInfo info = instance.appContext.getPackageManager().getPackageInfo(instance.appContext.getApplicationContext().getPackageName(), 0);
             return info.versionCode;
@@ -119,15 +123,34 @@ public class AppUtils {
         return deviceId;
     }
 
+    public static String getMacAddress() {
+        String macAddress = null;
+        String str = "";
+        try {
+            Process process = Runtime.getRuntime().exec("cat /sys/class/net/wlan0/address");
+            InputStreamReader isr = new InputStreamReader(process.getInputStream());
+            LineNumberReader lnr = new LineNumberReader(isr);
+            while (str != null) {
+                str = lnr.readLine();
+                if (str != null) {
+                    macAddress = str.trim();
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return (macAddress + "").toLowerCase();
+    }
+
     /**
      * 根据包名判断某个应用是否安装
      *
-     * @param context     上下文
      * @param packageName 包名
      * @return 检查结果
      */
-    public static boolean hasInstall(Context context, String packageName) {
-        final PackageManager packageManager = context.getPackageManager();
+    public static boolean hasInstall(String packageName) {
+        final PackageManager packageManager = getContext().getPackageManager();
         // 获取所有已安装程序的包信息
         List<PackageInfo> pinfo = packageManager.getInstalledPackages(0);
         for (int i = 0; i < pinfo.size(); i++) {
@@ -135,5 +158,19 @@ public class AppUtils {
                 return true;
         }
         return false;
+    }
+
+    public static String getProcessName(Context context, int pid) {
+        ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> runningApps = am.getRunningAppProcesses();
+        if (runningApps == null) {
+            return null;
+        }
+        for (ActivityManager.RunningAppProcessInfo procInfo : runningApps) {
+            if (procInfo.pid == pid) {
+                return procInfo.processName;
+            }
+        }
+        return null;
     }
 }
