@@ -196,13 +196,13 @@ public class FileUtils {
     }
 
     public static void openInOther(Activity activity, String packageName, File file) {
-        if (AppUtils.hasInstall(activity, packageName)) {
+        if (AppUtils.hasInstall(packageName)) {
             // 判断文件目录是否存在
             if (file.exists()) {
                 Intent intent = new Intent();
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.setAction(Intent.ACTION_VIEW);
-                intent.setClassName(packageName,"com.arobasmusic.guitarpro.GuitarProActivity");
+                intent.setClassName(packageName, "com.arobasmusic.guitarpro.GuitarProActivity");
                 Uri uri = null;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     String authority = activity.getPackageName() + ".file.path.share";

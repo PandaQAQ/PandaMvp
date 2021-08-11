@@ -108,7 +108,7 @@ public class CacheTool {
                 mDiskLruCache = null;
             }
             File cacheFile = getCacheFile(context, uniqueName);
-            mDiskLruCache = DiskLruCache.open(cacheFile, AppUtils.versionCode(),
+            mDiskLruCache = DiskLruCache.open(cacheFile, 1,
                     1, maxCacheSize);
         } catch (IOException e) {
             e.printStackTrace();
