@@ -2,10 +2,11 @@
 apply from: "config.gradle"
 apply plugin: 'com.alibaba.arouter'
 buildscript {
-    ext.kotlin_version = '1.5.20'
+    ext.kotlin_version = '1.5.21'
     repositories {
         mavenCentral()
         google()
+        jcenter()
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:4.1.3'
@@ -23,6 +24,7 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        jcenter()
         maven { url "https://jitpack.io" }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
         maven { url 'https://gitee.com/monkeies/maven/raw/master' }

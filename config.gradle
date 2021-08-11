@@ -5,13 +5,7 @@ ext {
             compileSdkVersion: 30,
             targetSdkVersion : 28,
             minSdkVersion    : 21,
-            versionName      : "1.0.0",
-            versionCode      : 1,
             applicationId    : "com.pandaq.pandamvp"
-    ]
-
-    db = [
-            schemaVersion: 1
     ]
 
     version = [

@@ -9,8 +9,6 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
-        versionCode 1
-        versionName "1.0"
         testInstrumentationRunner rootProject.ext.android["runner"]
 
     }
@@ -49,7 +47,7 @@ kapt {
 //GreenDao 配置
 greendao {
     //数据库的schema版本，也可以理解为数据库版本号
-    schemaVersion rootProject.ext.db["schemaVersion"]
+    schemaVersion GREENDAO_DB_VERSION.toInteger()
     //设置DaoMaster、DaoSession、Dao包名，也就是要放置这些类的包的全路径。
     daoPackage 'com.pandaq.pandamvp.db'
     //设置DaoMaster、DaoSession、Dao 目录

@@ -20,8 +20,6 @@ android {
         compileSdkVersion rootProject.ext.android["compileSdkVersion"]
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
-        versionCode rootProject.ext.android["versionCode"]
-        versionName rootProject.ext.android["versionName"]
 
         testInstrumentationRunner rootProject.ext.android["runner"]
         multiDexEnabled true
