@@ -16,10 +16,10 @@ import java.lang.reflect.ParameterizedType
  * Description :使用 viewbinding 绑定数据的 BaseQuickAdapter
  */
 abstract class BindingQuickAdapter<T, VB : ViewBinding> :
-        BaseQuickAdapter<T, BindingQuickAdapter.BindingHolder<VB>>(-1) {
+    BaseQuickAdapter<T, BindingQuickAdapter.BindingHolder<VB>>(-1) {
 
     override fun onCreateDefViewHolder(parent: ViewGroup, viewType: Int): BindingHolder<VB> {
-        val binding = inflateViewBinding(getVbClass(), LayoutInflater.from(context))
+        val binding = inflateViewBinding(getVbClass(), parent, LayoutInflater.from(context))
         return BindingHolder(binding)
     }
 
@@ -32,8 +32,18 @@ abstract class BindingQuickAdapter<T, VB : ViewBinding> :
     /**
      * inflate
      */
-    private fun inflateViewBinding(clazz: Class<VB>, layoutInflater: LayoutInflater): VB {
-        return CastUtils.cast(clazz.getMethod("inflate", LayoutInflater::class.java).invoke(null, layoutInflater))
+    private fun inflateViewBinding(
+        clazz: Class<VB>,
+        parent: ViewGroup,
+        layoutInflater: LayoutInflater
+    ): VB {
+        val paramsClazz =
+            arrayOf(LayoutInflater::class.java, ViewGroup::class.java, Boolean::class.java)
+        val params = arrayOf(layoutInflater, parent, false)
+        return CastUtils.cast(
+            clazz.getMethod("inflate", *paramsClazz)
+                .invoke(null, *params)
+        )
     }
 
 
