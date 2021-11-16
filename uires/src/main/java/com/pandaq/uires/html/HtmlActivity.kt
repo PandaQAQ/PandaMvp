@@ -3,10 +3,10 @@ package com.pandaq.uires.html
 import android.content.Intent
 import android.view.View
 import androidx.appcompat.app.ActionBar
+import com.pandaq.appcore.BuildConfig
 import com.pandaq.appcore.browser.WebFragment
 import com.pandaq.appcore.framework.app.ActivityTask
 import com.pandaq.appcore.framework.mvp.BasePresenter
-import com.pandaq.uires.BuildConfig
 import com.pandaq.uires.R
 import com.pandaq.uires.databinding.ActivityHtmlBinding
 import com.pandaq.uires.mvp.BaseActivity
@@ -66,7 +66,7 @@ class HtmlActivity : BaseActivity<BasePresenter<*>, ActivityHtmlBinding>() {
         title?.let {
             mToolbar?.setTitle(it)
         }
-        if (BuildConfig.DEBUG) {
+        if (BuildConfig.SHOW_LOG) {
             binding.clDebug.visibility = View.VISIBLE
         } else {
             binding.clDebug.visibility = View.GONE

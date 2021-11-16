@@ -33,7 +33,7 @@ class ProcessWebView @JvmOverloads constructor(context: Context, attrs: Attribut
         webViewClient = MyWebClient()
         webChromeClient = ChromeClient()
         addJavascriptInterface(JavaScriptApis(), "Android")
-        setWebContentsDebuggingEnabled(BuildConfig.DEBUG)
+        setWebContentsDebuggingEnabled(BuildConfig.SHOW_LOG)
     }
 
     private inner class ChromeClient : WebChromeClient() {

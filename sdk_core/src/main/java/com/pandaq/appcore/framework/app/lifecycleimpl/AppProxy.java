@@ -75,7 +75,7 @@ public class AppProxy implements IAppLifeCycle {
                 .interceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .trustAllHost(true)
                 .baseUrl(BuildConfig.API)
-                .debug(BuildConfig.DEBUG);
+                .debug(BuildConfig.SHOW_LOG);
         //配置 X5 浏览服务
         // tbs 配置
         QbSdk.setDownloadWithoutWifi(true);

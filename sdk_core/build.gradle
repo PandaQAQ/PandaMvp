@@ -20,18 +20,22 @@ android {
 
     buildTypes {
         release {
+            debuggable debugProd.toBoolean()
             buildConfigField("String","API",BASE_URL_RELEASE)
+            buildConfigField("boolean", "SHOW_LOG", debugProd)
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         appTest {
             debuggable true
             buildConfigField("String","API",BASE_URL_TEST)
+            buildConfigField("boolean", "SHOW_LOG", debugProd)
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         debug {
             buildConfigField("String","API",BASE_URL_DEV)
+            buildConfigField("boolean", "SHOW_LOG", debugProd)
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

@@ -27,7 +27,7 @@ public class PLogger {
     }
 
     private static void getMethodNames(StackTraceElement[] sElements) {
-        if (!BuildConfig.DEBUG) return;
+        if (!BuildConfig.SHOW_LOG) return;
         className = sElements[1].getFileName();
         lineNumber = sElements[1].getLineNumber();
     }
@@ -58,7 +58,7 @@ public class PLogger {
      * @param e       错误
      */
     private static void logThrowable(String tag, String message, Throwable e) {
-        if (!BuildConfig.DEBUG) return;
+        if (!BuildConfig.SHOW_LOG) return;
         Log.e(tag, createLog(message), e);
     }
 
@@ -74,7 +74,7 @@ public class PLogger {
     }
 
     private static void logErr(String tag, String message) {
-        if (!BuildConfig.DEBUG) return;
+        if (!BuildConfig.SHOW_LOG) return;
         Log.e(tag, createLog(message));
     }
 
@@ -89,7 +89,7 @@ public class PLogger {
     }
 
     private static void logI(String tag, String message) {
-        if (!BuildConfig.DEBUG) return;
+        if (!BuildConfig.SHOW_LOG) return;
         Log.i(tag, createLog(message));
     }
 
@@ -104,7 +104,7 @@ public class PLogger {
     }
 
     private static void logD(String tag, String message) {
-        if (!BuildConfig.DEBUG) return;
+        if (!BuildConfig.SHOW_LOG) return;
         Log.d(tag, createLog(message));
     }
 
@@ -119,7 +119,7 @@ public class PLogger {
     }
 
     private static void logV(String tag, String message) {
-        if (!BuildConfig.DEBUG) return;
+        if (!BuildConfig.SHOW_LOG) return;
         Log.v(tag, createLog(message));
     }
 
@@ -134,7 +134,7 @@ public class PLogger {
     }
 
     private static void logW(String tag, String message) {
-        if (!BuildConfig.DEBUG) return;
+        if (!BuildConfig.SHOW_LOG) return;
         Log.w(tag, createLog(message));
     }
 
@@ -149,7 +149,7 @@ public class PLogger {
     }
 
     private static void logWtf(String tag, String message) {
-        if (!BuildConfig.DEBUG) return;
+        if (!BuildConfig.SHOW_LOG) return;
         Log.wtf(tag, createLog(message));
     }
 

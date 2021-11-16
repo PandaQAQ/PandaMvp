@@ -3,9 +3,8 @@ package com.pandaq.app_launcher.app;
 import android.app.Application;
 import android.content.Context;
 import android.graphics.Color;
-
-import com.pandaq.app_launcher.BuildConfig;
 import com.pandaq.app_launcher.net.ApiService;
+import com.pandaq.appcore.BuildConfig;
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
 import com.pandaq.rxpanda.RxPanda;
 import com.pandaq.rxpanda.converter.PandaConvertFactory;
@@ -55,6 +54,6 @@ public class AppLifeCycle implements IAppLifeCycle {
                 .connectTimeout(10000)
                 .readTimeout(10000)
                 .writeTimeout(10000)
-                .debug(BuildConfig.DEBUG);
+                .debug(BuildConfig.SHOW_LOG);
     }
 }

@@ -3,14 +3,13 @@ package com.pandaq.uires.mvp
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.annotation.LayoutRes
 import androidx.viewbinding.ViewBinding
+import com.pandaq.appcore.BuildConfig
 import com.pandaq.appcore.framework.app.ActivityTask
 import com.pandaq.appcore.framework.mvp.BasePresenter
 import com.pandaq.appcore.framework.mvp.CoreBaseFragment
 import com.pandaq.appcore.utils.NetWorkUtils
 import com.pandaq.appcore.utils.log.PLogger
-import com.pandaq.uires.BuildConfig
 import com.pandaq.uires.R
 import com.pandaq.uires.loading.LoadingDialogUtil
 import com.pandaq.uires.msgwindow.Toaster
@@ -59,7 +58,7 @@ abstract class BaseFragment<P : BasePresenter<*>, VB : ViewBinding> : CoreBaseFr
 
     protected fun setStateLayout(stateLayout: StateLayout) {
         if (mStateLayout != null && stateLayout != mStateLayout) {
-            if (BuildConfig.DEBUG) {
+            if (BuildConfig.SHOW_LOG) {
                 throw IllegalStateException("StateLayout 初始化多次，检查是否布局文件使用 StateLayout 且，showState() 返回 true")
             }
         } else {

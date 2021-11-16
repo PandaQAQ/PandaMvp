@@ -18,6 +18,7 @@ android {
 
     buildTypes {
         release {
+            debuggable debugProd.toBoolean()
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
@@ -27,6 +28,7 @@ android {
         }
 
         debug {
+            debuggable true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
