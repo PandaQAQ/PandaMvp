@@ -18,7 +18,7 @@ import java.lang.annotation.Target;
  */
 
 @Retention(RetentionPolicy.SOURCE)
-@StringDef({DateFormatter.FORMAT_DAY, DateFormatter.FORMAT_DHM, DateFormatter.FORMAT_DHMS,
+@StringDef({DateFormatter.FORMAT_MONTH, DateFormatter.FORMAT_MONTH_NO_SPLIT, DateFormatter.FORMAT_DAY_CN, DateFormatter.FORMAT_DAY, DateFormatter.FORMAT_DHM, DateFormatter.FORMAT_DHMS,
         DateFormatter.FORMAT_HM, DateFormatter.FORMAT_HMS, DateFormatter.FORMAT_WD,
         DateFormatter.FORMAT_WDHM, DateFormatter.FORMAT_WDHMS})
 @Target({ElementType.PARAMETER})

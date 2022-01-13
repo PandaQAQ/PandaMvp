@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!--#########################主题颜色######################-->
-    <color name="colorPrimaryDay">#008577</color>
-    <color name="colorPrimaryDarkDay">#00574B</color>
-    <color name="colorAccentDay">#008577</color>
-
-    <color name="colorPrimaryNight">#000000</color>
-    <color name="colorPrimaryDarkNight">#000000</color>
-    <color name="colorAccentNight">#00574B</color>
+    <color name="colorPrimary" tools:ignore="ResourceName">#CD1103</color>
+    <color name="colorPrimaryDark" tools:ignore="ResourceName">#9bCD1103</color>
+    <color name="colorPrimaryCenter" tools:ignore="ResourceName">#b4CD1103</color>
+    <color name="colorAccent" tools:ignore="ResourceName">#CD1103</color>
 
     <!--#########################按钮控件背景颜色######################-->
-    <color name="btn_primary_normal">#4894E9</color>
-    <color name="btn_primary_disable">#9b4894e9</color>
-    <color name="btn_primary_pressed">#b44894e9</color>
+    <color name="btn_primary_normal">#CD1103</color>
+    <color name="btn_primary_disable">#80EA4D41</color>
+    <color name="btn_primary_pressed">#b4CD1103</color>
 
-    <color name="btn_red_normal">#F66C6C</color>
-    <color name="btn_red_disable">#9bF66C6C</color>
-    <color name="btn_red_pressed">#b4F66C6C</color>
+    <color name="btn_red_normal">#C6010A</color>
+    <color name="btn_red_disable">#80EA4D41</color>
+    <color name="btn_red_pressed">#b4C6010A</color>
 
     <color name="btn_white_normal">#F7F7F7</color>
     <color name="btn_white_disable">#9BF7F7F7</color>
     <color name="btn_white_pressed">#ECF4FC</color>
 
     <color name="cb_checked_color">#4894E9</color>
-    <color name="cb_unchecked_stoke">#4894E9</color>
+    <color name="cb_unchecked_color">#4894E9</color>
 
     <!--#########################文字颜色######################-->
     <color name="res_colorTextPrimary">@color/colorPrimary</color>
@@ -34,7 +31,7 @@
     <!--格式错误提示、格式匹配强调色-->
     <color name="res_colorTextSuccess">#80e006</color>
     <!--正文颜色，标题颜色-->
-    <color name="res_colorTextMain">#1F2F3E</color>
+    <color name="res_colorTextMain">#333333</color>
     <!--次要文字、辅助说明文字-->
     <color name="res_colorTextMinor">#A1A7AD</color>
     <!--缺省页文字、已读文字-->

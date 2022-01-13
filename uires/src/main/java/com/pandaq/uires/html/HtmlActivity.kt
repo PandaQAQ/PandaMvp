@@ -47,7 +47,7 @@ class HtmlActivity : BaseActivity<BasePresenter<*>, ActivityHtmlBinding>() {
         val view = layoutInflater.inflate(R.layout.res_cn_title, null)
         mToolbar = view.findViewById(R.id.toolbar)
         mToolbar?.let {
-            it.setOnBackPressed { onBackPressed() }
+            it.setOnBackPressed(View.OnClickListener { onBackPressed() })
             it.setTitle(title)
             it.setLightStyle(true)
         }
@@ -57,22 +57,25 @@ class HtmlActivity : BaseActivity<BasePresenter<*>, ActivityHtmlBinding>() {
             actionBar.title = ""
             actionBar.setDisplayShowHomeEnabled(false)
             actionBar.setDisplayShowCustomEnabled(true)
-            val alp = ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT)
+            val alp = ActionBar.LayoutParams(
+                ActionBar.LayoutParams.MATCH_PARENT,
+                ActionBar.LayoutParams.MATCH_PARENT
+            )
             actionBar.setCustomView(view, alp)
         }
     }
 
     override fun initView() {
-        title?.let {
-            mToolbar?.setTitle(it)
-        }
-        if (BuildConfig.SHOW_LOG) {
+        if (BuildConfig.IN_DEBUG) {
             binding.clDebug.visibility = View.VISIBLE
         } else {
             binding.clDebug.visibility = View.GONE
         }
         binding.tvLoad.setOnClickListener {
             webFragment.loadUrl(binding.etUrlDebug.text.toString())
+        }
+        title?.let {
+            mToolbar?.setTitle(it)
         }
         switchFragment(R.id.fl_container, null, webFragment)
     }

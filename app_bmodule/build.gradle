@@ -8,8 +8,21 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
-            consumerProguardFiles 'proguard-rules.pro'
+            debuggable inDebug.toBoolean()
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+
+        appTest {
+            debuggable inDebug.toBoolean()
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+
+        debug {
+            debuggable inDebug.toBoolean()
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }

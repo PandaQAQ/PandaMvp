@@ -10,41 +10,47 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
-        versionCode APP_VERSION_CODE.toInteger()
-        versionName APP_VERSION_NAME
-    }
-
-    defaultConfig {
         multiDexEnabled true
     }
 
     buildTypes {
         release {
-            debuggable debugProd.toBoolean()
-            buildConfigField("String","API",BASE_URL_RELEASE)
-            buildConfigField("boolean", "SHOW_LOG", debugProd)
+            debuggable inDebug.toBoolean()
+            buildConfigField("boolean", "IN_DEBUG", inDebug)
+            buildConfigField("String", "TENANT_ID", TENANT_ID)
+            buildConfigField("String", "MQTT_INSTANCE_ID", MQTT_RELEASE_ID)
+            buildConfigField("String", "API", BASE_URL_RELEASE)
+            buildConfigField("String", "ENV", "\"RELEASE\"")
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         appTest {
-            debuggable true
-            buildConfigField("String","API",BASE_URL_TEST)
-            buildConfigField("boolean", "SHOW_LOG", debugProd)
+            debuggable inDebug.toBoolean()
+            buildConfigField("boolean", "IN_DEBUG", inDebug)
+            buildConfigField("String", "TENANT_ID", TENANT_ID)
+            buildConfigField("String", "MQTT_INSTANCE_ID", MQTT_TEST_ID)
+            buildConfigField("String", "API", BASE_URL_TEST)
+            buildConfigField("String", "ENV", "\"TEST\"")
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         debug {
-            buildConfigField("String","API",BASE_URL_DEV)
-            buildConfigField("boolean", "SHOW_LOG", debugProd)
+            debuggable inDebug.toBoolean()
+            buildConfigField("boolean", "IN_DEBUG", inDebug)
+            buildConfigField("String", "TENANT_ID", TENANT_ID)
+            buildConfigField("String", "MQTT_INSTANCE_ID", MQTT_DEV_ID)
+            buildConfigField("String", "API", BASE_URL_DEV)
+            buildConfigField("String", "ENV", "\"DEBUG\"")
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    buildFeatures{
+    buildFeatures {
         viewBinding true
     }
 
@@ -65,10 +71,11 @@ repositories {
  */
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    api fileTree(include: ['*.jar'], dir: 'libs')
     api rootProject.ext.dependencies["design"]
-
+    api rootProject.ext.dependencies["appcompat"]
     api rootProject.ext.dependencies["multidex"]
+    api files('libs/BaiduLBS_Android.jar')
     testImplementation rootProject.ext.dependencies["junit"]
     androidTestImplementation rootProject.ext.dependencies["androix-junit"]
     androidTestImplementation rootProject.ext.dependencies["espresso-core"]
@@ -82,7 +89,6 @@ dependencies {
     kapt rootProject.ext.dependencies["annotation"]
     api rootProject.ext.dependencies['rxpanda']
     api rootProject.ext.dependencies['x5browser']
-//    api project(':rxpanda')
     //jetpack
     // ViewModel
     api rootProject.ext.dependencies['viewmodel']
@@ -98,4 +104,15 @@ dependencies {
     api rootProject.ext.dependencies['lifecycle-reactivestreams']
     // optional - Test helpers for LiveData
     testImplementation rootProject.ext.dependencies['core-testing']
+
+    // mqtt 服务
+//    api 'org.eclipse.paho:org.eclipse.paho.client.mqttv3:1.2.0'
+//    api 'org.eclipse.paho:org.eclipse.paho.android.service:1.1.1'
+
+    //bugly
+    api 'com.tencent.bugly:crashreport:latest.release'
+    api 'com.tencent.bugly:nativecrashreport:latest.release'
+
+    //阿里云 SLS 日志服务
+    api 'com.aliyun.openservices:aliyun-log-android-sdk:2.6.0'
 }

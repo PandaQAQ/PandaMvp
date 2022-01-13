@@ -15,12 +15,12 @@ interface IView {
     /**
      * 显示加载 Loading
      */
-    fun dialogLoading(msg: String? = null)
+    fun dialogLoading(cancelAble: Boolean = true, msg: String? = null)
 
     /**
-     * 显示加载 Loading.是否可取消
+     * 显示加载 Loading
      */
-    fun dialogLoading(cancelAble: Boolean)
+    fun dialogLoadingWithCover(msg: String? = null)
 
     /**
      * 出错回调

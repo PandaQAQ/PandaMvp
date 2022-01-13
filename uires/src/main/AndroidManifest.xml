@@ -1,4 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pandaq.uires">
 
     <application>
@@ -6,15 +7,19 @@
             android:name=".html.HtmlActivity"
             android:screenOrientation="portrait" />
         <activity
+            android:name="com.pandaq.uires.notfound.NotFoundPage"
+            android:screenOrientation="portrait"
+            android:theme="@style/BaseAppTheme" />
+        <activity
             android:name=".html.HtmlNoTitleActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/NoActionBarTheme" />
+            android:theme="@style/BaseAppTheme" />
 
-<!--        <meta-data-->
-<!--            android:name="design_with_in_dp"-->
-<!--            android:value="360" />-->
-<!--        <meta-data-->
-<!--            android:name="design_height_in_dp"-->
-<!--            android:value="640" />-->
+        <!--        <meta-data-->
+        <!--            android:name="design_with_in_dp"-->
+        <!--            android:value="360" />-->
+        <!--        <meta-data-->
+        <!--            android:name="design_height_in_dp"-->
+        <!--            android:value="640" />-->
     </application>
 </manifest>

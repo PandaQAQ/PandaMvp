@@ -13,7 +13,9 @@ import com.pandaq.rxpanda.RxPanda
  */
 open class AppBasePresenter<V : IView> : BasePresenter<V>() {
 
-    val api: ApiService by lazy {
-        return@lazy RxPanda.retrofit().create(ApiService::class.java)
+    protected var api: ApiService = RxPanda.retrofit().create(ApiService::class.java)
+
+    override fun refreshApiConfig() {
+        api = RxPanda.retrofit().create(ApiService::class.java)
     }
 }

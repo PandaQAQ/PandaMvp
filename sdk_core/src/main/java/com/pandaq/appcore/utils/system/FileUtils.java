@@ -14,8 +14,12 @@ import android.provider.MediaStore;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 
 import androidx.core.content.FileProvider;
+
+import com.pandaq.appcore.R;
 
 
 /**
@@ -90,8 +94,6 @@ public class FileUtils {
                 if ("primary".equalsIgnoreCase(type)) {
                     return Environment.getExternalStorageDirectory() + "/" + split[1];
                 }
-
-                // TODO handle non-primary volumes
             }
             // DownloadsProvider
             else if (isDownloadsDocument(uri)) {
@@ -202,7 +204,7 @@ public class FileUtils {
                 Intent intent = new Intent();
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 intent.setAction(Intent.ACTION_VIEW);
-                intent.setClassName(packageName, "com.arobasmusic.guitarpro.GuitarProActivity");
+                intent.setClassName(packageName,"com.arobasmusic.guitarpro.GuitarProActivity");
                 Uri uri = null;
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                     String authority = activity.getPackageName() + ".file.path.share";

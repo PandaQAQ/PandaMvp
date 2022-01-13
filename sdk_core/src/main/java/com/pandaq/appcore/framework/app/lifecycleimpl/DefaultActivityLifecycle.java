@@ -8,8 +8,7 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 
 import com.pandaq.appcore.framework.app.ActivityTask;
-import com.pandaq.appcore.utils.log.PLogger;
-import com.pandaq.appcore.utils.system.DisplayUtils;
+import com.pandaq.appcore.log.PLogger;
 
 import java.util.List;
 
@@ -35,22 +34,22 @@ public class DefaultActivityLifecycle implements Application.ActivityLifecycleCa
 
     @Override
     public void onActivityStarted(Activity activity) {
-
+        PLogger.d("LifeCycle Started",activity.getClass().getSimpleName());
     }
 
     @Override
     public void onActivityResumed(Activity activity) {
-
+        PLogger.d("LifeCycle Resumed",activity.getClass().getSimpleName());
     }
 
     @Override
     public void onActivityPaused(Activity activity) {
-
+        PLogger.d("LifeCycle Paused",activity.getClass().getSimpleName());
     }
 
     @Override
     public void onActivityStopped(Activity activity) {
-        PLogger.d(activity.getLocalClassName()+" is onActivityStopped");
+        PLogger.d("LifeCycle Stopped",activity.getClass().getSimpleName());
     }
 
     @Override
@@ -60,6 +59,7 @@ public class DefaultActivityLifecycle implements Application.ActivityLifecycleCa
 
     @Override
     public void onActivityDestroyed(Activity activity) {
+        PLogger.d("LifeCycle Destroyed",activity.getClass().getSimpleName());
         ActivityTask.getInstance().remove(activity);
     }
 

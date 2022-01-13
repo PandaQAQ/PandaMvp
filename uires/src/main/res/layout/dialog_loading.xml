@@ -1,35 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <LinearLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/load_dialog_bg"
-        android:gravity="center"
-        android:minHeight="@dimen/res_dp_80"
-        android:minWidth="92dp"
-        android:orientation="vertical">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/load_dialog_bg"
+    android:gravity="center"
+    android:minWidth="92dp"
+    android:minHeight="@dimen/res_dp_80"
+    android:orientation="vertical">
 
     <LinearLayout
-            android:id="@+id/fl_main"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:orientation="horizontal"/>
+        android:id="@+id/fl_main"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="8dp"
+        android:indeterminateDrawable="@drawable/res_loading_anim" />
 
     <TextView
-            android:id="@+id/tv_msg"
-            style="@style/CommonTipsTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginTop="8dp"
-            android:gravity="center"
-            android:maxWidth="200dp"
-            android:paddingLeft="8dp"
-            android:paddingRight="8dp"
-            android:textColor="@color/res_colorWhite"
-            tools:text="测试测试测试测试测试测试"/>
+        android:id="@+id/tv_msg"
+        style="@style/CommonTipsTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:gravity="center"
+        android:maxWidth="200dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:textColor="@color/res_colorWhite"
+        tools:text="测试测试测试测试测试测试" />
 </LinearLayout>

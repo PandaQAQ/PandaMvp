@@ -5,7 +5,7 @@ import com.alibaba.android.arouter.facade.Postcard
 import com.alibaba.android.arouter.facade.annotation.Interceptor
 import com.alibaba.android.arouter.facade.callback.InterceptorCallback
 import com.alibaba.android.arouter.facade.template.IInterceptor
-import com.pandaq.appcore.utils.log.PLogger
+import com.pandaq.appcore.log.PLogger
 
 /**
  * Created by huxinyu on 4/23/21.

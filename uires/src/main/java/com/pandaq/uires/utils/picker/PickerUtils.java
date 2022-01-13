@@ -3,6 +3,7 @@ package com.pandaq.uires.utils.picker;
 import android.content.Context;
 import android.graphics.Color;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
@@ -36,6 +37,46 @@ public final class PickerUtils {
      * 私有
      */
     private PickerUtils() {
+    }
+
+    public static TimePickerView getYearMonth(final Context context, Calendar selectedDate,String title,
+                                              ViewGroup decorView, OnTimeSelectListener mListener) {
+        Calendar startDate = Calendar.getInstance();
+        Calendar endDate = Calendar.getInstance();
+
+        //正确设置方式
+        startDate.set(START_YEAR, START_MONTH, START_DAY);
+//        endDate.set(END_YEAR, END_MONTH, END_DAY);
+
+        return new TimePickerBuilder(context, mListener)
+                .setType(new boolean[]{true, true, false, false, false, false})// 默认全部显示
+                .setCancelText(selectedDate.get(Calendar.YEAR) + context.getString(R.string.text_pickYear) +
+                        (selectedDate.get(Calendar.MONTH) + 1) + context.getString(R.string.text_pickMonth))//取消按钮文字
+                .setSubmitText(context.getString(R.string.text_confirm))//确认按钮文字
+                .setCancelText(context.getString(R.string.text_cancel))
+                .setTitleText(title)
+                .setContentTextSize(CONTENT_TEXT_SIZE)//滚轮文字大小
+                .setTitleSize(TITLE_TEXT_SIZE)//标题文字大小
+                .setOutSideCancelable(true)//点击屏幕，点在控件外部范围时，是否取消显示
+                .isCyclic(true)//是否循环滚动
+                .setTitleColor(ContextCompat.getColor(context, R.color.res_colorWhite))//标题文字颜色
+                .setSubmitColor(ContextCompat.getColor(context, R.color.res_colorWhite))//确定按钮文字颜色
+                .setCancelColor(ContextCompat.getColor(context, R.color.res_colorWhite))//取消按钮文字颜色
+                .setTitleBgColor(Color.parseColor("#008580"))//标题背景颜色 Night mode
+                .setBgColor(ContextCompat.getColor(context, R.color.white))//滚轮背景颜色 Night mode
+                .setDate(selectedDate)// 如果不设置的话，默认是系统时间*/
+                .setRangDate(startDate, endDate)//起始终止年月日设定
+                .setLabel(context.getString(R.string.text_pickYear),
+                        context.getString(R.string.text_pickMonth),
+                        context.getString(R.string.text_pickDay),
+                        context.getString(R.string.text_pickHour),
+                        context.getString(R.string.text_pickMinute),
+                        context.getString(R.string.text_pickSecond))//默认设置为年月日时分秒
+                .setDividerColor(Color.LTGRAY).setDividerType(WheelView.DividerType.FILL)
+                .setDecorView(decorView)
+                .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
+                .isDialog(false)//是否显示为对话框样式
+                .build();
     }
 
     /**
@@ -78,7 +119,7 @@ public final class PickerUtils {
                         context.getString(R.string.text_pickSecond))//默认设置为年月日时分秒
                 .setDividerColor(Color.LTGRAY).setDividerType(WheelView.DividerType.FILL)
                 .isCenterLabel(false) //是否只显示中间选中项的label文字，false则每项item全部都带有label。
-                .isDialog(false)//是否显示为对话框样式
+                .isDialog(true)//是否显示为对话框样式
                 .build();
     }
 

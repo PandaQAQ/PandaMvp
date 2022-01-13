@@ -10,7 +10,6 @@ android {
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
         testInstrumentationRunner rootProject.ext.android["runner"]
-
     }
 
     buildTypes {
@@ -33,7 +32,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_8
     }
 
-    buildFeatures{
+    buildFeatures {
         viewBinding true
     }
 }
@@ -49,7 +48,7 @@ greendao {
     //数据库的schema版本，也可以理解为数据库版本号
     schemaVersion GREENDAO_DB_VERSION.toInteger()
     //设置DaoMaster、DaoSession、Dao包名，也就是要放置这些类的包的全路径。
-    daoPackage 'com.pandaq.pandamvp.db'
+    daoPackage 'com.pandaq.router.database.dao'
     //设置DaoMaster、DaoSession、Dao 目录
     targetGenDir 'src/main/java'
 }
@@ -61,6 +60,7 @@ dependencies {
     testCompileOnly rootProject.ext.dependencies["junit"]
     androidTestCompileOnly rootProject.ext.dependencies["espresso-core"]
     api project(':sdk_core')
+    api project(':uires')
     //GreenDao 3.0
     implementation rootProject.ext.dependencies["greendao"]
     implementation(rootProject.ext.dependencies["constraint-layout"])

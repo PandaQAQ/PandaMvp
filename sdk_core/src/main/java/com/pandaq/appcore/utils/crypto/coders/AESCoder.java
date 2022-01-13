@@ -15,7 +15,7 @@ public class AESCoder {
 
     private static AESCoder sAESCoder;
     private static final String CHARSET_NAME = "UTF-8";
-    private static String ALGORITHM = "AES/CBC/PKCS7Padding";
+    private static final String ALGORITHM = "AES/CBC/PKCS7Padding";
 
     public static synchronized AESCoder getDefault() {
         if (sAESCoder == null) {
@@ -29,9 +29,10 @@ public class AESCoder {
     }
 
     /**
-     * AES CBC 模式解密
-     * @param key aes 密钥
-     * @param kiv aes 偏移量
+     * AES CBC 模式加密
+     *
+     * @param key  aes 密钥
+     * @param kiv  aes 偏移量
      * @param data 待加密数据
      * @return 加密结果
      */
@@ -61,23 +62,25 @@ public class AESCoder {
             byte[] encrypted = cipher.doFinal(originalContentBytes);
 
             //base64转码
-            return Base64.encodeToString(encrypted,Base64.DEFAULT);
+            return Base64.encodeToString(encrypted, Base64.DEFAULT).trim();
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return "";
         }
     }
 
     /**
      * AES CBC 模式解密
-     * @param key aes 密钥
-     * @param kiv aes 偏移量
+     *
+     * @param key  aes 密钥
+     * @param kiv  aes 偏移量
      * @param data 待解密数据
      * @return 解密结果
      */
     public String decode(String key, String kiv, String data) {
         try {
             //处理传进来的密文 使用base64解密
-            byte[] cipherStrByte = Base64.decode(data,Base64.DEFAULT);
+            byte[] cipherStrByte = Base64.decode(data, Base64.DEFAULT);
 
             //处理传进来的密钥(String转成byte[])   可以指定编码格式为：ASCII
             byte[] enKeyBytes = key.getBytes();
@@ -96,7 +99,8 @@ public class AESCoder {
             return new String(original, CHARSET_NAME);
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
+            return "";
         }
     }
 }

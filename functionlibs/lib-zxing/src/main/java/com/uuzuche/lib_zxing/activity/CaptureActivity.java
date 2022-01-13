@@ -5,9 +5,10 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 
-import com.uuzuche.lib_zxing.R;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.uuzuche.lib_zxing.R;
 
 /**
  * Initial the camera
@@ -28,9 +29,7 @@ public class CaptureActivity extends AppCompatActivity {
         captureFragment.setCameraInitCallBack(new CaptureFragment.CameraInitCallBack() {
             @Override
             public void callBack(Exception e) {
-                if (e == null) {
-
-                } else {
+                if (e != null) {
                     Log.e("TAG", "callBack: ", e);
                 }
             }

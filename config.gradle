@@ -3,7 +3,7 @@ ext {
     android = [
             buildToolsVersion: "30.0.3",
             compileSdkVersion: 30,
-            targetSdkVersion : 28,
+            targetSdkVersion : 25,
             minSdkVersion    : 21,
             applicationId    : "com.pandaq.pandamvp"
     ]
@@ -12,7 +12,6 @@ ext {
             androidxVersion  : "1.1.0",
             lifecycle_version: "2.2.0",
             arch_version     : "2.1.0",
-
             retrofitVersion  : "2.6.0",
             glideVersion     : "4.9.0"
     ]
@@ -59,7 +58,7 @@ ext {
             // EventBus 3.0
             "eventbus"                 : "org.greenrobot:eventbus:3.1.1",
             //GreenDao 3.0
-            "greendao"                 : "org.greenrobot:greendao:3.2.2",
+            "greendao"                 : "org.greenrobot:greendao:3.3.0",
 
             //Gson
             "gson"                     : "com.google.code.gson:gson:2.8.4",
@@ -95,7 +94,7 @@ ext {
             "x5browser"                : "com.tencent.tbs.tbssdk:sdk:43939",
 
             // 网络库
-            "rxpanda"                  : "com.pandaq:rxpanda:1.0.4",
+            "rxpanda"                  : "com.pandaq:rxpanda:1.1.9",
 
             // 图片选择
             "matisse"                  : "com.zhihu.android:matisse:0.5.2-beta3",
@@ -122,6 +121,9 @@ ext {
             /*屏幕适配*/
             "autosize"                 : "me.jessyan:autosize:1.1.2",
             /*gif 图片控件*/
-            "gifdrawable"              : 'pl.droidsonroids.gif:android-gif-drawable:1.2.22'
+            "gifdrawable"              : 'pl.droidsonroids.gif:android-gif-drawable:1.2.22',
+            "oss"                      : 'com.aliyun.dpa:oss-android-sdk:2.9.5',
+            /*Android 折线图，条形图*/
+            "androidchart"             : 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     ]
 }

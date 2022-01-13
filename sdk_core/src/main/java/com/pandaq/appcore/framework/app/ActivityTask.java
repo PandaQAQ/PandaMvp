@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.Context;
 
+import com.pandaq.appcore.utils.system.AppUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Stack;
@@ -128,8 +130,7 @@ public class ActivityTask {
     /**
      * 结束指定类名的Activity
      */
-    public void finishActivityStartsWith(String str) {
-
+    public void finishActivityWithName(String str) {
         for (int i = mActivityStack.size() - 1; i >= 0; i--) {
             Activity activity = mActivityStack.get(i);
             if (null != activity && activity.getClass().getSimpleName().startsWith(str)) {
@@ -137,6 +138,25 @@ public class ActivityTask {
                 activity.finish();
             }
         }
+    }
+
+    /**
+     * 结束指定类名的Activity
+     */
+    public void killOtherWithName(String str) {
+        if (str == null) {
+            return;
+        }
+        Activity keepActivity = null;
+        for (int i = 0, size = mActivityStack.size(); i < size; i++) {
+            if (null != mActivityStack.get(i) && !str.equals(mActivityStack.get(i).getClass().getSimpleName())) {
+                mActivityStack.get(i).finish();
+            } else {
+                keepActivity = mActivityStack.get(i);
+            }
+        }
+        mActivityStack.clear();
+        mActivityStack.add(keepActivity);
     }
 
     /**

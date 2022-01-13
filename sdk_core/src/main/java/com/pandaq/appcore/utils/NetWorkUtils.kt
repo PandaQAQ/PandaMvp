@@ -13,7 +13,8 @@ class NetWorkUtils {
 
     companion object {
         fun isNetworkConnected(): Boolean {
-            val manager = AppUtils.getContext().getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            val manager = AppUtils.getContext()
+                .getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
             val networks = manager.allNetworks
             networks.forEach {
                 val info = manager.getNetworkInfo(it)

@@ -39,6 +39,7 @@ public class RoundImageView extends AbsRoundImageView {
         initAttrs(attrs);
     }
 
+    @Override
     protected void initAttrs(AttributeSet attrs) {
         super.initAttrs(attrs);
         if (attrs != null) {

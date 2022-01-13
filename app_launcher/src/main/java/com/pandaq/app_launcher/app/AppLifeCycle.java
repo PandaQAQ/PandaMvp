@@ -3,6 +3,7 @@ package com.pandaq.app_launcher.app;
 import android.app.Application;
 import android.content.Context;
 import android.graphics.Color;
+
 import com.pandaq.app_launcher.net.ApiService;
 import com.pandaq.appcore.BuildConfig;
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
@@ -28,7 +29,7 @@ public class AppLifeCycle implements IAppLifeCycle {
 
     @Override
     public void onCreate(@NonNull Application application) {
-        initNet();
+        initNet(application);
         UiConfigs.Companion.snackbar()
                 .setMsgColor(Color.parseColor("#ff00ff"))
                 .setActionColor(Color.parseColor("#0000ff"))
@@ -42,18 +43,18 @@ public class AppLifeCycle implements IAppLifeCycle {
     }
 
     // 初始化网络请求
-    private void initNet() {
-        RxPanda.globalConfig()
+    private void initNet(Application application) {
+        RxPanda.init(application)
                 .baseUrl(ApiService.BASE_URL)
                 .netInterceptor(new HttpLoggingInterceptor()
                         .setLevel(HttpLoggingInterceptor.Level.BODY))
-                .apiSuccessCode(100L)
+                .apiSuccessCode("100L")
                 .hosts("http://192.168.0.107:8080")
 //                .apiDataClazz(WanApiData.class)
                 .converterFactory(PandaConvertFactory.create())
                 .connectTimeout(10000)
                 .readTimeout(10000)
                 .writeTimeout(10000)
-                .debug(BuildConfig.SHOW_LOG);
+                .debug(BuildConfig.IN_DEBUG);
     }
 }

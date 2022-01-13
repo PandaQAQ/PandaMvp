@@ -19,7 +19,7 @@ import androidx.fragment.app.FragmentManager;
 public class LifeCycleInjector implements ILifecycleInjector {
     @Override
     public void injectAppLifeCycle(Application application, List<IAppLifeCycle> appLifeCycles) {
-        appLifeCycles.add(new AppLifeCycle());
+        appLifeCycles.add(new RouteAppLifeCycle());
     }
 
     @Override

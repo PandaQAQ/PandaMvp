@@ -5,8 +5,10 @@ import android.annotation.SuppressLint;
 import com.pandaq.appcore.framework.annotation.DateFormatStr;
 
 import java.text.ParseException;
+import java.text.ParsePosition;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Created by huxinyu on 2018/7/5.
@@ -22,14 +24,17 @@ public class DateFormatter {
 
     private static DateFormatter sDateFormatter;
 
-    public final static String FORMAT_DAY = "yyyy-MM-dd"; // 2018、
-    public final static String FORMAT_DHMS = "yyyy-MM-dd HH:mm:ss";
-    public final static String FORMAT_DHM = "yyyy-MM-dd HH:mm";
-    public final static String FORMAT_HMS = "HH:mm:ss";
-    public final static String FORMAT_HM = "HH:mm";
-    public final static String FORMAT_WDHMS = "EEEE yyyy-MM-dd HH:mm:ss";
-    public final static String FORMAT_WDHM = "EEEE yyyy-MM-dd HH:mm";
-    public final static String FORMAT_WD = "EEEE yyyy-MM-dd";
+    public static final String FORMAT_MONTH_NO_SPLIT = "yyyyMM";
+    public static final String FORMAT_MONTH = "yyyy/MM";
+    public static final String FORMAT_DAY_CN = "yyyy年MM月dd日";
+    public static final String FORMAT_DAY = "yyyy-MM-dd";
+    public static final String FORMAT_DHMS = "yyyy-MM-dd HH:mm:ss";
+    public static final String FORMAT_DHM = "yyyy-MM-dd HH:mm";
+    public static final String FORMAT_HMS = "HH:mm:ss";
+    public static final String FORMAT_HM = "HH:mm";
+    public static final String FORMAT_WDHMS = "EEEE yyyy-MM-dd HH:mm:ss";
+    public static final String FORMAT_WDHM = "EEEE yyyy-MM-dd HH:mm";
+    public static final String FORMAT_WD = "EEEE yyyy-MM-dd";
 
     public static synchronized DateFormatter getDefault() {
         if (sDateFormatter == null) {
@@ -83,6 +88,19 @@ public class DateFormatter {
         @SuppressLint("SimpleDateFormat")
         SimpleDateFormat format = new SimpleDateFormat(formatStr);
         return format.format(timeMap);
+    }
+
+    /**
+     * 根据指定格式格式转化为 Date
+     *
+     * @param timeStr   时间戳
+     * @param formatStr 格式化规则
+     * @return date
+     */
+    public Date parseDate(String timeStr, @DateFormatStr String formatStr) {
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat format = new SimpleDateFormat(formatStr);
+        return format.parse(timeStr, new ParsePosition(0));
     }
 
     /**

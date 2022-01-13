@@ -15,11 +15,11 @@
 
         <activity
             android:name=".ui.home.HomeActivity"
-            android:label="主页"
-            android:theme="@style/BaseAppTheme" />
+            android:label="主页" />
 
-        <activity android:name=".ui.widgets.GalleryActivity" />
-        <activity android:name=".ui.zhihu.ZhihuListActivity" />
+        <activity
+            android:name=".ui.zhihu.ZhihuListActivity"
+            android:theme="@style/BaseAppTheme" />
     </application>
 
 </manifest>

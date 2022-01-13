@@ -14,6 +14,8 @@ package com.pandaq.appcore.cache;/*
  * limitations under the License.
  */
 
+import com.pandaq.appcore.log.PLogger;
+
 import java.io.BufferedWriter;
 import java.io.Closeable;
 import java.io.EOFException;
@@ -227,8 +229,7 @@ public final class DiskLruCache implements Closeable {
                 cache.processJournal();
                 return cache;
             } catch (IOException journalIsCorrupt) {
-                System.out
-                        .println("DiskLruCache "
+              PLogger.d("DiskLruCache "
                                 + directory
                                 + " is corrupt: "
                                 + journalIsCorrupt.getMessage()

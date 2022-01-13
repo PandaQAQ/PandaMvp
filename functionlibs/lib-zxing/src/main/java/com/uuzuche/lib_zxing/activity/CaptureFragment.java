@@ -15,6 +15,9 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Result;
 import com.uuzuche.lib_zxing.R;
@@ -25,9 +28,6 @@ import com.uuzuche.lib_zxing.view.ViewfinderView;
 
 import java.io.IOException;
 import java.util.Vector;
-
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 
 /**
  * 自定义实现的扫描Fragment

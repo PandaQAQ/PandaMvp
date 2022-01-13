@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleObserver
 import androidx.viewbinding.ViewBinding
-import com.pandaq.appcore.utils.log.PLogger
+import com.pandaq.appcore.log.PLogger
 import com.pandaq.rxpanda.utils.CastUtils
 import java.lang.reflect.ParameterizedType
 
@@ -35,6 +35,7 @@ abstract class CoreBaseFragment<P : BasePresenter<*>?, VB : ViewBinding> : Fragm
         var clazzV: Class<*>? = null
         this.javaClass.genericInterfaces.forEach {
             val v = it as Class<*>
+            // 判断 IView 是否为 v 的父类
             if (IView::class.java.isAssignableFrom(v)) {
                 clazzV = v
                 return@forEach
@@ -45,8 +46,8 @@ abstract class CoreBaseFragment<P : BasePresenter<*>?, VB : ViewBinding> : Fragm
             clazzP.getConstructor().newInstance()
         } else {
             PLogger.e(
-                    "MVPCore::",
-                    "${this::class.java.simpleName} 必须实现对应 Presenter<V> 的泛型接口 V！！！"
+                "MVPCore::",
+                "${this::class.java.simpleName} 必须实现对应 Presenter<V> 的泛型接口 V！！！"
             )
             null
         }
@@ -133,13 +134,12 @@ abstract class CoreBaseFragment<P : BasePresenter<*>?, VB : ViewBinding> : Fragm
         return to
     }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
+    override fun onDestroy() {
+        super.onDestroy()
         mPresenter?.let {
             lifecycle.removeObserver(it as LifecycleObserver)
         }
     }
-
     /**
      * inflate
      */

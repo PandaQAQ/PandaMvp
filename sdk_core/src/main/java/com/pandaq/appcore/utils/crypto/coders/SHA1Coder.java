@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
  * Created by huxinyu on 2018/7/6.
  * Email : panda.h@foxmail.com
  * <p>
- * Description :SHA1 字符串加密
+ * Description :SHA1 字符串加密，不可逆加密
  */
 public class SHA1Coder {
 
@@ -24,13 +24,17 @@ public class SHA1Coder {
         return sSHA1Coder;
     }
 
+    private SHA1Coder(){
+
+    }
+
     public String encodeSha1(@NonNull String source) {
         try {
             MessageDigest alga = MessageDigest.getInstance(CodeType.SHA.getType());
             alga.update(source.getBytes());
             StringBuilder hexValue = new StringBuilder();
             for (byte md5Byte : alga.digest()) {
-                int val = ((int) md5Byte) & 0xff;
+                int val = (md5Byte) & 0xff;
                 if (val < 16) {
                     hexValue.append("0");
                 }

@@ -20,48 +20,49 @@ android {
         compileSdkVersion rootProject.ext.android["compileSdkVersion"]
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
-
+        versionCode APP_VERSION_CODE.toInteger()
+        versionName APP_VERSION_NAME
         testInstrumentationRunner rootProject.ext.android["runner"]
         multiDexEnabled true
         multiDexKeepProguard file('multidex-config.pro')
         ndk {
-            abiFilters "armeabi"
-            abiFilters "arm64-v8a"
-            abiFilters "armeabi-v7a"
-            abiFilters "x86"
-            abiFilters "x86_64"
+            abiFilters "armeabi-v7a", "armeabi"
         }
     }
 
     signingConfigs {
         release {
-            storeFile file("../keystore.jks")
-            storePassword "123456"
-            keyAlias "pandaq"
-            keyPassword "123456"
+            storeFile file("./scaaa.jks")
+            storePassword "azys123"
+            keyAlias "azys"
+            keyPassword "azys123"
         }
 
         debug {
-            storeFile file("../keystore.jks")
-            storePassword "123456"
-            keyAlias "pandaq"
-            keyPassword "123456"
+            storeFile file("./scaaa.jks")
+            storePassword "azys123"
+            keyAlias "azys"
+            keyPassword "azys123"
         }
     }
 
     buildTypes {
         release {
+            debuggable inDebug.toBoolean()
             signingConfig signingConfigs.release
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
         appTest {
-            debuggable true
+            debuggable inDebug.toBoolean()
             signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         debug {
+            debuggable inDebug.toBoolean()
             signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -78,7 +79,13 @@ android {
 
     applicationVariants.all { variant ->
         variant.outputs.all {
-            output -> outputFileName = "app_v${variant.versionName}_${variant.versionCode}.apk"
+            if (variant.buildType.name == "release") {
+                outputFileName = "sds_v${variant.versionName}_prod.apk"
+            } else if (variant.buildType.name == "debug") {
+                outputFileName = "sds_v${variant.versionName}_dev.apk"
+            } else {
+                outputFileName = "sds_v${variant.versionName}_${variant.buildType.name}.apk"
+            }
         }
     }
 }
@@ -92,7 +99,6 @@ dependencies {
     androidTestImplementation rootProject.ext.dependencies["androix-junit"]
     androidTestImplementation rootProject.ext.dependencies["espresso-core"]
     implementation rootProject.ext.dependencies["design"]
-
     kapt rootProject.ext.dependencies["arouter_compiler"]
 
     // 二维码模块

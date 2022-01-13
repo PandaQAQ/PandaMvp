@@ -18,17 +18,17 @@ android {
 
     buildTypes {
         release {
-            debuggable debugProd.toBoolean()
+            debuggable inDebug.toBoolean()
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         appTest {
-            debuggable true
+            debuggable inDebug.toBoolean()
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         debug {
-            debuggable true
+            debuggable inDebug.toBoolean()
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -60,4 +60,6 @@ dependencies {
     api rootProject.ext.dependencies["material-dialogs"]
     api rootProject.ext.dependencies["xpopup"]
     api rootProject.ext.dependencies["gifdrawable"]
+    api rootProject.ext.dependencies["androidchart"]
+//    api rootProject.ext.dependencies["autosize"]
 }

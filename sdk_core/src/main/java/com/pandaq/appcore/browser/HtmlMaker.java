@@ -6,8 +6,6 @@ import com.pandaq.appcore.utils.system.AppUtils;
 import com.pandaq.appcore.utils.system.DisplayUtils;
 
 import java.util.ArrayList;
-import java.util.concurrent.Semaphore;
-import java.util.concurrent.locks.ReentrantLock;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -124,12 +122,5 @@ public class HtmlMaker {
             return null;
         }
         return imageSrcList;
-    }
-
-    public void test() {
-        ReentrantLock lock = new ReentrantLock();
-        lock.lock(); // 占用许可通道
-        // do something,访问需要单线程访问的数据源
-        lock.unlock(); // 释放许可通道
     }
 }

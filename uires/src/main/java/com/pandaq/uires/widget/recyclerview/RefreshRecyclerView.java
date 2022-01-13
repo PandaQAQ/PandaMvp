@@ -2,17 +2,19 @@ package com.pandaq.uires.widget.recyclerview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.graphics.Color;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import androidx.annotation.ColorRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.viewholder.BaseViewHolder;
 import com.pandaq.uires.R;
-import com.pandaq.uires.widget.recyclerview.loadfooter.PandaFooter;
-import com.pandaq.uires.widget.recyclerview.loadfooter.PandaHeader;
 import com.scwang.smartrefresh.header.MaterialHeader;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshFooter;
@@ -21,11 +23,6 @@ import com.scwang.smartrefresh.layout.footer.ClassicsFooter;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener;
-
-import androidx.annotation.ColorRes;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * Created by huxinyu on 2019/3/25.
@@ -65,12 +62,12 @@ public class RefreshRecyclerView extends FrameLayout {
         mRefreshLayout = findViewById(R.id.srl_refresh);
         mRecyclerView = findViewById(R.id.rv_recycle_list);
 
-//        MaterialHeader header = new MaterialHeader(getContext());
-//        header.setColorSchemeColors(
-//                getResources().getColor(R.color.res_color_refresh_header1),
-//                getResources().getColor(R.color.res_color_refresh_header2),
-//                getResources().getColor(R.color.res_color_refresh_header3));
-        mRefreshLayout.setRefreshHeader(new PandaHeader(getContext()));
+        MaterialHeader header = new MaterialHeader(getContext());
+        header.setColorSchemeColors(
+                getResources().getColor(R.color.res_color_refresh_header1),
+                getResources().getColor(R.color.res_color_refresh_header2),
+                getResources().getColor(R.color.res_color_refresh_header3));
+        mRefreshLayout.setRefreshHeader(header);
         ClassicsFooter footer = new ClassicsFooter(getContext());
         mRefreshLayout.setRefreshFooter(footer);
         //禁用 smartrefreshlayout 的自动加载，交给外部监听处理

@@ -2,9 +2,10 @@
 apply from: "config.gradle"
 apply plugin: 'com.alibaba.arouter'
 buildscript {
-    ext.kotlin_version = '1.5.21'
+    ext.kotlin_version = '1.6.10'
     repositories {
         mavenCentral()
+        maven { url 'https://repo1.maven.org/maven2/' }
         google()
         jcenter()
     }
@@ -22,12 +23,14 @@ buildscript {
 
 allprojects {
     repositories {
-        google()
         mavenCentral()
-        jcenter()
+        maven { url uri('/Users/pandaq/Desktop/Maven') }
         maven { url "https://jitpack.io" }
+        maven { url 'https://repo1.maven.org/maven2/' }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
-        maven { url 'https://gitee.com/monkeies/maven/raw/master' }
+        maven { url "https://s01.oss.sonatype.org/content/groups/public" }
+        google()
+        jcenter()
     }
 }
 

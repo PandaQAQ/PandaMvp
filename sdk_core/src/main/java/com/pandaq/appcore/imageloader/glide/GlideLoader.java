@@ -57,9 +57,7 @@ public class GlideLoader implements IExecutor {
             glideRequest = glideRequest.error(request.getErrorRes());
         }
         if (request.isAsCircle()) {
-            RequestOptions mRequestOptions = RequestOptions.circleCropTransform()
-                    .diskCacheStrategy(DiskCacheStrategy.NONE)//不做磁盘缓存
-                    .skipMemoryCache(true);//不做内存缓存
+            RequestOptions mRequestOptions = RequestOptions.circleCropTransform();
             glideRequest = glideRequest.apply(mRequestOptions);
         }
         if (request.getRadius() > 0) {

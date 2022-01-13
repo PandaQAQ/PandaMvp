@@ -10,17 +10,15 @@ import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.provider.Settings;
 import android.telephony.TelephonyManager;
-import android.util.Log;
 
 import com.pandaq.appcore.framework.app.ActivityTask;
+import com.pandaq.appcore.log.PLogger;
 import com.pandaq.appcore.utils.sharepreference.PreferenceUtil;
 
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.LineNumberReader;
 import java.util.List;
 
 import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 /**
  * Created by huxinyu on 2019/1/7.
@@ -109,7 +107,7 @@ public class AppUtils {
         String deviceId = "";
         TelephonyManager tm = (TelephonyManager) instance.appContext.getApplicationContext().getSystemService(Context.TELEPHONY_SERVICE);
         if (null != tm) {
-            if (ActivityCompat.checkSelfPermission(ActivityTask.getInstance().currentActivity(), Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(ActivityTask.getInstance().currentActivity(), Manifest.permission.READ_PHONE_STATE) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(ActivityTask.getInstance().currentActivity(), new String[]{Manifest.permission.READ_PHONE_STATE}, 1);
             } else {
                 if (tm.getDeviceId() != null) {
@@ -118,29 +116,15 @@ public class AppUtils {
                     deviceId = Settings.Secure.getString(instance.appContext.getApplicationContext().getApplicationContext().getContentResolver(), Settings.Secure.ANDROID_ID);
                 }
             }
-            Log.d("deviceId--->", deviceId);
+            PLogger.d("deviceId--->", deviceId);
         }
         return deviceId;
     }
 
     public static String getMacAddress() {
-        String macAddress = null;
-        String str = "";
-        try {
-            Process process = Runtime.getRuntime().exec("cat /sys/class/net/wlan0/address");
-            InputStreamReader isr = new InputStreamReader(process.getInputStream());
-            LineNumberReader lnr = new LineNumberReader(isr);
-            while (str != null) {
-                str = lnr.readLine();
-                if (str != null) {
-                    macAddress = str.trim();
-                    break;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return (macAddress + "").toLowerCase();
+        // 测试环境设备 mac 地址
+//        return smdt.getManager().smdtGetEthMacAddress().toLowerCase();
+        return "";
     }
 
     /**

@@ -22,9 +22,10 @@ import java.util.Map;
  */
 public class AliPay {
 
-    private Activity activity;
-    private AliPayData mPayInfo;
+    private final Activity activity;
+    private final AliPayData mPayInfo;
     private static final int SDK_PAY_FLAG = 1;
+    private static final String TAG ="WxPayResult";
 
     public AliPay(Activity activity,
                   AliPayData payInfo) {
@@ -37,45 +38,41 @@ public class AliPay {
     }
 
     @SuppressLint("HandlerLeak")
-    private Handler mHandler = new Handler() {
+    private final Handler mHandler = new Handler() {
+        @Override
         public void handleMessage(Message msg) {
-            switch (msg.what) {
-                case SDK_PAY_FLAG: {
-                    @SuppressWarnings("unchecked")
-                    PayResult payResult = new PayResult((Map<String, String>) msg.obj);
+            if (msg.what == SDK_PAY_FLAG) {
+                @SuppressWarnings("unchecked")
+                PayResult payResult = new PayResult((Map<String, String>) msg.obj);
                     /*
                      对于支付结果，请商户依赖服务端的异步通知结果。同步通知结果，仅作为支付结束的通知。
                      */
-                    String resultStatus = payResult.getResultStatus();
-                    // 判断resultStatus 为9000则代表支付成功
-                    if (TextUtils.equals(resultStatus, "9000")) {
-                        // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
-                        if (PayUtils.sPayCallBack == null) {
-                            Log.d("WxPayResult", "payCallback must not be null !");
-                        } else {
-                            PayUtils.sPayCallBack.paySuccess(PayType.ALIPAY,
-                                    activity.getString(R.string.pay_text_success));
-                        }
-                    } else if (TextUtils.equals(resultStatus, "6001")) {
-                        //返回取消支付
-                        if (PayUtils.sPayCallBack == null) {
-                            Log.d("WxPayResult", "payCallback must not be null !");
-                        } else {
-                            PayUtils.sPayCallBack.payFail(PayType.ALIPAY,Integer.parseInt(resultStatus),
-                                    activity.getString(R.string.pay_text_cancel));
-                        }
+                String resultStatus = payResult.getResultStatus();
+                // 判断resultStatus 为9000则代表支付成功
+                if (TextUtils.equals(resultStatus, "9000")) {
+                    // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
+                    if (PayUtils.sPayCallBack == null) {
+                        Log.d(TAG, "payCallback must not be null !");
                     } else {
-                        if (PayUtils.sPayCallBack == null) {
-                            Log.d("WxPayResult", "payCallback must not be null !");
-                        } else {
-                            PayUtils.sPayCallBack.payFail(PayType.ALIPAY,Integer.parseInt(resultStatus),
-                                    activity.getString(R.string.pay_text_error));
-                        }
+                        PayUtils.sPayCallBack.paySuccess(PayType.ALIPAY,
+                                activity.getString(R.string.pay_text_success));
                     }
-                    break;
+                } else if (TextUtils.equals(resultStatus, "6001")) {
+                    //返回取消支付
+                    if (PayUtils.sPayCallBack == null) {
+                        Log.d(TAG, "payCallback must not be null !");
+                    } else {
+                        PayUtils.sPayCallBack.payFail(PayType.ALIPAY, Integer.parseInt(resultStatus),
+                                activity.getString(R.string.pay_text_cancel));
+                    }
+                } else {
+                    if (PayUtils.sPayCallBack == null) {
+                        Log.d(TAG, "payCallback must not be null !");
+                    } else {
+                        PayUtils.sPayCallBack.payFail(PayType.ALIPAY, Integer.parseInt(resultStatus),
+                                activity.getString(R.string.pay_text_error));
+                    }
                 }
-                default:
-                    break;
             }
         }
     };

@@ -4,8 +4,8 @@ import androidx.lifecycle.MutableLiveData
 import com.pandaq.app_jetpack.app.entity.ZhihuData
 import com.pandaq.app_jetpack.app.net.AppCallBack
 import com.pandaq.app_jetpack.app.ui.base.BaseViewModel
+import com.pandaq.rxpanda.exception.ApiException
 import com.pandaq.rxpanda.transformer.RxScheduler
-import com.pandaq.rxpanda.utils.GsonUtil
 import com.pandaq.uires.msgwindow.Toaster
 import kotlinx.coroutines.*
 
@@ -80,24 +80,25 @@ class ZhihuViewModel : BaseViewModel() {
 
     fun getHistory(date: String) {
         api.history(date)
-                .doOnSubscribe {
-                    addDisposable(it)
+            .doOnSubscribe {
+                addDisposable(it)
+            }
+            .compose(RxScheduler.sync())
+            .subscribe(object : AppCallBack<ZhihuData>() {
+                override fun success(data: ZhihuData) {
+                    zhihuLiveData.postValue(data)
                 }
-                .compose(RxScheduler.sync())
-                .subscribe(object : AppCallBack<ZhihuData>() {
-                    override fun success(data: ZhihuData) {
-                        zhihuLiveData.postValue(data)
-                    }
 
-                    override fun fail(code: Long?, msg: String?) {
-                        Toaster.showError(msg)
-                    }
+                override fun fail(exception: ApiException?) {
 
-                    override fun finish(success: Boolean) {
+                }
 
-                    }
+                override fun finish(success: Boolean) {
 
-                })
+                }
+
+
+            })
     }
 
 }

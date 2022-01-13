@@ -3,13 +3,13 @@ package com.pandaq.uires.loading;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.pandaq.uires.R;
 
@@ -21,18 +21,18 @@ import com.pandaq.uires.R;
 
 public class LoadingDialog extends Dialog {
 
-    private TextView textView;
-    private View rootView;
-    private Context mContext;
+    private final TextView textView;
+    private final View rootView;
+    private final Context mContext;
     private LoadingView mLoadingView;
-    private LinearLayout mLoadingLayout;
+    private final LinearLayout mLoadingLayout;
 
     /**
      * 构造器
      *
      * @param context 上下文
      */
-    public LoadingDialog(@NonNull Activity context) {
+    public LoadingDialog(@NonNull Activity context,boolean isTrans) {
         super(context, R.style.loading_dialog);
         this.mContext = context;
         setOwnerActivity(context);
@@ -47,14 +47,12 @@ public class LoadingDialog extends Dialog {
      *
      * @param message    文本信息
      * @param cancelable 是可以点击返回键
-     * @param listener   取消监听
      * @return Dialog
      */
-    public void showInit(CharSequence message, boolean cancelable, OnCancelListener listener) {
+    public void showInit(CharSequence message, boolean cancelable) {
         textView.setText(message);
         setCancelable(cancelable);
         setCanceledOnTouchOutside(cancelable);
-        setOnCancelListener(listener);
         setContentView(rootView);
     }
 
@@ -73,12 +71,10 @@ public class LoadingDialog extends Dialog {
     public void setLoadingView(@Nullable LoadingView loadingView) {
         mLoadingLayout.setVisibility(View.VISIBLE);
         if (loadingView instanceof View) {
-            if (mLoadingView != loadingView) {
-                mLoadingLayout.addView((View) loadingView);
-            } else {
+            if (mLoadingView == loadingView) {
                 mLoadingLayout.removeView((View) mLoadingView);
-                mLoadingLayout.addView((View) loadingView);
             }
+            mLoadingLayout.addView((View) loadingView);
             mLoadingView = loadingView;
         } else {
             throw new RuntimeException("loadingView must extends View");
@@ -93,7 +89,7 @@ public class LoadingDialog extends Dialog {
         return mLoadingView;
     }
 
-    public void hideLodingView() {
+    public void hideLoadingView() {
         mLoadingLayout.setVisibility(View.GONE);
     }
 }

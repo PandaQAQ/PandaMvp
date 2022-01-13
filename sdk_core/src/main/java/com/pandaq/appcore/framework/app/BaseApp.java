@@ -21,7 +21,7 @@ public class BaseApp extends MultiDexApplication {
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        boolean isSelfProcess = AppUtils.getProcessName(base, android.os.Process.myPid()).equals(base.getPackageName());
+        boolean isSelfProcess = base.getPackageName().equals(AppUtils.getProcessName(base, android.os.Process.myPid()));
         if (isSelfProcess) {
             if (appProxy == null) {
                 appProxy = new AppProxy(this);
@@ -33,7 +33,7 @@ public class BaseApp extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        boolean isSelfProcess = AppUtils.getProcessName(this, android.os.Process.myPid()).equals(this.getPackageName());
+        boolean isSelfProcess = getPackageName().equals(AppUtils.getProcessName(this, android.os.Process.myPid()));
         if (isSelfProcess) {
             appProxy.onCreate(this);
         }
@@ -42,7 +42,7 @@ public class BaseApp extends MultiDexApplication {
     @Override
     public void onTerminate() {
         super.onTerminate();
-        boolean isSelfProcess = AppUtils.getProcessName(this, android.os.Process.myPid()).equals(this.getPackageName());
+        boolean isSelfProcess = getPackageName().equals(AppUtils.getProcessName(this, android.os.Process.myPid()));
         if (isSelfProcess) {
             appProxy.onTerminate(this);
         }

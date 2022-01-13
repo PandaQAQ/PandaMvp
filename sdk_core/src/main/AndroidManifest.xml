@@ -1,20 +1,28 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          package="com.pandaq.appcore">
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.pandaq.appcore"
+    android:sharedUserId="android.uid.system">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PRIVILEGED_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application>
+
+        <meta-data
+            android:name="com.baidu.lbsapi.API_KEY"
+            android:value="HySj0VNHLV3nHVx2Z71jMFbDDzIMkiDX" />
+
         <activity
             android:name=".permission.PermissionActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:launchMode="standard"
             android:theme="@style/ThemePermissionActivity"
-            android:windowSoftInputMode="stateHidden|stateAlwaysHidden"/>
+            android:windowSoftInputMode="stateHidden|stateAlwaysHidden" />
 
         <provider
             android:name=".permission.install.FileProvider"
@@ -23,12 +31,12 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/core_permission_file_path"/>
+                android:resource="@xml/core_permission_file_path" />
         </provider>
 
         <provider
-            android:authorities="${applicationId}.provider"
             android:name="com.tencent.smtt.utils.FileProvider"
+            android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
@@ -40,6 +48,11 @@
             android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"
             android:label="dexopt"
             android:process=":dexopt" />
+
+        <service
+            android:name=".service.UpdateService"
+            android:sharedUserId="android.uid.system" />
+
     </application>
 </manifest>
 

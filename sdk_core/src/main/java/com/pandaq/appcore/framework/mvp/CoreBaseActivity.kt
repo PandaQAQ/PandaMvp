@@ -3,8 +3,9 @@ package com.pandaq.appcore.framework.mvp
 import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
-import android.util.Log
-import android.view.*
+import android.view.LayoutInflater
+import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.FrameLayout
 import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
@@ -13,7 +14,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.viewbinding.ViewBinding
 import com.pandaq.appcore.R
 import com.pandaq.appcore.guide.GuideCoverView
-import com.pandaq.appcore.utils.log.PLogger
+import com.pandaq.appcore.log.PLogger
 import com.pandaq.rxpanda.utils.CastUtils
 import java.lang.reflect.ParameterizedType
 
@@ -24,7 +25,8 @@ import java.lang.reflect.ParameterizedType
  *
  * Description :给出的模板基类
  */
-abstract class CoreBaseActivity<P : BasePresenter<*>, VB : ViewBinding> : AppCompatActivity(), IView {
+abstract class CoreBaseActivity<P : BasePresenter<*>, VB : ViewBinding> : AppCompatActivity(),
+    IView {
 
     private var mParentView: FrameLayout? = null
 
@@ -55,8 +57,24 @@ abstract class CoreBaseActivity<P : BasePresenter<*>, VB : ViewBinding> : AppCom
             clazzP.getConstructor().newInstance()
         } else {
             PLogger.e(
-                    "MVPCore::",
-                    "${this::class.java.simpleName} 必须实现对应 Presenter<V> 的泛型接口 V！！！"
+                "MVPCore::",
+                "############################### 注意 ###########################"
+            )
+            PLogger.e(
+                "MVPCore::",
+                "\n\n\n"
+            )
+            PLogger.e(
+                "MVPCore::",
+                "${this::class.java.simpleName} 必须实现对应 Presenter<V> 的泛型接口 V！！！"
+            )
+            PLogger.e(
+                "MVPCore::",
+                "\n\n\n"
+            )
+            PLogger.e(
+                "MVPCore::",
+                "############################### 注意 ###########################"
             )
             null
         }
@@ -66,6 +84,11 @@ abstract class CoreBaseActivity<P : BasePresenter<*>, VB : ViewBinding> : AppCom
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        window.addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON)
+        window.setFlags(
+            WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM,
+            WindowManager.LayoutParams.FLAG_ALT_FOCUSABLE_IM
+        )
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         // Translucent status bar
         window.statusBarColor = resources.getColor(R.color.toolbarBackground)
@@ -161,8 +184,8 @@ abstract class CoreBaseActivity<P : BasePresenter<*>, VB : ViewBinding> : AppCom
     protected abstract fun loadData()
 
     /**
-     * 封装的 fragment 切换工具方法（如 Home BaseActivity 导航栏切换不同功能模块 fragment）
-     *
+     * 封装的 fragment 切换工具方法（如 Home BaseActivity 导航栏切换不同功能模块 fragment,隐藏显示
+     * fragment 不会进行入栈出栈管理
      * @param containerId 显示 fragment 的 layout 资源 ID
      * @param from        当前显示的 fragment
      * @param to          即将显示的 fragment
@@ -186,9 +209,19 @@ abstract class CoreBaseActivity<P : BasePresenter<*>, VB : ViewBinding> : AppCom
         return to
     }
 
+    protected fun removeFragment(fragment: Fragment?) {
+        val manager = supportFragmentManager
+        val transaction = manager.beginTransaction()
+        fragment?.let {
+            if (fragment.isAdded) {
+                transaction.remove(fragment)
+                transaction.commitAllowingStateLoss()
+            }
+        }
+    }
+
     override fun onDestroy() {
         super.onDestroy()
-        Log.d("LifeCycle", "removeObserver")
         mPresenter?.let {
             lifecycle.removeObserver(it as LifecycleObserver)
         }
@@ -199,10 +232,10 @@ abstract class CoreBaseActivity<P : BasePresenter<*>, VB : ViewBinding> : AppCom
      */
     private fun inflateViewBinding(layoutInflater: LayoutInflater): VB {
         return CastUtils.cast(
-                clazzVB.getMethod("inflate", LayoutInflater::class.java).invoke(
-                        null,
-                        layoutInflater
-                )
+            clazzVB.getMethod("inflate", LayoutInflater::class.java).invoke(
+                null,
+                layoutInflater
+            )
         )
     }
 }

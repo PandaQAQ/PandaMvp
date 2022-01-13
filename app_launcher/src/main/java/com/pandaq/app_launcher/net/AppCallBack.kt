@@ -1,43 +1,35 @@
-package com.pandaq.app_launcher.net;
+package com.pandaq.app_launcher.net
 
-import com.pandaq.appcore.utils.log.PLogger;
-import com.pandaq.rxpanda.exception.ApiException;
-import com.pandaq.rxpanda.observer.ApiObserver;
-
-import org.jetbrains.annotations.NotNull;
+import com.pandaq.rxpanda.observer.ApiObserver
+import com.pandaq.rxpanda.exception.ApiException
+import com.pandaq.appcore.log.PLogger
 
 /**
  * Created by huxinyu on 2019/3/8.
  * Email : panda.h@foxmail.com
  * Description :自定义的处理类
  */
-public abstract class AppCallBack<T> extends ApiObserver<T> {
-
-    @Override
-    protected void onSuccess(@NotNull T data) {
-        success(data);
+abstract class AppCallBack<T> : ApiObserver<T>() {
+    override fun onSuccess(data: T) {
+        success(data)
     }
 
-    @Override
-    protected void onError(ApiException e) {
-        handleException(e);
-        fail(e);
+    override fun onError(e: ApiException) {
+        handleException(e)
+        fail(e)
     }
 
-    @Override
-    protected void finished(boolean success) {
-        finish(success);
+    override fun finished(success: Boolean) {
+        finish(success)
     }
 
-    private void handleException(ApiException e) {
-        if (e.getCode() == ExceptionCode.TOKEN_INVALID) {
-            PLogger.e("TOKEN 已过期");
+    private fun handleException(e: ApiException) {
+        if (e.code === ExceptionCode.TOKEN_INVALID) {
+            PLogger.e("TOKEN 已过期")
         }
     }
 
-    protected abstract void success(@NotNull T data);
-
-    protected abstract void fail(ApiException e);
-
-    protected abstract void finish(boolean success);
+    protected abstract fun success(data: T)
+    protected abstract fun fail(e: ApiException?)
+    protected abstract fun finish(success: Boolean)
 }

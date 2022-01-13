@@ -2,10 +2,6 @@
     package="com.pandaq.router">
 
     <application>
-        <activity
-            android:name=".notfound.NotFoundPage"
-            android:screenOrientation="portrait"
-            android:theme="@style/NoActionBarTheme" />
         <meta-data
             android:name="com.pandaq.router.lifecycle.LifeCycleInjector"
             android:value="@string/lifecycle_proxy" />

@@ -35,7 +35,6 @@ class ProgressButton @JvmOverloads constructor(
         super.onDraw(canvas)
         if (inProgressMode) {
             val fraction = progress / 100f
-            println(fraction)
             canvas.drawRoundRect(0f, 0f, width * fraction, height * 1.0f, 20f, 20f, progressPaint)
         }
     }

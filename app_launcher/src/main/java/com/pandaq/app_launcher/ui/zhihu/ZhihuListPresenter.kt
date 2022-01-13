@@ -81,7 +81,7 @@ class ZhihuListPresenter : AppBaseRefreshPresenter<IZhihuView>() {
                     }
 
                     override fun fail(e: ApiException?) {
-                        handelError(zhihuAdapter.data.isNullOrEmpty(), e)
+
                     }
 
                     override fun finish(success: Boolean) {

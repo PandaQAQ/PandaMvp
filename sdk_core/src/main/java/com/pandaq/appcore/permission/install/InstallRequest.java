@@ -3,8 +3,6 @@ package com.pandaq.appcore.permission.install;
 import androidx.annotation.NonNull;
 
 import com.pandaq.appcore.permission.Action;
-import com.pandaq.appcore.permission.Rationale;
-import com.pandaq.appcore.permission.source.Source;
 
 import java.io.File;
 

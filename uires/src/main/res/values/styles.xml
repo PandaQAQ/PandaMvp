@@ -5,13 +5,6 @@
         <item name="colorControlNormal">@color/colorNegative</item>
         <item name="colorControlActivated">?attr/colorPrimary</item>
     </style>
-    <!--全屏无标题-->
-    <style name="FullScreenNoTitleTheme" parent="NoActionBarTheme" tools:ignore="ResourceName">
-        <item name="android:windowFullscreen">true</item>
-        <item name="android:windowTranslucentStatus">true</item>
-        <item name="windowNoTitle">true</item>
-        <item name="windowActionBar">false</item>
-    </style>
 
     <!--    Dialog弹窗相关-->
     <style name="LoadingDialog" parent="android:Theme.Dialog" tools:ignore="ResourceName">
@@ -38,6 +31,16 @@
         <item name="android:background">@drawable/res_bg_check_item</item>
         <item name="android:textColor">@color/res_checkable_text_color</item>
         <item name="android:button">@null</item>
+    </style>
+
+    <style name="loading_dialog_trans" parent="android:Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowBackground">@color/colorTrans</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
     </style>
 
     <style name="loading_dialog" parent="android:Theme.Dialog">

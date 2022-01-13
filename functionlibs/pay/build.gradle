@@ -17,15 +17,17 @@ android{
 
     buildTypes {
         release {
+            debuggable inDebug.toBoolean()
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         appTest {
-            debuggable true
+            debuggable inDebug.toBoolean()
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
         debug {
+            debuggable inDebug.toBoolean()
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }

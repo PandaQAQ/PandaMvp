@@ -52,15 +52,15 @@ public abstract class AbsRoundImageView extends AppCompatImageView {
 
     private Paint borderPaint;
 
-    public AbsRoundImageView(Context context) {
+    protected AbsRoundImageView(Context context) {
         this(context, null, 0);
     }
 
-    public AbsRoundImageView(Context context, AttributeSet attrs) {
+    protected AbsRoundImageView(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public AbsRoundImageView(Context context, AttributeSet attrs, int defStyleAttr) {
+    protected AbsRoundImageView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         initAttrs(attrs);
         init();

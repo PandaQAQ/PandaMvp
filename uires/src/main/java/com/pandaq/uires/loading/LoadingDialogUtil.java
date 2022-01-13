@@ -3,16 +3,18 @@ package com.pandaq.uires.loading;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
-import android.content.DialogInterface;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 
 import com.pandaq.uires.R;
 
 import java.lang.ref.WeakReference;
 
 /**
- * Created by reiserx on 2017/8/15.
+ * Created by huxinyu on 2018/8/15.
  * desc :loading
  */
 public class LoadingDialogUtil {
@@ -50,8 +52,14 @@ public class LoadingDialogUtil {
      *
      * @param context 上下文
      */
-    public static void show(Activity context) {
-        showProgress(context.getString(R.string.loading), true, context);
+    public static void show(Activity context, String message) {
+        String str = TextUtils.isEmpty(message) ? context.getString(R.string.loading) : message;
+        showProgress(context, str, true, true);
+    }
+
+    public static void showWithCover(Activity context, String message) {
+        String str = TextUtils.isEmpty(message) ? context.getString(R.string.loading) : message;
+        showProgress(context, str, true, false);
     }
 
     /**
@@ -60,42 +68,15 @@ public class LoadingDialogUtil {
      * @param context    上下文
      * @param cancelable 是否可以取消
      */
-    public static void show(Activity context, boolean cancelable) {
-        showProgress(context.getString(R.string.loading), cancelable, context);
+    public static void show(Activity context, String message, boolean cancelable) {
+        String str = TextUtils.isEmpty(message) ? context.getString(R.string.loading) : message;
+        showProgress(context, str, cancelable, true);
     }
 
-    /**
-     * 显示设置message的加载框
-     *
-     * @param context 上下文
-     * @param message 文本内容
-     */
-    public static void show(Activity context, CharSequence message) {
-        showProgress(message, true, context);
+    public static void showWithCover(Activity context, String message, boolean cancelable) {
+        String str = TextUtils.isEmpty(message) ? context.getString(R.string.loading) : message;
+        showProgress(context, str, cancelable, false);
     }
-
-    /**
-     * 显示设置 取消和文本 的加载框
-     *
-     * @param context    上下文
-     * @param message    文本
-     * @param cancelable 取消
-     */
-    public static void show(Activity context, CharSequence message, boolean cancelable) {
-        showProgress(message, cancelable, context);
-    }
-
-    /**
-     * 显示设置 取消和文本 的加载框
-     *
-     * @param message    文本
-     * @param cancelable 取消
-     * @param context    上下文
-     */
-    public static void showProgress(CharSequence message, boolean cancelable, Activity context) {
-        showProgress(message, cancelable, context, null);
-    }
-
 
     /**
      * 显示设置 取消和文本 的加载框
@@ -104,7 +85,7 @@ public class LoadingDialogUtil {
      * @param cancelable 取消
      * @param activity   上下文
      */
-    public static void showProgress(CharSequence message, boolean cancelable, Activity activity, DialogInterface.OnCancelListener listener) {
+    private static void showProgress(Activity activity, CharSequence message, boolean cancelable, boolean isTrans) {
         WeakReference<Activity> reference = new WeakReference<>(activity);
         Activity ownerActivity = reference.get();
         //如果时当前页面正在显示
@@ -118,16 +99,20 @@ public class LoadingDialogUtil {
             releaseDialog();
         }
         if (sLoadingDialog == null) {
-            sLoadingDialog = new LoadingDialog(ownerActivity);
+            sLoadingDialog = new LoadingDialog(ownerActivity, isTrans);
         }
         if (sLoadingView != null) {
             sLoadingDialog.setLoadingView(sLoadingView);
         } else {
-            sLoadingDialog.hideLodingView();
+            sLoadingDialog.hideLoadingView();
         }
-        sLoadingDialog.showInit(message, cancelable, listener);
+        sLoadingDialog.showInit(message, cancelable);
         if (!ownerActivity.isDestroyed() && !ownerActivity.isFinishing()) {
             try {
+                Window dialogWindow = sLoadingDialog.getWindow();
+                WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+                lp.y = 560;
+                dialogWindow.setAttributes(lp);
                 sLoadingDialog.show();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -167,34 +152,6 @@ public class LoadingDialogUtil {
         }
 
     }
-
-    /**
-     * 隐藏加载框
-     *
-     * @param success 是否成功
-     */
-    public static void hideProgress(boolean success) {
-        try {
-            if (sLoadingDialog == null) {
-                return;
-            }
-            LoadingView logoView = sLoadingDialog.getLoadingView();
-            if (logoView != null) {
-                if (success) {
-                    logoView.finish();
-                } else {
-                    logoView.finish();
-                }
-                dismissDialog();
-            } else {
-                dismissDialog();
-            }
-        } catch (Exception e) {
-            Log.e("LoadingDialogUtil", "异常" + e.getMessage());
-        }
-
-    }
-
 
     /**
      * 关闭dialog

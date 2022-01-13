@@ -9,7 +9,6 @@ import com.pandaq.appcore.framework.app.ActivityTask
 import com.pandaq.appcore.framework.mvp.BasePresenter
 import com.pandaq.appcore.framework.mvp.CoreBaseFragment
 import com.pandaq.appcore.utils.NetWorkUtils
-import com.pandaq.appcore.utils.log.PLogger
 import com.pandaq.uires.R
 import com.pandaq.uires.loading.LoadingDialogUtil
 import com.pandaq.uires.msgwindow.Toaster
@@ -34,7 +33,8 @@ abstract class BaseFragment<P : BasePresenter<*>, VB : ViewBinding> : CoreBaseFr
     @SuppressLint("InflateParams")
     override fun getRootView(): ViewGroup? {
         if (showState()) {
-            return LayoutInflater.from(context).inflate(R.layout.res_state_layout, null) as ViewGroup?
+            return LayoutInflater.from(context)
+                .inflate(R.layout.res_state_layout, null) as ViewGroup?
         }
         return super.getRootView()
     }
@@ -58,7 +58,7 @@ abstract class BaseFragment<P : BasePresenter<*>, VB : ViewBinding> : CoreBaseFr
 
     protected fun setStateLayout(stateLayout: StateLayout) {
         if (mStateLayout != null && stateLayout != mStateLayout) {
-            if (BuildConfig.SHOW_LOG) {
+            if (BuildConfig.IN_DEBUG) {
                 throw IllegalStateException("StateLayout 初始化多次，检查是否布局文件使用 StateLayout 且，showState() 返回 true")
             }
         } else {
@@ -87,12 +87,12 @@ abstract class BaseFragment<P : BasePresenter<*>, VB : ViewBinding> : CoreBaseFr
         loadData()
     }
 
-    override fun dialogLoading(msg: String?) {
-        LoadingDialogUtil.show(ActivityTask.getInstance().currentActivity(), msg, true)
+    override fun dialogLoading(cancelAble: Boolean, msg: String?) {
+        LoadingDialogUtil.show(ActivityTask.getInstance().currentActivity(), msg, cancelAble)
     }
 
-    override fun dialogLoading(cancelAble: Boolean) {
-        LoadingDialogUtil.show(ActivityTask.getInstance().currentActivity(), cancelAble)
+    override fun dialogLoadingWithCover(msg: String?) {
+        LoadingDialogUtil.showWithCover(ActivityTask.getInstance().currentActivity(), msg, false)
     }
 
     override fun showError(showErrorPage: Boolean, errMsg: String?) {
@@ -131,14 +131,5 @@ abstract class BaseFragment<P : BasePresenter<*>, VB : ViewBinding> : CoreBaseFr
             LoadingDialogUtil.hideProgressQuick()
         }
         mStateLayout?.showContent()
-    }
-
-    fun finish() {
-        if (activity is FragmentStackActivity<*, *>) {
-            val parentActivity = activity as FragmentStackActivity<*, *>
-            parentActivity.popFragment(this)
-        } else {
-            PLogger.w("Activity not support finish Fragment")
-        }
     }
 }

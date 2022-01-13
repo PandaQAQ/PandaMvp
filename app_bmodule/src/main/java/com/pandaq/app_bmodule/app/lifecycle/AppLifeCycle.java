@@ -4,7 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle;
-import com.pandaq.appcore.utils.log.PLogger;
+import com.pandaq.appcore.log.PLogger;
 
 import androidx.annotation.NonNull;
 

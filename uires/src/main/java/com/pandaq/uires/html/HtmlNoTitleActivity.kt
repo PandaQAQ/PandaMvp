@@ -40,7 +40,7 @@ class HtmlNoTitleActivity : BaseActivity<BasePresenter<*>, ActivityHtmlBinding>(
     }
 
     override fun initView() {
-        if (BuildConfig.SHOW_LOG) {
+        if (BuildConfig.IN_DEBUG) {
             binding.clDebug.visibility = View.VISIBLE
         } else {
             binding.clDebug.visibility = View.GONE

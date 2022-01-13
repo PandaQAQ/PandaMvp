@@ -36,7 +36,7 @@ public class ShadowLayout extends FrameLayout {
     /**
      * 阴影的颜色, 需要带透明
      */
-    private int mShadowColor = Color.argb(128, 249, 94, 94);
+    private int mShadowColor = Color.argb(29, 0, 0, 0);
     /**
      * 阴影的大小范围 radius越大越模糊，越小越清晰
      */

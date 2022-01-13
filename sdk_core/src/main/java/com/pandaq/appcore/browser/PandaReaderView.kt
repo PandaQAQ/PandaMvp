@@ -1,11 +1,12 @@
 package com.pandaq.appcore.browser
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.util.AttributeSet
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import com.pandaq.appcore.utils.log.PLogger
+import com.pandaq.appcore.log.PLogger
 import com.tencent.smtt.sdk.TbsReaderView
 import com.tencent.smtt.sdk.ValueCallback
 import java.io.File
@@ -16,17 +17,19 @@ import java.io.File
  * Description :
  */
 class PandaReaderView @JvmOverloads constructor(
-        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr), TbsReaderView.ReaderCallback, ValueCallback<String> {
 
     private val mTbsReaderView: TbsReaderView = TbsReaderView(context, this)
 
     init {
         this.addView(
-                mTbsReaderView,
-                LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+            mTbsReaderView,
+            LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
         )
-        mTbsReaderView.isForceDarkAllowed = false
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+            mTbsReaderView.isForceDarkAllowed = false
+        }
     }
 
     /**
@@ -54,7 +57,7 @@ class PandaReaderView @JvmOverloads constructor(
         displayFile(File(filePath))
     }
 
-    fun stopDisplay(){
+    fun stopDisplay() {
         mTbsReaderView.onStop()
     }
 

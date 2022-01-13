@@ -1,16 +1,14 @@
 package com.pandaq.uires.widget.recyclerview.loadfooter;
 
+import static android.view.View.MeasureSpec.AT_MOST;
+import static android.view.View.MeasureSpec.getSize;
+import static android.view.View.MeasureSpec.makeMeasureSpec;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
-
-import com.scwang.smartrefresh.layout.api.RefreshFooter;
-import com.scwang.smartrefresh.layout.api.RefreshKernel;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.constant.RefreshState;
-import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
-import com.scwang.smartrefresh.layout.util.DensityUtil;
 
 import androidx.annotation.AttrRes;
 import androidx.annotation.ColorInt;
@@ -18,10 +16,12 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.graphics.ColorUtils;
 
-import static android.view.View.MeasureSpec.AT_MOST;
-import static android.view.View.MeasureSpec.getSize;
-import static android.view.View.MeasureSpec.makeMeasureSpec;
-import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+import com.scwang.smartrefresh.layout.api.RefreshFooter;
+import com.scwang.smartrefresh.layout.api.RefreshKernel;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.constant.RefreshState;
+import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
+import com.scwang.smartrefresh.layout.util.DensityUtil;
 
 /**
  * Created by huxinyu on 2018/11/23.
@@ -138,10 +138,11 @@ public class PandaFooter extends ViewGroup implements RefreshFooter {
             if (colors.length > 1) {
                 mBallPulseView.setNormalColor(colors[1]);
             } else if (colors.length > 0) {
-                mBallPulseView.setNormalColor(ColorUtils.compositeColors(0x99ffffff,colors[0]));
+                mBallPulseView.setNormalColor(ColorUtils.compositeColors(0x99ffffff, colors[0]));
             }
         }
     }
+
     @NonNull
     @Override
     public View getView() {

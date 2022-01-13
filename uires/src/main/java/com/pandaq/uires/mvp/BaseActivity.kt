@@ -25,7 +25,7 @@ import com.pandaq.uires.toolbar.CNToolbar
  * <p>
  * Description :
  */
-abstract class BaseActivity<P : BasePresenter<*>,VB:ViewBinding> : CoreBaseActivity<P,VB>() {
+abstract class BaseActivity<P : BasePresenter<*>, VB : ViewBinding> : CoreBaseActivity<P, VB>() {
 
     protected var mToolbar: CNToolbar? = null
 
@@ -45,8 +45,8 @@ abstract class BaseActivity<P : BasePresenter<*>,VB:ViewBinding> : CoreBaseActiv
 
     @SuppressLint("InflateParams")
     override fun getRootView(): ViewGroup? {
-        if (showState()){
-            return LayoutInflater.from(this).inflate(R.layout.res_state_layout,null) as ViewGroup?
+        if (showState()) {
+            return LayoutInflater.from(this).inflate(R.layout.res_state_layout, null) as ViewGroup?
         }
         return super.getRootView()
     }
@@ -68,9 +68,9 @@ abstract class BaseActivity<P : BasePresenter<*>,VB:ViewBinding> : CoreBaseActiv
         })
     }
 
-    protected  fun setStateLayout(stateLayout: StateLayout) {
+    protected fun setStateLayout(stateLayout: StateLayout) {
         if (mStateLayout != null && stateLayout != mStateLayout) {
-            if (BuildConfig.SHOW_LOG) {
+            if (BuildConfig.IN_DEBUG) {
                 throw IllegalStateException("StateLayout 初始化多次，检查是否布局文件使用 StateLayout 且，showState() 返回 true")
             }
         } else {
@@ -99,6 +99,7 @@ abstract class BaseActivity<P : BasePresenter<*>,VB:ViewBinding> : CoreBaseActiv
         loadData()
     }
 
+    @SuppressLint("InflateParams")
     override fun initToolbar() {
         val actionBar = supportActionBar
         if (actionBar != null) {
@@ -112,18 +113,21 @@ abstract class BaseActivity<P : BasePresenter<*>,VB:ViewBinding> : CoreBaseActiv
             actionBar.title = ""
             actionBar.setDisplayShowHomeEnabled(false)
             actionBar.setDisplayShowCustomEnabled(true)
-            val alp = ActionBar.LayoutParams(ActionBar.LayoutParams.MATCH_PARENT, ActionBar.LayoutParams.MATCH_PARENT)
+            val alp = ActionBar.LayoutParams(
+                ActionBar.LayoutParams.MATCH_PARENT,
+                ActionBar.LayoutParams.MATCH_PARENT
+            )
             actionBar.setCustomView(view, alp)
         }
         initStateLayout()
     }
 
-    override fun dialogLoading(msg: String?) {
-        LoadingDialogUtil.show(ActivityTask.getInstance().currentActivity(), msg, true)
+    override fun dialogLoading(cancelAble: Boolean, msg: String?) {
+        LoadingDialogUtil.show(ActivityTask.getInstance().currentActivity(), msg, cancelAble)
     }
 
-    override fun dialogLoading(cancelAble: Boolean) {
-        LoadingDialogUtil.show(ActivityTask.getInstance().currentActivity(), cancelAble)
+    override fun dialogLoadingWithCover(msg: String?) {
+        LoadingDialogUtil.showWithCover(ActivityTask.getInstance().currentActivity(), msg, false)
     }
 
     override fun showError(showErrorPage: Boolean, errMsg: String?) {
@@ -169,5 +173,9 @@ abstract class BaseActivity<P : BasePresenter<*>,VB:ViewBinding> : CoreBaseActiv
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
         outState.putParcelable("android:support:fragments", null)
+    }
+
+    override fun onBackPressed() {
+        finish()
     }
 }

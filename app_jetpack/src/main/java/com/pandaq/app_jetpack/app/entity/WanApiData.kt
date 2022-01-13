@@ -9,10 +9,10 @@ import com.pandaq.rxpanda.entity.IApiData
  * <p>
  * Description :
  */
-data class WanApiData<T>(@SerializedName("errorCode") private val code: Long,
+data class WanApiData<T>(@SerializedName("errorCode") private val code: String,
                          @SerializedName("errorMsg") private val msg: String,
                          @SerializedName("data") private val data: T) : IApiData<T> {
-    override fun getCode(): Long {
+    override fun getCode(): String {
         return code
     }
 

@@ -1,7 +1,6 @@
 package com.pandaq.uires.widget.marqueeview
 
 import android.content.Context
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -68,7 +67,7 @@ class LoopLayoutManager(context: Context) : LinearLayoutManager(context) {
 
         offsetChildrenHorizontal(-travl)
 
-        recyclerHideView(dx, recycler, state)
+        recyclerHideView(dx, recycler)
         return travl
     }
 
@@ -125,20 +124,18 @@ class LoopLayoutManager(context: Context) : LinearLayoutManager(context) {
         return xDistance
     }
 
-    private fun recyclerHideView(dx: Int, recycler: Recycler, state: RecyclerView.State) {
+    private fun recyclerHideView(dx: Int, recycler: Recycler) {
         for (i in 0 until childCount) {
             val view = getChildAt(i) ?: continue
             if (dx > 0) {
                 //向左滚动，移除一个左边不在内容里的view
                 if (view.right < 0) {
                     removeAndRecycleView(view, recycler)
-                    Log.d("LoopLayoutManager", "循环: 移除 一个view  childCount=$childCount")
                 }
             } else {
                 //向右滚动，移除一个右边不在内容里的view
                 if (view.left > width) {
                     removeAndRecycleView(view, recycler)
-                    Log.d("LoopLayoutManager", "循环: 移除 一个view  childCount=$childCount")
                 }
             }
         }

@@ -1,7 +1,6 @@
 package com.pandaq.uires.msgwindow;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.graphics.drawable.Drawable;
 import android.text.TextUtils;
 import android.view.Gravity;
@@ -10,14 +9,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.pandaq.appcore.utils.system.AppUtils;
-import com.pandaq.appcore.utils.system.DisplayUtils;
-import com.pandaq.uires.configs.ToastConfig;
-
 import androidx.annotation.ColorInt;
 import androidx.annotation.Dimension;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
+
+import com.pandaq.appcore.utils.system.AppUtils;
+import com.pandaq.appcore.utils.system.DisplayUtils;
+import com.pandaq.uires.configs.ToastConfig;
 
 
 /**

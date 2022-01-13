@@ -3,6 +3,7 @@ package com.pandaq.appcore.utils.crypto.coders;
 import android.util.Base64;
 
 import com.pandaq.appcore.utils.crypto.CodeType;
+import com.pandaq.appcore.log.PLogger;
 
 import javax.crypto.Cipher;
 import javax.crypto.SecretKey;
@@ -16,19 +17,23 @@ import javax.crypto.spec.IvParameterSpec;
  * <p>
  * Description :Des 加密解密器
  */
-public class DesCoder {
+public class DESCoder {
 
-    private static DesCoder sDesCoder;
+    private static DESCoder sDESCoder;
 
-    public static synchronized DesCoder getDefault() {
-        if (sDesCoder == null) {
-            sDesCoder = new DesCoder();
+    public static synchronized DESCoder getDefault() {
+        if (sDESCoder == null) {
+            sDESCoder = new DESCoder();
         }
-        return sDesCoder;
+        return sDESCoder;
+    }
+
+    private DESCoder(){
+
     }
 
     // 对密钥进行处理,获得秘钥对象
-    private static SecretKey getRawKey(String key) throws Exception {
+    private  SecretKey getRawKey(String key) throws Exception {
         DESKeySpec dks = new DESKeySpec(key.getBytes());
         SecretKeyFactory keyFactory = SecretKeyFactory.getInstance(CodeType.DES.getType());
         return keyFactory.generateSecret(dks);
@@ -41,7 +46,8 @@ public class DesCoder {
      * @param key  加密私钥，长度不能够小于8位
      * @return 加密后的字节数组，一般结合Base64编码使用
      */
-    public static String encode(String key, String data) {
+    public  String encode(String key, String data) {
+        PLogger.d("des encode :" + data);
         return encode(key, data.getBytes());
     }
 
@@ -53,7 +59,10 @@ public class DesCoder {
      * @param key  加密私钥，长度不能够小于8位
      * @return 加密后的字节数组，一般结合Base64编码使用
      */
-    public static String encode(String key, byte[] data) {
+    public  String encode(String key, byte[] data) {
+        if (key.length()<8){
+            key = "00000000"+key;
+        }
         try {
             Cipher cipher = Cipher.getInstance(CodeType.DES.getType());
             IvParameterSpec iv = new IvParameterSpec(CodeType.DES.getType().getBytes());
@@ -61,6 +70,7 @@ public class DesCoder {
             byte[] bytes = cipher.doFinal(data);
             return Base64.encodeToString(bytes, Base64.DEFAULT);
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
     }
@@ -73,8 +83,9 @@ public class DesCoder {
      * @param data 待解密对象
      * @return 解密结果
      */
-    public static String decode(String key, String data) {
-        return decode(key, data.getBytes());
+    public  String decode(String key, String data) {
+        PLogger.d("des decode :" + data);
+        return decode(key,Base64.decode(data.getBytes(), Base64.DEFAULT));
     }
 
     /**
@@ -84,7 +95,10 @@ public class DesCoder {
      * @param key  解密私钥，长度不能够小于8位
      * @return 解密后的字节数组
      */
-    public static String decode(String key, byte[] data) {
+    public  String decode(String key, byte[] data) {
+        if (key.length()<8){
+            key = "00000000"+key;
+        }
         try {
             Cipher cipher = Cipher.getInstance(CodeType.DES.getType());
             IvParameterSpec iv = new IvParameterSpec(CodeType.DES.getType().getBytes());
@@ -92,6 +106,7 @@ public class DesCoder {
             byte[] original = cipher.doFinal(data);
             return new String(original);
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
     }

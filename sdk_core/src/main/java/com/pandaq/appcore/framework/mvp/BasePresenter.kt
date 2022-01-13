@@ -4,11 +4,14 @@ import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
-import com.pandaq.appcore.utils.log.PLogger
+import com.pandaq.appcore.event.ApiConfigChange
+import com.pandaq.appcore.log.PLogger
 import com.pandaq.rxpanda.exception.ApiException
 import com.pandaq.rxpanda.utils.CastUtils
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
 
 /**
  * Created by huxinyu on 2018/4/2.
@@ -43,17 +46,28 @@ abstract class BasePresenter<V : IView> : LifecycleObserver {
     @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
     private fun onCreate() {
         // presenter 绑定到 MvpFragment 或 MvpActivity 时触发
-        Log.d("LifeCycle", "onCreate")
+        EventBus.getDefault().register(this)
     }
+
+
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
     private fun onDestroy() {
         dispose()
-        Log.d("LifeCycle", "dispose")
+        EventBus.getDefault().unregister(this)
     }
 
+    /**
+     * Api 配置刷新
+     */
+    @Subscribe
+    fun onApiConfigRefresh(apiConfigChange: ApiConfigChange) {
+        refreshApiConfig()
+    }
 
-    protected open fun handelError(showErrorPage: Boolean, e: ApiException?) {
+    abstract fun refreshApiConfig()
+
+    protected open fun showError(showErrorPage: Boolean, e: ApiException?) {
         e?.let {
             mView?.showError(showErrorPage, e.message)
         }

@@ -1,126 +1,191 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <attr name="ratio"
-        format="float" />
+    <attr name="ratio" format="float" />
 
-    <attr name="borderColor"
-        format="color|reference" />
-    <attr name="shadowColor"
-        format="color" />
+    <attr name="borderColor" format="color|reference" />
+    <attr name="shadowColor" format="color" />
 
-    <attr name="shadowWidth"
-        format="dimension" />
-    <declare-styleable name="CountChangeView"
-        tools:ignore="ResourceName">
-        <attr name="countColor"
-            format="color" />
-        <attr name="countTextSize"
-            format="dimension" />
-        <attr name="maxCount"
-            format="integer" />
-        <attr name="minCount"
-            format="integer" />
-        <attr name="focusable"
-            format="boolean" />
+    <attr name="shadowWidth" format="dimension" />
+    <declare-styleable name="CountChangeView" tools:ignore="ResourceName">
+        <attr name="countColor" format="color" />
+        <attr name="countTextSize" format="dimension" />
+        <attr name="maxCount" format="integer" />
+        <attr name="minCount" format="integer" />
+        <attr name="focusable" format="boolean" />
     </declare-styleable>
 
-    <declare-styleable name="RatioImageView"
-        tools:ignore="ResourceName">
+    <declare-styleable name="RatioImageView" tools:ignore="ResourceName">
         <attr name="ratio" />
     </declare-styleable>
 
-    <declare-styleable name="RationFrameLayout"
-        tools:ignore="ResourceName">
+    <declare-styleable name="RationFrameLayout" tools:ignore="ResourceName">
         <attr name="ratio" />
     </declare-styleable>
 
-    <declare-styleable name="RefreshRecyclerView"
-        tools:ignore="ResourceName">
-        <attr name="emptyView"
-            format="reference" />
-        <attr name="errorView"
-            format="reference" />
+    <declare-styleable name="RefreshRecyclerView" tools:ignore="ResourceName">
+        <attr name="emptyView" format="reference" />
+        <attr name="errorView" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="MaxHeightScrollView">
-        <attr name="maxHeight"
-            format="dimension|reference" />
+        <attr name="maxHeight" format="dimension|reference" />
     </declare-styleable>
 
-    <declare-styleable name="CNToolbar"
-        tools:ignore="ResourceName">
-        <attr name="lightStyle"
-            format="boolean" />
-        <attr name="showDivider"
-            format="boolean" />
-        <attr name="dividerColor"
-            format="color" />
+    <declare-styleable name="CNToolbar" tools:ignore="ResourceName">
+        <attr name="lightStyle" format="boolean" />
+        <attr name="showDivider" format="boolean" />
+        <attr name="dividerColor" format="color" />
     </declare-styleable>
 
     <declare-styleable name="AbsRoundImageView">
-        <attr name="borderWidths"
-            format="dimension|reference" />
+        <attr name="borderWidths" format="dimension|reference" />
         <attr name="borderColor" />
-        <attr name="isSquare"
-            format="boolean" />
+        <attr name="isSquare" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="RoundImageView">
-        <attr name="leftTopRadius"
-            format="dimension|reference" />
-        <attr name="rightTopRadius"
-            format="dimension|reference" />
-        <attr name="rightBottomRadius"
-            format="dimension|reference" />
-        <attr name="leftBottomRadius"
-            format="dimension|reference" />
+        <attr name="leftTopRadius" format="dimension|reference" />
+        <attr name="rightTopRadius" format="dimension|reference" />
+        <attr name="rightBottomRadius" format="dimension|reference" />
+        <attr name="leftBottomRadius" format="dimension|reference" />
     </declare-styleable>
     <declare-styleable name="GalleryPager">
-        <attr name="autoPlay"
-            format="boolean" />
+        <attr name="autoPlay" format="boolean" />
     </declare-styleable>
 
-    <declare-styleable name="ShadowCircleImageView">
-        <attr name="shadowWidth" />
-        <attr name="shadowColor" />
-        <attr name="borderColor" />
-        <attr name="bgColor"
-            format="color" />
-        <attr name="borderWidth"
-            format="dimension" />
+    <declare-styleable name="ShadowImageView">
+        <attr name="image_radius" format="dimension" />//圆角大小
+        <attr name="image_shadow_radius" format="dimension" />//阴影大小
+        <attr name="image_circle" format="boolean" />//是否圆形
+        <attr name="image_shadow" format="boolean" />//是否阴影
+        <attr name="shadow_color" format="color"/>//阴影颜色
     </declare-styleable>
 
-    <declare-styleable name="ShadowLayout"
-        tools:ignore="ResourceName">
-        <attr name="shadowRadius"
-            format="dimension" />
+    <declare-styleable name="ShadowLayout" tools:ignore="ResourceName">
+        <attr name="shadowRadius" format="dimension" />
         <attr name="shadowColor" />
         <attr name="shadowWidth" />
-        <attr name="shadowDx"
-            format="dimension" />
-        <attr name="shadowDy"
-            format="dimension" />
-        <attr name="showHorizontal"
-            format="boolean" />
-        <attr name="showTop"
-            format="boolean" />
-        <attr name="showBottom"
-            format="boolean" />
+        <attr name="shadowDx" format="dimension" />
+        <attr name="shadowDy" format="dimension" />
+        <attr name="showHorizontal" format="boolean" />
+        <attr name="showTop" format="boolean" />
+        <attr name="showBottom" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="ExpandTextView">
-        <attr name="showLines"
-            format="integer" />
+        <attr name="showLines" format="integer" />
     </declare-styleable>
 
     <declare-styleable name="StateLayout">
-        <attr name="noNetLayout"
-            format="reference" />
-        <attr name="emptyLayout"
-            format="reference" />
-        <attr name="errorLayout"
-            format="reference" />
-        <attr name="loadingLayout"
-            format="reference" />
+        <attr name="noNetLayout" format="reference" />
+        <attr name="emptyLayout" format="reference" />
+        <attr name="errorLayout" format="reference" />
+        <attr name="loadingLayout" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="PandaCardView">
+        <attr name="pandaCardBackgroundColor" format="color"/>
+        <attr name="pandaCardCornerRadius" format="dimension"/>
+        <attr name="pandaCardElevation" format="dimension"/>
+        <attr name="pandaCardMaxElevation" format="dimension"/>
+        <attr name="pandaUseCompatPadding" format="boolean"/>
+        <attr name="pandaCardPreventCornerOverlap" format="boolean"/>
+        <attr name="pandaContentPadding" format="dimension"/>
+        <attr name="pandaContentPaddingLeft" format="dimension"/>
+        <attr name="pandaContentPaddingRight" format="dimension"/>
+        <attr name="pandaContentPaddingTop" format="dimension"/>
+        <attr name="pandaContentPaddingBottom" format="dimension"/>
+        <attr name="android:minWidth"/>
+        <attr name="android:minHeight"/>
+
+        <attr name="pandaStartShadowColor" format="color"/>
+        <attr name="pandaEndShadowColor" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="Banner">
+        <attr name="banner_loop_time" format="integer" />
+        <attr name="banner_auto_loop" format="boolean" />
+        <attr name="banner_infinite_loop" format="boolean" />
+
+        <!--RoundLinesIndicator、RectangleIndicator-->
+        <attr name="banner_indicator_height" format="dimension"/>
+        <attr name="banner_indicator_radius" format="dimension"/>
+
+        <!-- 以下为公用属性 -->
+        <attr name="banner_indicator_selected_width" format="dimension"/>
+        <!--CircleIndicator-->
+        <attr name="banner_indicator_normal_width" format="dimension"/>
+        <attr name="banner_indicator_space" format="dimension"/>
+
+        <attr name="banner_indicator_normal_color" format="reference|color"/>
+        <attr name="banner_indicator_selected_color" format="reference|color"/>
+        <attr name="banner_indicator_margin" format="dimension"/>
+        <attr name="banner_indicator_marginLeft" format="dimension"/>
+        <attr name="banner_indicator_marginTop" format="dimension"/>
+        <attr name="banner_indicator_marginRight" format="dimension"/>
+        <attr name="banner_indicator_marginBottom" format="dimension"/>
+
+        <attr name="banner_indicator_gravity" format="enum">
+            <enum name="left" value="0" />
+            <enum name="center" value="1" />
+            <enum name="right" value="2" />
+        </attr>
+
+        <attr name="banner_orientation">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+
+        <attr name="banner_radius" format="dimension"/>
+
+        <!--设置需要圆角的方向，不设置默认全部设置-->
+        <attr name="banner_round_top_left" format="boolean"/>
+        <attr name="banner_round_top_right" format="boolean"/>
+        <attr name="banner_round_bottom_left" format="boolean"/>
+        <attr name="banner_round_bottom_right" format="boolean"/>
+
+    </declare-styleable>
+
+    <declare-styleable name="DrawableIndicator">
+        <attr name="normal_drawable" format="reference"/>
+        <attr name="selected_drawable" format="reference"/>
+    </declare-styleable>
+
+    <declare-styleable name="FloatingActionButton">
+        <attr name="fab_colorPressed" format="color"/>
+        <attr name="fab_colorDisabled" format="color"/>
+        <attr name="fab_colorNormal" format="color"/>
+        <attr name="fab_icon" format="reference"/>
+        <attr name="fab_size" format="enum">
+            <enum name="normal" value="0"/>
+            <enum name="mini" value="1"/>
+        </attr>
+        <attr name="fab_title" format="string"/>
+        <attr name="fab_stroke_visible" format="boolean"/>
+    </declare-styleable>
+    <declare-styleable name="AddFloatingActionButton">
+        <attr name="fab_plusIconColor" format="color"/>
+    </declare-styleable>
+    <declare-styleable name="FloatingActionsMenu">
+        <attr name="fab_addButtonColorPressed" format="color"/>
+        <attr name="fab_addButtonColorNormal" format="color"/>
+        <attr name="fab_addButtonSize" format="enum">
+            <enum name="normal" value="0"/>
+            <enum name="mini" value="1"/>
+        </attr>
+        <attr name="fab_addButtonPlusIconColor" format="color"/>
+        <attr name="fab_addButtonStrokeVisible" format="boolean"/>
+        <attr name="fab_expanded" format="boolean"/>
+        <attr name="fab_labelStyle" format="reference"/>
+        <attr name="fab_labelsPosition" format="enum">
+            <enum name="left" value="0"/>
+            <enum name="right" value="1"/>
+        </attr>
+        <attr name="fab_expandDirection" format="enum">
+            <enum name="up" value="0"/>
+            <enum name="down" value="1"/>
+            <enum name="left" value="2"/>
+            <enum name="right" value="3"/>
+        </attr>
     </declare-styleable>
 </resources>

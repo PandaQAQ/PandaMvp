@@ -7,7 +7,6 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
-import androidx.constraintlayout.widget.ConstraintLayout
 import com.pandaq.uires.R
 import com.scwang.smartrefresh.layout.api.RefreshHeader
 import com.scwang.smartrefresh.layout.api.RefreshKernel
@@ -26,13 +25,13 @@ class PandaHeader @JvmOverloads constructor(
 ) : LinearLayout(context, attrs, defStyleAttr), RefreshHeader {
 
     private var gifDrawable: GifDrawable
-    private var headerLayout:LinearLayout
+    private var headerLayout: LinearLayout
 
     init {
-        View.inflate(context,R.layout.res_panda_refresh_header,this)
+        View.inflate(context, R.layout.res_panda_refresh_header, this)
         val image = findViewById<ImageView>(R.id.res_iv_refresh)
         headerLayout = findViewById(R.id.ll_refresh_header)
-        gifDrawable = GifDrawable(resources, R.drawable.res_refresh_header)
+        gifDrawable = GifDrawable(resources, R.drawable.default_loading)
         image.setImageDrawable(gifDrawable)
     }
 
@@ -91,11 +90,11 @@ class PandaHeader @JvmOverloads constructor(
         return false
     }
 
-    fun setHeaderBackgroundColor(@ColorInt color:Int){
+    fun setHeaderBackgroundColor(@ColorInt color: Int) {
         headerLayout.setBackgroundColor(color)
     }
 
-    fun setHeaderBackgroundRes(@ColorRes res:Int){
+    fun setHeaderBackgroundRes(@ColorRes res: Int) {
         headerLayout.setBackgroundResource(res)
     }
 }

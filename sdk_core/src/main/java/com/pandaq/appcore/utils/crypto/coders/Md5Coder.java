@@ -14,15 +14,19 @@ import java.security.MessageDigest;
  * <p>
  * Description :md5 加密方法工具类
  */
-public class Md5Coder {
+public class MD5Coder {
 
-    private static Md5Coder sMd5Coder;
+    private static MD5Coder sMD5Coder;
 
-    public static synchronized Md5Coder getDefault() {
-        if (sMd5Coder == null) {
-            sMd5Coder = new Md5Coder();
+    public static synchronized MD5Coder getDefault() {
+        if (sMD5Coder == null) {
+            sMD5Coder = new MD5Coder();
         }
-        return sMd5Coder;
+        return sMD5Coder;
+    }
+
+    private MD5Coder(){
+
     }
 
     /**
@@ -70,10 +74,11 @@ public class Md5Coder {
         FileInputStream fin = null;
         try {
             fin = new FileInputStream(file);
-            String md5 = getInputStreamMd5(fin, (int) (bufferLen <= file.length() ? bufferLen : file.length()));
+            String md5 = getInputStreamMd5(fin, (int) (Math.min(bufferLen, file.length())));
             fin.close();
             return md5;
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         } finally {
             try {

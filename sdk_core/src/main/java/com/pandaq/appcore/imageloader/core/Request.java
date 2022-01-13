@@ -164,7 +164,7 @@ public class Request {
     }
 
     public static class Builder {
-        private Context context;
+        private final Context context;
         private IExecutor executor;
 
         private String url;

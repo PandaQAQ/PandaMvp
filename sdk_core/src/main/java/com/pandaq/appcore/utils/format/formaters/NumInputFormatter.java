@@ -1,7 +1,6 @@
 package com.pandaq.appcore.utils.format.formaters;
 
 import android.text.TextUtils;
-import android.widget.TextView;
 
 /**
  * Created by huxinyu on 2018/7/5.

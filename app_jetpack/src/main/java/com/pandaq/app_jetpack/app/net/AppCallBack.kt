@@ -1,40 +1,29 @@
-package com.pandaq.app_jetpack.app.net;
+package com.pandaq.app_jetpack.app.net
 
-import com.pandaq.appcore.utils.log.PLogger;
-import com.pandaq.rxpanda.exception.ApiException;
-import com.pandaq.rxpanda.observer.ApiObserver;
+import com.pandaq.rxpanda.exception.ApiException
+import com.pandaq.rxpanda.observer.ApiObserver
 
 /**
  * Created by huxinyu on 2019/3/8.
  * Email : panda.h@foxmail.com
  * Description :自定义的处理类
  */
-public abstract class AppCallBack<T> extends ApiObserver<T> {
-    @Override
-    protected void onSuccess(T data) {
-        success(data);
+abstract class AppCallBack<T> : ApiObserver<T>() {
+    override fun finished(success: Boolean) {
+        finish(success)
     }
 
-    @Override
-    protected void onError(ApiException e) {
-        handleException(e);
-        fail(e.getCode(), e.getMessage());
+    override fun onError(exception: ApiException?) {
+        fail(exception)
     }
 
-    @Override
-    protected void finished(boolean success) {
-        finish(success);
+    override fun onSuccess(data: T) {
+        success(data)
     }
 
-    private void handleException(ApiException e) {
-        if (e.getCode() == ExceptionCode.TOKEN_INVALID) {
-            PLogger.e("TOKEN 已过期");
-        }
-    }
+    abstract fun success(data: T)
 
-    protected abstract void success(T data);
+    abstract fun fail(exception: ApiException?)
 
-    protected abstract void fail(Long code, String msg);
-
-    protected abstract void finish(boolean success);
+    abstract fun finish(success: Boolean)
 }

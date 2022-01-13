@@ -25,7 +25,7 @@
     </style>
 
     <style name="customActionBar" parent="Widget.AppCompat.ActionBar">
-        <item name="background">?attr/colorAccent</item>
+        <item name="background">@color/toolbarBackground</item>
         <item name="contentInsetStart">0dp</item><!-- 设置该属性解决空白部分-->
         <item name="contentInsetEnd">0dp</item>
     </style>
@@ -43,11 +43,15 @@
         <item name="android:fitsSystemWindows">true</item>
         <!--        自定义颜色-->
         <item name="toolbarBackground">@color/colorPrimary</item>
-        <item name="colorBackground">#ffffff</item>
+        <item name="colorBackground">#eeeeee</item>
     </style>
 
-    <style name="NoActionBarTheme" parent="Theme.AppCompat.Light.NoActionBar" tools:ignore="ResourceName">
-        <!-- Customize your theme here. -->
+    <!--全屏无标题-->
+    <style name="FullScreenNoTitleTheme" parent="Theme.AppCompat.Light.NoActionBar" tools:ignore="ResourceName">
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowEnableSplitTouch">false</item>
         <item name="android:splitMotionEvents">false</item>
@@ -59,6 +63,7 @@
         <item name="android:windowBackground">@color/colorBackground</item>
         <item name="android:configChanges">screenLayout|navigation|screenSize</item>
         <item name="toolbarBackground">@color/colorPrimary</item>
-        <item name="colorBackground">#ffffff</item>
+        <item name="colorBackground">#eeeeee</item>
     </style>
+
 </resources>

@@ -12,10 +12,10 @@ import android.widget.CompoundButton;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 
+import androidx.annotation.IdRes;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.IdRes;
 
 /**
  * Created by Key on 2015/8/13 12:29
@@ -23,6 +23,7 @@ import androidx.annotation.IdRes;
  * description: 重写原生RadioGroup，用集合实现RadioGroup内可以再布局，从而实现多行多列的RadioGroup
  * {getAllRadioButton}
  * {addView}
+ *
  * @version 1.2
  * {@link PassThroughHierarchyChangeListener }
  */
@@ -99,8 +100,8 @@ public class MultiRadioGroup extends LinearLayout {
     @Override
     public void addView(View child, int index, ViewGroup.LayoutParams params) {
         List<RadioButton> allRadioButton = getAllRadioButton(child);
-        if(allRadioButton != null && allRadioButton.size() > 0){
-            for(RadioButton button : allRadioButton){
+        if (allRadioButton != null && allRadioButton.size() > 0) {
+            for (RadioButton button : allRadioButton) {
                 if (button.isChecked()) {
                     mProtectFromCheckedChange = true;
                     if (mCheckedId != -1) {
@@ -117,13 +118,13 @@ public class MultiRadioGroup extends LinearLayout {
     /**
      * 递归寻找{@link RadioButton}
      */
-    private List<RadioButton> getAllRadioButton(View child){
+    private List<RadioButton> getAllRadioButton(View child) {
         List<RadioButton> allRadioButton = new ArrayList<>();
         if (child instanceof RadioButton) {
             allRadioButton.add((RadioButton) child);
-        }else if(child instanceof ViewGroup){
+        } else if (child instanceof ViewGroup) {
             int counts = ((ViewGroup) child).getChildCount();
-            for(int i = 0; i < counts; i++){
+            for (int i = 0; i < counts; i++) {
                 // 递归，把返回集合中的内容全部加入到外层的集合，然后返回
                 allRadioButton.addAll(getAllRadioButton(((ViewGroup) child).getChildAt(i)));
             }
@@ -263,10 +264,10 @@ public class MultiRadioGroup extends LinearLayout {
 
         @SuppressLint("NewApi")
         public void onChildViewAdded(View parent, View child) {
-            if (parent == MultiRadioGroup.this ) {
+            if (parent == MultiRadioGroup.this) {
                 List<RadioButton> allRadioButton = getAllRadioButton(child);
-                if(allRadioButton != null && allRadioButton.size() > 0){
-                    for(RadioButton button : allRadioButton){
+                if (allRadioButton != null && allRadioButton.size() > 0) {
+                    for (RadioButton button : allRadioButton) {
                         int id = button.getId();
                         // generates an categoryId if it's missing
                         if (id == View.NO_ID) {
@@ -292,8 +293,8 @@ public class MultiRadioGroup extends LinearLayout {
         public void onChildViewRemoved(View parent, View child) {
             if (parent == MultiRadioGroup.this) {
                 List<RadioButton> allRadioButton = getAllRadioButton(child);
-                if(allRadioButton != null && allRadioButton.size() > 0){
-                    for(RadioButton button : allRadioButton){
+                if (allRadioButton != null && allRadioButton.size() > 0) {
+                    for (RadioButton button : allRadioButton) {
                         button.setOnCheckedChangeListener(null);
                     }
                 }

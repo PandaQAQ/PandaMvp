@@ -2,6 +2,7 @@ package com.pandaq.appcore.permission;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.view.Window;
 
 import androidx.core.content.ContextCompat;
@@ -60,7 +61,7 @@ public class SettingDialogUtils {
             window.setWindowAnimations(R.style.AnimationSettingDialog);
         }
         alertDialog.show();
-        alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE).setTextColor(ContextCompat.getColor(context, R.color.colorNegative));
+        alertDialog.getButton(DialogInterface.BUTTON_NEGATIVE).setTextColor(ContextCompat.getColor(context, R.color.colorNegative));
         return alertDialog;
     }
 }

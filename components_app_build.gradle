@@ -6,7 +6,7 @@ apply plugin: 'kotlin-parcelize'
 kapt {
     arguments {
         arg("AROUTER_MODULE_NAME", project.getName())
-        arg("AROUTER_GENERATE_DOC", "enable")
+        arg("AROUTER_GENERATE_DOC","enable")
         includeCompileClasspath = true
     }
 }
@@ -18,30 +18,47 @@ android {
     defaultConfig {
         minSdkVersion rootProject.ext.android["minSdkVersion"]
         targetSdkVersion rootProject.ext.android["targetSdkVersion"]
-        versionCode rootProject.ext.android["versionCode"]
-        versionName rootProject.ext.android["versionName"]
         testInstrumentationRunner rootProject.ext.dependencies["androidJUnitRunner"]
         multiDexEnabled true
     }
 
-    buildFeatures {
+    buildFeatures{
         viewBinding true
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("./scaaa.jks")
+            storePassword "azys123"
+            keyAlias "azys"
+            keyPassword "azys123"
+        }
+
+        debug {
+            storeFile file("./scaaa.jks")
+            storePassword "azys123"
+            keyAlias "azys"
+            keyPassword "azys123"
+        }
     }
 
     buildTypes {
         release {
-            debuggable debugProd.toBoolean()
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            debuggable inDebug.toBoolean()
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
         appTest {
-            debuggable true
+            debuggable inDebug.toBoolean()
+            signingConfig signingConfigs.debug
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
 
-        debug {
-            debuggable true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        debug{
+            debuggable inDebug.toBoolean()
+            signingConfig signingConfigs.debug
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 
@@ -74,8 +91,6 @@ dependencies {
     androidTestImplementation rootProject.ext.dependencies["androix-junit"]
     androidTestCompileOnly rootProject.ext.dependencies["espresso-core"]
     kapt rootProject.ext.dependencies["annotation"]
-    api project(':uires')
     api project(':router')
-
     kapt rootProject.ext.dependencies["arouter_compiler"]
 }
