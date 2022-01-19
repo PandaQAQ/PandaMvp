@@ -32,24 +32,18 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("./scaaa.jks")
-            storePassword "azys123"
-            keyAlias "azys"
-            keyPassword "azys123"
+
         }
 
         debug {
-            storeFile file("./scaaa.jks")
-            storePassword "azys123"
-            keyAlias "azys"
-            keyPassword "azys123"
+
         }
     }
 
     buildTypes {
         release {
             debuggable inDebug.toBoolean()
-            signingConfig signingConfigs.release
+//            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
 
