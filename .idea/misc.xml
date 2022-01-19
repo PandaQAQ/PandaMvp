@@ -7,6 +7,9 @@
         <entry key="app_jetpack/src/main/res/layout/a_activity_zhihu_list.xml" value="0.2671875" />
         <entry key="app_launcher/src/main/res/layout/launcher_activity_gallery.xml" value="0.2671875" />
         <entry key="uires/src/main/res/layout/activity_route_404.xml" value="0.3921875" />
+        <entry key="uires/src/main/res/layout/default_empty_layout.xml" value="0.18363728470111448" />
+        <entry key="uires/src/main/res/layout/default_error_layout.xml" value="0.18363728470111448" />
+        <entry key="uires/src/main/res/layout/layout_keyboard_with_input.xml" value="0.3776041666666667" />
       </map>
     </option>
   </component>

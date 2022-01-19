@@ -133,7 +133,7 @@ abstract class BaseActivity<P : BasePresenter<*>, VB : ViewBinding> : CoreBaseAc
     override fun showError(showErrorPage: Boolean, errMsg: String?) {
 
         if (LoadingDialogUtil.isShowing()) {
-            LoadingDialogUtil.hideProgressQuick()
+            LoadingDialogUtil.hideProgressQuick(this.javaClass.simpleName)
         }
 
         if (showErrorPage) {
@@ -151,21 +151,21 @@ abstract class BaseActivity<P : BasePresenter<*>, VB : ViewBinding> : CoreBaseAc
 
     override fun showEmpty(msg: String?) {
         if (LoadingDialogUtil.isShowing()) {
-            LoadingDialogUtil.hideProgressQuick()
+            LoadingDialogUtil.hideProgressQuick(this.javaClass.simpleName)
         }
         mStateLayout?.showEmpty(msg)
     }
 
     override fun showLoading() {
         if (LoadingDialogUtil.isShowing()) {
-            LoadingDialogUtil.hideProgressQuick()
+            LoadingDialogUtil.hideProgressQuick(this.javaClass.simpleName)
         }
         mStateLayout?.showLoading()
     }
 
     override fun showContent() {
         if (LoadingDialogUtil.isShowing()) {
-            LoadingDialogUtil.hideProgressQuick()
+            LoadingDialogUtil.hideProgressQuick(this.javaClass.simpleName)
         }
         mStateLayout?.showContent()
     }

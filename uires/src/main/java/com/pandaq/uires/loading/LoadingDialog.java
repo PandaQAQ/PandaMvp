@@ -5,13 +5,15 @@ import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.pandaq.uires.R;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import com.pandaq.uires.R;
 
 
 /**
@@ -21,6 +23,10 @@ import com.pandaq.uires.R;
 
 public class LoadingDialog extends Dialog {
 
+    /**
+     * 显示 tag ，用于标识是否由同一个页面控制显示
+     */
+    private String showTag;
     private final TextView textView;
     private final View rootView;
     private final Context mContext;
@@ -32,7 +38,7 @@ public class LoadingDialog extends Dialog {
      *
      * @param context 上下文
      */
-    public LoadingDialog(@NonNull Activity context,boolean isTrans) {
+    public LoadingDialog(@NonNull Activity context) {
         super(context, R.style.loading_dialog);
         this.mContext = context;
         setOwnerActivity(context);
@@ -41,6 +47,13 @@ public class LoadingDialog extends Dialog {
         mLoadingLayout = rootView.findViewById(R.id.fl_main);
     }
 
+    public void setShowTag(String showTag) {
+        this.showTag = showTag;
+    }
+
+    public String getShowTag() {
+        return showTag;
+    }
 
     /**
      * 弹出Dialog
@@ -91,5 +104,18 @@ public class LoadingDialog extends Dialog {
 
     public void hideLoadingView() {
         mLoadingLayout.setVisibility(View.GONE);
+    }
+
+    public void setStyle(boolean isTrans) {
+        Window dialogWindow = getWindow();
+        WindowManager.LayoutParams lp = dialogWindow.getAttributes();
+        if (isTrans) {
+            lp.dimAmount = 0.0f;
+        } else {
+            lp.dimAmount = 0.3f;
+        }
+        lp.y = 560;
+        dialogWindow.setAttributes(lp);
+        dialogWindow.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
     }
 }

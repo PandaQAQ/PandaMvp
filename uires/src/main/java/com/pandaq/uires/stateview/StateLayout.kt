@@ -1,12 +1,17 @@
 package com.pandaq.uires.stateview
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.widget.AppCompatImageView
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.pandaq.appcore.imageloader.glide.BlurTransformation
 import com.pandaq.uires.R
 import pl.droidsonroids.gif.GifImageView
 
@@ -16,7 +21,7 @@ import pl.droidsonroids.gif.GifImageView
  * Description :网络加载状态 View
  */
 class StateLayout @JvmOverloads constructor(
-        context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
     private var mOnDefaultStateClickListener: DefaultStateClickListener? = null
@@ -28,13 +33,16 @@ class StateLayout @JvmOverloads constructor(
     private var errorView: View
     private var netErrorView: View
 
+    private var defLoadingView: GifImageView? = null
+
     private var defEmptyImage: ImageView? = null
     private var defEmptyText: TextView? = null
+
     private var defErrorImage: ImageView? = null
     private var defErrorText: TextView? = null
+
     private var defNetErrorImage: ImageView? = null
     private var defNetErrorText: TextView? = null
-    private var defLoadingView: GifImageView? = null
 
     private var defEmptyString: String? = null
     private var defErrorString: String? = null
@@ -43,7 +51,10 @@ class StateLayout @JvmOverloads constructor(
     init {
         val typeArray = context.obtainStyledAttributes(attrs, R.styleable.StateLayout)
         // emptyView
-        val emptyId = typeArray.getResourceId(R.styleable.StateLayout_emptyLayout, R.layout.default_empty_layout)
+        val emptyId = typeArray.getResourceId(
+            R.styleable.StateLayout_emptyLayout,
+            R.layout.default_empty_layout
+        )
         emptyView = View.inflate(context, emptyId, null)
         defEmptyText = emptyView.findViewById(R.id.state_empty_hint)
         defEmptyImage = emptyView.findViewById(R.id.state_empty_img)
@@ -53,33 +64,66 @@ class StateLayout @JvmOverloads constructor(
             mOnDefaultStateClickListener?.onEmptyClick()
         }
         // errorView
-        val errorId = typeArray.getResourceId(R.styleable.StateLayout_errorLayout, R.layout.default_error_layout)
+        val errorId = typeArray.getResourceId(
+            R.styleable.StateLayout_errorLayout,
+            R.layout.default_error_layout
+        )
         errorView = View.inflate(context, errorId, null)
         defErrorText = errorView.findViewById(R.id.state_error_hint)
         defErrorImage = errorView.findViewById(R.id.state_error_img)
+        val errorRefresh = errorView.findViewById<TextView>(R.id.state_error_refresh)
         defErrorString = defErrorText?.text.toString()
         errorView.visibility = View.GONE
-        errorView.setOnClickListener {
+        errorRefresh?.setOnClickListener {
             mOnDefaultStateClickListener?.onErrorClick()
         }
         // netErrorView
-        val netErrorId = typeArray.getResourceId(R.styleable.StateLayout_noNetLayout, R.layout.default_neterror_layout)
+        val netErrorId = typeArray.getResourceId(
+            R.styleable.StateLayout_noNetLayout,
+            R.layout.default_neterror_layout
+        )
         netErrorView = View.inflate(context, netErrorId, null)
-        defNetErrorText = netErrorView.findViewById(R.id.state_neterror_hint)
-        defNetErrorImage = netErrorView.findViewById(R.id.state_neterror_img)
+        defNetErrorText = netErrorView.findViewById(R.id.state_net_error_hint)
+        defNetErrorImage = netErrorView.findViewById(R.id.state_net_error_img)
+        val noNetRefresh = errorView.findViewById<TextView>(R.id.state_net_error_refresh)
         defNetErrorString = defNetErrorText?.text.toString()
         netErrorView.visibility = View.GONE
-        netErrorView.setOnClickListener {
+        noNetRefresh?.setOnClickListener {
             mOnDefaultStateClickListener?.onNetErrorClick()
         }
         // loadingView
-        val loadingId = typeArray.getResourceId(R.styleable.StateLayout_noNetLayout, R.layout.default_loading_layout)
-        loadingView = inflate(context, loadingId, null)
-        defLoadingView = loadingView.findViewById(R.id.state_loading_img)
-        loadingView.visibility = View.GONE
-        loadingView.setOnClickListener {
-            mOnDefaultStateClickListener?.onLoadingClick()
+        val loadingId = typeArray.getResourceId(
+            R.styleable.StateLayout_loadingLayout,
+            R.layout.default_loading_layout
+        )
+        val useBlurLoading = typeArray.getBoolean(R.styleable.StateLayout_useBlurLoading, false)
+        if (useBlurLoading) {
+            val drawableView = inflate(context, loadingId, null)
+            drawableView.measure(
+                MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED),
+                MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED)
+            )
+            drawableView.layoutParams =
+                LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+            drawableView.layout(0, 0, drawableView.measuredWidth, drawableView.measuredHeight)
+            drawableView.isDrawingCacheEnabled = true
+            drawableView.buildDrawingCache(true)
+            val loadingBitmap = Bitmap.createBitmap(drawableView.getDrawingCache(true))
+            drawableView.isDrawingCacheEnabled = false
+            drawableView.destroyDrawingCache()
+            loadingView = AppCompatImageView(context)
+            (loadingView as AppCompatImageView).let {
+                it.scaleType = ImageView.ScaleType.FIT_XY
+                Glide.with(context)
+                    .load(loadingBitmap)
+                    .apply(RequestOptions.bitmapTransform(BlurTransformation(context)))
+                    .into(loadingView as AppCompatImageView)
+            }
+        } else {
+            loadingView = inflate(context, loadingId, null)
+            defLoadingView = loadingView.findViewById(R.id.state_loading_img)
         }
+        loadingView.visibility = View.GONE
         typeArray.recycle()
     }
 
@@ -159,7 +203,10 @@ class StateLayout @JvmOverloads constructor(
         child?.let {
             if (it != emptyView && it != errorView && it != netErrorView && it != loadingView) {
                 contentView = child
-                val param = ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT)
+                val param = ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT
+                )
                 addView(emptyView, param)
                 addView(errorView, param)
                 addView(netErrorView, param)

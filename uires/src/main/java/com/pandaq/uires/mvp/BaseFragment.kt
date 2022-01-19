@@ -97,7 +97,8 @@ abstract class BaseFragment<P : BasePresenter<*>, VB : ViewBinding> : CoreBaseFr
 
     override fun showError(showErrorPage: Boolean, errMsg: String?) {
         if (LoadingDialogUtil.isShowing()) {
-            LoadingDialogUtil.hideProgressQuick()
+            LoadingDialogUtil.hideProgressQuick(this.javaClass.simpleName)
+            LoadingDialogUtil.hideProgressQuick(this.activity?.javaClass?.simpleName)
         }
         if (showErrorPage) {
             if (NetWorkUtils.isNetworkConnected()) {
@@ -114,21 +115,24 @@ abstract class BaseFragment<P : BasePresenter<*>, VB : ViewBinding> : CoreBaseFr
 
     override fun showEmpty(msg: String?) {
         if (LoadingDialogUtil.isShowing()) {
-            LoadingDialogUtil.hideProgressQuick()
+            LoadingDialogUtil.hideProgressQuick(this.javaClass.simpleName)
+            LoadingDialogUtil.hideProgressQuick(this.activity?.javaClass?.simpleName)
         }
         mStateLayout?.showEmpty(msg)
     }
 
     override fun showLoading() {
         if (LoadingDialogUtil.isShowing()) {
-            LoadingDialogUtil.hideProgressQuick()
+            LoadingDialogUtil.hideProgressQuick(this.javaClass.simpleName)
+            LoadingDialogUtil.hideProgressQuick(this.activity?.javaClass?.simpleName)
         }
         mStateLayout?.showLoading()
     }
 
     override fun showContent() {
         if (LoadingDialogUtil.isShowing()) {
-            LoadingDialogUtil.hideProgressQuick()
+            LoadingDialogUtil.hideProgressQuick(this.javaClass.simpleName)
+            LoadingDialogUtil.hideProgressQuick(this.activity?.javaClass?.simpleName)
         }
         mStateLayout?.showContent()
     }

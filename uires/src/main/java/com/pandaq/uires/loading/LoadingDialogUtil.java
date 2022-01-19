@@ -2,16 +2,15 @@ package com.pandaq.uires.loading;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.content.Context;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 
 import com.pandaq.uires.R;
 
 import java.lang.ref.WeakReference;
+
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by huxinyu on 2018/8/15.
@@ -50,32 +49,66 @@ public class LoadingDialogUtil {
     /**
      * 显示加载框
      *
-     * @param context 上下文
+     * @param activity 上下文
      */
-    public static void show(Activity context, String message) {
-        String str = TextUtils.isEmpty(message) ? context.getString(R.string.loading) : message;
-        showProgress(context, str, true, true);
+    public static void show(Activity activity, String message) {
+        String str = TextUtils.isEmpty(message) ? activity.getString(R.string.loading) : message;
+        showProgress(activity, str, true, true);
     }
 
-    public static void showWithCover(Activity context, String message) {
-        String str = TextUtils.isEmpty(message) ? context.getString(R.string.loading) : message;
-        showProgress(context, str, true, false);
+    public static void showWithCover(Activity activity, String message) {
+        String str = TextUtils.isEmpty(message) ? activity.getString(R.string.loading) : message;
+        showProgress(activity, str, true, false);
+    }
+
+    public static void show(Fragment fragment, String message) {
+        String str = TextUtils.isEmpty(message) ? fragment.getString(R.string.loading) : message;
+        showProgress(fragment, str, true, true);
+    }
+
+    public static void showWithCover(Fragment fragment, String message) {
+        String str = TextUtils.isEmpty(message) ? fragment.getString(R.string.loading) : message;
+        showProgress(fragment, str, true, false);
     }
 
     /**
      * 显示设置取消的加载框
      *
-     * @param context    上下文
+     * @param activity   上下文
      * @param cancelable 是否可以取消
      */
-    public static void show(Activity context, String message, boolean cancelable) {
-        String str = TextUtils.isEmpty(message) ? context.getString(R.string.loading) : message;
-        showProgress(context, str, cancelable, true);
+    public static void show(Activity activity, String message, boolean cancelable) {
+        String str = TextUtils.isEmpty(message) ? activity.getString(R.string.loading) : message;
+        showProgress(activity, str, cancelable, true);
     }
 
-    public static void showWithCover(Activity context, String message, boolean cancelable) {
-        String str = TextUtils.isEmpty(message) ? context.getString(R.string.loading) : message;
-        showProgress(context, str, cancelable, false);
+    public static void showWithCover(Activity activity, String message, boolean cancelable) {
+        String str = TextUtils.isEmpty(message) ? activity.getString(R.string.loading) : message;
+        showProgress(activity, str, cancelable, false);
+    }
+
+    /**
+     * 显示设置取消的加载框
+     *
+     * @param fragment   上下文
+     * @param cancelable 是否可以取消
+     */
+    public static void show(Fragment fragment, String message, boolean cancelable) {
+        String str = TextUtils.isEmpty(message) ? fragment.getString(R.string.loading) : message;
+        showProgress(fragment, str, cancelable, true);
+    }
+
+    public static void showWithCover(Fragment fragment, String message, boolean cancelable) {
+        String str = TextUtils.isEmpty(message) ? fragment.getString(R.string.loading) : message;
+        showProgress(fragment, str, cancelable, false);
+    }
+
+    private static void showProgress(Fragment fragment, CharSequence message, boolean cancelable, boolean isTrans) {
+        showProgress(fragment.getActivity(), fragment.getClass().getSimpleName(), message, cancelable, isTrans);
+    }
+
+    private static void showProgress(Activity activity, CharSequence message, boolean cancelable, boolean isTrans) {
+        showProgress(activity, activity.getClass().getSimpleName(), message, cancelable, isTrans);
     }
 
     /**
@@ -85,21 +118,24 @@ public class LoadingDialogUtil {
      * @param cancelable 取消
      * @param activity   上下文
      */
-    private static void showProgress(Activity activity, CharSequence message, boolean cancelable, boolean isTrans) {
+    private static void showProgress(Activity activity, String showTag, CharSequence message, boolean cancelable, boolean isTrans) {
         WeakReference<Activity> reference = new WeakReference<>(activity);
         Activity ownerActivity = reference.get();
         //如果时当前页面正在显示
-        if (isShowing() && contextIsSame(sLoadingDialog, ownerActivity)) {
+        if (isShowing()) {
             if (sLoadingDialog != null) {
                 sLoadingDialog.setMessage(message);
+                sLoadingDialog.setStyle(isTrans);
+                sLoadingDialog.setShowTag(showTag);
             }
             return;
         }
-        if (!contextIsSame(sLoadingDialog, ownerActivity)) {
+        if (!isSame(showTag)) {
             releaseDialog();
         }
         if (sLoadingDialog == null) {
-            sLoadingDialog = new LoadingDialog(ownerActivity, isTrans);
+            sLoadingDialog = new LoadingDialog(ownerActivity);
+            sLoadingDialog.setShowTag(showTag);
         }
         if (sLoadingView != null) {
             sLoadingDialog.setLoadingView(sLoadingView);
@@ -109,10 +145,7 @@ public class LoadingDialogUtil {
         sLoadingDialog.showInit(message, cancelable);
         if (!ownerActivity.isDestroyed() && !ownerActivity.isFinishing()) {
             try {
-                Window dialogWindow = sLoadingDialog.getWindow();
-                WindowManager.LayoutParams lp = dialogWindow.getAttributes();
-                lp.y = 560;
-                dialogWindow.setAttributes(lp);
+                sLoadingDialog.setStyle(isTrans);
                 sLoadingDialog.show();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -154,6 +187,48 @@ public class LoadingDialogUtil {
     }
 
     /**
+     * 直接消失
+     */
+    public static void hideProgressQuick() {
+        if (sLoadingDialog != null) {
+            dismissDialog();
+        }
+    }
+
+    /**
+     * 隐藏加载框,延迟600ms
+     */
+    public static void hideProgress(String showTag) {
+        try {
+            if (sLoadingDialog == null || !isSame(showTag)) {
+                return;
+            }
+            LoadingView logoView = sLoadingDialog.getLoadingView();
+            if (logoView != null) {
+                logoView.finish();
+                ((View) logoView).postDelayed(LoadingDialogUtil::dismissDialog, 600);
+            } else {
+                dismissDialog();
+            }
+
+
+        } catch (Exception e) {
+            Log.e("LoadingDialogUtil", "异常" + e.getMessage());
+        }
+
+    }
+
+    /**
+     * 直接消失
+     */
+    public static void hideProgressQuick(String showTag) {
+        if (sLoadingDialog != null && isSame(showTag)) {
+            dismissDialog();
+        }
+    }
+
+
+    /**
      * 关闭dialog
      */
     private static void dismissDialog() {
@@ -164,20 +239,10 @@ public class LoadingDialogUtil {
         }
     }
 
-
-    /**
-     * 直接消失
-     */
-    public static void hideProgressQuick() {
-        if (sLoadingDialog != null) {
-            dismissDialog();
-        }
-    }
-
     /**
      * 置空，避免引用activity导致内存泄露
      */
-    public static void releaseDialog() {
+    private static void releaseDialog() {
         if (sLoadingDialog != null) {
             Activity ownerActivity = sLoadingDialog.getOwnerActivity();
             if (ownerActivity != null) {
@@ -193,15 +258,13 @@ public class LoadingDialogUtil {
     /**
      * 是否在同一个页面
      *
-     * @param dialog  LoadingDialog
-     * @param context 待判断的contxt
+     * @param showTag 待判断的 showTag
      * @return true 同一个页面
      */
-    private static boolean contextIsSame(LoadingDialog dialog, Context context) {
-        try {
-            return dialog.getMyContext().equals(context);
-        } catch (Exception e) {
+    private static boolean isSame(String showTag) {
+        if (sLoadingDialog == null) {
             return false;
         }
+        return sLoadingDialog.getShowTag().equals(showTag);
     }
 }

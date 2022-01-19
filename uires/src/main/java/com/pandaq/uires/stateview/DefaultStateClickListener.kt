@@ -19,7 +19,4 @@ interface DefaultStateClickListener {
 
     }
 
-    fun onLoadingClick() {
-
-    }
 }
