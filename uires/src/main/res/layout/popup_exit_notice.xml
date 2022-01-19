@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_popup_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/colorTrans"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="@dimen/res_dp_16">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="退出应用？"
+        android:textColor="@color/res_colorWhite"
+        android:textSize="60sp" />
+
+    <TextView
+        android:id="@+id/tv_exit"
+        android:layout_width="456dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="60dp"
+        android:background="@drawable/res_stateful_ripple_green_round_8"
+        android:gravity="center"
+        android:text="确认"
+        android:textColor="@color/res_colorWhite"
+        android:textSize="60sp" />
+
+    <TextView
+        android:id="@+id/tv_cancel"
+        android:layout_width="456dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="@dimen/dp_40"
+        android:background="@drawable/res_stateful_ripple_white_round_8"
+        android:gravity="center"
+        android:text="取消"
+        android:textColor="@color/res_colorTextMain"
+        android:textSize="60sp" />
+</LinearLayout>

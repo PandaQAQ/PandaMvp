@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "artifactType": {
+    "type": "APK",
+    "kind": "Directory"
+  },
+  "applicationId": "com.pandaq.pandamvp",
+  "variantName": "processDebugResources",
+  "elements": [
+    {
+      "type": "SINGLE",
+      "filters": [],
+      "versionCode": 10100,
+      "versionName": "1.1.0",
+      "outputFile": "sds_v1.1.0_dev.apk"
+    }
+  ]
+}

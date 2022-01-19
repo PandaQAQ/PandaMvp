@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/ll_menu"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/colorTrans"
+    android:orientation="horizontal">
+
+    <com.pandaq.uires.widget.imageview.ShadowImageView
+        android:id="@+id/fb_home"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:scaleType="fitCenter"
+        android:padding="@dimen/dp_10"
+        android:src="@drawable/icon_menu_home"
+        app:tint="@color/res_colorWhite"
+        app:image_circle="true"
+        app:image_shadow="true"
+        app:shadow_color="#000000"
+        app:image_shadow_radius="@dimen/dp_10"/>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fb_back"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/res_colorWhite"
+        android:backgroundTint="@color/res_colorWhite"
+        android:src="@drawable/icon_menu_back" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fb_close_menu"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/res_colorWhite"
+        android:backgroundTint="@color/res_colorWhite"
+        android:src="@drawable/icon_menu_close" />
+</LinearLayout>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_popup_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/res_stateful_ripple_white_round_8"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:padding="@dimen/res_dp_16">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="提示"
+        android:textColor="@color/res_colorTextMain"
+        android:textSize="21sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/res_dp_16"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:text="即将在 "
+            android:textColor="@color/res_colorTextMain"
+            android:textSize="@dimen/res_sp_16" />
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:textColor="@color/res_colorTextMain"
+            android:textSize="16sp"
+            android:text="10 秒" />
+
+        <TextView
+            android:id="@+id/tv_notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="bottom"
+            android:text=""
+            android:textColor="@color/res_colorTextMain"
+            android:textSize="@dimen/res_sp_16" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/res_dp_16"
+        android:text="点击任意位置继续"
+        android:textColor="@color/btn_red_normal"
+        android:textSize="@dimen/res_sp_16" />
+</LinearLayout>
