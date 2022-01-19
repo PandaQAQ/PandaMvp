@@ -18,9 +18,6 @@ import com.pandaq.appcore.event.NetworkState
 import com.pandaq.appcore.framework.app.lifecycle.IAppLifeCycle
 import com.pandaq.appcore.framework.app.lifecycle.ManifestParser
 import com.pandaq.appcore.log.PLogger
-import com.pandaq.appcore.log.alisls.LogTopic
-import com.pandaq.appcore.log.alisls.SLSLoger
-import com.pandaq.appcore.log.alisls.SlsLog
 import com.pandaq.appcore.utils.system.AppUtils
 import com.pandaq.rxpanda.utils.ThreadUtils
 import com.tencent.smtt.export.external.TbsCoreSettings
@@ -67,11 +64,6 @@ class AppProxy(private val application: Application) : IAppLifeCycle {
     private val networkCallback: NetworkCallback = object : NetworkCallback() {
         override fun onAvailable(network: Network) {
             super.onAvailable(network)
-            val slsLog = SlsLog(
-                LogTopic.STATUS_CHANGE,
-                "网络已连接"
-            )
-            SLSLoger.sendLog(slsLog)
             // 延迟通知刷新界面，让需要网络初始化的 SDK 先初始化
             ThreadUtils.getMainHandler().postDelayed({
                 EventBus.getDefault().postSticky(NetworkChange(NetworkState.CONNECTED))
@@ -85,11 +77,6 @@ class AppProxy(private val application: Application) : IAppLifeCycle {
 
         override fun onLost(network: Network) {
             super.onLost(network)
-            val slsLog = SlsLog(
-                LogTopic.STATUS_CHANGE,
-                "网络已断开"
-            )
-            SLSLoger.sendLog(slsLog)
             EventBus.getDefault().postSticky(NetworkChange(NetworkState.LOST))
         }
 
