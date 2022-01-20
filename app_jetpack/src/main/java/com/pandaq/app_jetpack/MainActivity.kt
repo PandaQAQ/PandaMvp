@@ -5,7 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.pandaq.router.routers.RouterPath
+import com.pandaq.router.route.RouterPath
 
 @Route(path = RouterPath.JETPACK_MAIN)
 class MainActivity : AppCompatActivity() {

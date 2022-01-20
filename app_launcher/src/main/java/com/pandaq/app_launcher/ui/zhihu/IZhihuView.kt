@@ -1,6 +1,6 @@
 package com.pandaq.app_launcher.ui.zhihu
 
-import com.pandaq.appcore.framework.mvp.IListVIew
+import com.pandaq.uires.mvp.core.IListVIew
 
 /**
  * Created by huxinyu on 5/11/21.

@@ -1,6 +1,5 @@
-package com.pandaq.appcore.framework.mvp
+package com.pandaq.uires.mvp.core
 
-import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent

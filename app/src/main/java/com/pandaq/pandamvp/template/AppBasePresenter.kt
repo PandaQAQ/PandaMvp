@@ -1,7 +1,7 @@
 package com.pandaq.pandamvp.template
 
-import com.pandaq.appcore.framework.mvp.BasePresenter
-import com.pandaq.appcore.framework.mvp.IView
+import com.pandaq.uires.mvp.core.BasePresenter
+import com.pandaq.uires.mvp.core.IView
 
 /**
  * Created by huxinyu on 2019/7/8.

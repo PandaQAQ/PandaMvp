@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.pandaq.app_launcher.databinding.LauncherActivityZhihuListBinding
 import com.pandaq.app_launcher.framework.refresh.AppBaseRefreshActivity
-import com.pandaq.router.routers.RouterPath
+import com.pandaq.router.route.RouterPath
 import com.pandaq.uires.widget.recyclerview.RefreshRecyclerView
 
 /**

@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
 import com.pandaq.appcore.BuildConfig
 import com.pandaq.appcore.framework.app.ActivityTask
-import com.pandaq.appcore.framework.mvp.BasePresenter
-import com.pandaq.appcore.framework.mvp.CoreBaseFragment
+import com.pandaq.uires.mvp.core.BasePresenter
+import com.pandaq.uires.mvp.core.CoreBaseFragment
 import com.pandaq.appcore.utils.NetWorkUtils
 import com.pandaq.uires.R
 import com.pandaq.uires.loading.LoadingDialogUtil

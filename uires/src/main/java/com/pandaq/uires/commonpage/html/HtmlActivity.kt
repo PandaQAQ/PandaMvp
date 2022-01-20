@@ -1,4 +1,4 @@
-package com.pandaq.uires.html
+package com.pandaq.uires.commonpage.html
 
 import android.content.Intent
 import android.view.View
@@ -6,7 +6,7 @@ import androidx.appcompat.app.ActionBar
 import com.pandaq.appcore.BuildConfig
 import com.pandaq.appcore.browser.WebFragment
 import com.pandaq.appcore.framework.app.ActivityTask
-import com.pandaq.appcore.framework.mvp.BasePresenter
+import com.pandaq.uires.mvp.core.BasePresenter
 import com.pandaq.uires.R
 import com.pandaq.uires.databinding.ActivityHtmlBinding
 import com.pandaq.uires.mvp.BaseActivity

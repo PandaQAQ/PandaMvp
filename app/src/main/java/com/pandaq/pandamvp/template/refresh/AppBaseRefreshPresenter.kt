@@ -1,6 +1,6 @@
 package com.pandaq.pandamvp.template.refresh
 
-import com.pandaq.appcore.framework.mvp.IListVIew
+import com.pandaq.uires.mvp.core.IListVIew
 import com.pandaq.pandamvp.template.AppBasePresenter
 
 /**
@@ -8,6 +8,6 @@ import com.pandaq.pandamvp.template.AppBasePresenter
  * Email : panda.h@foxmail.com
  * Description :
  */
-class AppBaseRefreshPresenter<V:IListVIew>: AppBasePresenter<V>() {
+class AppBaseRefreshPresenter<V: IListVIew>: AppBasePresenter<V>() {
 
 }

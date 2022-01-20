@@ -1,11 +1,11 @@
-package com.pandaq.router.degrade
+package com.pandaq.router.route.degrade
 
 import android.content.Context
 import android.content.Intent
 import com.alibaba.android.arouter.facade.Postcard
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.facade.service.DegradeService
-import com.pandaq.uires.notfound.NotFoundPage
+import com.pandaq.router.common.uipage.notfound.NotFoundPage
 
 /**
  * Created by huxinyu on 4/23/21.

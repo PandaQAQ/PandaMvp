@@ -1,7 +1,10 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-parcelize'
+plugins {
+    id 'com.android.library'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'maven'
+    id 'kotlin-parcelize'
+}
 
 android {
 
@@ -61,8 +64,31 @@ android {
     }
 }
 
-repositories {
-    mavenCentral()
+task sourceJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier "sources"
+}
+
+task androidSourcesJar(type: Jar) {
+    classifier = 'source'
+    from android.sourceSets.main.java.sourceFiles
+}
+
+artifacts {
+    archives androidSourcesJar
+}
+
+uploadArchives {
+    repositories.mavenDeployer {
+        // 本地仓库路径
+        repository(url: uri('/Users/pandaq/Desktop/Maven'))
+        // 唯一标识
+        pom.groupId = 'com.pandaq'
+        // 模块名称
+        pom.artifactId = 'panda-core'
+        // 版本号
+        pom.version = '1.0.0'
+    }
 }
 
 /**

@@ -1,8 +1,8 @@
 package com.pandaq.app_launcher.framework
 
 import com.pandaq.app_launcher.net.ApiService
-import com.pandaq.appcore.framework.mvp.BasePresenter
-import com.pandaq.appcore.framework.mvp.IView
+import com.pandaq.uires.mvp.core.BasePresenter
+import com.pandaq.uires.mvp.core.IView
 import com.pandaq.rxpanda.RxPanda
 
 /**

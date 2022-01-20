@@ -4,16 +4,16 @@
 
     <application>
         <activity
-            android:name=".html.HtmlActivity"
+            android:name="com.pandaq.uires.commonpage.html.HtmlActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name="com.pandaq.uires.notfound.NotFoundPage"
+            android:name="com.pandaq.router.common.uipage.notfound.NotFoundPage"
             android:screenOrientation="portrait"
-            android:theme="@style/BaseAppTheme" />
+            android:theme="@style/FullScreenNoTitleTheme" />
         <activity
-            android:name=".html.HtmlNoTitleActivity"
+            android:name="com.pandaq.uires.commonpage.html.HtmlNoTitleActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/BaseAppTheme" />
+            android:theme="@style/FullScreenNoTitleTheme" />
 
         <!--        <meta-data-->
         <!--            android:name="design_with_in_dp"-->

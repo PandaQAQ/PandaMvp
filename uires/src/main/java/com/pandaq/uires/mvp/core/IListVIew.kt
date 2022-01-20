@@ -1,4 +1,4 @@
-package com.pandaq.appcore.framework.mvp
+package com.pandaq.uires.mvp.core
 
 /**
  * Created by huxinyu on 5/11/21.

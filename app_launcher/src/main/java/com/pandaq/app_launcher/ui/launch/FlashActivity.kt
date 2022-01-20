@@ -6,7 +6,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.pandaq.app_launcher.databinding.LauncherActivityFlashBinding
 import com.pandaq.app_launcher.framework.AppBaseActivity
-import com.pandaq.router.routers.RouterPath
+import com.pandaq.router.route.RouterPath
 
 /**
  * Created by huxinyu on 2019/3/25.

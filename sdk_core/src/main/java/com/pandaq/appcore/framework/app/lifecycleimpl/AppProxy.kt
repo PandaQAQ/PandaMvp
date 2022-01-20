@@ -113,33 +113,6 @@ class AppProxy(private val application: Application) : IAppLifeCycle {
     }
 
     private fun initSdk() {
-        // 初始化阿里云日志服务
-//        SLSLoger.init()
-
-        // 初始化 bugly
-//        CrashReport.initCrashReport(application, "2449c506df", BuildConfig.IN_DEBUG)
-//        val strategy = UserStrategy(application)
-//        strategy.setCrashHandleCallback(CrashCallback())
-        // 联网后延迟 30 秒上传信息
-//        strategy.appReportDelay = 30000
-//        strategy.appVersion = AppUtils.versionName()
-//        strategy.isReplaceOldChannel = true
-//        strategy.isEnableUserInfo = true
-//        CrashReport.setUserId(AppUtils.getMacAddress() + "_" + BuildConfig.BUILD_TYPE)
-//        CrashReport.setDeviceId(application, AppUtils.getMacAddress())
-//        CrashReport.setIsDevelopmentDevice(application, BuildConfig.IN_DEBUG)
-//        if ("DEBUG" == BuildConfig.ENV) {
-//            CrashReport.setUserSceneTag(application, 208970)
-//        } else if ("TEST" == BuildConfig.ENV) {
-//            CrashReport.setUserSceneTag(application, 208971)
-//        } else if ("RELEASE" == BuildConfig.ENV) {
-//            CrashReport.setUserSceneTag(application, 208972)
-//        }
-
-        // 初始化百度地图
-//        SDKInitializer.initialize(application)
-//        SDKInitializer.setCoordType(CoordType.BD09LL)
-        //配置 X5 浏览服务
         // tbs 配置
         QbSdk.setDownloadWithoutWifi(true)
         QbSdk.initX5Environment(AppUtils.getContext(), null)

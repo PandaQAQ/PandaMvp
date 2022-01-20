@@ -1,4 +1,4 @@
-package com.pandaq.appcore.framework.mvp
+package com.pandaq.uires.mvp.core
 
 import android.os.Bundle
 import android.view.LayoutInflater

@@ -1,4 +1,4 @@
-package com.pandaq.router.routers
+package com.pandaq.router.route
 
 /**
  * Created by huxinyu on 2019/4/8.

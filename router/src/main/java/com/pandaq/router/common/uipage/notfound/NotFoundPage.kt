@@ -1,6 +1,6 @@
-package com.pandaq.uires.notfound
+package com.pandaq.router.common.uipage.notfound
 
-import com.pandaq.appcore.framework.mvp.BasePresenter
+import com.pandaq.uires.mvp.core.BasePresenter
 import com.pandaq.uires.databinding.ActivityRoute404Binding
 import com.pandaq.uires.mvp.BaseActivity
 

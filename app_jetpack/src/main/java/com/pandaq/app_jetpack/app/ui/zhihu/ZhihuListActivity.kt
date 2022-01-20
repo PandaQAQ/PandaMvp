@@ -11,7 +11,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.pandaq.app_jetpack.app.ui.adapters.ZhihuNewsAdapter
 import com.pandaq.app_jetpack.databinding.AActivityZhihuListBinding
 import com.pandaq.appcore.R
-import com.pandaq.router.routers.RouterPath
+import com.pandaq.router.route.RouterPath
 import com.scwang.smartrefresh.layout.api.RefreshLayout
 import com.scwang.smartrefresh.layout.listener.OnRefreshLoadMoreListener
 

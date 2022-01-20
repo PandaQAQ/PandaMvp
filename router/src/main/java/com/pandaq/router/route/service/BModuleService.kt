@@ -1,4 +1,4 @@
-package com.pandaq.router.module_b
+package com.pandaq.router.route.service
 
 import com.alibaba.android.arouter.facade.template.IProvider
 

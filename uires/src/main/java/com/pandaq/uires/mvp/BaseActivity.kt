@@ -8,8 +8,8 @@ import androidx.appcompat.app.ActionBar
 import androidx.viewbinding.ViewBinding
 import com.pandaq.appcore.BuildConfig
 import com.pandaq.appcore.framework.app.ActivityTask
-import com.pandaq.appcore.framework.mvp.BasePresenter
-import com.pandaq.appcore.framework.mvp.CoreBaseActivity
+import com.pandaq.uires.mvp.core.BasePresenter
+import com.pandaq.uires.mvp.core.CoreBaseActivity
 import com.pandaq.appcore.utils.NetWorkUtils
 import com.pandaq.uires.R
 import com.pandaq.uires.loading.LoadingDialogUtil

@@ -1,4 +1,4 @@
-package com.pandaq.appcore.framework.mvp
+package com.pandaq.uires.mvp.core
 
 import android.content.Intent
 import android.graphics.Color

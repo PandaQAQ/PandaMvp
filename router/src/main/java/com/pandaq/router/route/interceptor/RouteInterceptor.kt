@@ -1,4 +1,4 @@
-package com.pandaq.router.interceptor
+package com.pandaq.router.route.interceptor
 
 import android.content.Context
 import com.alibaba.android.arouter.facade.Postcard

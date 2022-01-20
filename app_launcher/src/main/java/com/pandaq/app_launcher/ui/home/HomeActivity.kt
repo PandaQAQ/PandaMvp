@@ -19,10 +19,10 @@ import com.pandaq.appcore.framework.app.ActivityTask
 import com.pandaq.appcore.imageloader.core.PicLoader
 import com.pandaq.appcore.permission.RtPermission
 import com.pandaq.appcore.utils.system.DisplayUtils
-import com.pandaq.router.routers.RouterPath
-import com.pandaq.uires.html.HtmlNoTitleActivity
+import com.pandaq.router.route.RouterPath
+import com.pandaq.uires.commonpage.html.HtmlNoTitleActivity
 import com.pandaq.uires.msgwindow.Toaster
-import com.pandaq.uires.notfound.NotFoundPage
+import com.pandaq.router.common.uipage.notfound.NotFoundPage
 import com.pandaq.uires.utils.compileSize
 import com.pandaq.uires.widget.recyclerview.decoration.ItemDecoration
 import java.io.File

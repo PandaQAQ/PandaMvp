@@ -3,8 +3,8 @@ package com.pandaq.app_bmodule
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.lxj.xpopup.XPopup
 import com.pandaq.app_bmodule.databinding.BActivityMainBinding
-import com.pandaq.appcore.framework.mvp.BasePresenter
-import com.pandaq.router.routers.RouterPath
+import com.pandaq.uires.mvp.core.BasePresenter
+import com.pandaq.router.route.RouterPath
 import com.pandaq.rxpanda.exception.ApiException
 import com.pandaq.rxpanda.observer.ApiObserver
 import com.pandaq.uires.mvp.BaseActivity
