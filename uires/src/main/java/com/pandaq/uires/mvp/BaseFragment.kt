@@ -12,8 +12,8 @@ import com.pandaq.appcore.utils.NetWorkUtils
 import com.pandaq.uires.R
 import com.pandaq.uires.loading.LoadingDialogUtil
 import com.pandaq.uires.msgwindow.Toaster
-import com.pandaq.uires.stateview.DefaultStateClickListener
-import com.pandaq.uires.stateview.StateLayout
+import com.pandaq.uires.widget.stateview.DefaultStateClickListener
+import com.pandaq.uires.widget.stateview.StateLayout
 
 /**
  * Created by huxinyu on 2019/7/8.

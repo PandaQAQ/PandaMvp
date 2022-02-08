@@ -62,7 +62,7 @@ class LoopLayoutManager(context: Context) : LinearLayoutManager(context) {
         recycler: RecyclerView.Recycler,
         state: RecyclerView.State
     ): Int {
-        val travl = fill(dx, recycler, state)
+        val travl = fill(dx, recycler)
         if (travl == 0) return 0
 
         offsetChildrenHorizontal(-travl)
@@ -74,15 +74,14 @@ class LoopLayoutManager(context: Context) : LinearLayoutManager(context) {
     /**
      * 左右滑动的时候，填充
      */
-    private fun fill(dx: Int, recycler: Recycler, state: RecyclerView.State): Int {
-        var xDistance = dx
-        if (xDistance > 0) {
+    private fun fill(dx: Int, recycler: Recycler): Int {
+        if (dx > 0) {
             //标注1.向左滚动
             val lastView = getChildAt(childCount - 1) ?: return 0
             val lastPos = getPosition(lastView)
             //标注2.可见的最后一个itemView完全滑进来了，需要补充新的
             if (lastView.right < width) {
-                var scrap: View? = null
+                var scrap: View?
                 //标注3.判断可见的最后一个itemView的索引，
                 // 如果是最后一个，则将下一个itemView设置为第一个，否则设置为当前索引的下一个
                 scrap = if (lastPos == itemCount - 1) {
@@ -99,7 +98,7 @@ class LoopLayoutManager(context: Context) : LinearLayoutManager(context) {
                     scrap, lastView.right, 0,
                     lastView.right + width, height
                 )
-                return xDistance
+                return dx
             }
         } else {
             //向右滚动
@@ -121,7 +120,7 @@ class LoopLayoutManager(context: Context) : LinearLayoutManager(context) {
                 )
             }
         }
-        return xDistance
+        return dx
     }
 
     private fun recyclerHideView(dx: Int, recycler: Recycler) {

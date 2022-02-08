@@ -19,4 +19,5 @@
     <string name="indicator_color_error">指示器的颜色只能设置成“@color/colorID or #000000”</string>
     <string name="banner_adapter_null_error">Adapter为空！请检查下参数</string>
     <string name="string_copyright">成都爱众云算科技有限公司提供技术服务</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

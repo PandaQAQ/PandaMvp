@@ -2,9 +2,8 @@ include ':app',
         ':app_launcher',
         ':app_jetpack',
         ':app_bmodule',
-        ':functionlibs:lib-zxing',
         ':functionlibs:pay',
-        ':router',
+        ':database',
         ':sdk_core',
         ':uires'
 

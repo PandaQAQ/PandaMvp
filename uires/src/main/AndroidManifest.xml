@@ -2,19 +2,25 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.pandaq.uires">
 
+    <uses-permission android:name="android.permission.VIBRATE" />
     <application>
+        <meta-data
+            android:name="com.pandaq.uires.lifecycle.LifeCycleInjector"
+            android:value="@string/lifecycle_proxy" />
         <activity
             android:name="com.pandaq.uires.commonpage.html.HtmlActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name="com.pandaq.router.common.uipage.notfound.NotFoundPage"
-            android:screenOrientation="portrait"
-            android:theme="@style/FullScreenNoTitleTheme" />
         <activity
             android:name="com.pandaq.uires.commonpage.html.HtmlNoTitleActivity"
             android:screenOrientation="portrait"
             android:theme="@style/FullScreenNoTitleTheme" />
 
+        <activity
+            android:name=".zxing.activity.CaptureActivity"
+            android:configChanges="orientation|keyboardHidden"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
         <!--        <meta-data-->
         <!--            android:name="design_with_in_dp"-->
         <!--            android:value="360" />-->

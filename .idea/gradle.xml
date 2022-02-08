@@ -14,10 +14,9 @@
             <option value="$PROJECT_DIR$/app_bmodule" />
             <option value="$PROJECT_DIR$/app_jetpack" />
             <option value="$PROJECT_DIR$/app_launcher" />
+            <option value="$PROJECT_DIR$/database" />
             <option value="$PROJECT_DIR$/functionlibs" />
-            <option value="$PROJECT_DIR$/functionlibs/lib-zxing" />
             <option value="$PROJECT_DIR$/functionlibs/pay" />
-            <option value="$PROJECT_DIR$/router" />
             <option value="$PROJECT_DIR$/sdk_core" />
             <option value="$PROJECT_DIR$/uires" />
           </set>

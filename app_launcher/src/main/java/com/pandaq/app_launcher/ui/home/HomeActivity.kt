@@ -22,7 +22,7 @@ import com.pandaq.appcore.utils.system.DisplayUtils
 import com.pandaq.router.route.RouterPath
 import com.pandaq.uires.commonpage.html.HtmlNoTitleActivity
 import com.pandaq.uires.msgwindow.Toaster
-import com.pandaq.router.common.uipage.notfound.NotFoundPage
+import com.pandaq.router.common.NotFoundPage
 import com.pandaq.uires.utils.compileSize
 import com.pandaq.uires.widget.recyclerview.decoration.ItemDecoration
 import java.io.File

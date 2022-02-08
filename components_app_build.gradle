@@ -91,6 +91,6 @@ dependencies {
     androidTestImplementation rootProject.ext.dependencies["androix-junit"]
     androidTestCompileOnly rootProject.ext.dependencies["espresso-core"]
     kapt rootProject.ext.dependencies["annotation"]
-    api project(':router')
+    api project(':database')
     kapt rootProject.ext.dependencies["arouter_compiler"]
 }

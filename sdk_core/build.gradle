@@ -87,7 +87,7 @@ uploadArchives {
         // 模块名称
         pom.artifactId = 'panda-core'
         // 版本号
-        pom.version = '1.0.0'
+        pom.version = SDK_CORE_VERSION
     }
 }
 

@@ -94,9 +94,6 @@ dependencies {
     androidTestImplementation rootProject.ext.dependencies["espresso-core"]
     implementation rootProject.ext.dependencies["design"]
     kapt rootProject.ext.dependencies["arouter_compiler"]
-
-    // 二维码模块
-    implementation(project(':functionlibs:lib-zxing'))
     implementation(project(':functionlibs:pay'))
 
     // 按需加载依赖业务 APP
