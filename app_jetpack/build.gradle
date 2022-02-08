@@ -32,6 +32,3 @@ android {
 dependencies {
 
 }
-repositories {
-    mavenCentral()
-}

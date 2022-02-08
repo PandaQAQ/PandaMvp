@@ -33,6 +33,3 @@ android {
 dependencies {
     implementation project(':functionlibs:pay')
 }
-repositories {
-    mavenCentral()
-}

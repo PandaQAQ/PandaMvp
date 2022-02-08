@@ -52,6 +52,3 @@ dependencies {
     api files('libs/alipaySdk-20180601.jar')
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 }
-repositories {
-    mavenCentral()
-}

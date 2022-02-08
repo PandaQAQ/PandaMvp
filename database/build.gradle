@@ -58,6 +58,3 @@ dependencies {
     implementation rootProject.ext.dependencies["greendao"]
     implementation(rootProject.ext.dependencies["constraint-layout"])
 }
-repositories {
-    mavenCentral()
-}
