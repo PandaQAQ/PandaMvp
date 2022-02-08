@@ -1,6 +1,6 @@
 plugins {
     id 'com.android.library'
-    id 'maven'
+    id 'maven-publish'
     id 'kotlin-android'
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
@@ -62,16 +62,18 @@ artifacts {
     archives androidSourcesJar
 }
 
-uploadArchives {
-    repositories.mavenDeployer {
-        // 本地仓库路径
-        repository(url: uri('/Users/pandaq/Desktop/Maven'))
-        // 唯一标识
-        pom.groupId = 'com.pandaq'
-        // 模块名称
-        pom.artifactId = 'panda-uires'
-        // 版本号
-        pom.version = UIRES_VERSION
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.pandaq'
+            artifactId = 'panda-uires'
+            version = UIRES_VERSION
+        }
+    }
+    repositories{
+        maven{
+            url = uri('/Users/pandaq/Desktop/Maven')
+        }
     }
 }
 

@@ -13,9 +13,9 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleObserver
 import androidx.viewbinding.ViewBinding
 import com.pandaq.appcore.R
-import com.pandaq.appcore.guide.GuideCoverView
 import com.pandaq.appcore.log.PLogger
 import com.pandaq.rxpanda.utils.CastUtils
+import com.pandaq.uires.widget.guide.GuideCoverView
 import java.lang.reflect.ParameterizedType
 
 /**
