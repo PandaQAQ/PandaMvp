@@ -201,6 +201,7 @@ class AppProxy(private val application: Application) : IAppLifeCycle {
                 try {
                     Looper.loop()
                 } catch (e: Throwable) {
+                    e.printStackTrace()
                     Toast.makeText(application, "因发生异常情况，应用已重启", Toast.LENGTH_SHORT).show()
 //                    CrashReport.postCatchedException(e)
                     // 遇到如下常见异常时，重启应用

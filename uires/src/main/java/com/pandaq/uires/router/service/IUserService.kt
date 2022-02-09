@@ -7,9 +7,13 @@ import com.alibaba.android.arouter.facade.template.IProvider
  * Created by huxinyu on 2019/4/8.
  * Email : panda.h@foxmail.com
  * <p>
- * Description :跨组件路由服务方法暴露
+ * Description :用户信息组件跨组件路由服务方法暴露
  */
-interface UserService : IProvider {
+interface IUserService : IProvider {
+
+    companion object {
+        const val path = "/service/user"
+    }
 
     /**
      * 跨组件获取用户 Id
@@ -19,6 +23,6 @@ interface UserService : IProvider {
     /**
      * 跨组件获取登陆状态
      */
-    fun isLogin(): String
+    fun isLogin(): Boolean
 
 }
